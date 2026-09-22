@@ -45,6 +45,8 @@ public:
 
 private:
     void onConnection();
+    void onSystemdConnection();
+    void addClient(QLocalSocket *socket);
     void onRequest(Client *client, const QJsonObject &request);
     void onDisconnected(Client *client);
 

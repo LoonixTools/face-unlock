@@ -52,6 +52,11 @@
 #include <QFileInfo>
 #include <QJsonArray>
 #include <QLocalSocket>
+#include <QSocketNotifier>
+
+#include <fcntl.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
 namespace
 {
@@ -99,20 +104,25 @@ bool Server::start(QString *error)
     QDir().mkpath(m_options.stateDir);
     QFile::setPermissions(m_options.stateDir, QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner);
 
-    bool ok;
     if (m_options.systemdFd >= 0) {
-        ok = m_server.listen(qintptr(m_options.systemdFd));
+        // Accepted here, not handed to QLocalServer: that deletes the socket
+        // file when it closes, and the file is systemd's. Gone, nothing could
+        // start the daemon again after it exits idle.
+        const int fd = m_options.systemdFd;
+        ::fcntl(fd, F_SETFD, FD_CLOEXEC);
+        ::fcntl(fd, F_SETFL, ::fcntl(fd, F_GETFL) | O_NONBLOCK);
+        auto *notifier = new QSocketNotifier(fd, QSocketNotifier::Read, this);
+        connect(notifier, &QSocketNotifier::activated, this, &Server::onSystemdConnection);
     } else {
         QDir().mkpath(QFileInfo(m_options.socketPath).absolutePath());
         QLocalServer::removeServer(m_options.socketPath);
         m_server.setSocketOptions(QLocalServer::WorldAccessOption);
-        ok = m_server.listen(m_options.socketPath);
+        if (!m_server.listen(m_options.socketPath)) {
+            *error = m_server.errorString();
+            return false;
+        }
+        connect(&m_server, &QLocalServer::newConnection, this, &Server::onConnection);
     }
-    if (!ok) {
-        *error = m_server.errorString();
-        return false;
-    }
-    connect(&m_server, &QLocalServer::newConnection, this, &Server::onConnection);
 
     // Loaded up front: whoever started the daemon is about to ask for a scan.
     QString visionError;
@@ -140,16 +150,36 @@ Settings Server::settings() const
 void Server::onConnection()
 {
     while (QLocalSocket *socket = m_server.nextPendingConnection()) {
-        auto *client = new Client(socket, this);
-        if (!client->credentialsKnown()) {
-            client->deleteLater();
-            continue;
-        }
-        connect(client, &Client::request, this, &Server::onRequest);
-        connect(client, &Client::disconnected, this, &Server::onDisconnected);
-        m_clients.append(client);
+        addClient(socket);
     }
     updateIdle();
+}
+
+void Server::onSystemdConnection()
+{
+    int fd;
+    while ((fd = ::accept4(m_options.systemdFd, nullptr, nullptr, SOCK_CLOEXEC | SOCK_NONBLOCK)) >= 0) {
+        auto *socket = new QLocalSocket;
+        if (!socket->setSocketDescriptor(fd)) {
+            ::close(fd);
+            delete socket;
+            continue;
+        }
+        addClient(socket);
+    }
+    updateIdle();
+}
+
+void Server::addClient(QLocalSocket *socket)
+{
+    auto *client = new Client(socket, this);
+    if (!client->credentialsKnown()) {
+        client->deleteLater();
+        return;
+    }
+    connect(client, &Client::request, this, &Server::onRequest);
+    connect(client, &Client::disconnected, this, &Server::onDisconnected);
+    m_clients.append(client);
 }
 
 void Server::onDisconnected(Client *client)
