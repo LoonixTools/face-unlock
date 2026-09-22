@@ -26,6 +26,8 @@ Item {
     property string mode: "idle"
     property color color: Theme.textPrimary
     property real lineWidth: width * 0.055
+    // How long everything takes, 1 normal (the animation speed setting).
+    property real pace: 1
 
     // The verdict is showing: after the rings on success, at once on failure.
     signal settled(bool success)
@@ -45,11 +47,11 @@ Item {
         running: root.looking
         from: 0
         to: 2 * Math.PI
-        duration: 2000
+        duration: 2000 * root.pace
         loops: Animation.Infinite
     }
     property real lookAmount: root.looking ? 1 : 0
-    Behavior on lookAmount { NumberAnimation { duration: 350; easing.type: Easing.InOutQuad } }
+    Behavior on lookAmount { NumberAnimation { duration: 350 * root.pace; easing.type: Easing.InOutQuad } }
     readonly property real yaw: 0.34 * Math.cos(lookAngle) * lookAmount
     readonly property real pitch: 0.2 * Math.sin(lookAngle) * lookAmount
 
@@ -65,15 +67,15 @@ Item {
 
     // -- the smile, flat on failure
     property real smile: mode === "failure" ? 0 : 1
-    Behavior on smile { NumberAnimation { duration: 220; easing.type: Easing.OutQuad } }
+    Behavior on smile { NumberAnimation { duration: 220 * root.pace; easing.type: Easing.OutQuad } }
 
     // -- the brackets breathe while scanning and close in on a face
     property real breathe: 0
     SequentialAnimation on breathe {
         running: root.looking
         loops: Animation.Infinite
-        NumberAnimation { from: 0; to: 1; duration: 700; easing.type: Easing.InOutSine }
-        NumberAnimation { from: 1; to: 0; duration: 700; easing.type: Easing.InOutSine }
+        NumberAnimation { from: 0; to: 1; duration: 700 * root.pace; easing.type: Easing.InOutSine }
+        NumberAnimation { from: 1; to: 0; duration: 700 * root.pace; easing.type: Easing.InOutSine }
         onRunningChanged: if (!running) root.breathe = 0
     }
     readonly property real bracketScale: mode === "tracking" ? 0.9 : 1 - 0.04 * breathe
@@ -126,11 +128,11 @@ Item {
     SequentialAnimation {
         id: succeed
         ParallelAnimation {
-            NumberAnimation { target: root; property: "t"; from: 0; to: 1; duration: 850 }
+            NumberAnimation { target: root; property: "t"; from: 0; to: 1; duration: 850 * root.pace }
             // The tick starts as the ring comes to rest, so the one motion
             // runs on into the other.
             SequentialAnimation {
-                PauseAnimation { duration: 470 }
+                PauseAnimation { duration: 470 * root.pace }
                 ScriptAction { script: drawTick.start() }
             }
         }
@@ -141,7 +143,7 @@ Item {
         target: root
         property: "tick"
         to: 1
-        duration: 260
+        duration: 260 * root.pace
         easing.type: Easing.OutQuad
     }
 
@@ -222,12 +224,12 @@ Item {
     property real shake: 0
     SequentialAnimation {
         id: shakeAnimation
-        NumberAnimation { target: root; property: "shake"; to: -9; duration: 55; easing.type: Easing.OutQuad }
-        NumberAnimation { target: root; property: "shake"; to: 8; duration: 70; easing.type: Easing.InOutQuad }
-        NumberAnimation { target: root; property: "shake"; to: -6; duration: 65; easing.type: Easing.InOutQuad }
-        NumberAnimation { target: root; property: "shake"; to: 4; duration: 60; easing.type: Easing.InOutQuad }
-        NumberAnimation { target: root; property: "shake"; to: -2; duration: 55; easing.type: Easing.InOutQuad }
-        NumberAnimation { target: root; property: "shake"; to: 0; duration: 50; easing.type: Easing.OutQuad }
+        NumberAnimation { target: root; property: "shake"; to: -9; duration: 55 * root.pace; easing.type: Easing.OutQuad }
+        NumberAnimation { target: root; property: "shake"; to: 8; duration: 70 * root.pace; easing.type: Easing.InOutQuad }
+        NumberAnimation { target: root; property: "shake"; to: -6; duration: 65 * root.pace; easing.type: Easing.InOutQuad }
+        NumberAnimation { target: root; property: "shake"; to: 4; duration: 60 * root.pace; easing.type: Easing.InOutQuad }
+        NumberAnimation { target: root; property: "shake"; to: -2; duration: 55 * root.pace; easing.type: Easing.InOutQuad }
+        NumberAnimation { target: root; property: "shake"; to: 0; duration: 50 * root.pace; easing.type: Easing.OutQuad }
     }
 
     Item {
@@ -246,7 +248,7 @@ Item {
                 anchors.fill: parent
                 preferredRendererType: Shape.CurveRenderer
                 scale: root.bracketScale
-                Behavior on scale { NumberAnimation { duration: 260; easing.type: Easing.OutBack } }
+                Behavior on scale { NumberAnimation { duration: 260 * root.pace; easing.type: Easing.OutBack } }
 
                 component Bracket: ShapePath {
                     strokeColor: root.bracketColor
@@ -254,7 +256,7 @@ Item {
                     fillColor: "transparent"
                     capStyle: ShapePath.RoundCap
                     joinStyle: ShapePath.RoundJoin
-                    Behavior on strokeColor { ColorAnimation { duration: 220 } }
+                    Behavior on strokeColor { ColorAnimation { duration: 220 * root.pace } }
                 }
 
                 Bracket {
@@ -352,7 +354,7 @@ Item {
             preferredRendererType: Shape.CurveRenderer
             // Gives way to the rings, and to the lock.
             property real shown: root.mode === "lockout" ? 0 : 1
-            Behavior on shown { NumberAnimation { duration: 180 } }
+            Behavior on shown { NumberAnimation { duration: 180 * root.pace } }
             opacity: shown * (1 - root.faceGone)
             scale: 1 - 0.2 * root.faceGone
 
@@ -362,7 +364,7 @@ Item {
                 fillColor: "transparent"
                 capStyle: ShapePath.RoundCap
                 joinStyle: ShapePath.RoundJoin
-                Behavior on strokeColor { ColorAnimation { duration: 220 } }
+                Behavior on strokeColor { ColorAnimation { duration: 220 * root.pace } }
             }
 
             // Eyes
@@ -412,8 +414,8 @@ Item {
             color: root.color
             opacity: root.mode === "lockout" ? 1 : 0
             scale: root.mode === "lockout" ? 1 : 0.7
-            Behavior on opacity { NumberAnimation { duration: 200 } }
-            Behavior on scale { NumberAnimation { duration: 260; easing.type: Easing.OutBack } }
+            Behavior on opacity { NumberAnimation { duration: 200 * root.pace } }
+            Behavior on scale { NumberAnimation { duration: 260 * root.pace; easing.type: Easing.OutBack } }
         }
     }
 }

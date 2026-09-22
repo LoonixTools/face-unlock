@@ -28,6 +28,12 @@ BubbleController::BubbleController(UserConfig *config, QObject *parent)
     m_hide.setSingleShot(true);
     connect(&m_hide, &QTimer::timeout, this, &BubbleController::dismiss);
     connect(m_config, &UserConfig::changed, this, &BubbleController::styleChanged);
+    connect(m_config, &UserConfig::changed, this, &BubbleController::paceChanged);
+}
+
+qreal BubbleController::pace() const
+{
+    return m_config->pace();
 }
 
 QString BubbleController::style() const
@@ -106,7 +112,7 @@ void BubbleController::succeeded()
     }
     setMessage({});
     setPhase(QStringLiteral("success"));
-    m_hide.start(SuccessHoldMs);
+    m_hide.start(int(SuccessHoldMs * pace()));
 }
 
 void BubbleController::failed(const QString &reason, qint64 lockout)
@@ -117,7 +123,7 @@ void BubbleController::failed(const QString &reason, qint64 lockout)
     if (lockout > 0 || reason == u"lockout") {
         setMessage(i18n("Use your password"));
         setPhase(QStringLiteral("lockout"));
-        m_hide.start(LockoutHoldMs);
+        m_hide.start(int(LockoutHoldMs * pace()));
         return;
     }
     if (reason == u"mismatch" || reason == u"spoof") {
@@ -135,7 +141,7 @@ void BubbleController::failed(const QString &reason, qint64 lockout)
         return;
     }
     setPhase(QStringLiteral("failure"));
-    m_hide.start(FailureHoldMs);
+    m_hide.start(int(FailureHoldMs * pace()));
 }
 
 void BubbleController::dismiss()

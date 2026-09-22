@@ -13,6 +13,7 @@ class UserConfig : public QObject
     Q_OBJECT
     Q_PROPERTY(bool bubble READ bubble NOTIFY changed)
     Q_PROPERTY(QString bubbleStyle READ bubbleStyle NOTIFY changed)
+    Q_PROPERTY(qreal pace READ pace NOTIFY changed)
 public:
     explicit UserConfig(QObject *parent = nullptr);
 
@@ -54,6 +55,12 @@ public:
     {
         return m_bubbleForPrompts;
     }
+    // How long the bubble's animations take, as a multiple of normal: the
+    // animation speed setting (fast 0.6, normal 1, slow 1.5).
+    qreal pace() const
+    {
+        return m_pace;
+    }
 
     static QString path();
 
@@ -70,5 +77,6 @@ private:
     bool m_bubble = true;
     QString m_bubbleStyle = QStringLiteral("full");
     bool m_bubbleForPrompts = true;
+    qreal m_pace = 1;
     QString m_styleOverride;
 };

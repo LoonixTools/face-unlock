@@ -27,6 +27,8 @@ class BubbleController : public QObject
     // Whether the window should be on screen. Stays true after the phase
     // goes back to hidden until the bubble has finished closing.
     Q_PROPERTY(bool shown READ shown NOTIFY shownChanged)
+    // The animation speed setting, as a multiple of each animation's length.
+    Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
 public:
     explicit BubbleController(UserConfig *config, QObject *parent = nullptr);
 
@@ -47,6 +49,7 @@ public:
     {
         return m_shown;
     }
+    qreal pace() const;
 
     void scanStarted();
     void faceFound();
@@ -68,6 +71,7 @@ Q_SIGNALS:
     void faceSeenChanged();
     void styleChanged();
     void shownChanged();
+    void paceChanged();
 
 private:
     void setPhase(const QString &phase);

@@ -182,6 +182,9 @@ pfu_value_label() {
 		Strictness:relaxed) pfu_msg "relaxed" ;;
 		BubbleStyle:full)   pfu_msg "island with the face" ;;
 		BubbleStyle:minimal) pfu_msg "small pill with a lock" ;;
+		AnimationSpeed:normal) pfu_msg "normal" ;;
+		AnimationSpeed:fast) pfu_msg "fast" ;;
+		AnimationSpeed:slow) pfu_msg "slow" ;;
 		ScanSeconds:*)      pfu_msg "%s seconds" "$2" ;;
 		Camera:auto)        pfu_msg "automatic" ;;
 		*)                  printf '%s' "$2" ;;
@@ -266,6 +269,7 @@ PFU_SETTINGS=(
 	"sys|SkipLidClosed|bool|yes|Not while the lid is closed"
 	"user|Bubble|bool|yes|Show the bubble at the top"
 	"user|BubbleStyle|choice|full|Bubble style|full,minimal"
+	"user|AnimationSpeed|choice|normal|Animation speed|normal,fast,slow"
 	"user|BubbleForPrompts|bool|yes|Bubble for sudo and admin prompts too"
 )
 

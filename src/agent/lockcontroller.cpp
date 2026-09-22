@@ -189,7 +189,7 @@ void LockController::onScanFinished(const QJsonObject &result)
     const QString reason = result.value(u"reason").toString();
     if (result.value(u"ok").toBool()) {
         m_bubble->succeeded();
-        QTimer::singleShot(UnlockAfterSuccessMs, this, &LockController::unlock);
+        QTimer::singleShot(int(UnlockAfterSuccessMs * m_config->pace()), this, &LockController::unlock);
         return;
     }
 

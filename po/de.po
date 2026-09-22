@@ -763,3 +763,15 @@ msgstr "Los geht's"
 msgid "Done"
 msgstr "Fertig"
 
+
+#: src/lib/menu.sh
+msgid "Animation speed"
+msgstr "Animationsgeschwindigkeit"
+
+#: src/lib/menu.sh
+msgid "fast"
+msgstr "schnell"
+
+#: src/lib/menu.sh
+msgid "slow"
+msgstr "langsam"

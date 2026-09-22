@@ -16,8 +16,9 @@ instead of a password. Before a face counts, it has to show a sign of life, so
 holding up a photo of somebody is not enough.
 
 A bubble at the top of the screen shows what is going on: it drops down when
-the camera starts looking, the face in it looks around, and it turns into a
-tick when it recognises somebody. It shows above the lock screen too.
+the camera starts looking, the face in it looks around, and when it recognises
+somebody two green rings spin and land around a tick. It shows above the lock
+screen too. *Animation speed* makes all of it faster or slower.
 
 Run without a command it shows an interactive menu. Everything it can be told
 is reachable from there; the settings files behind it do not need to be edited
@@ -228,7 +229,8 @@ A laptop with its lid shut is not scanned (*Not while the lid is closed*).
 # FILES
 
 _~/.config/plasma-face-unlock/config_
-	This user's settings: the lock screen, the bubble. Written by the menu.
+	This user's settings: the lock screen, the bubble and its animation
+	speed. Written by the menu.
 
 _/etc/plasma-face-unlock/config_
 	The system settings: camera, photo check, strictness, attention, scan

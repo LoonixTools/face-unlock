@@ -35,6 +35,8 @@ void UserConfig::load()
     m_bubble = kv.boolean(QStringLiteral("Bubble"), true);
     m_bubbleStyle = kv.value(QStringLiteral("BubbleStyle"), QStringLiteral("full")) == u"minimal" ? QStringLiteral("minimal") : QStringLiteral("full");
     m_bubbleForPrompts = kv.boolean(QStringLiteral("BubbleForPrompts"), true);
+    const QString speed = kv.value(QStringLiteral("AnimationSpeed"), QStringLiteral("normal"));
+    m_pace = speed == u"fast" ? 0.6 : speed == u"slow" ? 1.5 : 1.0;
 
     if (QFileInfo::exists(path()) && !m_watcher.files().contains(path())) {
         m_watcher.addPath(path());

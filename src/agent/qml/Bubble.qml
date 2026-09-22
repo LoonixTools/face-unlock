@@ -26,6 +26,8 @@ Item {
     readonly property string phase: bubble ? bubble.phase : "hidden"
     readonly property bool minimal: bubble && bubble.style === "minimal"
     readonly property bool wantOpen: phase !== "hidden"
+    // The animation speed setting: how long everything takes, 1 normal.
+    readonly property real pace: bubble ? bubble.pace : 1
 
     property bool positioned: false
     property bool expanded: false
@@ -54,12 +56,12 @@ Item {
 
     Timer {
         id: expandLater
-        interval: Theme.expandDelay
+        interval: Theme.expandDelay * root.pace
         onTriggered: root.expanded = true
     }
     Timer {
         id: slideOut
-        interval: Theme.slideOutDelay
+        interval: Theme.slideOutDelay * root.pace
         onTriggered: {
             root.positioned = false
             closeDone.restart()
@@ -67,7 +69,7 @@ Item {
     }
     Timer {
         id: closeDone
-        interval: Theme.slideOutDuration + 60
+        interval: Theme.slideOutDuration * root.pace + 60
         onTriggered: if (root.bubble) root.bubble.closed()
     }
 
@@ -85,11 +87,11 @@ Item {
         id: pulseAnimation
         running: root.phase === "scanning" && root.expanded
         loops: Animation.Infinite
-        PauseAnimation { duration: 600 }
-        NumberAnimation { from: 0; to: 1; duration: 400; easing.type: Easing.InOutQuad }
-        PauseAnimation { duration: 50 }
-        NumberAnimation { from: 1; to: 0; duration: 400; easing.type: Easing.InOutQuad }
-        PauseAnimation { duration: 50 }
+        PauseAnimation { duration: 600 * root.pace }
+        NumberAnimation { from: 0; to: 1; duration: 400 * root.pace; easing.type: Easing.InOutQuad }
+        PauseAnimation { duration: 50 * root.pace }
+        NumberAnimation { from: 1; to: 0; duration: 400 * root.pace; easing.type: Easing.InOutQuad }
+        PauseAnimation { duration: 50 * root.pace }
         onRunningChanged: if (!running) settle.restart()
     }
     NumberAnimation {
@@ -97,7 +99,7 @@ Item {
         target: root
         property: "pulse"
         to: 0
-        duration: 200
+        duration: 200 * root.pace
         easing.type: Easing.OutQuad
     }
 
@@ -105,11 +107,11 @@ Item {
     property real shake: 0
     SequentialAnimation {
         id: pillShake
-        NumberAnimation { target: root; property: "shake"; to: -10; duration: 55; easing.type: Easing.OutQuad }
-        NumberAnimation { target: root; property: "shake"; to: 9; duration: 70 }
-        NumberAnimation { target: root; property: "shake"; to: -6; duration: 65 }
-        NumberAnimation { target: root; property: "shake"; to: 4; duration: 60 }
-        NumberAnimation { target: root; property: "shake"; to: 0; duration: 55; easing.type: Easing.OutQuad }
+        NumberAnimation { target: root; property: "shake"; to: -10; duration: 55 * root.pace; easing.type: Easing.OutQuad }
+        NumberAnimation { target: root; property: "shake"; to: 9; duration: 70 * root.pace }
+        NumberAnimation { target: root; property: "shake"; to: -6; duration: 65 * root.pace }
+        NumberAnimation { target: root; property: "shake"; to: 4; duration: 60 * root.pace }
+        NumberAnimation { target: root; property: "shake"; to: 0; duration: 55 * root.pace; easing.type: Easing.OutQuad }
     }
 
     Item {
@@ -126,14 +128,14 @@ Item {
         // not sag.
         Behavior on width {
             NumberAnimation {
-                duration: root.opening ? Theme.growDuration : Theme.shrinkDuration
+                duration: (root.opening ? Theme.growDuration : Theme.shrinkDuration) * root.pace
                 easing.type: root.opening ? Easing.OutBack : Easing.OutCubic
                 easing.overshoot: 1.6
             }
         }
         Behavior on height {
             NumberAnimation {
-                duration: root.opening ? Theme.growDuration : Theme.shrinkDuration
+                duration: (root.opening ? Theme.growDuration : Theme.shrinkDuration) * root.pace
                 easing.type: root.opening ? Easing.OutBack : Easing.OutCubic
                 easing.overshoot: 0.9
             }
@@ -145,7 +147,7 @@ Item {
         y: root.positioned ? Theme.topGap : -Theme.closedHeight - 20
         Behavior on y {
             NumberAnimation {
-                duration: root.opening ? Theme.slideInDuration : Theme.slideOutDuration
+                duration: (root.opening ? Theme.slideInDuration : Theme.slideOutDuration) * root.pace
                 easing.type: root.opening ? Easing.OutCubic : Easing.InCubic
             }
         }
@@ -164,7 +166,7 @@ Item {
                 shadowOpacity: root.expanded ? 0.35 : 0
                 shadowBlur: 0.7
                 shadowVerticalOffset: 3
-                Behavior on shadowOpacity { NumberAnimation { duration: 200 } }
+                Behavior on shadowOpacity { NumberAnimation { duration: 200 * root.pace } }
             }
         }
 
@@ -178,7 +180,7 @@ Item {
             visible: !root.minimal
             scale: island.fit
             opacity: root.expanded ? 1 : 0
-            Behavior on opacity { NumberAnimation { duration: root.opening ? 260 : 120 } }
+            Behavior on opacity { NumberAnimation { duration: (root.opening ? 260 : 120) * root.pace } }
 
             readonly property bool hasMessage: root.bubble && root.bubble.message.length > 0
 
@@ -193,8 +195,9 @@ Item {
                     height: 100
                     anchors.horizontalCenter: parent.horizontalCenter
                     y: full.hasMessage ? 28 : 40
-                    Behavior on y { NumberAnimation { duration: 220; easing.type: Easing.OutCubic } }
+                    Behavior on y { NumberAnimation { duration: 220 * root.pace; easing.type: Easing.OutCubic } }
                     mode: root.glyphMode
+                    pace: root.pace
                 }
 
                 Text {
@@ -209,7 +212,7 @@ Item {
                     font.pixelSize: 13
                     font.weight: Font.Medium
                     opacity: full.hasMessage ? 1 : 0
-                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                    Behavior on opacity { NumberAnimation { duration: 200 * root.pace } }
                 }
             }
         }
@@ -220,7 +223,7 @@ Item {
             anchors.fill: parent
             visible: root.minimal
             opacity: root.expanded ? 1 : 0
-            Behavior on opacity { NumberAnimation { duration: root.opening ? 200 : 120 } }
+            Behavior on opacity { NumberAnimation { duration: (root.opening ? 200 : 120) * root.pace } }
 
             LockGlyph {
                 width: 18
@@ -239,6 +242,7 @@ Item {
                 anchors.rightMargin: 14
                 lineWidth: 2.4
                 mode: root.glyphMode === "lockout" ? "failure" : root.glyphMode
+                pace: root.pace
                 onSettled: ok => {
                     if (!ok) {
                         pillShake.restart()

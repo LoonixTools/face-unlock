@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: plasma-face-unlock 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/"
 "issues\n"
-"POT-Creation-Date: 2026-09-22 23:06+0200\n"
+"POT-Creation-Date: 2026-09-22 23:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,8 +55,8 @@ msgstr ""
 msgid "First, set up your face."
 msgstr ""
 
-#: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:348
-#: src/lib/menu.sh:352 src/lib/menu.sh:358 src/lib/menu.sh:360
+#: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:352
+#: src/lib/menu.sh:356 src/lib/menu.sh:362 src/lib/menu.sh:364
 msgid "Could not save the setting."
 msgstr ""
 
@@ -84,16 +84,16 @@ msgstr ""
 msgid "No face is set up yet."
 msgstr ""
 
-#: src/plasma-face-unlock:148 src/lib/menu.sh:167 src/lib/menu.sh:472
+#: src/plasma-face-unlock:148 src/lib/menu.sh:167 src/lib/menu.sh:476
 msgid "on"
 msgstr ""
 
 #: src/plasma-face-unlock:148 src/lib/menu.sh:169 src/lib/menu.sh:179
-#: src/lib/menu.sh:473
+#: src/lib/menu.sh:477
 msgid "off"
 msgstr ""
 
-#: src/plasma-face-unlock:150 src/lib/menu.sh:490
+#: src/plasma-face-unlock:150 src/lib/menu.sh:494
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr ""
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Turn it off (faces are kept)"
 msgstr ""
 
-#: src/plasma-face-unlock:176 src/lib/menu.sh:555
+#: src/plasma-face-unlock:176 src/lib/menu.sh:559
 msgid "Add a face"
 msgstr ""
 
@@ -222,7 +222,7 @@ msgstr ""
 msgid "The camera could not be used."
 msgstr ""
 
-#: src/lib/daemon.sh:111 src/lib/menu.sh:243
+#: src/lib/daemon.sh:111 src/lib/menu.sh:246
 msgid "The recognition models are missing. Reinstall the package."
 msgstr ""
 
@@ -323,11 +323,11 @@ msgstr ""
 msgid "[y/N]"
 msgstr ""
 
-#: src/lib/menu.sh:159 src/lib/menu.sh:392
+#: src/lib/menu.sh:159 src/lib/menu.sh:396
 msgid "ON"
 msgstr ""
 
-#: src/lib/menu.sh:161 src/lib/menu.sh:393
+#: src/lib/menu.sh:161 src/lib/menu.sh:397
 msgid "OFF"
 msgstr ""
 
@@ -339,7 +339,7 @@ msgstr ""
 msgid "basic (screens and phone edges)"
 msgstr ""
 
-#: src/lib/menu.sh:180
+#: src/lib/menu.sh:180 src/lib/menu.sh:185
 msgid "normal"
 msgstr ""
 
@@ -359,132 +359,140 @@ msgstr ""
 msgid "small pill with a lock"
 msgstr ""
 
-#: src/lib/menu.sh:185
+#: src/lib/menu.sh:186
+msgid "fast"
+msgstr ""
+
+#: src/lib/menu.sh:187
+msgid "slow"
+msgstr ""
+
+#: src/lib/menu.sh:188
 #, sh-printf-format
 msgid "%s seconds"
 msgstr ""
 
-#: src/lib/menu.sh:186 src/lib/menu.sh:323
+#: src/lib/menu.sh:189 src/lib/menu.sh:327
 msgid "automatic"
 msgstr ""
 
-#: src/lib/menu.sh:203
+#: src/lib/menu.sh:206
 msgid "Face unlock"
 msgstr ""
 
-#: src/lib/menu.sh:207
+#: src/lib/menu.sh:210
 msgid "Service"
 msgstr ""
 
-#: src/lib/menu.sh:207
+#: src/lib/menu.sh:210
 msgid "not running"
 msgstr ""
 
-#: src/lib/menu.sh:209
+#: src/lib/menu.sh:212
 msgid "Turning face unlock on again starts it."
 msgstr ""
 
-#: src/lib/menu.sh:220 src/lib/menu.sh:222 src/lib/menu.sh:469
-#: src/lib/menu.sh:556
+#: src/lib/menu.sh:223 src/lib/menu.sh:225 src/lib/menu.sh:473
+#: src/lib/menu.sh:560
 msgid "Faces"
 msgstr ""
 
-#: src/lib/menu.sh:220
+#: src/lib/menu.sh:223
 msgid "none set up yet"
 msgstr ""
 
-#: src/lib/menu.sh:222
+#: src/lib/menu.sh:225
 msgid "all turned off"
 msgstr ""
 
-#: src/lib/menu.sh:228
+#: src/lib/menu.sh:231
 msgid "none found"
 msgstr ""
 
-#: src/lib/menu.sh:230 /tmp/tmp.FOzKaHKE4a/settings.sh:9
+#: src/lib/menu.sh:233 /tmp/tmp.PgsbSPb4Sv/settings.sh:9
 msgid "Camera"
 msgstr ""
 
-#: src/lib/menu.sh:232
+#: src/lib/menu.sh:235
 msgid "Lock screen"
 msgstr ""
 
-#: src/lib/menu.sh:233
+#: src/lib/menu.sh:236
 msgid "sudo"
 msgstr ""
 
-#: src/lib/menu.sh:234
+#: src/lib/menu.sh:237
 msgid "Admin prompts"
 msgstr ""
 
-#: src/lib/menu.sh:235 /tmp/tmp.FOzKaHKE4a/settings.sh:6
+#: src/lib/menu.sh:238 /tmp/tmp.PgsbSPb4Sv/settings.sh:6
 msgid "Photo check"
 msgstr ""
 
-#: src/lib/menu.sh:238
+#: src/lib/menu.sh:241
 msgid "Paused"
 msgstr ""
 
-#: src/lib/menu.sh:238
+#: src/lib/menu.sh:241
 #, sh-printf-format
 msgid "for %d more minutes, or until the password is used"
 msgstr ""
 
-#: src/lib/menu.sh:240
+#: src/lib/menu.sh:243
 msgid "Last unlock"
 msgstr ""
 
-#: src/lib/menu.sh:319
+#: src/lib/menu.sh:323
 #, sh-printf-format
 msgid "automatic (%s)"
 msgstr ""
 
-#: src/lib/menu.sh:329
+#: src/lib/menu.sh:333
 msgid "(infrared)"
 msgstr ""
 
-#: src/lib/menu.sh:333
+#: src/lib/menu.sh:337
 msgid "(not connected)"
 msgstr ""
 
-#: src/lib/menu.sh:389 src/lib/menu.sh:557
+#: src/lib/menu.sh:393 src/lib/menu.sh:561
 msgid "Settings"
 msgstr ""
 
-#: src/lib/menu.sh:390
+#: src/lib/menu.sh:394
 msgid "Up/Down: select, Space or Right: change, q: back"
 msgstr ""
 
-#: src/lib/menu.sh:391
+#: src/lib/menu.sh:395
 msgid "Settings marked * are for the whole computer and ask for your password."
 msgstr ""
 
-#: src/lib/menu.sh:470
+#: src/lib/menu.sh:474
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 
-#: src/lib/menu.sh:471
+#: src/lib/menu.sh:475
 msgid "No face is set up yet. Press a to add one."
 msgstr ""
 
-#: src/lib/menu.sh:516
+#: src/lib/menu.sh:520
 msgid "New name:"
 msgstr ""
 
-#: src/lib/menu.sh:523
+#: src/lib/menu.sh:527
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr ""
 
-#: src/lib/menu.sh:554
+#: src/lib/menu.sh:558
 msgid "Turn face unlock on or off"
 msgstr ""
 
-#: src/lib/menu.sh:558
+#: src/lib/menu.sh:562
 msgid "Try it"
 msgstr ""
 
-#: src/lib/menu.sh:559
+#: src/lib/menu.sh:563
 msgid "Quit"
 msgstr ""
 
@@ -565,38 +573,42 @@ msgid "Bubble style"
 msgstr ""
 
 #: src/lib/menu.sh
+msgid "Animation speed"
+msgstr ""
+
+#: src/lib/menu.sh
 msgid "Bubble for sudo and admin prompts too"
 msgstr ""
 
-#: src/agent/bubblecontroller.cpp:92
+#: src/agent/bubblecontroller.cpp:98
 msgid "Blink once"
 msgstr ""
 
-#: src/agent/bubblecontroller.cpp:94
+#: src/agent/bubblecontroller.cpp:100
 msgid "Look at the screen"
 msgstr ""
 
-#: src/agent/bubblecontroller.cpp:96
+#: src/agent/bubblecontroller.cpp:102
 msgid "Move closer"
 msgstr ""
 
-#: src/agent/bubblecontroller.cpp:98
+#: src/agent/bubblecontroller.cpp:104
 msgid "Too dark"
 msgstr ""
 
-#: src/agent/bubblecontroller.cpp:118
+#: src/agent/bubblecontroller.cpp:124
 msgid "Use your password"
 msgstr ""
 
-#: src/agent/bubblecontroller.cpp:124
+#: src/agent/bubblecontroller.cpp:130
 msgid "Not recognized"
 msgstr ""
 
-#: src/agent/bubblecontroller.cpp:126
+#: src/agent/bubblecontroller.cpp:132
 msgid "Try again and blink"
 msgstr ""
 
-#: src/agent/bubblecontroller.cpp:128
+#: src/agent/bubblecontroller.cpp:134
 msgid "Camera unavailable"
 msgstr ""
 
