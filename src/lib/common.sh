@@ -135,16 +135,16 @@ else
 	PFU_C_GREEN='' PFU_C_YELLOW='' PFU_C_RED=''
 fi
 
-# Set by pfu_bad and pfu_note. The menu redraws straight after an action, which
-# would wipe the screen; this marks that something was printed the user still
-# has to read.
-PFU_UI_NEEDS_ACK=''
+# What pfu_ok, pfu_bad and pfu_note printed. The menu redraws straight after an
+# action, which wipes the screen, so it shows these again under the new frame
+# rather than holding everything up for a key press.
+PFU_UI_NOTICES=()
 
 pfu_say()  { printf '%s\n' "$*"; }
 pfu_head() { printf '\n%s%s%s\n\n' "$PFU_C_BOLD$PFU_C_BLUE" "$*" "$PFU_C_RESET"; }
-pfu_ok()   { printf '%s✔%s %s\n' "$PFU_C_GREEN" "$PFU_C_RESET" "$*"; }
-pfu_bad()  { PFU_UI_NEEDS_ACK=1; printf '%s✘%s %s\n' "$PFU_C_RED" "$PFU_C_RESET" "$*" >&2; }
-pfu_note() { PFU_UI_NEEDS_ACK=1; printf '%s•%s %s\n' "$PFU_C_DIM" "$PFU_C_RESET" "$*"; }
+pfu_ok()   { PFU_UI_NOTICES+=("$PFU_C_GREEN✔$PFU_C_RESET $*"); printf '%s✔%s %s\n' "$PFU_C_GREEN" "$PFU_C_RESET" "$*"; }
+pfu_bad()  { PFU_UI_NOTICES+=("$PFU_C_RED✘$PFU_C_RESET $*"); printf '%s✘%s %s\n' "$PFU_C_RED" "$PFU_C_RESET" "$*" >&2; }
+pfu_note() { PFU_UI_NOTICES+=("$PFU_C_DIM•$PFU_C_RESET $*"); printf '%s•%s %s\n' "$PFU_C_DIM" "$PFU_C_RESET" "$*"; }
 
 pfu_have() { command -v "$1" > /dev/null 2>&1; }
 

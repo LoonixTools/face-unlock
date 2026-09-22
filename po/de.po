@@ -317,9 +317,6 @@ msgid ""
 "password."
 msgstr "Das waren zu viele Versuche. Die Gesichtsentsperrung ist pausiert, bis du mit deinem Passwort entsperrst."
 
-#: src/lib/menu.sh:122
-msgid "Press any key to continue..."
-msgstr "Beliebige Taste drücken …"
 
 #: src/lib/menu.sh:130
 msgid "[y/N]"

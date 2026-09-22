@@ -118,10 +118,20 @@ pfu_ui_read_line() {
 	done
 }
 
-pfu_pause() {
-	printf '\n  %s' "$(pfu_msg "Press any key to continue...")"
-	read -rsn1 _ || true
-	printf '\n'
+# _pfu_ui_take_notices
+# The messages the last action left, as lines for under a frame, in
+# PFU_UI_NOTICE_TEXT. Each is shown once.
+PFU_UI_NOTICE_TEXT=''
+
+_pfu_ui_take_notices() {
+	local n
+	PFU_UI_NOTICE_TEXT=''
+	(( ${#PFU_UI_NOTICES[@]} )) || return 0
+	PFU_UI_NOTICE_TEXT=$'\n'
+	for n in "${PFU_UI_NOTICES[@]}"; do
+		PFU_UI_NOTICE_TEXT+="  $n"$'\n'
+	done
+	PFU_UI_NOTICES=()
 }
 
 # pfu_ui_confirm <question>
@@ -335,19 +345,19 @@ _pfu_setting_change() {
 
 	case "$scope" in
 		user)
-			pfu_config_set "$key" "$next" || { pfu_bad "$(pfu_msg "Could not save the setting.")"; pfu_pause; }
+			pfu_config_set "$key" "$next" || pfu_bad "$(pfu_msg "Could not save the setting.")"
 			;;
 		sys)
 			printf '\n'
-			pfu_ui_cooked pfu_root set "$key" "$next" || pfu_pause
+			pfu_ui_cooked pfu_root set "$key" "$next" || pfu_bad "$(pfu_msg "Could not save the setting.")"
 			PFU_KV_CACHE=()
 			;;
 		pam)
 			printf '\n'
 			if [[ $next == yes ]]; then
-				pfu_ui_cooked pfu_root pam-enable "$key" || pfu_pause
+				pfu_ui_cooked pfu_root pam-enable "$key" || pfu_bad "$(pfu_msg "Could not save the setting.")"
 			else
-				pfu_ui_cooked pfu_root pam-disable "$key" || pfu_pause
+				pfu_ui_cooked pfu_root pam-disable "$key" || pfu_bad "$(pfu_msg "Could not save the setting.")"
 			fi
 			# Remembered, so that turning face unlock off and on again brings
 			# it back.
@@ -428,6 +438,8 @@ pfu_ui_settings() {
 
 		frame+=$'\n'"  ${PFU_C_DIM}${legend}${PFU_C_RESET}"$'\n'
 		frame+="  ${PFU_C_DIM}${hint}${PFU_C_RESET}"$'\n'
+		_pfu_ui_take_notices
+		frame+="$PFU_UI_NOTICE_TEXT"
 		printf '%s' "$frame"
 
 		key="$(pfu_read_key)" || return 0
@@ -483,6 +495,8 @@ pfu_ui_faces() {
 			frame+="$row"$'\n'
 		done
 		frame+=$'\n'"  ${PFU_C_DIM}${hint}${PFU_C_RESET}"$'\n'
+		_pfu_ui_take_notices
+		frame+="$PFU_UI_NOTICE_TEXT"
 		printf '%s' "$frame"
 
 		key="$(pfu_read_key)" || return 0
@@ -510,11 +524,7 @@ pfu_ui_faces() {
 					pfu_ctl remove "${PFU_FACE_IDS[cursor]}" > /dev/null
 				fi
 				;;
-			a|A)
-				pfu_ui_cooked pfu_do_setup
-				[[ -n $PFU_UI_NEEDS_ACK ]] && pfu_pause
-				PFU_UI_NEEDS_ACK=''
-				;;
+			a|A) pfu_ui_cooked pfu_do_setup ;;
 			q|Q|escape) return 0 ;;
 			*) ;;
 		esac
@@ -526,13 +536,18 @@ pfu_ui_faces() {
 # ---------------------------------------------------------------------------
 
 pfu_ui_menu() {
-	local choice
+	local choice keep=0
 
 	pfu_ui_term_raw
 	trap 'pfu_ui_term_restore' EXIT INT TERM
 
 	while true; do
-		clear 2>/dev/null || true
+		# After a test the menu goes under what the camera saw instead.
+		if (( keep )); then
+			keep=0
+		else
+			clear 2>/dev/null || true
+		fi
 		pfu_head "  $PFU_PRETTY"
 		pfu_ui_status
 		printf '\n'
@@ -542,6 +557,8 @@ pfu_ui_menu() {
 		printf '  [4] %s\n' "$(pfu_msg "Settings")"
 		printf '  [5] %s\n' "$(pfu_msg "Try it")"
 		printf '  [q] %s\n' "$(pfu_msg "Quit")"
+		_pfu_ui_take_notices
+		printf '%s' "$PFU_UI_NOTICE_TEXT"
 		printf '\n  > '
 
 		choice="$(pfu_read_key)" || {
@@ -552,7 +569,6 @@ pfu_ui_menu() {
 		esac
 		printf '%s\n' "$choice"
 
-		PFU_UI_NEEDS_ACK=''
 		case "$choice" in
 			1)
 				pfu_config_load
@@ -561,18 +577,16 @@ pfu_ui_menu() {
 				else
 					pfu_ui_cooked pfu_do_enable
 				fi
-				[[ -n $PFU_UI_NEEDS_ACK ]] && pfu_pause
 				;;
-			2)
-				pfu_ui_cooked pfu_do_setup
-				[[ -n $PFU_UI_NEEDS_ACK ]] && pfu_pause
-				;;
+			2) pfu_ui_cooked pfu_do_setup ;;
 			3) pfu_ui_faces ;;
 			4) pfu_ui_settings ;;
 			5)
 				printf '\n'
 				pfu_ui_cooked pfu_test
-				pfu_pause
+				# Already on screen, with the rest of the test.
+				PFU_UI_NOTICES=()
+				keep=1
 				;;
 			q|Q) pfu_ui_term_restore; trap - EXIT INT TERM; return 0 ;;
 			# Anything else (Enter, arrow keys, stray characters) just
