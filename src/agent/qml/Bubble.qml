@@ -74,14 +74,7 @@ Item {
     // The phase on screen. Closing keeps the last one, so the tick does not
     // turn back into a face on its way out.
     property string shownPhase: "idle"
-    onPhaseChanged: {
-        if (phase !== "hidden") {
-            shownPhase = phase
-        }
-        if (phase === "failure" && minimal) {
-            pillShake.restart()
-        }
-    }
+    onPhaseChanged: if (phase !== "hidden") shownPhase = phase
 
     // What the face shows.
     readonly property string glyphMode: shownPhase === "scanning" ? (bubble.faceSeen ? "tracking" : "scanning") : shownPhase
@@ -246,6 +239,11 @@ Item {
                 anchors.rightMargin: 14
                 lineWidth: 2.4
                 mode: root.glyphMode === "lockout" ? "failure" : root.glyphMode
+                onSettled: ok => {
+                    if (!ok) {
+                        pillShake.restart()
+                    }
+                }
                 opacity: 1 - 0.35 * root.pulse
                 scale: 1 - 0.03 * root.pulse
             }

@@ -10,9 +10,10 @@
 
 namespace
 {
-// How long a result stays up before the bubble closes. Long enough to read,
-// short enough not to be in the way.
-constexpr int SuccessHoldMs = 900;
+// How long a result stays up before the bubble closes: long enough to read
+// (on success after the face has resolved, about a second), short enough not
+// to be in the way.
+constexpr int SuccessHoldMs = 1500;
 constexpr int FailureHoldMs = 1700;
 constexpr int LockoutHoldMs = 3000;
 // A scan that never reports back (the daemon went away half way) must not
