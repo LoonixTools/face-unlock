@@ -4,9 +4,10 @@
 // opens up, shows the face while it looks, and closes again.
 //
 // The choreography is Glance's: entering, the island slides in first and grows
-// a moment later; leaving, it shrinks first and slides away after. Growing is
-// a spring that overshoots a little, shrinking does not. While it scans the
-// content breathes, so it reads as looking rather than stuck.
+// a moment later; leaving, it shrinks first and slides away as it finishes.
+// Growing overshoots a little, shrinking does not, and both end on time rather
+// than creeping in. The content grows and shrinks with the island. While it
+// scans the content breathes, so it reads as looking rather than stuck.
 //
 // "full" is the open island with the face in it. "minimal" is a small pill
 // with a lock on one side and the face on the other.
@@ -28,9 +29,13 @@ Item {
 
     property bool positioned: false
     property bool expanded: false
+    // Which way it is going. Set before the change it is about, so the
+    // animations below have the matching curve by the time they start.
+    property bool opening: false
 
     function choreograph() {
         if (wantOpen) {
+            opening = true
             slideOut.stop()
             closeDone.stop()
             positioned = true
@@ -38,6 +43,7 @@ Item {
                 expandLater.restart()
             }
         } else {
+            opening = false
             expandLater.stop()
             expanded = false
             slideOut.restart()
@@ -61,16 +67,24 @@ Item {
     }
     Timer {
         id: closeDone
-        interval: Theme.slideDuration + 60
+        interval: Theme.slideOutDuration + 60
         onTriggered: if (root.bubble) root.bubble.closed()
     }
 
-    // What the face shows, from the phase.
-    readonly property string glyphMode: phase === "success" ? "success"
-                                      : phase === "failure" ? "failure"
-                                      : phase === "lockout" ? "lockout"
-                                      : phase === "scanning" ? (bubble.faceSeen ? "tracking" : "scanning")
-                                      : "idle"
+    // The phase on screen. Closing keeps the last one, so the tick does not
+    // turn back into a face on its way out.
+    property string shownPhase: "idle"
+    onPhaseChanged: {
+        if (phase !== "hidden") {
+            shownPhase = phase
+        }
+        if (phase === "failure" && minimal) {
+            pillShake.restart()
+        }
+    }
+
+    // What the face shows.
+    readonly property string glyphMode: shownPhase === "scanning" ? (bubble.faceSeen ? "tracking" : "scanning") : shownPhase
 
     // -- the breathing while it scans
     property real pulse: 0
@@ -96,7 +110,6 @@ Item {
 
     // -- the minimal pill shakes as a whole; the full island shakes its face
     property real shake: 0
-    onPhaseChanged: if (phase === "failure" && minimal) pillShake.restart()
     SequentialAnimation {
         id: pillShake
         NumberAnimation { target: root; property: "shake"; to: -10; duration: 55; easing.type: Easing.OutQuad }
@@ -111,22 +124,45 @@ Item {
 
         readonly property real targetWidth: root.expanded ? (root.minimal ? Theme.minimalWidth : Theme.openWidth) : Theme.closedWidth
         readonly property real targetHeight: root.expanded ? (root.minimal ? Theme.minimalHeight : Theme.openHeight) : Theme.closedHeight
+        // How far open it is, for the content that grows with it.
+        readonly property real fit: Math.min(width / Theme.openWidth, height / Theme.openHeight)
 
         width: targetWidth
         height: targetHeight
-        // Growing overshoots a little; shrinking settles without bouncing.
-        Behavior on width { SpringAnimation { spring: root.expanded ? 3.4 : 6; damping: root.expanded ? 0.28 : 0.9; epsilon: 0.25 } }
-        Behavior on height { SpringAnimation { spring: root.expanded ? 3.4 : 6; damping: root.expanded ? 0.28 : 0.9; epsilon: 0.25 } }
+        // Growing overshoots sideways more than down, so the bottom edge does
+        // not sag.
+        Behavior on width {
+            NumberAnimation {
+                duration: root.opening ? Theme.growDuration : Theme.shrinkDuration
+                easing.type: root.opening ? Easing.OutBack : Easing.OutCubic
+                easing.overshoot: 1.6
+            }
+        }
+        Behavior on height {
+            NumberAnimation {
+                duration: root.opening ? Theme.growDuration : Theme.shrinkDuration
+                easing.type: root.opening ? Easing.OutBack : Easing.OutCubic
+                easing.overshoot: 0.9
+            }
+        }
 
         x: (root.width - width) / 2 + root.shake
-        y: root.positioned ? Theme.topGap : -height - 30
-        Behavior on y { NumberAnimation { duration: Theme.slideDuration; easing.type: Easing.OutCubic } }
+        // Off screen by a fixed amount. A target that followed the shrinking
+        // height would restart the slide every frame and hold it back.
+        y: root.positioned ? Theme.topGap : -Theme.closedHeight - 20
+        Behavior on y {
+            NumberAnimation {
+                duration: root.opening ? Theme.slideInDuration : Theme.slideOutDuration
+                easing.type: root.opening ? Easing.OutCubic : Easing.InCubic
+            }
+        }
 
         Rectangle {
             id: shape
             anchors.fill: parent
             color: Theme.panel
-            radius: root.expanded && !root.minimal ? Math.min(Theme.openRadius, height / 2) : height / 2
+            // From size alone, so it cannot jump when the island turns.
+            radius: root.minimal ? height / 2 : Math.min(Theme.openRadius, height / 2)
 
             layer.enabled: true
             layer.effect: MultiEffect {
@@ -139,41 +175,49 @@ Item {
             }
         }
 
-        // -- full: the face, and a line of text under it
+        // -- full: the face, and a line of text under it. Laid out at the
+        // open size and scaled with the island, so it never pokes out.
         Item {
             id: full
-            anchors.fill: parent
+            width: Theme.openWidth
+            height: Theme.openHeight
+            anchors.centerIn: parent
             visible: !root.minimal
-            opacity: root.expanded ? 1 - 0.35 * root.pulse : 0
-            scale: root.expanded ? 1 - 0.03 * root.pulse : 0.3
-            Behavior on opacity { enabled: !pulseAnimation.running; NumberAnimation { duration: 220 } }
-            Behavior on scale { enabled: !pulseAnimation.running; NumberAnimation { duration: 260; easing.type: Easing.OutCubic } }
+            scale: island.fit
+            opacity: root.expanded ? 1 : 0
+            Behavior on opacity { NumberAnimation { duration: root.opening ? 260 : 120 } }
 
             readonly property bool hasMessage: root.bubble && root.bubble.message.length > 0
 
-            FaceGlyph {
-                id: glyph
-                width: 100
-                height: 100
-                anchors.horizontalCenter: parent.horizontalCenter
-                y: full.hasMessage ? 28 : 40
-                Behavior on y { NumberAnimation { duration: 220; easing.type: Easing.OutCubic } }
-                mode: root.glyphMode
-            }
+            Item {
+                anchors.fill: parent
+                opacity: 1 - 0.35 * root.pulse
+                scale: 1 - 0.03 * root.pulse
 
-            Text {
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 20
-                width: parent.width - 32
-                horizontalAlignment: Text.AlignHCenter
-                elide: Text.ElideRight
-                text: root.bubble ? root.bubble.message : ""
-                color: root.phase === "failure" || root.phase === "lockout" ? Theme.textDetail : Theme.textSecondary
-                font.pixelSize: 13
-                font.weight: Font.Medium
-                opacity: full.hasMessage ? 1 : 0
-                Behavior on opacity { NumberAnimation { duration: 200 } }
+                FaceGlyph {
+                    id: glyph
+                    width: 100
+                    height: 100
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    y: full.hasMessage ? 28 : 40
+                    Behavior on y { NumberAnimation { duration: 220; easing.type: Easing.OutCubic } }
+                    mode: root.glyphMode
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 20
+                    width: parent.width - 32
+                    horizontalAlignment: Text.AlignHCenter
+                    elide: Text.ElideRight
+                    text: root.bubble ? root.bubble.message : ""
+                    color: root.shownPhase === "failure" || root.shownPhase === "lockout" ? Theme.textDetail : Theme.textSecondary
+                    font.pixelSize: 13
+                    font.weight: Font.Medium
+                    opacity: full.hasMessage ? 1 : 0
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
             }
         }
 
@@ -183,15 +227,15 @@ Item {
             anchors.fill: parent
             visible: root.minimal
             opacity: root.expanded ? 1 : 0
-            Behavior on opacity { NumberAnimation { duration: 200 } }
+            Behavior on opacity { NumberAnimation { duration: root.opening ? 200 : 120 } }
 
             LockGlyph {
                 width: 18
                 height: 18
                 anchors.verticalCenter: parent.verticalCenter
                 x: 16
-                open: root.phase === "success"
-                color: root.phase === "failure" || root.phase === "lockout" ? Theme.failure : Theme.textPrimary
+                open: root.shownPhase === "success"
+                color: root.shownPhase === "failure" || root.shownPhase === "lockout" ? Theme.failure : Theme.textPrimary
             }
 
             FaceGlyph {

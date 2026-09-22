@@ -34,8 +34,12 @@ QtObject {
     readonly property int minimalHeight: 40
     readonly property int topGap: 6
 
-    // Enter: slide down, then grow. Leave: shrink, then slide up.
-    readonly property int slideDuration: 250
-    readonly property int expandDelay: 160
-    readonly property int slideOutDelay: 180
+    // Enter: slide down, then grow with a small overshoot. Leave: shrink
+    // without one, and slide up while it finishes.
+    readonly property int slideInDuration: 280
+    readonly property int expandDelay: 150
+    readonly property int growDuration: 460
+    readonly property int shrinkDuration: 280
+    readonly property int slideOutDelay: 150
+    readonly property int slideOutDuration: 240
 }
