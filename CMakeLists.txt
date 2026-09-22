@@ -159,6 +159,8 @@ if(PFU_BUILD_AGENT)
 
     # The QML files sit next to the module's qmldir in the resources, so they
     # see each other (and the Theme singleton) without importing anything.
+    # Under /qt/qml, which the engine searches, or an installed agent finds no
+    # types (the build directory only works by its PlasmaFaceUnlock/qmldir).
     set(PFU_QML_FILES Theme FaceGlyph LockGlyph Checkmark Bubble TickRing Enroll PillButton)
     foreach(f ${PFU_QML_FILES})
         set_source_files_properties(src/agent/qml/${f}.qml PROPERTIES QT_RESOURCE_ALIAS ${f}.qml)
@@ -168,7 +170,7 @@ if(PFU_BUILD_AGENT)
     qt_add_qml_module(plasma-face-unlock-agent
         URI PlasmaFaceUnlock
         VERSION 1.0
-        NO_RESOURCE_TARGET_PATH
+        RESOURCE_PREFIX /qt/qml
         SOURCES
             src/agent/previewitem.cpp
             src/agent/previewitem.h
