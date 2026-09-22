@@ -159,14 +159,18 @@ Item {
             // From size alone, so it cannot jump when the island turns.
             radius: root.minimal ? height / 2 : Math.min(Theme.openRadius, height / 2)
 
-            layer.enabled: true
+            // The shadow goes first when it closes, and with it the layer
+            // the effect draws into: some drivers leave a faint dark box of
+            // that layer's margin behind a moving island.
+            property real shadow: root.expanded ? 0.35 : 0
+            Behavior on shadow { NumberAnimation { duration: (root.opening ? 200 : 120) * root.pace } }
+            layer.enabled: shadow > 0.001
             layer.effect: MultiEffect {
                 shadowEnabled: true
                 shadowColor: "#000000"
-                shadowOpacity: root.expanded ? 0.35 : 0
+                shadowOpacity: shape.shadow
                 shadowBlur: 0.7
                 shadowVerticalOffset: 3
-                Behavior on shadowOpacity { NumberAnimation { duration: 200 * root.pace } }
             }
         }
 
