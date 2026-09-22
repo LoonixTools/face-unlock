@@ -22,13 +22,17 @@
 </p>
 
 <p align="center">
-  <img src="res/screenshots/bubble.png" alt="The bubble above the lock screen: asking for a blink, recognised, not recognised" width="720">
+  <img src="res/screenshots/unlock.webp" alt="The bubble drops down over the lock screen, the face in it looks around, asks for a blink, and two green rings spin and land around a tick" width="480">
+</p>
+
+<p align="center">
+  <img src="res/screenshots/bubble.png" alt="The bubble above the lock screen: looking, recognised, not recognised" width="720">
 </p>
 
 Come back to your locked screen, move the mouse, look at it: a little bubble drops down at the top,
-the face in it looks around, turns into a tick, and you are in. The same for `sudo` in a terminal
-and for the admin password prompts of Plasma, if you want. Everything runs on your machine, and
-your face is stored as numbers, never as a picture.
+the face in it looks around, two green rings spin and land around a tick, and you are in. The same
+for `sudo` in a terminal and for the admin password prompts of Plasma, if you want. Everything runs
+on your machine, and your face is stored as numbers, never as a picture.
 
 The look of the bubble and the photo check are inspired by [Glance](https://github.com/jonnyoo/glance)
 (face unlock for the Mac). The code is written from scratch for Plasma.
@@ -87,6 +91,7 @@ It asks for your password once before it adds the face. After that, lock the scr
 
     Show the bubble at the top                    ON
     Bubble style                                  island with the face
+    Animation speed                               normal
     Bubble for sudo and admin prompts too         ON
 
   Settings marked * are for the whole computer and ask for your password.
