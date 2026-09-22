@@ -181,6 +181,11 @@ After a scan that did not get anybody in, the next one waits for the person to
 be still for two seconds and then touch something again, so typing the password
 does not start a scan with every key.
 
+Unlocked through logind, the lock screen cuts off its own password prompt and
+counts that as a wrong password. After a face unlock the daemon resets the
+failed logins of *pam_faillock*(8), as a correct password does, so face unlocks
+never lock the account.
+
 The bubble is a layer-shell surface that KWin keeps above the lock screen
 (kde_lockscreen_overlay_v1). KWin only allows that for a program whose desktop
 file asks for it, which is

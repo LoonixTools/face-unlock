@@ -6,6 +6,8 @@
 #include <QDBusInterface>
 #include <QDir>
 #include <QFile>
+#include <QProcess>
+#include <QStandardPaths>
 
 #include <pwd.h>
 #include <unistd.h>
@@ -78,5 +80,18 @@ quint64 processStartTime(pid_t pid)
     }
     const QList<QByteArray> fields = line.mid(close + 2).split(' ');
     return fields.size() > 19 ? fields.at(19).toULongLong() : 0;
+}
+
+bool resetFailedLogins(uid_t uid)
+{
+    // Not from PATH: this runs as root.
+    const QString faillock = QStandardPaths::findExecutable(QStringLiteral("faillock"),
+                                                            {QStringLiteral("/usr/sbin"), QStringLiteral("/usr/bin"), QStringLiteral("/sbin")});
+    if (faillock.isEmpty()) {
+        return false;
+    }
+    QProcess p;
+    p.start(faillock, {QStringLiteral("--user"), nameOf(uid), QStringLiteral("--reset")});
+    return p.waitForFinished(3000) && p.exitStatus() == QProcess::NormalExit && p.exitCode() == 0;
 }
 } // namespace System

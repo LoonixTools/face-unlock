@@ -69,6 +69,10 @@ QJsonObject result(bool ok, const QString &reason = {})
     return o;
 }
 
+// A face unlock and the lock screen going away this soon after belong
+// together.
+constexpr qint64 UnlockPairSeconds = 30;
+
 bool isFailureThatCounts(const QString &reason)
 {
     // A face that did not match, a fake, or a match that never showed a sign
@@ -403,6 +407,15 @@ void Server::handleWatch(Client *client)
 void Server::handleUnlocked(Client *client)
 {
     UserState state = UserState::load(m_options.stateDir, client->uid());
+
+    // Our unlock goes through logind. The lock screen's password prompt is
+    // cut off mid-question by it and counts that as a wrong password, so a
+    // few face unlocks would lock the account (pam_faillock). Taken back here.
+    const qint64 now = QDateTime::currentSecsSinceEpoch();
+    if (geteuid() == 0 && state.lastPurpose == u"unlock" && now - state.lastUnlock <= UnlockPairSeconds) {
+        System::resetFailedLogins(client->uid());
+    }
+
     if (state.failures || state.lockedUntil) {
         state.failures = 0;
         state.lockedUntil = 0;

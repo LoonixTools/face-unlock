@@ -19,6 +19,8 @@ CapabilityBoundingSet=CAP_DAC_READ_SEARCH
 # runtime directory, to tell the bubble about a sudo scan.
 NoNewPrivileges=yes
 ProtectSystem=strict
+# To take back the failed login the lock screen counts for a face unlock.
+ReadWritePaths=-/run/faillock
 ProtectHome=read-only
 PrivateTmp=yes
 PrivateNetwork=yes

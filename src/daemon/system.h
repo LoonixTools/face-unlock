@@ -20,4 +20,8 @@ bool lidClosed();
 // When a process started, in clock ticks since boot, as polkit wants it to
 // tell a process from a later one that got the same pid.
 quint64 processStartTime(pid_t pid);
+
+// Forget the failed logins pam_faillock counted for somebody, as a correct
+// password does. False without faillock.
+bool resetFailedLogins(uid_t uid);
 } // namespace System
