@@ -411,6 +411,7 @@ Item {
             anchors.centerIn: parent
             width: parent.width * 0.42
             height: width
+            pace: root.pace
             color: root.color
             opacity: root.mode === "lockout" ? 1 : 0
             scale: root.mode === "lockout" ? 1 : 0.7

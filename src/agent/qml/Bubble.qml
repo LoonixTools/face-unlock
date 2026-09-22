@@ -231,6 +231,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 x: 16
                 open: root.shownPhase === "success"
+                pace: root.pace
                 color: root.shownPhase === "failure" || root.shownPhase === "lockout" ? Theme.failure : Theme.textPrimary
             }
 
