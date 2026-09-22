@@ -207,7 +207,7 @@ sudo make install
 ```
 
 Needs CMake, a C++20 compiler, Qt 6 (Core, DBus, Network, Gui, Quick, WaylandClient), LayerShellQt,
-KIdleTime, KI18n, OpenCV 4.5.4 or newer with the DNN module, Linux-PAM and libsystemd. Optionally
+KI18n, OpenCV 4.5.4 or newer with the DNN module, Linux-PAM and libsystemd. Optionally
 `msgfmt` (gettext) for translations and `scdoc` for the man page. Supports `PREFIX` and `DESTDIR`.
 `make check` runs syntax checks and shellcheck.
 

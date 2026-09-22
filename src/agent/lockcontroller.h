@@ -19,6 +19,8 @@
 
 #pragma once
 
+#include "inputwatcher.h"
+
 #include <QElapsedTimer>
 #include <QObject>
 #include <QPointer>
@@ -44,7 +46,8 @@ private Q_SLOTS:
     void onPrepareForSleep(bool sleeping);
 
 private:
-    void arm();
+    // Scan at the next input after calmMs without any.
+    void arm(int calmMs);
     void onResume();
     void startScan(const QString &why);
     void onScanFinished(const QJsonObject &result);
@@ -58,5 +61,5 @@ private:
     QElapsedTimer m_lockedFor;
     QPointer<DaemonRequest> m_scan;
     QTimer m_armTimer;
-    int m_idleId = -1;
+    InputWatcher m_input;
 };

@@ -136,7 +136,6 @@ if(PFU_BUILD_AGENT)
     set(QT_NO_PRIVATE_MODULE_WARNING ON)
     find_package(Qt6 REQUIRED COMPONENTS GuiPrivate WaylandClientPrivate)
     find_package(LayerShellQt REQUIRED)
-    find_package(KF6IdleTime REQUIRED)
     find_package(KF6I18n REQUIRED)
 
     qt_add_executable(plasma-face-unlock-agent
@@ -147,6 +146,7 @@ if(PFU_BUILD_AGENT)
         src/agent/bubblewindow.cpp
         src/agent/bubblecontroller.cpp
         src/agent/lockcontroller.cpp
+        src/agent/inputwatcher.cpp
         src/agent/enrollcontroller.cpp
     )
     target_include_directories(plasma-face-unlock-agent PRIVATE src/agent)
@@ -155,7 +155,8 @@ if(PFU_BUILD_AGENT)
     endif()
 
     qt6_generate_wayland_protocol_client_sources(plasma-face-unlock-agent
-        FILES ${CMAKE_CURRENT_SOURCE_DIR}/protocols/kde-lockscreen-overlay-v1.xml)
+        FILES ${CMAKE_CURRENT_SOURCE_DIR}/protocols/kde-lockscreen-overlay-v1.xml
+              ${CMAKE_CURRENT_SOURCE_DIR}/protocols/ext-idle-notify-v1.xml)
 
     # The QML files sit next to the module's qmldir in the resources, so they
     # see each other (and the Theme singleton) without importing anything.
@@ -189,7 +190,7 @@ if(PFU_BUILD_AGENT)
         Qt6::Gui Qt6::GuiPrivate Qt6::Quick Qt6::DBus Qt6::Network
         Qt6::WaylandClient Qt6::WaylandClientPrivate
         LayerShellQt::Interface
-        KF6::IdleTime KF6::I18n KF6::I18nQml
+        KF6::I18n KF6::I18nQml
         pfu_common
     )
     install(TARGETS plasma-face-unlock-agent DESTINATION ${PFU_LIBEXECDIR})

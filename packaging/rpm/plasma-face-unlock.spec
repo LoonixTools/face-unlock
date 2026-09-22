@@ -34,7 +34,6 @@ BuildRequires:  cmake(Qt6WaylandClient)
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  qt6-qtwayland-devel
 BuildRequires:  cmake(LayerShellQt)
-BuildRequires:  cmake(KF6IdleTime)
 BuildRequires:  cmake(KF6I18n)
 
 Requires:       bash >= 4.2

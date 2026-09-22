@@ -11,7 +11,7 @@ arch=('x86_64' 'aarch64')
 url="https://github.com/LoonixTools/plasma-face-unlock"
 license=('GPL-3.0-or-later' 'MIT' 'Apache-2.0')
 depends=('bash' 'coreutils' 'gawk' 'grep' 'sed' 'gettext' 'systemd' 'systemd-libs' 'pam' 'polkit'
-         'opencv' 'qt6-base' 'qt6-declarative' 'layer-shell-qt' 'kidletime' 'ki18n' 'kscreenlocker')
+         'opencv' 'qt6-base' 'qt6-declarative' 'layer-shell-qt' 'ki18n' 'kscreenlocker')
 makedepends=('cmake' 'scdoc')
 install="${pkgname}.install"
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"

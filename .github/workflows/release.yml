@@ -61,7 +61,7 @@ jobs:
             git make cmake gcc-c++ gettext scdoc tar curl rpm-build rpm-sign systemd-rpm-macros \
             'pkgconfig(systemd)' 'pkgconfig(libsystemd)' pam-devel opencv-devel \
             qt6-qtbase-devel qt6-qtbase-private-devel qt6-qtdeclarative-devel qt6-qtwayland-devel \
-            layer-shell-qt-devel kf6-kidletime-devel kf6-ki18n-devel
+            layer-shell-qt-devel kf6-ki18n-devel
 
       - uses: actions/checkout@v7
 

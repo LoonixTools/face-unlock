@@ -171,7 +171,9 @@ The agent watches for the screen to lock (org.freedesktop.ScreenSaver) and
 scans when somebody comes back:
 
 - on any key or mouse movement after the screen locked, once 1.5 seconds have
-  passed (the key that locked it does not count);
+  passed (the key that locked it does not count). Enter on the empty password
+  field is a key like any other. This works while a video or an app keeps the
+  screen on, too (ext_idle_notifier_v1, input notification);
 - when the machine wakes from sleep;
 - right after locking, if *Look right after the screen locks* is on. Off by
   default: whoever locks their screen on purpose is usually still in front of
@@ -256,7 +258,7 @@ _$XDG_RUNTIME_DIR/plasma-face-unlock/agent.socket_
 # REQUIREMENTS
 
 KDE Plasma 6 on Wayland, a camera, OpenCV 4.5.4 or newer with its DNN module,
-Qt 6, LayerShellQt, KIdleTime, KI18n, systemd, polkit and Linux-PAM.
+Qt 6, LayerShellQt, KI18n, systemd, polkit and Linux-PAM.
 
 # SEE ALSO
 

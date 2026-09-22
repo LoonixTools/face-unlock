@@ -6,8 +6,6 @@
 #include "daemonclient.h"
 #include "userconfig.h"
 
-#include <KIdleTime>
-
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QDBusPendingCallWatcher>
@@ -38,7 +36,10 @@ LockController::LockController(BubbleController *bubble, UserConfig *config, QOb
     , m_config(config)
 {
     m_armTimer.setSingleShot(true);
-    connect(&m_armTimer, &QTimer::timeout, this, &LockController::arm);
+    connect(&m_armTimer, &QTimer::timeout, this, [this] {
+        arm(0);
+    });
+    connect(&m_input, &InputWatcher::input, this, &LockController::onResume);
 
     QDBusConnection session = QDBusConnection::sessionBus();
     session.connect(QStringLiteral("org.freedesktop.ScreenSaver"),
@@ -54,17 +55,6 @@ LockController::LockController(BubbleController *bubble, UserConfig *config, QOb
                                          QStringLiteral("PrepareForSleep"),
                                          this,
                                          SLOT(onPrepareForSleep(bool)));
-
-    KIdleTime *idle = KIdleTime::instance();
-    connect(idle, &KIdleTime::resumingFromIdle, this, &LockController::onResume);
-    connect(idle, qOverload<int, int>(&KIdleTime::timeoutReached), this, [this, idle](int id, int) {
-        if (id != m_idleId) {
-            return;
-        }
-        idle->removeIdleTimeout(id);
-        m_idleId = -1;
-        arm();
-    });
 
     // Started while the screen is already locked (the agent restarted).
     const QDBusMessage get = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.ScreenSaver"),
@@ -86,16 +76,10 @@ void LockController::onActiveChanged(bool active)
     if (active == m_locked) {
         return;
     }
-    KIdleTime *idle = KIdleTime::instance();
-
     if (!active) {
         m_locked = false;
         m_armTimer.stop();
-        if (m_idleId >= 0) {
-            idle->removeIdleTimeout(m_idleId);
-            m_idleId = -1;
-        }
-        idle->stopCatchingResumeEvent();
+        m_input.stop();
         if (m_scan) {
             m_scan->abort();
             m_scan->deleteLater();
@@ -148,12 +132,12 @@ void LockController::onPrepareForSleep(bool sleeping)
     }
 }
 
-void LockController::arm()
+void LockController::arm(int calmMs)
 {
     if (!m_locked || m_stopped || !m_config->scanOnWake()) {
         return;
     }
-    KIdleTime::instance()->catchNextResumeEvent();
+    m_input.watch(calmMs);
 }
 
 void LockController::onResume()
@@ -221,9 +205,7 @@ void LockController::onScanFinished(const QJsonObject &result)
         m_armTimer.start(GraceAfterLockMs);
         return;
     }
-    if (m_idleId < 0) {
-        m_idleId = KIdleTime::instance()->addIdleTimeout(CalmBeforeRetryMs);
-    }
+    arm(CalmBeforeRetryMs);
 }
 
 void LockController::unlock()
