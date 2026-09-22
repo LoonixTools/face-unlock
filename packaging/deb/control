@@ -1,0 +1,23 @@
+Package: plasma-face-unlock
+Version: @VERSION@
+Section: admin
+Priority: optional
+Architecture: @ARCH@
+Maintainer: Felitendo <felitendoyt@gmail.com>
+Depends: @DEPENDS@, bash (>= 4.2), coreutils, grep, sed, mawk | gawk, systemd, polkitd | policykit-1, qml6-module-qtquick, qml6-module-qtquick-shapes, qml6-module-qtquick-effects, qml6-module-qtquick-window, qml6-module-qtqml-workerscript
+Recommends: gettext-base, kscreenlocker
+Homepage: https://github.com/LoonixTools/plasma-face-unlock
+Description: face unlock for KDE Plasma
+ Look at the screen and it unlocks, the way a phone does. The lock screen,
+ sudo in a terminal and the admin password prompts of Plasma can take a face
+ instead of a password. A bubble at the top of the screen, above the lock
+ screen too, shows the face being looked for, recognised or refused.
+ .
+ Before a face counts it has to show a sign of life (a blink, or the nose
+ moving the way a real nose does when the head turns), so a photo held up to
+ the camera is not enough. It is a convenience, not a security upgrade: a
+ webcam sees a flat picture, and a video of the person can get through.
+ .
+ Everything runs on the machine. Faces are stored as numbers readable only by
+ root, never as pictures. Run "plasma-face-unlock disable" before removing
+ this package, so that sudo and polkit go back to the password alone.

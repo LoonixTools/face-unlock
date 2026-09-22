@@ -1,0 +1,40 @@
+[Unit]
+Description=Face unlock for KDE Plasma
+Documentation=man:plasma-face-unlock(1)
+Requires=plasma-face-unlockd.socket
+After=plasma-face-unlockd.socket
+
+[Service]
+Type=simple
+# Started by the socket, and gone again after a minute with nothing to do.
+ExecStart=@LIBEXECDIR@/plasma-face-unlockd
+StateDirectory=plasma-face-unlock
+StateDirectoryMode=0700
+UMask=0077
+
+# It reads a camera, runs two small networks and writes one directory. That is
+# all it is allowed to do.
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+# The one capability: to reach a user's agent socket through their 0700
+# runtime directory, to tell the bubble about a sudo scan.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=yes
+PrivateNetwork=yes
+RestrictAddressFamilies=AF_UNIX
+DevicePolicy=closed
+DeviceAllow=char-video4linux rw
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM

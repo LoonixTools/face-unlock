@@ -1,0 +1,10 @@
+# build artifacts
+build/
+po/*.mo
+doc/*.1
+
+# the networks, fetched by `make models`
+models/
+
+# packages
+dist/

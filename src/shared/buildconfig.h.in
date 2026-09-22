@@ -1,0 +1,12 @@
+// Filled in by CMake. The one place the compiled programs learn where the
+// rest of the installation is.
+#pragma once
+
+#define PFU_VERSION "@PFU_VERSION@"
+#define PFU_NAME "plasma-face-unlock"
+#define PFU_LIBEXECDIR "@PFU_LIBEXECDIR@"
+#define PFU_MODELDIR "@PFU_MODELDIR@"
+#define PFU_LOCALEDIR "@PFU_LOCALEDIR@"
+#define PFU_SOCKET "@PFU_SOCKET@"
+#define PFU_STATEDIR "@PFU_STATEDIR@"
+#define PFU_CONFIG "@PFU_CONFIG@"

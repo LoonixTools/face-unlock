@@ -1,0 +1,768 @@
+# Translation template for plasma-face-unlock.
+# Copyright (C) 2026 Felitendo
+# This file is distributed under the same license as plasma-face-unlock.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: plasma-face-unlock 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/"
+"issues\n"
+"POT-Creation-Date: 2026-09-22 18:45+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/plasma-face-unlock:50
+msgid ""
+"Face unlock's service has to be switched on once for this computer. That "
+"needs your password."
+msgstr ""
+
+#: src/plasma-face-unlock:57
+#, sh-printf-format
+msgid "Check it with: systemctl status %s"
+msgstr ""
+
+#: src/plasma-face-unlock:67
+msgid ""
+"Setting up a face needs the camera picture on screen. Run this inside your "
+"Plasma session."
+msgstr ""
+
+#: src/plasma-face-unlock:71
+msgid "The setup window is open. Follow it there."
+msgstr ""
+
+#: src/plasma-face-unlock:80
+msgid "The face is set up."
+msgstr ""
+
+#: src/plasma-face-unlock:83
+#, sh-printf-format
+msgid "Face unlock is still off. Turn it on with [1] or `%s enable`."
+msgstr ""
+
+#: src/plasma-face-unlock:87
+msgid "No face was added."
+msgstr ""
+
+#: src/plasma-face-unlock:96
+msgid "First, set up your face."
+msgstr ""
+
+#: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:338
+msgid "Could not save the setting."
+msgstr ""
+
+#: src/plasma-face-unlock:104
+msgid "Could not start the lock screen agent."
+msgstr ""
+
+#: src/plasma-face-unlock:106
+msgid "No systemd user session, so the lock screen agent was not started."
+msgstr ""
+
+#: src/plasma-face-unlock:113
+msgid "Face unlock is on. Lock the screen and look at it to try."
+msgstr ""
+
+#: src/plasma-face-unlock:115
+msgid "It can do sudo and admin prompts too. See Settings."
+msgstr ""
+
+#: src/plasma-face-unlock:130
+msgid "Face unlock is off. Your faces are kept; delete them under Faces."
+msgstr ""
+
+#: src/plasma-face-unlock:144 src/lib/daemon.sh:109
+msgid "No face is set up yet."
+msgstr ""
+
+#: src/plasma-face-unlock:148 src/lib/menu.sh:157 src/lib/menu.sh:460
+msgid "on"
+msgstr ""
+
+#: src/plasma-face-unlock:148 src/lib/menu.sh:159 src/lib/menu.sh:169
+#: src/lib/menu.sh:461
+msgid "off"
+msgstr ""
+
+#: src/plasma-face-unlock:150 src/lib/menu.sh:478
+#, sh-printf-format
+msgid "%s samples, %s learned"
+msgstr ""
+
+#: src/plasma-face-unlock:156
+#, sh-printf-format
+msgid "Which face? See `%s faces` for the ids."
+msgstr ""
+
+#: src/plasma-face-unlock:160
+msgid "Deleted."
+msgstr ""
+
+#: src/plasma-face-unlock:171
+msgid "Usage: plasma-face-unlock [command]"
+msgstr ""
+
+#: src/plasma-face-unlock:173
+msgid "Commands:"
+msgstr ""
+
+#: src/plasma-face-unlock:174
+msgid "Turn face unlock on"
+msgstr ""
+
+#: src/plasma-face-unlock:175
+msgid "Turn it off (faces are kept)"
+msgstr ""
+
+#: src/plasma-face-unlock:176 src/lib/menu.sh:540
+msgid "Add a face"
+msgstr ""
+
+#: src/plasma-face-unlock:177
+msgid "List the faces"
+msgstr ""
+
+#: src/plasma-face-unlock:178
+msgid "Delete a face"
+msgstr ""
+
+#: src/plasma-face-unlock:179
+msgid "Look at the camera and see what it sees"
+msgstr ""
+
+#: src/plasma-face-unlock:180
+msgid "Show what is on"
+msgstr ""
+
+#: src/plasma-face-unlock:181
+msgid "Show this help"
+msgstr ""
+
+#: src/plasma-face-unlock:182
+msgid "Show the version"
+msgstr ""
+
+#: src/plasma-face-unlock:184
+msgid "Without a command an interactive menu is shown."
+msgstr ""
+
+#: src/plasma-face-unlock:203
+msgid ""
+"Run this as your own user, not as root. It asks for your password when it "
+"needs to."
+msgstr ""
+
+#: src/plasma-face-unlock:221 src/lib/system.sh:89
+#, sh-printf-format
+msgid "Unknown command: %s"
+msgstr ""
+
+#: src/lib/common.sh:160
+msgid "never"
+msgstr ""
+
+#: src/lib/common.sh:170
+msgid "just now"
+msgstr ""
+
+#: src/lib/common.sh:173
+#, sh-printf-format
+msgid "%d minutes ago"
+msgstr ""
+
+#: src/lib/common.sh:176
+#, sh-printf-format
+msgid "%d hours ago"
+msgstr ""
+
+#: src/lib/common.sh:179
+#, sh-printf-format
+msgid "%d days ago"
+msgstr ""
+
+#: src/lib/daemon.sh:102
+msgid "The face did not match."
+msgstr ""
+
+#: src/lib/daemon.sh:103
+msgid "That looked like a photo or a screen."
+msgstr ""
+
+#: src/lib/daemon.sh:104
+msgid "The face matched, but did not blink or move."
+msgstr ""
+
+#: src/lib/daemon.sh:105
+msgid "The face was not looking at the screen."
+msgstr ""
+
+#: src/lib/daemon.sh:106
+msgid "The picture was too dark, too blurry or too far away."
+msgstr ""
+
+#: src/lib/daemon.sh:107
+msgid "No face in view."
+msgstr ""
+
+#: src/lib/daemon.sh:108
+msgid ""
+"Face unlock is paused after too many tries. Unlock once with your password."
+msgstr ""
+
+#: src/lib/daemon.sh:110
+msgid "The camera could not be used."
+msgstr ""
+
+#: src/lib/daemon.sh:111 src/lib/menu.sh:233
+msgid "The recognition models are missing. Reinstall the package."
+msgstr ""
+
+#: src/lib/daemon.sh:112
+msgid "The lid is closed."
+msgstr ""
+
+#: src/lib/daemon.sh:113
+msgid "The camera is busy with another scan."
+msgstr ""
+
+#: src/lib/daemon.sh:114
+msgid "The face unlock service is not running."
+msgstr ""
+
+#: src/lib/daemon.sh:115
+msgid "Not allowed."
+msgstr ""
+
+#: src/lib/daemon.sh:116
+#, sh-printf-format
+msgid "Something went wrong (%s)."
+msgstr ""
+
+#: src/lib/daemon.sh:127
+msgid "Look at the camera. Blink once, or turn your head a little."
+msgstr ""
+
+#: src/lib/daemon.sh:137
+msgid "Face found."
+msgstr ""
+
+#: src/lib/daemon.sh:141
+msgid "Recognised. Now blink once, or turn your head a little."
+msgstr ""
+
+#: src/lib/daemon.sh:142
+msgid "Look at the screen."
+msgstr ""
+
+#: src/lib/daemon.sh:143
+msgid "Move closer to the camera."
+msgstr ""
+
+#: src/lib/daemon.sh:144
+msgid "It is too dark to see your face."
+msgstr ""
+
+#: src/lib/daemon.sh:153
+msgid "match"
+msgstr ""
+
+#: src/lib/daemon.sh:153
+msgid "turn"
+msgstr ""
+
+#: src/lib/daemon.sh:154
+msgid "eyes"
+msgstr ""
+
+#: src/lib/daemon.sh:155
+msgid "depth"
+msgstr ""
+
+#: src/lib/daemon.sh:155 src/lib/daemon.sh:164
+msgid "blink"
+msgstr ""
+
+#: src/lib/daemon.sh:156
+msgid "glare"
+msgstr ""
+
+#: src/lib/daemon.sh:156
+msgid "edge"
+msgstr ""
+
+#: src/lib/daemon.sh:165
+msgid "head turn"
+msgstr ""
+
+#: src/lib/daemon.sh:167
+#, sh-printf-format
+msgid "Recognised as %s (match %s) in %s ms."
+msgstr ""
+
+#: src/lib/daemon.sh:168
+#, sh-printf-format
+msgid "Sign of life: %s"
+msgstr ""
+
+#: src/lib/daemon.sh:173
+msgid ""
+"That was too many tries. Face unlock is paused until you unlock with your "
+"password."
+msgstr ""
+
+#: src/lib/menu.sh:122
+msgid "Press any key to continue..."
+msgstr ""
+
+#: src/lib/menu.sh:130
+msgid "[y/N]"
+msgstr ""
+
+#: src/lib/menu.sh:149 src/lib/menu.sh:382
+msgid "ON"
+msgstr ""
+
+#: src/lib/menu.sh:151 src/lib/menu.sh:383
+msgid "OFF"
+msgstr ""
+
+#: src/lib/menu.sh:167
+msgid "strict (blink or turn your head)"
+msgstr ""
+
+#: src/lib/menu.sh:168
+msgid "basic (screens and phone edges)"
+msgstr ""
+
+#: src/lib/menu.sh:170
+msgid "normal"
+msgstr ""
+
+#: src/lib/menu.sh:171
+msgid "strict"
+msgstr ""
+
+#: src/lib/menu.sh:172
+msgid "relaxed"
+msgstr ""
+
+#: src/lib/menu.sh:173
+msgid "island with the face"
+msgstr ""
+
+#: src/lib/menu.sh:174
+msgid "small pill with a lock"
+msgstr ""
+
+#: src/lib/menu.sh:175
+#, sh-printf-format
+msgid "%s seconds"
+msgstr ""
+
+#: src/lib/menu.sh:176 src/lib/menu.sh:313
+msgid "automatic"
+msgstr ""
+
+#: src/lib/menu.sh:193
+msgid "Face unlock"
+msgstr ""
+
+#: src/lib/menu.sh:197
+msgid "Service"
+msgstr ""
+
+#: src/lib/menu.sh:197
+msgid "not running"
+msgstr ""
+
+#: src/lib/menu.sh:199
+msgid "Turning face unlock on again starts it."
+msgstr ""
+
+#: src/lib/menu.sh:210 src/lib/menu.sh:212 src/lib/menu.sh:457
+#: src/lib/menu.sh:541
+msgid "Faces"
+msgstr ""
+
+#: src/lib/menu.sh:210
+msgid "none set up yet"
+msgstr ""
+
+#: src/lib/menu.sh:212
+msgid "all turned off"
+msgstr ""
+
+#: src/lib/menu.sh:218
+msgid "none found"
+msgstr ""
+
+#: src/lib/menu.sh:220 /tmp/tmp.q9gMIu3Tjj/settings.sh:9
+msgid "Camera"
+msgstr ""
+
+#: src/lib/menu.sh:222
+msgid "Lock screen"
+msgstr ""
+
+#: src/lib/menu.sh:223
+msgid "sudo"
+msgstr ""
+
+#: src/lib/menu.sh:224
+msgid "Admin prompts"
+msgstr ""
+
+#: src/lib/menu.sh:225 /tmp/tmp.q9gMIu3Tjj/settings.sh:6
+msgid "Photo check"
+msgstr ""
+
+#: src/lib/menu.sh:228
+msgid "Paused"
+msgstr ""
+
+#: src/lib/menu.sh:228
+#, sh-printf-format
+msgid "for %d more minutes, or until the password is used"
+msgstr ""
+
+#: src/lib/menu.sh:230
+msgid "Last unlock"
+msgstr ""
+
+#: src/lib/menu.sh:309
+#, sh-printf-format
+msgid "automatic (%s)"
+msgstr ""
+
+#: src/lib/menu.sh:319
+msgid "(infrared)"
+msgstr ""
+
+#: src/lib/menu.sh:323
+msgid "(not connected)"
+msgstr ""
+
+#: src/lib/menu.sh:379 src/lib/menu.sh:542
+msgid "Settings"
+msgstr ""
+
+#: src/lib/menu.sh:380
+msgid "Up/Down: select, Space or Right: change, q: back"
+msgstr ""
+
+#: src/lib/menu.sh:381
+msgid "Settings marked * are for the whole computer and ask for your password."
+msgstr ""
+
+#: src/lib/menu.sh:458
+msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
+msgstr ""
+
+#: src/lib/menu.sh:459
+msgid "No face is set up yet. Press a to add one."
+msgstr ""
+
+#: src/lib/menu.sh:502
+msgid "New name:"
+msgstr ""
+
+#: src/lib/menu.sh:509
+#, sh-printf-format
+msgid "Delete \"%s\"?"
+msgstr ""
+
+#: src/lib/menu.sh:539
+msgid "Turn face unlock on or off"
+msgstr ""
+
+#: src/lib/menu.sh:543
+msgid "Try it"
+msgstr ""
+
+#: src/lib/menu.sh:544
+msgid "Quit"
+msgstr ""
+
+#: src/lib/pam.sh:132
+#, sh-printf-format
+msgid "The PAM module is not installed at %s."
+msgstr ""
+
+#: src/lib/pam.sh:140
+#, sh-printf-format
+msgid "There is no PAM configuration for %s on this system."
+msgstr ""
+
+#: src/lib/system.sh:47
+msgid "This needs root, and neither sudo, run0 nor doas is installed."
+msgstr ""
+
+#: src/lib/system.sh:56
+msgid "This command has to run as root."
+msgstr ""
+
+#: src/lib/system.sh:64
+#, sh-printf-format
+msgid "Not a valid setting: %s=%s"
+msgstr ""
+
+#: src/lib/system.sh:75
+#, sh-printf-format
+msgid "Not a service this can be used for: %s"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Unlock the lock screen"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Look when somebody comes back to the screen"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Look right after the screen locks"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Use for sudo in a terminal"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Use for admin prompts"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "How closely a face has to match"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Only while looking at the screen"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "How long one look lasts"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Learn from every unlock"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Not while the lid is closed"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Show the bubble at the top"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Bubble style"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Bubble for sudo and admin prompts too"
+msgstr ""
+
+#: src/agent/bubblecontroller.cpp:91
+msgid "Blink once"
+msgstr ""
+
+#: src/agent/bubblecontroller.cpp:93
+msgid "Look at the screen"
+msgstr ""
+
+#: src/agent/bubblecontroller.cpp:95
+msgid "Move closer"
+msgstr ""
+
+#: src/agent/bubblecontroller.cpp:97
+msgid "Too dark"
+msgstr ""
+
+#: src/agent/bubblecontroller.cpp:117
+msgid "Use your password"
+msgstr ""
+
+#: src/agent/bubblecontroller.cpp:123
+msgid "Not recognized"
+msgstr ""
+
+#: src/agent/bubblecontroller.cpp:125
+msgid "Try again and blink"
+msgstr ""
+
+#: src/agent/bubblecontroller.cpp:127
+msgid "Camera unavailable"
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:68
+msgid "Bring your face into the circle."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:70
+msgid "Only one face, please."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:72
+msgid "Move a little closer."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:74
+msgid "It is too dark. Turn on a light."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:76
+msgid "Too bright. Turn away from the light."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:78
+msgid "Hold still for a moment."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:80
+msgid "Look straight at the camera."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:82
+msgid "Move your head slowly to complete the circle."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:99 src/agent/enrollcontroller.cpp:132
+msgid "Starting the camera…"
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:129
+msgid "Confirm with your password to add a face."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:184
+msgid "Face Unlock is set up."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:193
+msgid "A face can only be added with your password."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:195
+msgid "The camera could not be used: %1"
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:197
+msgid "The face recognition models are missing. Reinstall the package."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:199
+msgid "That took too long. Try again, in good light."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:201
+msgid "The face unlock service is not running. Turn face unlock on first."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:203
+msgid "The camera is busy with another scan. Try again in a moment."
+msgstr ""
+
+#: src/agent/enrollcontroller.cpp:205
+msgid "The face could not be added (%1)."
+msgstr ""
+
+#: src/agent/main.cpp:85
+msgid "Face unlock for KDE Plasma"
+msgstr ""
+
+#: src/agent/main.cpp:88
+msgid "Set up a face."
+msgstr ""
+
+#: src/agent/main.cpp:89
+msgid "What to call the new face."
+msgstr ""
+
+#: src/agent/main.cpp:90
+msgid "Play the bubble's animations once."
+msgstr ""
+
+#: src/agent/main.cpp:92
+msgid "Bubble style for the demo: full or minimal."
+msgstr ""
+
+#: src/pam/pam_plasma_face_unlock.c:293
+msgid "Look at the camera to unlock."
+msgstr ""
+
+#: src/pam/pam_plasma_face_unlock.c:296
+msgid "Blink, or turn your head a little."
+msgstr ""
+
+#: src/pam/pam_plasma_face_unlock.c:312
+msgid "Face unlock is paused after too many tries. Use your password."
+msgstr ""
+
+#: src/pam/pam_plasma_face_unlock.c:316
+msgid "Face not recognised."
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:22
+msgid "Set up Face Unlock"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:105
+msgid "Face Unlock"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:106
+msgid "Confirm it is you"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:107
+msgid "You are all set"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:108
+msgid "Setup did not finish"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:121
+msgid ""
+"Look at the camera, then move your head slowly in a circle. Your face is "
+"turned into numbers on this computer and never stored as a picture."
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:123
+msgid ""
+"Lock the screen and look at it to try it out. You can add a second look, "
+"with glasses for example, from the menu."
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:156
+msgid "Name (optional)"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:171
+msgid "Cancel"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:177
+msgid "Finish now"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:182
+msgid "Try again"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:182
+msgid "Get started"
+msgstr ""
+
+#: src/agent/qml/Enroll.qml:187
+msgid "Done"
+msgstr ""

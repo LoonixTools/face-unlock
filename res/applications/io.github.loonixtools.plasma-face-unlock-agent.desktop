@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Plasma Face Unlock
+Name[de]=Plasma-Gesichtsentsperrung
+Comment=Unlocks the lock screen, sudo and admin prompts with your face
+Comment[de]=Entsperrt Sperrbildschirm, sudo und Admin-Abfragen mit deinem Gesicht
+Exec=@LIBEXECDIR@/plasma-face-unlock-agent
+Icon=plasma-face-unlock
+NoDisplay=true
+OnlyShowIn=KDE;
+# KWin only lets a program show above the lock screen when its desktop file
+# asks for it by name. This is that file.
+X-KDE-Wayland-Interfaces=kde_lockscreen_overlay_v1

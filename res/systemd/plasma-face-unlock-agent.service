@@ -1,0 +1,17 @@
+[Unit]
+Description=Face unlock for KDE Plasma (lock screen and bubble)
+Documentation=man:plasma-face-unlock(1)
+PartOf=graphical-session.target
+After=graphical-session.target
+# Plasma on Wayland. The bubble is a layer-shell surface, and there is no such
+# thing on X11.
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+ExecStart=@LIBEXECDIR@/plasma-face-unlock-agent
+Restart=on-failure
+RestartSec=3
+Slice=session.slice
+
+[Install]
+WantedBy=graphical-session.target

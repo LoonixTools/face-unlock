@@ -1,0 +1,32 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: build, tests and shellcheck
+    runs-on: ubuntu-latest
+    # Arch has every Plasma 6 and Qt 6 development package this needs, and the
+    # newest OpenCV, which is the one that moved things around.
+    container: archlinux:latest
+    steps:
+      - name: Install the build tools
+        run: |
+          pacman -Syu --noconfirm --needed git base-devel cmake pkgconf \
+            qt6-base qt6-declarative layer-shell-qt kidletime ki18n \
+            opencv pam systemd-libs gettext scdoc shellcheck desktop-file-utils
+
+      - uses: actions/checkout@v7
+
+      - run: make check
+
+      # The liveness cues against synthetic heads and photos, the face store,
+      # and the PAM file editing (with real PAM for the last part).
+      - run: make test
+
+      - name: Build the catalogs and the man page
+        run: make build
