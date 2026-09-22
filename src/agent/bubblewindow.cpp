@@ -69,7 +69,12 @@ void BubbleWindow::create()
         layer->setExclusiveZone(-1);
         layer->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityNone);
         layer->setActivateOnShow(false);
-        layer->setScope(QStringLiteral("plasma-face-unlock-bubble"));
+        // KWin makes a window type of the scope and takes one it does not
+        // know for a normal window. Its scale effect then opens and closes
+        // that with a blur forced behind the whole, mostly clear window: a
+        // faint box with sharp corners around the bubble. An on-screen
+        // display only fades, which a clear window does not show.
+        layer->setScope(QStringLiteral("on-screen-display"));
 #ifdef PFU_LAYERSHELL_HAS_SCREEN
         layer->setScreen(QGuiApplication::primaryScreen());
 #endif
