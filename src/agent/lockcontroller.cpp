@@ -23,9 +23,6 @@ constexpr int GraceAfterLockMs = 1500;
 // person has kept still for this long and then touched something again. That
 // way typing the password does not start a scan with every key.
 constexpr int CalmBeforeRetryMs = 2000;
-// Show the tick before the screen goes: long enough to see, short enough
-// not to feel like waiting.
-constexpr int UnlockAfterSuccessMs = 450;
 // A camera needs a moment after the machine wakes before it delivers frames.
 constexpr int ScanAfterWakeMs = 1000;
 } // namespace
@@ -188,8 +185,11 @@ void LockController::onScanFinished(const QJsonObject &result)
 
     const QString reason = result.value(u"reason").toString();
     if (result.value(u"ok").toBool()) {
+        // Straight away, the way a phone does it: the lock screen takes a
+        // moment to go, and the bubble stays above the desktop, so the rings
+        // and the tick play on over it.
         m_bubble->succeeded();
-        QTimer::singleShot(int(UnlockAfterSuccessMs * m_config->pace()), this, &LockController::unlock);
+        unlock();
         return;
     }
 
