@@ -7,7 +7,7 @@
 <h3 align="center">Face ID for KDE Plasma.</h3>
 
 <p align="center">
-  Look at the screen and it unlocks: the lock screen, sudo and admin prompts. A photo of you is not enough.
+  Look at the screen and it unlocks: the lock screen, sudo and admin prompts. A photo on a phone does not fool it.
 </p>
 
 <h5 align="center">
@@ -22,7 +22,7 @@
 </p>
 
 <p align="center">
-  <img src="res/screenshots/unlock.webp" alt="The bubble drops down over the lock screen, the face in it looks around, asks for a blink, and two green rings spin and land around a tick" width="480">
+  <img src="res/screenshots/unlock.webp" alt="The bubble drops down over the lock screen, the face in it looks around, and two green rings spin and land around a tick" width="480">
 </p>
 
 <p align="center">
@@ -100,8 +100,10 @@ Without the menu: `plasma-face-unlock enable`, `disable`, `setup [NAME]`, `faces
 It is a convenience, not a security upgrade. Face ID on a phone sees your face in 3D. A webcam only
 sees a flat picture.
 
-- A photo does not get in: the face has to blink or turn a little, and a photo can do neither.
-- A phone or tablet held up to the camera is caught by its reflection and its straight edges.
+- You do not have to blink. A photo on a phone or tablet, or a glossy print, is still refused:
+  it gives itself away by its reflection and its straight edges.
+- A matte printed photo can get past that. Set the photo check to *strict* in the settings: then
+  the face has to blink or turn a little, and a photo can do neither.
 - A video of you can still get in.
 - Five failed tries in a row pause it for 15 minutes, or until you use your password.
 - Only root can read your face data. Adding or deleting a face always needs your password.

@@ -260,7 +260,7 @@ PFU_SETTINGS=(
 	"user|ScanOnLock|bool|no|Look right after the screen locks"
 	"pam|sudo|bool|no|Use for sudo in a terminal"
 	"pam|polkit-1|bool|no|Use for admin prompts"
-	"sys|Liveness|choice|heavy|Photo check|heavy,light,off"
+	"sys|Liveness|choice|light|Photo check|light,heavy,off"
 	"sys|Strictness|choice|normal|How closely a face has to match|normal,strict,relaxed"
 	"sys|Attention|bool|yes|Only while looking at the screen"
 	"sys|Camera|camera|auto|Camera"

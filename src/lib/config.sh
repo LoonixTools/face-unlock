@@ -126,7 +126,7 @@ pfu_config_load() {
 	_pfu_kv_lookup "$PFU_CONFIG" Sudo no;             CFG_SUDO=no;     pfu_is_true "$PFU_KV_VALUE" && CFG_SUDO=yes
 	_pfu_kv_lookup "$PFU_CONFIG" Polkit no;           CFG_POLKIT=no;   pfu_is_true "$PFU_KV_VALUE" && CFG_POLKIT=yes
 
-	_pfu_kv_lookup "$PFU_SYSCONFIG" Liveness heavy;   CFG_LIVENESS="$PFU_KV_VALUE"
+	_pfu_kv_lookup "$PFU_SYSCONFIG" Liveness light;   CFG_LIVENESS="$PFU_KV_VALUE"
 	_pfu_kv_lookup "$PFU_SYSCONFIG" Camera auto;      CFG_CAMERA="$PFU_KV_VALUE"
 	return 0
 }

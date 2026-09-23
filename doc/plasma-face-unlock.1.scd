@@ -12,8 +12,8 @@ plasma-face-unlock - face unlock for KDE Plasma
 
 Look at the screen and it unlocks, the way a phone does. The lock screen, sudo
 in a terminal and the admin password prompts of Plasma can all take a face
-instead of a password. Before a face counts, it has to show a sign of life, so
-holding up a photo of somebody is not enough.
+instead of a password. A photo of somebody on a phone or tablet does not get
+in, and with the strict photo check a printed one does not either.
 
 A bubble at the top of the screen shows what is going on: it drops down when
 the camera starts looking, the face in it looks around, and when it recognises
@@ -128,14 +128,18 @@ Confirm cues are evidence of a real head. *strict* needs one of them:
   real turn, measured without the nose's own jitter, and the face has to
   narrow no more than a head that turned that far would.
 
-*basic* uses the deny cues only. *off* checks nothing and is only for trying
-out a camera.
+*basic*, the default, uses the deny cues only: nobody has to blink, and a
+phone, a tablet or a glossy print held up is still refused. A matte printed
+photo is not, so *strict* is the one to pick when that matters. *off* checks
+nothing and is only for trying out a camera.
 
 # HOW SAFE IS THIS
 
 A webcam sees a flat picture. A phone's face unlock builds a depth map with a
 projector and an infrared camera; this cannot. What the photo check does:
 
+- a photo on a phone or tablet, or a glossy print, is refused by *basic*, the
+  default. A matte printed photo can get past *basic*;
 - a photo, printed or on a screen, held up and turned any way, is refused by
   *strict*;
 - a photo curled strongly and turned a lot can pass the head turn cue some of

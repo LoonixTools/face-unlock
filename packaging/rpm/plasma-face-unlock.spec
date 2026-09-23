@@ -53,9 +53,10 @@ in a terminal and the admin password prompts of Plasma can take a face instead
 of a password. A bubble at the top of the screen, above the lock screen too,
 shows the face being looked for, recognised or refused.
 
-Before a face counts it has to show a sign of life (a blink, or the nose moving
-the way a real nose does when the head turns), so a photo held up to the camera
-is not enough. It is a convenience, not a security upgrade: a webcam sees a
+A photo on a phone, a tablet or a glossy print is refused by its reflection and
+its straight edges. The strict photo check also wants a sign of life (a blink,
+or the nose moving the way a real nose does when the head turns), which stops a
+printed photo too. It is a convenience, not a security upgrade: a webcam sees a
 flat picture, and a video of the person can get through.
 
 Run "plasma-face-unlock disable" before removing this package, so that sudo

@@ -30,7 +30,9 @@ struct Settings {
     // A /dev/video path, "auto", or for testing "file:<video>" and
     // "images:<directory>".
     QString camera = QStringLiteral("auto");
-    LivenessMode liveness = LivenessMode::Heavy;
+    // Basic by default: screens and phones are caught without asking for a
+    // blink. Strict adds the blink or head turn that stops a printed photo.
+    LivenessMode liveness = LivenessMode::Light;
     Strictness strictness = Strictness::Normal;
     // Only a face that looks at the screen with its eyes open counts.
     bool attention = true;
