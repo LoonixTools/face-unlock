@@ -7,7 +7,7 @@
 <h3 align="center">Face ID for KDE Plasma.</h3>
 
 <p align="center">
-  Look at the screen and it unlocks: the lock screen, sudo and admin prompts. A photo on a phone does not fool it.
+  Unlock the lock screen, sudo and admin prompts with your face.
 </p>
 
 <h5 align="center">
@@ -29,19 +29,19 @@
   <img src="res/screenshots/bubble.png" alt="The bubble above the lock screen: looking, recognised, not recognised" width="720">
 </p>
 
-Come back to your locked screen and look at it. A bubble drops down at the top, finds your face,
-and you are in. It works for `sudo` and Plasma's admin prompts too, if you want. Everything runs on
-your computer, and your face is saved as numbers, never as a picture.
-
 ## Install
 
-**Arch, CachyOS, EndeavourOS, Manjaro** (AUR)
+<details>
+<summary><b>Arch</b>, CachyOS, EndeavourOS, Manjaro</summary>
 
 ```bash
 yay -S plasma-face-unlock
 ```
 
-**Fedora**
+</details>
+
+<details>
+<summary><b>Fedora</b></summary>
 
 ```bash
 sudo curl -fsSL -o /etc/yum.repos.d/plasma-face-unlock.repo \
@@ -49,7 +49,10 @@ sudo curl -fsSL -o /etc/yum.repos.d/plasma-face-unlock.repo \
 sudo dnf install plasma-face-unlock
 ```
 
-**Debian, Kubuntu**
+</details>
+
+<details>
+<summary><b>Debian</b>, Kubuntu</summary>
 
 ```bash
 codename="$(sed -n 's/^VERSION_CODENAME=//p' /etc/os-release)"
@@ -61,10 +64,9 @@ echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] https://loonixtoo
 sudo apt update && sudo apt install plasma-face-unlock
 ```
 
-The packages are built for the current release of each. Updates then come with your normal system
-updates.
+</details>
 
-You need Plasma 6 on Wayland and a camera. Infrared cameras (the Windows Hello kind) work too.
+Needs Plasma 6 on Wayland and a camera. Updates come with your system updates.
 
 ## How to use
 
@@ -72,76 +74,71 @@ You need Plasma 6 on Wayland and a camera. Infrared cameras (the Windows Hello k
 plasma-face-unlock
 ```
 
-This opens a menu:
-
 <p align="center">
   <img src="res/screenshots/menu.png" alt="The plasma-face-unlock menu in Konsole: face unlock on, one face, lock screen, sudo and admin prompts on" width="560">
 </p>
 
-Press **1** and follow the setup window: look at the camera, then turn your head slowly in a circle
-until the ring is full. Then lock the screen and look at it. **2** adds another face, for example
-with glasses, and **5** runs one test scan that shows what the camera sees. Try that first when
-something does not work.
+Press **1** and look at the camera. Then lock the screen and look at it.
 
-**4** opens the settings. The text at the bottom says what the selected one does:
+<details>
+<summary>Settings</summary>
 
 <p align="center">
   <img src="res/screenshots/settings.png" alt="The settings in Konsole, grouped into lock screen, password prompts, recognition and bubble, with the photo check explained at the bottom" width="680">
 </p>
 
-Without the menu: `plasma-face-unlock enable`, `disable`, `setup [NAME]`, `faces`, `remove ID`,
-`test` and `status`.
+</details>
 
 ## Is it safe?
 
-It is a convenience, not a security upgrade. Face ID on a phone sees your face in 3D. A webcam only
-sees a flat picture.
-
-- You do not have to blink. A photo on a phone or tablet, or a glossy print, is still refused:
-  it gives itself away by its reflection and its straight edges.
-- A matte printed photo can get past that. Set the photo check to *strict* in the settings: then
-  the face has to blink or turn a little, and a photo can do neither.
-- A video of you can still get in.
-- Five failed tries in a row pause it for 15 minutes, or until you use your password.
-- Only root can read your face data. Adding or deleting a face always needs your password.
-- sudo and admin prompts never take a face over SSH.
-
-If the computer guards something important, leave sudo and admin prompts off.
-
-## How it works
+A convenience, not extra security. A webcam only sees a flat picture.
 
 | | |
 |---|---|
-| `plasma-face-unlockd` | Runs as root when needed. It owns the camera and the face data and decides. |
-| `plasma-face-unlock-agent` | Runs in your session. It watches the lock screen and draws the bubble. |
-| `pam_plasma_face_unlock.so` | Lets sudo and admin prompts ask the daemon. No match: you type your password as usual. |
+| Photo on a phone, tablet or glossy paper | ✅ Stopped |
+| Matte printed photo | ⚠️ Only stopped with photo check *strict* |
+| Video of you | ❌ Can get in |
+| Five failed tries | ⏸️ Paused for 15 minutes |
+| Your face data | 🔒 Numbers, no pictures. Root only. |
+| sudo over SSH | 🚫 Never unlocked by a face |
+
+## More
+
+<details>
+<summary>How it works</summary>
+
+| | |
+|---|---|
+| `plasma-face-unlockd` | The root service. Owns the camera and the face data. |
+| `plasma-face-unlock-agent` | Runs in your session. Watches the lock screen, draws the bubble. |
+| `pam_plasma_face_unlock.so` | Lets sudo and admin prompts ask the service. |
 | `plasma-face-unlock` | The menu. |
 
-Two small networks from the OpenCV model zoo find the face (YuNet) and turn it into numbers (SFace).
-They run on the CPU in a few milliseconds. The lock screen is unlocked through logind, the same way
-`loginctl unlock-session` does it. `man plasma-face-unlock` has all the details.
+Two small networks from the OpenCV model zoo run on the CPU: YuNet finds the face, SFace turns it
+into numbers. All details: `man plasma-face-unlock`.
 
-## Build from source
+</details>
+
+<details>
+<summary>Build from source</summary>
 
 ```bash
-make models   # downloads the two networks and checks them
+make models
 make
 make test
 sudo make install
 ```
 
-You need CMake, a C++20 compiler, Qt 6, LayerShellQt, KI18n, OpenCV 4.5.4 or newer (with DNN),
-Linux-PAM and libsystemd. `scdoc` and `msgfmt` are optional (man page, translations).
-[packaging/README.md](packaging/README.md) explains releases.
+Needs CMake, a C++20 compiler, Qt 6, LayerShellQt, KI18n, OpenCV 4.5.4+ (with DNN), Linux-PAM and
+libsystemd.
+
+</details>
 
 ## Credits
 
-- [Glance](https://github.com/jonnyoo/glance) by Jonathan Zhou (MIT): face unlock for the Mac. The
-  idea, the look of the bubble and the photo check come from there. The code here is new.
-- [YuNet](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet) (MIT) and
-  [SFace](https://github.com/opencv/opencv_zoo/tree/main/models/face_recognition_sface) (Apache-2.0)
-  from the OpenCV model zoo.
-
-## License
+- [Glance](https://github.com/jonnyoo/glance) by Jonathan Zhou: the idea and the look of the bubble.
+- [YuNet](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet) and
+  [SFace](https://github.com/opencv/opencv_zoo/tree/main/models/face_recognition_sface) from the
+  OpenCV model zoo.
 
 GPL-3.0-or-later.
