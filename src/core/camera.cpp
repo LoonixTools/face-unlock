@@ -37,6 +37,21 @@ QString sysName(const QString &device)
     return QString::fromUtf8(file.readAll()).trimmed();
 }
 
+// UVC names a node "<device>: <function>", often twice the same or with the
+// second cut short ("HP HD Camera: HP HD Camera"). The function tells a
+// laptop's two cameras apart ("HP HD Camera: HP IR Camera"), so that part is
+// kept unless it only repeats the first.
+QString shortName(const QString &name)
+{
+    const qsizetype colon = name.indexOf(u": ");
+    if (colon < 0) {
+        return name;
+    }
+    const QString device = name.left(colon);
+    const QString function = name.mid(colon + 2).trimmed();
+    return function.isEmpty() || device.startsWith(function) ? device : function;
+}
+
 // Opens the node just long enough to ask what it is. Neither this nor the
 // format list below starts streaming, so it does not switch the light on.
 bool probe(const QString &path, CameraInfo *info)
@@ -85,6 +100,7 @@ bool probe(const QString &path, CameraInfo *info)
         if (info->name.isEmpty()) {
             info->name = QString::fromUtf8(reinterpret_cast<const char *>(cap.card));
         }
+        info->name = shortName(info->name);
         info->infrared = grey && !colour;
     }
     return ok;
