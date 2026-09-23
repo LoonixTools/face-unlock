@@ -8,11 +8,13 @@ description of the layout, and two descriptions drift.
 |---|---|
 | `deb/control`, `deb/copyright` | metadata for the Debian binary package |
 | `rpm/plasma-face-unlock.spec` | the RPM spec |
-| `aur/PKGBUILD`, `aur/plasma-face-unlock.install` | the AUR package |
 | `build-deb.sh`, `build-rpm.sh` | build one package into `dist/` |
 | `check-version.sh` | refuses a tag that disagrees with the Makefile |
 | `publish-repos.sh` | regenerates the APT and RPM repositories |
 | `pages/` | the landing page and the `.repo` file served from GitHub Pages |
+
+The AUR package lives in [Felitendo/PKGBUILDS](https://github.com/Felitendo/PKGBUILDS/tree/main/plasma-face-unlock).
+Its CI notices a new GitHub release, updates the checksum and pushes to the AUR.
 
 Unlike the shell-only LoonixTools, this one is compiled. The packages are per
 architecture (amd64 and x86_64), and they need the Plasma 6 and Qt 6
