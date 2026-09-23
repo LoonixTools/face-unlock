@@ -174,8 +174,8 @@ _pfu_small_onoff() {
 # How a setting's value reads in the menu.
 pfu_value_label() {
 	case "$1:$2" in
-		Liveness:heavy)     pfu_msg "strict (blink or turn your head)" ;;
-		Liveness:light)     pfu_msg "basic (screens and phone edges)" ;;
+		Liveness:heavy)     pfu_msg "strict" ;;
+		Liveness:light)     pfu_msg "basic" ;;
 		Liveness:off)       pfu_msg "off" ;;
 		Strictness:normal)  pfu_msg "normal" ;;
 		Strictness:strict)  pfu_msg "strict" ;;
@@ -250,28 +250,84 @@ pfu_ui_status() {
 # ---------------------------------------------------------------------------
 # Settings
 # ---------------------------------------------------------------------------
-# Format: scope|Key|type|default|label-msgid|choices
-#   scope  user (this user's file), sys (the system file, through sudo) or
-#          pam (the service of that name, through sudo)
-#   type   bool, choice (cycles through the choices) or camera
+# Format: scope|Key|type|default|label-msgid|choices|needs
+#   scope  user (this user's file), sys (the system file, through sudo),
+#          pam (the service of that name, through sudo), or group for a
+#          heading, with only the label after it
+#   type   bool, choice (steps through the choices) or camera
+#   needs  a bool setting this one does nothing without; it is dimmed while
+#          that is off
 PFU_SETTINGS=(
-	"user|LockScreen|bool|yes|Unlock the lock screen"
-	"user|ScanOnWake|bool|yes|Look when somebody comes back to the screen"
-	"user|ScanOnLock|bool|no|Look right after the screen locks"
-	"pam|sudo|bool|no|Use for sudo in a terminal"
-	"pam|polkit-1|bool|no|Use for admin prompts"
-	"sys|Liveness|choice|light|Photo check|light,heavy,off"
-	"sys|Strictness|choice|normal|How closely a face has to match|normal,strict,relaxed"
-	"sys|Attention|bool|yes|Only while looking at the screen"
+	"group|Lock screen"
+	"user|LockScreen|bool|yes|Unlock with your face"
+	"user|ScanOnWake|bool|yes|Scan when you come back||LockScreen"
+	"user|ScanOnLock|bool|no|Scan right after locking||LockScreen"
+	"group|Password prompts"
+	"pam|sudo|bool|no|sudo in a terminal"
+	"pam|polkit-1|bool|no|Admin prompts"
+	"group|Recognition"
+	"sys|Liveness|choice|light|Photo check|off,light,heavy"
+	"sys|Strictness|choice|normal|How closely the face has to match|relaxed,normal,strict"
+	"sys|Attention|bool|yes|Only when you look at the screen"
 	"sys|Camera|camera|auto|Camera"
-	"sys|ScanSeconds|choice|5|How long one look lasts|3,4,5,6,8,10"
+	"sys|ScanSeconds|choice|5|How long a scan lasts|3,4,5,6,8,10"
 	"sys|Adapt|bool|yes|Learn from every unlock"
-	"sys|SkipLidClosed|bool|yes|Not while the lid is closed"
-	"user|Bubble|bool|yes|Show the bubble at the top"
-	"user|BubbleStyle|choice|full|Bubble style|full,minimal"
-	"user|AnimationSpeed|choice|normal|Animation speed|normal,fast,slow"
-	"user|BubbleForPrompts|bool|yes|Bubble for sudo and admin prompts too"
+	"sys|SkipLidClosed|bool|yes|Not when the lid is closed"
+	"group|Bubble"
+	"user|Bubble|bool|yes|Show the bubble"
+	"user|BubbleStyle|choice|full|Style|full,minimal|Bubble"
+	"user|AnimationSpeed|choice|normal|Animation speed|slow,normal,fast|Bubble"
+	"user|BubbleForPrompts|bool|yes|Also for sudo and admin prompts||Bubble"
 )
+
+# pfu_setting_help <Key> <value>
+# What a setting does, shown under the list for the selected one.
+pfu_setting_help() {
+	case "$1:$2" in
+		LockScreen:*)       pfu_msg "Unlocks the lock screen when it sees your face. Off: only your password works there." ;;
+		ScanOnWake:*)       pfu_msg "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up." ;;
+		ScanOnLock:*)       pfu_msg "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away." ;;
+		sudo:*)             pfu_msg "sudo takes your face instead of the password. No match: you type the password as usual." ;;
+		polkit-1:*)         pfu_msg "The password windows of Plasma and apps, for example when you install software. No match: you type the password." ;;
+		Liveness:heavy)     pfu_msg "You have to blink or turn your head a little. This also stops printed photos." ;;
+		Liveness:off)       pfu_msg "No check at all. Only for trying out a camera." ;;
+		Liveness:*)         pfu_msg "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through." ;;
+		Strictness:strict)  pfu_msg "Fewer wrong matches, but it may not know you with glasses or in bad light." ;;
+		Strictness:relaxed) pfu_msg "Knows you more easily, but also somebody who looks a lot like you." ;;
+		Strictness:*)       pfu_msg "The default. Right for most people." ;;
+		Attention:*)        pfu_msg "Your eyes have to be open and on the screen. So it does not unlock while you look away or sleep." ;;
+		Camera:*)           pfu_msg "Automatic takes the first normal camera. After a change, set up your face again. An infrared camera needs its light on (linux-enable-ir-emitter)." ;;
+		ScanSeconds:*)      pfu_msg "How long the camera looks for your face before it gives up." ;;
+		Adapt:*)            pfu_msg "After a sure match it keeps how you look now. So a new haircut or glasses need no new setup." ;;
+		SkipLidClosed:*)    pfu_msg "No scan while the laptop is closed, for example at a desk with an external screen." ;;
+		Bubble:*)           pfu_msg "The bubble at the top of the screen shows what the camera is doing." ;;
+		BubbleStyle:minimal) pfu_msg "A small pill with a lock that opens." ;;
+		BubbleStyle:*)      pfu_msg "An island with a face that looks around, then rings and a tick." ;;
+		AnimationSpeed:*)   pfu_msg "How fast the bubble moves." ;;
+		BubbleForPrompts:*) pfu_msg "Shows the bubble when sudo or an admin prompt scans your face, too." ;;
+	esac
+}
+
+# _pfu_wrap <width> <text>
+# Word wrap, into PFU_WRAP_LINES.
+PFU_WRAP_LINES=()
+
+_pfu_wrap() {
+	local width="$1" word line=''
+	local -a words
+	PFU_WRAP_LINES=()
+	read -r -a words <<< "$2"
+	for word in "${words[@]}"; do
+		if [[ -n $line ]] && (( ${#line} + 1 + ${#word} > width )); then
+			PFU_WRAP_LINES+=("$line")
+			line="$word"
+		else
+			line="${line:+$line }$word"
+		fi
+	done
+	[[ -n $line ]] && PFU_WRAP_LINES+=("$line")
+	return 0
+}
 
 # _pfu_setting_value <scope> <Key> <default>
 # The current value, in PFU_SETTING_VALUE.
@@ -285,34 +341,32 @@ _pfu_setting_value() {
 	esac
 }
 
-# _pfu_next_choice <current> <a,b,c>
-_pfu_next_choice() {
-	local current="$1" list="$2" first='' found=0 c
-	local -a choices
-	IFS=',' read -r -a choices <<< "$list"
-	for c in "${choices[@]}"; do
-		[[ -z $first ]] && first="$c"
-		if (( found )); then
-			printf '%s\n' "$c"
-			return
-		fi
-		[[ $c == "$current" ]] && found=1
-	done
-	printf '%s\n' "$first"
-}
-
-# _pfu_next_camera <current>
-_pfu_next_camera() {
-	local current="$1" i
-	pfu_cameras_load
-	local -a all=(auto "${PFU_CAM_PATHS[@]}")
+# _pfu_step <current> <step> <choice>...
+# The choice <step> (1 or -1) away from the current one, round at the ends.
+_pfu_step() {
+	local current="$1" step="$2" i
+	shift 2
+	local -a all=("$@")
 	for i in "${!all[@]}"; do
 		if [[ ${all[i]} == "$current" ]]; then
-			printf '%s\n' "${all[(i + 1) % ${#all[@]}]}"
+			printf '%s\n' "${all[(i + step + ${#all[@]}) % ${#all[@]}]}"
 			return
 		fi
 	done
-	printf 'auto\n'
+	printf '%s\n' "${all[0]}"
+}
+
+# _pfu_next_choice <current> <a,b,c> <step>
+_pfu_next_choice() {
+	local -a choices
+	IFS=',' read -r -a choices <<< "$2"
+	_pfu_step "$1" "$3" "${choices[@]}"
+}
+
+# _pfu_next_camera <current> <step>
+_pfu_next_camera() {
+	pfu_cameras_load
+	_pfu_step "$1" "$2" auto "${PFU_CAM_PATHS[@]}"
 }
 
 _pfu_camera_label() {
@@ -337,14 +391,14 @@ _pfu_camera_label() {
 	printf '%s %s' "$value" "$(pfu_msg "(not connected)")"
 }
 
-# _pfu_setting_change <scope> <Key> <type> <current> <choices>
+# _pfu_setting_change <scope> <Key> <type> <current> <choices> <step>
 _pfu_setting_change() {
-	local scope="$1" key="$2" type="$3" current="$4" choices="$5" next
+	local scope="$1" key="$2" type="$3" current="$4" choices="$5" step="$6" next
 
 	case "$type" in
 		bool)   if pfu_is_true "$current"; then next=no; else next=yes; fi ;;
-		choice) next="$(_pfu_next_choice "$current" "$choices")" ;;
-		camera) next="$(_pfu_next_camera "$current")" ;;
+		choice) next="$(_pfu_next_choice "$current" "$choices" "$step")" ;;
+		camera) next="$(_pfu_next_camera "$current" "$step")" ;;
 	esac
 
 	case "$scope" in
@@ -374,25 +428,42 @@ _pfu_setting_change() {
 }
 
 # pfu_ui_settings
-# A cursor list rather than a numbered menu. The frame is assembled in memory
-# and written once, and everything constant is resolved before the loop.
+# A cursor list in groups, with what the selected setting does under it. The
+# frame is assembled in memory and written once, and everything constant is
+# resolved before the loop.
 pfu_ui_settings() {
-	local count=${#PFU_SETTINGS[@]}
-	local -a scopes=() keys=() types=() defaults=() labels=() choices=() values=()
-	local spec scope key type default label choice locale i frame row pad dirty=1 cursor=0 shown
+	local -a scopes=() keys=() types=() defaults=() labels=() choices=() needs=() values=() rows=()
+	local spec scope key type default label choice need locale i j frame row pad dirty=1 cursor=0 shown
+	local width=0 wrap cols
 
 	locale="$(pfu_ui_locale)"
 	for spec in "${PFU_SETTINGS[@]}"; do
-		IFS='|' read -r scope key type default label choice <<< "$spec"
-		scopes+=("$scope"); keys+=("$key"); types+=("$type"); defaults+=("$default"); choices+=("$choice")
+		IFS='|' read -r scope key type default label choice need <<< "$spec"
+		# A heading has its label where the key would be.
+		[[ $scope == group ]] && label="$key" key=''
+		scopes+=("$scope"); keys+=("$key"); types+=("$type"); defaults+=("$default")
+		choices+=("$choice"); needs+=("$need")
 		pfu_msg_into "$locale" "$label"
 		labels+=("$PFU_MSG_RESULT")
+		if [[ $scope != group ]]; then
+			rows+=($(( ${#keys[@]} - 1 )))
+			(( ${#PFU_MSG_RESULT} > width )) && width=${#PFU_MSG_RESULT}
+		fi
 	done
+	local count=${#rows[@]}
 
-	local title hint legend l_on l_off
+	cols="$(tput cols 2>/dev/null)" || cols=80
+	[[ $cols =~ ^[0-9]+$ ]] || cols=80
+	wrap=$(( cols - 4 ))
+	(( wrap > 72 )) && wrap=72
+	local rule
+	printf -v rule '%*s' "$wrap" ''
+	rule="${rule// /─}"
+
+	local title hint shared l_on l_off
 	pfu_msg_into "$locale" "Settings"; title="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "Up/Down: select, Space or Right: change, q: back"; hint="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "Settings marked * are for the whole computer and ask for your password."; legend="$PFU_MSG_RESULT"
+	pfu_msg_into "$locale" "↑↓ select   ←→ or Space: change   q: back"; hint="$PFU_MSG_RESULT"
+	pfu_msg_into "$locale" "for all users, asks for your password"; shared="$PFU_MSG_RESULT"
 	pfu_msg_into "$locale" "ON"; l_on="$PFU_MSG_RESULT"
 	pfu_msg_into "$locale" "OFF"; l_off="$PFU_MSG_RESULT"
 
@@ -404,17 +475,26 @@ pfu_ui_settings() {
 	while true; do
 		if (( dirty )); then
 			PFU_KV_CACHE=()
-			for i in "${!keys[@]}"; do
+			declare -A current=()
+			for i in "${rows[@]}"; do
 				_pfu_setting_value "${scopes[i]}" "${keys[i]}" "${defaults[i]}"
 				values[i]="$PFU_SETTING_VALUE"
+				current[${keys[i]}]="$PFU_SETTING_VALUE"
 			done
 			dirty=0
 		fi
 
-		frame="$clearseq"$'\n'"${PFU_C_BOLD}${PFU_C_BLUE}  ${title}${PFU_C_RESET}"$'\n\n'
+		frame="$clearseq"$'\n'"${PFU_C_BOLD}${PFU_C_BLUE}  ${title}${PFU_C_RESET}"$'\n'
 
-		local marker selected="${PFU_C_BLUE}▸${PFU_C_RESET} " star
+		local selected=${rows[cursor]} marker before after dim
 		for i in "${!keys[@]}"; do
+			if [[ ${scopes[i]} == group ]]; then
+				frame+=$'\n'"  ${PFU_C_BOLD}${labels[i]}${PFU_C_RESET}"
+				# The next row says whose settings these are.
+				[[ ${scopes[i + 1]} != user ]] && frame+="  ${PFU_C_DIM}${shared}${PFU_C_RESET}"
+				frame+=$'\n'
+				continue
+			fi
 			case "${types[i]}" in
 				bool)
 					if pfu_is_true "${values[i]}"; then
@@ -426,22 +506,27 @@ pfu_ui_settings() {
 				camera) shown="$(_pfu_camera_label "${values[i]}")" ;;
 				*)      shown="$(pfu_value_label "${keys[i]}" "${values[i]}")" ;;
 			esac
-			star=' '
-			[[ ${scopes[i]} != user ]] && star='*'
-			pad=$(( 44 - ${#labels[i]} ))
-			(( pad < 0 )) && pad=0
-			if (( i == cursor )); then marker="$selected"; else marker='  '; fi
-			printf -v row '  %s%s%s%*s %s' "$marker" "${labels[i]}" "${PFU_C_DIM}${star}${PFU_C_RESET}" "$pad" '' "$shown"
+			# Arrows on the selected choice: left and right step through it.
+			before='  ' after=''
+			if (( i == selected )) && [[ ${types[i]} != bool ]]; then
+				before="${PFU_C_BLUE}◂${PFU_C_RESET} " after=" ${PFU_C_BLUE}▸${PFU_C_RESET}"
+			fi
+			dim=''
+			[[ -n ${needs[i]} ]] && ! pfu_is_true "${current[${needs[i]}]}" && dim="$PFU_C_DIM"
+			pad=$(( width + 2 - ${#labels[i]} ))
+			if (( i == selected )); then marker="${PFU_C_BLUE}▸${PFU_C_RESET} "; else marker='  '; fi
+			printf -v row '  %s%s%s%s%*s%s%s%s' "$marker" "$dim" "${labels[i]}" "$PFU_C_RESET" "$pad" '' "$before" "$dim$shown$PFU_C_RESET" "$after"
 			frame+="$row"$'\n'
-			# A gap between the groups: the lock screen, other prompts, how it
-			# checks, the bubble.
-			case "${keys[i]}" in
-				ScanOnLock|polkit-1|SkipLidClosed) frame+=$'\n' ;;
-			esac
 		done
 
-		frame+=$'\n'"  ${PFU_C_DIM}${legend}${PFU_C_RESET}"$'\n'
-		frame+="  ${PFU_C_DIM}${hint}${PFU_C_RESET}"$'\n'
+		# What the selected setting does, in a box of fixed height so the
+		# screen does not jump while moving through the list.
+		_pfu_wrap "$wrap" "$(pfu_setting_help "${keys[selected]}" "${values[selected]}")"
+		frame+=$'\n'"  ${PFU_C_DIM}${rule}${PFU_C_RESET}"$'\n'
+		for j in 0 1 2; do
+			frame+="  ${PFU_WRAP_LINES[j]:-}"$'\n'
+		done
+		frame+=$'\n'"  ${PFU_C_DIM}${hint}${PFU_C_RESET}"$'\n'
 		_pfu_ui_take_notices
 		frame+="$PFU_UI_NOTICE_TEXT"
 		printf '%s' "$frame"
@@ -451,8 +536,10 @@ pfu_ui_settings() {
 		case "$key" in
 			up|k)   cursor=$(( (cursor - 1 + count) % count )) ;;
 			down|j) cursor=$(( (cursor + 1) % count )) ;;
-			space|enter|right|l)
-				_pfu_setting_change "${scopes[cursor]}" "${keys[cursor]}" "${types[cursor]}" "${values[cursor]}" "${choices[cursor]}"
+			space|enter|right|l|left|h)
+				local step=1
+				[[ $key == left || $key == h ]] && step=-1
+				_pfu_setting_change "${scopes[selected]}" "${keys[selected]}" "${types[selected]}" "${values[selected]}" "${choices[selected]}" "$step"
 				dirty=1
 				;;
 			q|Q|escape) return 0 ;;

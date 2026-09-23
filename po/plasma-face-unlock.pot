@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: plasma-face-unlock 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/"
 "issues\n"
-"POT-Creation-Date: 2026-09-22 23:12+0200\n"
+"POT-Creation-Date: 2026-09-23 22:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,8 +55,8 @@ msgstr ""
 msgid "First, set up your face."
 msgstr ""
 
-#: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:352
-#: src/lib/menu.sh:356 src/lib/menu.sh:362 src/lib/menu.sh:364
+#: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:406
+#: src/lib/menu.sh:410 src/lib/menu.sh:416 src/lib/menu.sh:418
 msgid "Could not save the setting."
 msgstr ""
 
@@ -84,16 +84,16 @@ msgstr ""
 msgid "No face is set up yet."
 msgstr ""
 
-#: src/plasma-face-unlock:148 src/lib/menu.sh:167 src/lib/menu.sh:476
+#: src/plasma-face-unlock:148 src/lib/menu.sh:167 src/lib/menu.sh:563
 msgid "on"
 msgstr ""
 
 #: src/plasma-face-unlock:148 src/lib/menu.sh:169 src/lib/menu.sh:179
-#: src/lib/menu.sh:477
+#: src/lib/menu.sh:564
 msgid "off"
 msgstr ""
 
-#: src/plasma-face-unlock:150 src/lib/menu.sh:494
+#: src/plasma-face-unlock:150 src/lib/menu.sh:581
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr ""
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Turn it off (faces are kept)"
 msgstr ""
 
-#: src/plasma-face-unlock:176 src/lib/menu.sh:559
+#: src/plasma-face-unlock:176 src/lib/menu.sh:646
 msgid "Add a face"
 msgstr ""
 
@@ -323,28 +323,24 @@ msgstr ""
 msgid "[y/N]"
 msgstr ""
 
-#: src/lib/menu.sh:159 src/lib/menu.sh:396
+#: src/lib/menu.sh:159 src/lib/menu.sh:467
 msgid "ON"
 msgstr ""
 
-#: src/lib/menu.sh:161 src/lib/menu.sh:397
+#: src/lib/menu.sh:161 src/lib/menu.sh:468
 msgid "OFF"
 msgstr ""
 
-#: src/lib/menu.sh:177
-msgid "strict (blink or turn your head)"
+#: src/lib/menu.sh:177 src/lib/menu.sh:181
+msgid "strict"
 msgstr ""
 
 #: src/lib/menu.sh:178
-msgid "basic (screens and phone edges)"
+msgid "basic"
 msgstr ""
 
 #: src/lib/menu.sh:180 src/lib/menu.sh:185
 msgid "normal"
-msgstr ""
-
-#: src/lib/menu.sh:181
-msgid "strict"
 msgstr ""
 
 #: src/lib/menu.sh:182
@@ -372,7 +368,7 @@ msgstr ""
 msgid "%s seconds"
 msgstr ""
 
-#: src/lib/menu.sh:189 src/lib/menu.sh:327
+#: src/lib/menu.sh:189 src/lib/menu.sh:381
 msgid "automatic"
 msgstr ""
 
@@ -392,8 +388,8 @@ msgstr ""
 msgid "Turning face unlock on again starts it."
 msgstr ""
 
-#: src/lib/menu.sh:223 src/lib/menu.sh:225 src/lib/menu.sh:473
-#: src/lib/menu.sh:560
+#: src/lib/menu.sh:223 src/lib/menu.sh:225 src/lib/menu.sh:560
+#: src/lib/menu.sh:647
 msgid "Faces"
 msgstr ""
 
@@ -409,11 +405,11 @@ msgstr ""
 msgid "none found"
 msgstr ""
 
-#: src/lib/menu.sh:233 /tmp/tmp.PgsbSPb4Sv/settings.sh:9
+#: src/lib/menu.sh:233 /tmp/tmp.jqZ9OxnSvo/settings.sh:12
 msgid "Camera"
 msgstr ""
 
-#: src/lib/menu.sh:235
+#: src/lib/menu.sh:235 /tmp/tmp.jqZ9OxnSvo/settings.sh:1
 msgid "Lock screen"
 msgstr ""
 
@@ -421,11 +417,11 @@ msgstr ""
 msgid "sudo"
 msgstr ""
 
-#: src/lib/menu.sh:237
+#: src/lib/menu.sh:237 /tmp/tmp.jqZ9OxnSvo/settings.sh:7
 msgid "Admin prompts"
 msgstr ""
 
-#: src/lib/menu.sh:238 /tmp/tmp.PgsbSPb4Sv/settings.sh:6
+#: src/lib/menu.sh:238 /tmp/tmp.jqZ9OxnSvo/settings.sh:9
 msgid "Photo check"
 msgstr ""
 
@@ -442,57 +438,163 @@ msgstr ""
 msgid "Last unlock"
 msgstr ""
 
-#: src/lib/menu.sh:323
+#: src/lib/menu.sh:287
+msgid ""
+"Unlocks the lock screen when it sees your face. Off: only your password "
+"works there."
+msgstr ""
+
+#: src/lib/menu.sh:288
+msgid ""
+"Scans when you press a key or move the mouse on the lock screen, and when "
+"the computer wakes up."
+msgstr ""
+
+#: src/lib/menu.sh:289
+msgid ""
+"Scans as soon as the screen locks. Off by default: if you lock it yourself, "
+"it would unlock again right away."
+msgstr ""
+
+#: src/lib/menu.sh:290
+msgid ""
+"sudo takes your face instead of the password. No match: you type the "
+"password as usual."
+msgstr ""
+
+#: src/lib/menu.sh:291
+msgid ""
+"The password windows of Plasma and apps, for example when you install "
+"software. No match: you type the password."
+msgstr ""
+
+#: src/lib/menu.sh:292
+msgid ""
+"You have to blink or turn your head a little. This also stops printed photos."
+msgstr ""
+
+#: src/lib/menu.sh:293
+msgid "No check at all. Only for trying out a camera."
+msgstr ""
+
+#: src/lib/menu.sh:294
+msgid ""
+"Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
+"A matte printed photo can get through."
+msgstr ""
+
+#: src/lib/menu.sh:295
+msgid ""
+"Fewer wrong matches, but it may not know you with glasses or in bad light."
+msgstr ""
+
+#: src/lib/menu.sh:296
+msgid "Knows you more easily, but also somebody who looks a lot like you."
+msgstr ""
+
+#: src/lib/menu.sh:297
+msgid "The default. Right for most people."
+msgstr ""
+
+#: src/lib/menu.sh:298
+msgid ""
+"Your eyes have to be open and on the screen. So it does not unlock while you "
+"look away or sleep."
+msgstr ""
+
+#: src/lib/menu.sh:299
+msgid ""
+"Automatic takes the first normal camera. After a change, set up your face "
+"again. An infrared camera needs its light on (linux-enable-ir-emitter)."
+msgstr ""
+
+#: src/lib/menu.sh:300
+msgid "How long the camera looks for your face before it gives up."
+msgstr ""
+
+#: src/lib/menu.sh:301
+msgid ""
+"After a sure match it keeps how you look now. So a new haircut or glasses "
+"need no new setup."
+msgstr ""
+
+#: src/lib/menu.sh:302
+msgid ""
+"No scan while the laptop is closed, for example at a desk with an external "
+"screen."
+msgstr ""
+
+#: src/lib/menu.sh:303
+msgid "The bubble at the top of the screen shows what the camera is doing."
+msgstr ""
+
+#: src/lib/menu.sh:304
+msgid "A small pill with a lock that opens."
+msgstr ""
+
+#: src/lib/menu.sh:305
+msgid "An island with a face that looks around, then rings and a tick."
+msgstr ""
+
+#: src/lib/menu.sh:306
+msgid "How fast the bubble moves."
+msgstr ""
+
+#: src/lib/menu.sh:307
+msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
+msgstr ""
+
+#: src/lib/menu.sh:377
 #, sh-printf-format
 msgid "automatic (%s)"
 msgstr ""
 
-#: src/lib/menu.sh:333
+#: src/lib/menu.sh:387
 msgid "(infrared)"
 msgstr ""
 
-#: src/lib/menu.sh:337
+#: src/lib/menu.sh:391
 msgid "(not connected)"
 msgstr ""
 
-#: src/lib/menu.sh:393 src/lib/menu.sh:561
+#: src/lib/menu.sh:464 src/lib/menu.sh:648
 msgid "Settings"
 msgstr ""
 
-#: src/lib/menu.sh:394
-msgid "Up/Down: select, Space or Right: change, q: back"
+#: src/lib/menu.sh:465
+msgid "↑↓ select   ←→ or Space: change   q: back"
 msgstr ""
 
-#: src/lib/menu.sh:395
-msgid "Settings marked * are for the whole computer and ask for your password."
+#: src/lib/menu.sh:466
+msgid "for all users, asks for your password"
 msgstr ""
 
-#: src/lib/menu.sh:474
+#: src/lib/menu.sh:561
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 
-#: src/lib/menu.sh:475
+#: src/lib/menu.sh:562
 msgid "No face is set up yet. Press a to add one."
 msgstr ""
 
-#: src/lib/menu.sh:520
+#: src/lib/menu.sh:607
 msgid "New name:"
 msgstr ""
 
-#: src/lib/menu.sh:527
+#: src/lib/menu.sh:614
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr ""
 
-#: src/lib/menu.sh:558
+#: src/lib/menu.sh:645
 msgid "Turn face unlock on or off"
 msgstr ""
 
-#: src/lib/menu.sh:562
+#: src/lib/menu.sh:649
 msgid "Try it"
 msgstr ""
 
-#: src/lib/menu.sh:563
+#: src/lib/menu.sh:650
 msgid "Quit"
 msgstr ""
 
@@ -525,35 +627,39 @@ msgid "Not a service this can be used for: %s"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Unlock the lock screen"
+msgid "Unlock with your face"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Look when somebody comes back to the screen"
+msgid "Scan when you come back"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Look right after the screen locks"
+msgid "Scan right after locking"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Use for sudo in a terminal"
+msgid "Password prompts"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Use for admin prompts"
+msgid "sudo in a terminal"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "How closely a face has to match"
+msgid "Recognition"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Only while looking at the screen"
+msgid "How closely the face has to match"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "How long one look lasts"
+msgid "Only when you look at the screen"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "How long a scan lasts"
 msgstr ""
 
 #: src/lib/menu.sh
@@ -561,15 +667,19 @@ msgid "Learn from every unlock"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Not while the lid is closed"
+msgid "Not when the lid is closed"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Show the bubble at the top"
+msgid "Bubble"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Bubble style"
+msgid "Show the bubble"
+msgstr ""
+
+#: src/lib/menu.sh
+msgid "Style"
 msgstr ""
 
 #: src/lib/menu.sh
@@ -577,7 +687,7 @@ msgid "Animation speed"
 msgstr ""
 
 #: src/lib/menu.sh
-msgid "Bubble for sudo and admin prompts too"
+msgid "Also for sudo and admin prompts"
 msgstr ""
 
 #: src/agent/bubblecontroller.cpp:98

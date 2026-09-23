@@ -5,8 +5,9 @@
 # the shell code (pfu_msg), the agent (i18n in C++ and QML) and the PAM module
 # (dgettext), so a word is translated once wherever it shows up.
 #
-# The settings labels live in an array in menu.sh and reach gettext at run
-# time, so xgettext cannot see them; they are pulled out here first.
+# The settings labels and headings live in an array in menu.sh and reach
+# gettext at run time, so xgettext cannot see them; they are pulled out here
+# first.
 
 set -euo pipefail
 
@@ -17,7 +18,8 @@ trap 'rm -rf -- "$tmp"' EXIT
 version="$(make -s version)"
 
 # The labels, as calls xgettext understands, pointing back at menu.sh.
-awk -F'|' '/^\t"(user|sys|pam)\|/ { sub(/"$/, "", $5); print "pfu_msg \"" $5 "\"" }' src/lib/menu.sh > "$tmp/settings.sh"
+awk -F'|' '/^\t"(user|sys|pam)\|/ { sub(/"$/, "", $5); print "pfu_msg \"" $5 "\"" }
+          /^\t"group\|/ { sub(/"$/, "", $2); print "pfu_msg \"" $2 "\"" }' src/lib/menu.sh > "$tmp/settings.sh"
 
 common=(--from-code=UTF-8 --add-comments=TRANSLATORS --package-name=plasma-face-unlock --package-version="$version"
         --msgid-bugs-address=https://github.com/LoonixTools/plasma-face-unlock/issues)

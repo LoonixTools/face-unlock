@@ -100,7 +100,7 @@ threshold count, so the samples cannot drift towards somebody else one
 borderline unlock at a time.
 
 A match has to hold for two frames. The face has to look at the screen with
-its eyes open (*Only while looking at the screen*), and it has to be the same
+its eyes open (*Only when you look at the screen*), and it has to be the same
 face that shows the sign of life: a face that jumps in the picture, disappears
 or stops matching starts the whole check again.
 
@@ -180,7 +180,7 @@ scans when somebody comes back:
   field is a key like any other. This works while a video or an app keeps the
   screen on, too (ext_idle_notifier_v1, input notification);
 - when the machine wakes from sleep;
-- right after locking, if *Look right after the screen locks* is on. Off by
+- right after locking, if *Scan right after locking* is on. Off by
   default: whoever locks their screen on purpose is usually still in front of
   it.
 
@@ -228,7 +228,7 @@ emitter has to be switched on with a tool such as linux-enable-ir-emitter.
 In infrared a phone screen shows up black, which makes the photo check's job
 easier. A face set up with one camera should be set up again for another.
 
-A laptop with its lid shut is not scanned (*Not while the lid is closed*).
+A laptop with its lid shut is not scanned (*Not when the lid is closed*).
 
 # FILES
 
