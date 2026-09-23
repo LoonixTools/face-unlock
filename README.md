@@ -41,7 +41,7 @@ your computer, and your face is saved as numbers, never as a picture.
 yay -S plasma-face-unlock
 ```
 
-**Fedora 44**
+**Fedora**
 
 ```bash
 sudo curl -fsSL -o /etc/yum.repos.d/plasma-face-unlock.repo \
@@ -49,29 +49,20 @@ sudo curl -fsSL -o /etc/yum.repos.d/plasma-face-unlock.repo \
 sudo dnf install plasma-face-unlock
 ```
 
-**Debian 13**
+**Debian, Kubuntu**
 
 ```bash
+codename="$(sed -n 's/^VERSION_CODENAME=//p' /etc/os-release)"
 sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://loonixtools.github.io/plasma-face-unlock/KEY.gpg \
   | sudo gpg --dearmor -o /etc/apt/keyrings/plasma-face-unlock.gpg
-echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] https://loonixtools.github.io/plasma-face-unlock/deb/trixie ./" \
+echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] https://loonixtools.github.io/plasma-face-unlock/deb/$codename ./" \
   | sudo tee /etc/apt/sources.list.d/plasma-face-unlock.list
 sudo apt update && sudo apt install plasma-face-unlock
 ```
 
-**Kubuntu 26.04**
-
-```bash
-sudo install -d -m 0755 /etc/apt/keyrings
-curl -fsSL https://loonixtools.github.io/plasma-face-unlock/KEY.gpg \
-  | sudo gpg --dearmor -o /etc/apt/keyrings/plasma-face-unlock.gpg
-echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] https://loonixtools.github.io/plasma-face-unlock/deb/resolute ./" \
-  | sudo tee /etc/apt/sources.list.d/plasma-face-unlock.list
-sudo apt update && sudo apt install plasma-face-unlock
-```
-
-Updates then come with your normal system updates.
+The packages are built for the current release of each. Updates then come with your normal system
+updates.
 
 You need Plasma 6 on Wayland and a camera. Infrared cameras (the Windows Hello kind) work too.
 
