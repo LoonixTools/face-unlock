@@ -1,0 +1,42 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Architectures: amd64
+Codename: resolute
+Components: main
+Date: Wed, 23 Sep 2026 19:21:24 +0000
+Label: plasma-face-unlock
+Origin: plasma-face-unlock
+Suite: resolute
+MD5Sum:
+ 250575ce674e02d4943dc64915b9a80d             2252 Packages
+ ecb528bc881151dd3375fdc90eaef00d             1169 Packages.gz
+ a89db436f7f550b5a55bea27e107320a              164 Release
+SHA1:
+ 64dfec4825520e5bcc6aa67dcae27d8a9c4a74e2             2252 Packages
+ e3a9702acbcfb8daaa4ed7352fbf3122bb17fc7b             1169 Packages.gz
+ 018b5ea9f47eae0cab7ebfed224289102eb55231              164 Release
+SHA256:
+ 551871d4c1622dbb3ea86bed3bc7a4534b1bc2d527e80b842f51f57076e2fe7a             2252 Packages
+ 3d45d23a83d40104a46a023558e646cf1713957e69c153c00fd8f000f6fb61c3             1169 Packages.gz
+ 68faee6d7299232aac183f83eb5a8bed9cd13c8d0b73c0dde150d8eb1d79216e              164 Release
+SHA512:
+ c7a26661e09cb756e5c520bc704ebc34e393315eebf8ce03055d68dc05d4c49bac56019dd5e59668813d93ebda3205522d4e34529b50f78a3c941eab648d82b5             2252 Packages
+ 14df32b354d7dd78f72778ddc081ba97b911452f9ec2474d073a45cdde98e07f6c27708267afcfeb19d356e16a8e783b3dec13a9cb53a64770dd2816404006ba             1169 Packages.gz
+ 3c85b5a9db8b26f36379d7c3f05c0dcb33ef16b239f32a688ce8f27d227766aef5005f749970609885e9eab50e1525e2ec56e54cafe0144c364dae2dd686e1f9              164 Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmq0JrQACgkQ+H9udOBW
+tAhUlA//aYfcAUZPOkeqZwI9alWmOD7j2og7QBVJpOueqWoO6Uf24LpbR33nhsMZ
+JZt94x44h2cmjvArobv258GWcXMvbz22RQD3ZDnLwItBJRyLqqTZZfKx4FmD6OB7
+SJtyBKgOP39oD9yx2v9yRXblkIyWUhFV21NM5AnSTkMgL8qv7lsNfHzV5bfqtbph
+orj/LWhD2bMLd7pjGBruVFY3KNHJpXyP/7mnk6RYEW7pezFVGq+h9UdLjeF5HFWh
+EqlPnjCN6vjLGoKTlDT9iFlGS16nECArsO8pyjrrjH3uudRiDXvPQ//ZdyBKWi8Q
+jkgMgtYvkImAhjMu2NGm5fhSqI+OnUnNTTyCWcCA00kq1sXbccuK1m/CpM7wjILS
+va07pziG4v8s6j613YmPH6Xp8wYLrfy9b6kyV0A7/eqGRRTxm8APhSanYbGzVEyv
+1ecJGamHWmARYQjkFsuui91toXIT9zyTPn8j3P3+JY5oCTYUVG3b1MyXESpi0VsE
+IXNWbRpQQZOAICF9UxO1a+YYBksv/nIMjyafDLP810sz053+RKnrHNMMzQruQIq1
+VXQps9g/62zZ4lI18b1CDmS4eawX9WTbQL0QtiCqNrtA8blHq5ekr6xcms45s3/X
+rZGBHJb0M4AzDcjvaJnipz770ZoVnfIpryLQl0D4YDwQ/dBT7gg=
+=EuB0
+-----END PGP SIGNATURE-----

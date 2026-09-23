@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>plasma-face-unlock</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1b1f23;
+    --muted: #57606a;
+    --rule: #d8dee4;
+    --code-bg: #f6f8fa;
+    --accent: #1793d1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1117;
+      --fg: #e6edf3;
+      --muted: #9198a1;
+      --rule: #30363d;
+      --code-bg: #161b22;
+      --accent: #58a6ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto;
+    padding: 3rem 1.25rem 5rem;
+    max-width: 46rem;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+  }
+  h1 { font-size: 1.6rem; margin: 0 0 .4rem; }
+  h2 {
+    font-size: 1.05rem; margin: 2.5rem 0 .6rem;
+    padding-bottom: .3rem; border-bottom: 1px solid var(--rule);
+  }
+  p.lead { color: var(--muted); margin: 0 0 2rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); }
+  code {
+    background: var(--code-bg); padding: .12em .35em;
+    border-radius: 4px; font-size: .9em;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: .9rem 1rem;
+    overflow-x: auto;
+  }
+  pre code { background: none; padding: 0; font-size: .85rem; }
+  footer {
+    margin-top: 3.5rem; padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: .9rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>plasma-face-unlock</h1>
+<p class="lead">
+  Face ID for KDE Plasma: look at the screen and it unlocks. The lock screen,
+  sudo and the admin prompts can take a face instead of a password, and a photo
+  of somebody is not enough.
+</p>
+
+<p>
+  This page is the package repository. Set it up once and every new version
+  arrives with the rest of your system updates. The
+  <a href="https://github.com/LoonixTools/plasma-face-unlock">source and the
+  documentation</a> are on GitHub.
+</p>
+
+<h2>Debian 13</h2>
+<pre><code>sudo install -d -m 0755 /etc/apt/keyrings
+curl -fsSL https://loonixtools.github.io/plasma-face-unlock/KEY.gpg \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/plasma-face-unlock.gpg
+echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] https://loonixtools.github.io/plasma-face-unlock/deb/trixie ./" \
+  | sudo tee /etc/apt/sources.list.d/plasma-face-unlock.list
+sudo apt update
+sudo apt install plasma-face-unlock</code></pre>
+
+<h2>Kubuntu 26.04</h2>
+<pre><code>sudo install -d -m 0755 /etc/apt/keyrings
+curl -fsSL https://loonixtools.github.io/plasma-face-unlock/KEY.gpg \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/plasma-face-unlock.gpg
+echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] https://loonixtools.github.io/plasma-face-unlock/deb/resolute ./" \
+  | sudo tee /etc/apt/sources.list.d/plasma-face-unlock.list
+sudo apt update
+sudo apt install plasma-face-unlock</code></pre>
+
+<h2>Fedora 44 (KDE Plasma)</h2>
+<pre><code>sudo curl -fsSL -o /etc/yum.repos.d/plasma-face-unlock.repo \
+  https://loonixtools.github.io/plasma-face-unlock/plasma-face-unlock.repo
+sudo dnf install plasma-face-unlock</code></pre>
+
+<h2>Arch, CachyOS, EndeavourOS, Manjaro</h2>
+<pre><code>paru -S plasma-face-unlock</code></pre>
+
+<h2>Then, once</h2>
+<pre><code>plasma-face-unlock</code></pre>
+<p>
+  Press 1. It sets up your face (look at the camera, move your head in a
+  circle) and turns face unlock on. sudo and the admin prompts are off until
+  you switch them on under Settings. Run <code>plasma-face-unlock disable</code>
+  before removing the package: it takes face unlock back out of sudo and
+  polkit.
+</p>
+
+<footer>
+  GPL-3.0-or-later. Packages are signed; the public key is
+  <a href="https://loonixtools.github.io/plasma-face-unlock/KEY.gpg">KEY.gpg</a>.
+</footer>
+
+</body>
+</html>

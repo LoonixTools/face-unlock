@@ -1,0 +1,29 @@
+Package: plasma-face-unlock
+Version: 1.0.0~ubuntu26.04
+Architecture: amd64
+Maintainer: Felitendo <felitendoyt@gmail.com>
+Depends: libc6 (>= 2.43), libgcc-s1 (>= 3.0), libkf6i18n6 (>= 6.0.0), libkf6i18nqml6 (>= 6.24.0), liblayershellqtinterface6 (>= 6.6.0), libopencv-core410 (>= 4.10.0+dfsg), libopencv-imgcodecs410 (>= 4.10.0+dfsg), libopencv-imgproc410 (>= 4.10.0+dfsg), libopencv-objdetect410 (>= 4.10.0+dfsg), libopencv-videoio410 (>= 4.10.0+dfsg), libpam0g (>= 0.99.7.1), libqt6core6t64 (>= 6.10.2), libqt6dbus6 (>= 6.4.0), libqt6gui6 (>= 6.2.0), libqt6network6 (>= 6.1.2), libqt6qml6 (>= 6.10.2), libqt6quick6 (>= 6.7.2), libqt6waylandclient6 (>= 6.10.2), libstdc++6 (>= 13.1), libsystemd0, libwayland-client0 (>= 1.20.0), qt6-base-private-abi (= 6.10.2), qt6-declarative-private-abi (= 6.10.2), bash (>= 4.2), coreutils, grep, sed, mawk | gawk, systemd, polkitd | policykit-1, qml6-module-qtquick, qml6-module-qtquick-shapes, qml6-module-qtquick-effects, qml6-module-qtquick-window, qml6-module-qtqml-workerscript
+Recommends: gettext-base, kscreenlocker
+Filename: ./plasma-face-unlock_1.0.0~ubuntu26.04_amd64.deb
+Size: 36506484
+MD5sum: c631659e618389755226b90a3aa6bd0a
+SHA1: 285041adc60ff76edaade67eb5269dfaa85bb1c7
+SHA256: b7600928fe57bd6a18a98b3db124d72d97ce5a435dbffe1e71831ba9a560902b
+Section: admin
+Priority: optional
+Homepage: https://github.com/LoonixTools/plasma-face-unlock
+Description: face unlock for KDE Plasma
+ Look at the screen and it unlocks, the way a phone does. The lock screen,
+ sudo in a terminal and the admin password prompts of Plasma can take a face
+ instead of a password. A bubble at the top of the screen, above the lock
+ screen too, shows the face being looked for, recognised or refused.
+ .
+ Before a face counts it has to show a sign of life (a blink, or the nose
+ moving the way a real nose does when the head turns), so a photo held up to
+ the camera is not enough. It is a convenience, not a security upgrade: a
+ webcam sees a flat picture, and a video of the person can get through.
+ .
+ Everything runs on the machine. Faces are stored as numbers readable only by
+ root, never as pictures. Run "plasma-face-unlock disable" before removing
+ this package, so that sudo and polkit go back to the password alone.
+

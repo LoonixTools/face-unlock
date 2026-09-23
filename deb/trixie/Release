@@ -1,0 +1,23 @@
+Architectures: amd64
+Codename: trixie
+Components: main
+Date: Wed, 23 Sep 2026 19:21:24 +0000
+Label: plasma-face-unlock
+Origin: plasma-face-unlock
+Suite: trixie
+MD5Sum:
+ 197f2ec2ff08b0f1c583d1aa6a14c492             2234 Packages
+ 5adca530d6879af372e25a9390993ff4             1166 Packages.gz
+ 6b8cb5c8d125574f9003098525c9f895              160 Release
+SHA1:
+ 18a858a80112b36348998c11ea31c981933d1994             2234 Packages
+ c6da2c5007e59be40cabef21e1243f323235ede9             1166 Packages.gz
+ efcd6af0129e2758b5a811a19701bb5b5136a434              160 Release
+SHA256:
+ bf77b899439acf8b005552b0dfeaca090b5a7a123c2c046080777aa98d0b9cc4             2234 Packages
+ 2f102b21ff7b7fef7faf935527bdf0f6db12ca06421d7aef2b32355ab784a2a5             1166 Packages.gz
+ aec414f2ae76eaf30f18b8ab8216ecb69d9c95bceb980d50f47911c3407bc372              160 Release
+SHA512:
+ a0105063c767ab0911550ee47fd423e55ee9e6288221812a80391f595b055d33112a6b9fa9d030366e16e0a5e9fc84fefd4fdb4522216ebb3d1e8f29c22e600f             2234 Packages
+ c5fb2b1937d0e8dc1dbf02b991ab4bd1d10e98eb6828ac7ab64cca52f34c37dc683a8c6694c5ef3b1f6950d33ef223d02056949e0aa098831c0a398a3a41e9cb             1166 Packages.gz
+ 863724865a3e8cb82d6428f61d2fd2d30eff178f136978d299a12e7b2debe1d7710a740bb2f935f49ad96657014bd4e659f4f52f9707fd20e9d6d31a8b142428              160 Release

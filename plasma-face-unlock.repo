@@ -1,0 +1,7 @@
+[plasma-face-unlock]
+name=plasma-face-unlock
+baseurl=https://loonixtools.github.io/plasma-face-unlock/rpm
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://loonixtools.github.io/plasma-face-unlock/KEY.gpg

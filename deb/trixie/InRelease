@@ -1,0 +1,42 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Architectures: amd64
+Codename: trixie
+Components: main
+Date: Wed, 23 Sep 2026 19:21:24 +0000
+Label: plasma-face-unlock
+Origin: plasma-face-unlock
+Suite: trixie
+MD5Sum:
+ 197f2ec2ff08b0f1c583d1aa6a14c492             2234 Packages
+ 5adca530d6879af372e25a9390993ff4             1166 Packages.gz
+ 6b8cb5c8d125574f9003098525c9f895              160 Release
+SHA1:
+ 18a858a80112b36348998c11ea31c981933d1994             2234 Packages
+ c6da2c5007e59be40cabef21e1243f323235ede9             1166 Packages.gz
+ efcd6af0129e2758b5a811a19701bb5b5136a434              160 Release
+SHA256:
+ bf77b899439acf8b005552b0dfeaca090b5a7a123c2c046080777aa98d0b9cc4             2234 Packages
+ 2f102b21ff7b7fef7faf935527bdf0f6db12ca06421d7aef2b32355ab784a2a5             1166 Packages.gz
+ aec414f2ae76eaf30f18b8ab8216ecb69d9c95bceb980d50f47911c3407bc372              160 Release
+SHA512:
+ a0105063c767ab0911550ee47fd423e55ee9e6288221812a80391f595b055d33112a6b9fa9d030366e16e0a5e9fc84fefd4fdb4522216ebb3d1e8f29c22e600f             2234 Packages
+ c5fb2b1937d0e8dc1dbf02b991ab4bd1d10e98eb6828ac7ab64cca52f34c37dc683a8c6694c5ef3b1f6950d33ef223d02056949e0aa098831c0a398a3a41e9cb             1166 Packages.gz
+ 863724865a3e8cb82d6428f61d2fd2d30eff178f136978d299a12e7b2debe1d7710a740bb2f935f49ad96657014bd4e659f4f52f9707fd20e9d6d31a8b142428              160 Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmq0JrQACgkQ+H9udOBW
+tAj5GxAAs3zD3u+DSQ7HhY3wKdlL8PHfc2Znf8lOUauO+/jfPWXJvun4dSpxf2nu
+XCSiDaT502Mfm7Eli8WbbRo7fyH3xqPSNxlLCYoTPReNy2WEuIrSMVp7a6n1J4IQ
+Fgd6MeVOx1an77JF42WnfvC4EJ58chY0nsQIAKCocb7HwXBVJxr+2+de0bzs4eKm
+iwXLcxWL8GaynZihDpXuEtlw0APw4TyqsC4uG2UPpxltD2u/213cNE83ZO2I7NBj
+uV+9slXSEzzVT17Pa2Zzotmo5V+SydgeYztn3aKPdEYrD8VgMKrAZFiF6Vk1e4bi
+2+nmVLzkKnEf/5korn0DLUrBzqPC2MjMGdluSQZMGId1Zlw3f4D2CqcZ1gNrP/mi
+jAwjXPJw+5hj/8i/PUlntUMHptS8dGuy99XxKajtw1yNCb0Ijkjc1Av7ErCvJPTE
+A/ErJHATvASStp7WUNWmPZUhnih7xKaXrgG80zMtcxwEsHorOYTDTTriBFDb0jtG
+coB9Qym+jxz1YtJFrmLssmK7Fg9NuzoiOrMp7+kIA+e/ZDUYPGRwir21KHKXQr6C
+4eQRpvMo5rJaC2geNXZnW8rMNTRSc2+xn/RkKiZU7asP5cQAyrfnDJNqg449Bpbr
+hcLAw0BU3UdC/TyfZzRmWzs9RyeLgJyClKW/gcaXxSA7iJBLgug=
+=azTU
+-----END PGP SIGNATURE-----
