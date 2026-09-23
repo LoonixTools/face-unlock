@@ -18,6 +18,9 @@ set -euo pipefail
 
 here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 version="${1:-$(make -s -C "$here" version)}"
+# The package depends on the exact Qt of the distribution it is built on, so
+# each one gets a build of its own, told apart by a suffix: ~deb13, ~ubuntu26.04.
+debversion="$version${DEB_SUFFIX:-}"
 name=plasma-face-unlock
 
 # A package without its man page or its translations is not a package this
@@ -49,7 +52,7 @@ depends="$(cd "$work" && dpkg-shlibdeps -O "${elves[@]/#/-e}" 2>/dev/null | sed 
 [[ -n $depends ]] || { echo "$0: dpkg-shlibdeps found no dependencies" >&2; exit 1; }
 
 install -d "$root/DEBIAN"
-sed -e "s|@VERSION@|$version|g" -e "s|@ARCH@|$arch|g" -e "s|@DEPENDS@|$depends|g" \
+sed -e "s|@VERSION@|$debversion|g" -e "s|@ARCH@|$arch|g" -e "s|@DEPENDS@|$depends|g" \
 	"$here/packaging/deb/control" > "$root/DEBIAN/control"
 install -Dm644 "$here/packaging/deb/copyright" "$root/usr/share/doc/$name/copyright"
 
@@ -69,7 +72,7 @@ chmod 755 "$root/DEBIAN/prerm"
 	| LC_ALL=C sort -z | xargs -0 md5sum > DEBIAN/md5sums )
 
 mkdir -p "$here/dist"
-out="$here/dist/${name}_${version}_${arch}.deb"
+out="$here/dist/${name}_${debversion}_${arch}.deb"
 dpkg-deb --root-owner-group --build "$root" "$out" > /dev/null
 
 echo "$out"

@@ -20,6 +20,12 @@ development packages to build: Debian 13 (trixie) and current Fedora have
 them. The Debian package's library dependencies are read off the binaries by
 `dpkg-shlibdeps`; RPM does the same on its own.
 
+The program uses Qt's private API, so a package only fits the Qt it was built
+against. The `.deb` is therefore built twice, in Debian 13 and in Ubuntu 26.04
+(for Kubuntu), with a suffix on the version (`~deb13`, `~ubuntu26.04`), and each
+gets an APT repository of its own: `deb/trixie` and `deb/resolute`. The RPM is
+built on the current Fedora.
+
 The two networks (YuNet and SFace, from the OpenCV model zoo) are not in the
 repository. `make models` downloads them and checks them against the
 checksums in the Makefile. The RPM spec and the PKGBUILD list them as sources

@@ -68,7 +68,6 @@ void BubbleWindow::create()
         // rather than being pushed down below it.
         layer->setExclusiveZone(-1);
         layer->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityNone);
-        layer->setActivateOnShow(false);
         // KWin makes a window type of the scope and takes one it does not
         // know for a normal window. Its scale effect then opens and closes
         // that with a blur forced behind the whole, mostly clear window: a

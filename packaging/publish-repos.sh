@@ -24,46 +24,34 @@ base_url="${PFU_REPO_URL:-https://loonixtools.github.io/plasma-face-unlock}"
 keyid="$(gpg --list-secret-keys --with-colons | awk -F: '/^sec:/ { print $5; exit }')"
 [[ -n $keyid ]] || { echo "$0: no secret key in the keyring" >&2; exit 1; }
 
-mkdir -p "$pages/deb" "$pages/rpm"
-cp -- "$incoming"/*.deb "$pages/deb/"
+mkdir -p "$pages/rpm"
 cp -- "$incoming"/*.rpm "$pages/rpm/"
 
-# ---------------------------------------------------------------------------
-# APT
-# ---------------------------------------------------------------------------
-# A flat repository: the packages and their index sit in one directory and the
-# sources line ends in "./". There is one distribution here and it is the same
-# package for all of them, so the suite and component machinery of a pool
-# layout would describe nothing.
-(
-	cd "$pages/deb"
+# One APT repository per distribution: each .deb depends on the exact Qt it was
+# built against, and its version carries the suffix saying which one that was.
+for suite in trixie:deb13 resolute:ubuntu26.04; do
+	codename="${suite%%:*}"
+	tag="${suite#*:}"
+	mkdir -p "$pages/deb/$codename"
+	cp -- "$incoming"/*"~${tag}_"*.deb "$pages/deb/$codename/"
+	(
+		cd "$pages/deb/$codename"
+		rm -f Packages Packages.gz Release Release.gpg InRelease
+		dpkg-scanpackages --multiversion . > Packages
+		gzip -9kf Packages
+		apt-ftparchive \
+			-o APT::FTPArchive::Release::Origin=plasma-face-unlock \
+			-o APT::FTPArchive::Release::Label=plasma-face-unlock \
+			-o APT::FTPArchive::Release::Suite="$codename" \
+			-o APT::FTPArchive::Release::Codename="$codename" \
+			-o APT::FTPArchive::Release::Architectures=amd64 \
+			-o APT::FTPArchive::Release::Components=main \
+			release . > Release
+		gpg --batch --yes --local-user "$keyid" --clearsign --output InRelease Release
+		gpg --batch --yes --local-user "$keyid" --detach-sign --armor --output Release.gpg Release
+	)
+done
 
-	# The old index must be gone before the new one is written: apt-ftparchive
-	# hashes every file in the directory, and a Release that hashes the
-	# previous Release is a Release that cannot be verified.
-	rm -f Packages Packages.gz Release Release.gpg InRelease
-
-	dpkg-scanpackages --multiversion . > Packages
-	gzip -9kf Packages
-
-	apt-ftparchive \
-		-o APT::FTPArchive::Release::Origin=plasma-face-unlock \
-		-o APT::FTPArchive::Release::Label=plasma-face-unlock \
-		-o APT::FTPArchive::Release::Suite=stable \
-		-o APT::FTPArchive::Release::Codename=stable \
-		-o APT::FTPArchive::Release::Architectures=amd64 \
-		-o APT::FTPArchive::Release::Components=main \
-		release . > Release
-
-	# Both signatures: InRelease is what current apt fetches, Release.gpg is
-	# what an older one falls back to.
-	gpg --batch --yes --local-user "$keyid" --clearsign --output InRelease Release
-	gpg --batch --yes --local-user "$keyid" --detach-sign --armor --output Release.gpg Release
-)
-
-# ---------------------------------------------------------------------------
-# RPM
-# ---------------------------------------------------------------------------
 (
 	cd "$pages/rpm"
 	createrepo_c --quiet --update .
@@ -85,4 +73,4 @@ sed "s|@BASEURL@|$base_url|g" "$here/packaging/pages/plasma-face-unlock.repo" \
 touch "$pages/.nojekyll"
 
 echo "signed with $keyid"
-ls -1 "$pages/deb" "$pages/rpm"
+ls -1 "$pages"/deb/* "$pages/rpm"

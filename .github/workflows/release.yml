@@ -17,19 +17,37 @@ permissions:
 
 jobs:
   deb:
-    name: Debian package
+    name: Debian package (${{ matrix.name }})
     runs-on: ubuntu-latest
-    # Plasma 6 arrived in Debian with trixie.
-    container: debian:trixie
+    # The package depends on the exact Qt it was built against, so each
+    # distribution gets a build and an APT repository of its own.
+    strategy:
+      matrix:
+        include:
+          # Plasma 6 arrived in Debian with trixie.
+          - name: Debian 13
+            image: debian:trixie
+            codename: trixie
+            suffix: "~deb13"
+          - name: Kubuntu 26.04
+            image: ubuntu:26.04
+            codename: resolute
+            suffix: "~ubuntu26.04"
+    container: ${{ matrix.image }}
+    env:
+      DEBIAN_FRONTEND: noninteractive
     steps:
       - name: Install the build tools
         run: |
           apt-get update -qq
+          # Older Qt has the Wayland client tools in a package of their own.
+          extra=""
+          [ -n "$(apt-cache madison qt6-wayland-dev-tools)" ] && extra="qt6-wayland-dev-tools"
           apt-get install -y --no-install-recommends \
             ca-certificates curl git make cmake g++ pkg-config gettext scdoc dpkg-dev \
-            qt6-base-dev qt6-base-private-dev qt6-declarative-dev \
-            qt6-wayland-dev qt6-wayland-dev-tools qt6-wayland-private-dev \
-            liblayershellqtinterface-dev libkf6idletime-dev libkf6i18n-dev \
+            qt6-base-dev qt6-base-dev-tools qt6-base-private-dev qt6-declarative-dev \
+            qt6-wayland-dev qt6-wayland-private-dev $extra \
+            liblayershellqtinterface-dev libkf6i18n-dev \
             libopencv-dev libpam0g-dev libsystemd-dev
 
       - uses: actions/checkout@v7
@@ -38,6 +56,8 @@ jobs:
         run: packaging/check-version.sh "${{ github.ref_name }}"
 
       - run: packaging/build-deb.sh
+        env:
+          DEB_SUFFIX: ${{ matrix.suffix }}
 
       - name: Look inside what was built
         run: |
@@ -46,7 +66,7 @@ jobs:
 
       - uses: actions/upload-artifact@v7
         with:
-          name: deb
+          name: deb-${{ matrix.codename }}
           path: dist/*.deb
           if-no-files-found: error
 
@@ -174,8 +194,10 @@ jobs:
       - name: Check that what was written can be verified
         if: steps.key.outputs.present == 'yes'
         run: |
-          gpg --verify pages/deb/InRelease
-          gpg --verify pages/deb/Release.gpg pages/deb/Release
+          for suite in pages/deb/*/; do
+            gpg --verify "$suite/InRelease"
+            gpg --verify "$suite/Release.gpg" "$suite/Release"
+          done
           gpg --verify pages/rpm/repodata/repomd.xml.asc pages/rpm/repodata/repomd.xml
 
       - uses: actions/upload-artifact@v7
@@ -199,11 +221,22 @@ jobs:
           git push "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" HEAD:gh-pages
 
   verify-apt:
-    name: Install from the APT repository
+    name: Install from the APT repository (${{ matrix.name }})
     needs: publish
     if: inputs.dry_run
     runs-on: ubuntu-latest
-    container: debian:trixie
+    strategy:
+      matrix:
+        include:
+          - name: Debian 13
+            image: debian:trixie
+            codename: trixie
+          - name: Kubuntu 26.04
+            image: ubuntu:26.04
+            codename: resolute
+    container: ${{ matrix.image }}
+    env:
+      DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/download-artifact@v8
         with:
@@ -214,7 +247,7 @@ jobs:
           apt-get update -qq && apt-get install -y --no-install-recommends gpg
           install -d -m 0755 /etc/apt/keyrings
           gpg --dearmor -o /etc/apt/keyrings/plasma-face-unlock.gpg < pages/KEY.gpg
-          echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] file://$PWD/pages/deb ./" \
+          echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] file://$PWD/pages/deb/${{ matrix.codename }} ./" \
             > /etc/apt/sources.list.d/plasma-face-unlock.list
           apt-get update
           apt-get install -y plasma-face-unlock

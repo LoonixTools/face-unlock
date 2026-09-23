@@ -133,8 +133,12 @@ if(PFU_BUILD_AGENT)
     find_package(Qt6 6.5 REQUIRED COMPONENTS Gui Quick WaylandClient)
     # The bubble needs the Wayland surface of its window, which only the
     # private API hands out. It is the same one Plasma itself uses for this.
-    set(QT_NO_PRIVATE_MODULE_WARNING ON)
-    find_package(Qt6 REQUIRED COMPONENTS GuiPrivate WaylandClientPrivate)
+    # Newer Qt ships the private modules as packages of their own; older Qt
+    # (6.8 in Debian 13) brings them along with the public ones.
+    if(EXISTS "${Qt6_DIR}/../Qt6GuiPrivate/Qt6GuiPrivateConfig.cmake")
+        set(QT_NO_PRIVATE_MODULE_WARNING ON)
+        find_package(Qt6 REQUIRED COMPONENTS GuiPrivate WaylandClientPrivate)
+    endif()
     find_package(LayerShellQt REQUIRED)
     find_package(KF6I18n REQUIRED)
 
