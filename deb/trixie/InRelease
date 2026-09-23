@@ -4,39 +4,39 @@ Hash: SHA512
 Architectures: amd64
 Codename: trixie
 Components: main
-Date: Wed, 23 Sep 2026 19:21:24 +0000
+Date: Wed, 23 Sep 2026 23:46:21 +0000
 Label: plasma-face-unlock
 Origin: plasma-face-unlock
 Suite: trixie
 MD5Sum:
- 197f2ec2ff08b0f1c583d1aa6a14c492             2234 Packages
- 5adca530d6879af372e25a9390993ff4             1166 Packages.gz
- 6b8cb5c8d125574f9003098525c9f895              160 Release
+ b2ca2886f8ab895cd6a5d95381b511a4             4553 Packages
+ 5cb8683b6f55a457acae10e50a36324b             1419 Packages.gz
+ 6076322ca260bcbc69d3ae76236fedba              160 Release
 SHA1:
- 18a858a80112b36348998c11ea31c981933d1994             2234 Packages
- c6da2c5007e59be40cabef21e1243f323235ede9             1166 Packages.gz
- efcd6af0129e2758b5a811a19701bb5b5136a434              160 Release
+ fb4ca3c5061352c726eb8706acbf9fddc10aafa8             4553 Packages
+ b153ba3b2d9010903dfbc6e84c0e8cf3e0baf2ba             1419 Packages.gz
+ 67ccd7b23c70afecda25c6b683aaa9a25cfc9771              160 Release
 SHA256:
- bf77b899439acf8b005552b0dfeaca090b5a7a123c2c046080777aa98d0b9cc4             2234 Packages
- 2f102b21ff7b7fef7faf935527bdf0f6db12ca06421d7aef2b32355ab784a2a5             1166 Packages.gz
- aec414f2ae76eaf30f18b8ab8216ecb69d9c95bceb980d50f47911c3407bc372              160 Release
+ 8c9ad2ec2c7d580cfb14b7c4b75838ebf83821787f4b1729902c84c47727fb00             4553 Packages
+ 0f8d151548b21254ceb2b7187bdfbfaf0fc8cff297cebd06de48578e1fd5d527             1419 Packages.gz
+ 38f25e880ed5439e2aec675ffbd854c23f45491f02dea694e3896136c6262e4b              160 Release
 SHA512:
- a0105063c767ab0911550ee47fd423e55ee9e6288221812a80391f595b055d33112a6b9fa9d030366e16e0a5e9fc84fefd4fdb4522216ebb3d1e8f29c22e600f             2234 Packages
- c5fb2b1937d0e8dc1dbf02b991ab4bd1d10e98eb6828ac7ab64cca52f34c37dc683a8c6694c5ef3b1f6950d33ef223d02056949e0aa098831c0a398a3a41e9cb             1166 Packages.gz
- 863724865a3e8cb82d6428f61d2fd2d30eff178f136978d299a12e7b2debe1d7710a740bb2f935f49ad96657014bd4e659f4f52f9707fd20e9d6d31a8b142428              160 Release
+ ba14fbd3a33c11f4d2afa8d8e256a352be04fa3919c57aa0e35b6b71aad99e748b528764e13a23985ba96aa66c00de2b467e1bfa95df37473fd488ec2c70037e             4553 Packages
+ 8eca167ef24f027b2d2713c298cc3c66bd2359ac00f7764fbc4cefef646e95911fe51560450da6489ccc3cdcbe3c026288e3ec5bc204d9c9078edba9c540d08c             1419 Packages.gz
+ 8b1c343be125db67d9d9a02792dbabf47a60a8ffcbf67996ac0cc4251b2db601bfc8314956d9e96d6c64331f76ee7ee49677e54c2e562e15f02d521c5b045843              160 Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmq0JrQACgkQ+H9udOBW
-tAj5GxAAs3zD3u+DSQ7HhY3wKdlL8PHfc2Znf8lOUauO+/jfPWXJvun4dSpxf2nu
-XCSiDaT502Mfm7Eli8WbbRo7fyH3xqPSNxlLCYoTPReNy2WEuIrSMVp7a6n1J4IQ
-Fgd6MeVOx1an77JF42WnfvC4EJ58chY0nsQIAKCocb7HwXBVJxr+2+de0bzs4eKm
-iwXLcxWL8GaynZihDpXuEtlw0APw4TyqsC4uG2UPpxltD2u/213cNE83ZO2I7NBj
-uV+9slXSEzzVT17Pa2Zzotmo5V+SydgeYztn3aKPdEYrD8VgMKrAZFiF6Vk1e4bi
-2+nmVLzkKnEf/5korn0DLUrBzqPC2MjMGdluSQZMGId1Zlw3f4D2CqcZ1gNrP/mi
-jAwjXPJw+5hj/8i/PUlntUMHptS8dGuy99XxKajtw1yNCb0Ijkjc1Av7ErCvJPTE
-A/ErJHATvASStp7WUNWmPZUhnih7xKaXrgG80zMtcxwEsHorOYTDTTriBFDb0jtG
-coB9Qym+jxz1YtJFrmLssmK7Fg9NuzoiOrMp7+kIA+e/ZDUYPGRwir21KHKXQr6C
-4eQRpvMo5rJaC2geNXZnW8rMNTRSc2+xn/RkKiZU7asP5cQAyrfnDJNqg449Bpbr
-hcLAw0BU3UdC/TyfZzRmWzs9RyeLgJyClKW/gcaXxSA7iJBLgug=
-=azTU
+iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmq0ZM0ACgkQ+H9udOBW
+tAjGVRAAm7jBwIDvz6Slmts/lj6Mv5TqKae0RPaxFuNHP+Sawqd1nAKN6wS1btzS
+UtFeR00gw5AlOsXKlZvqzy7X5xHioQgkqcxTlrU+QQRX1YRf5Ozlw37x4nhRoZlg
+Uc9JNuBfbIDqmxnHESrPmJ3tqEhKI+MntqtmGAqVGay76fIkJNe+EhXk4JEMPu5y
+c05otGLv8gAjLTJ8/blpE5C9kn4thbpDVt5CXuqR6dNd7Ii3HPQFG947Cej2a6aI
+6XuX0/Uz5k+JE67rWP5w9G7axBMWUG5Z0ts3/9iZ0K+D0dN/t6pncz7nejStHD3h
+14VBnemQq6OQOfNXhCeuVFCbnBSrUE76cq5eGcFMqP+sCTeGEJEkPAtmWqTfuqlm
+OaDr04S8TrVpf+z4N8whPqt7d+l75FaJuVL3RWISdxJZxlAsKn5uyxIMQW0tmXy9
+tSiZN6S7eX1ywFgUoJhV2gyVma3SvkKh2UBfphxiU3F55g57PYsLWQMdh8Gr7ZUP
+OAtzhEOo6XSUKwm/fraK74/tvTtPJxvDiOL+oQCRsAqg+n13CBYPRSOMAK5sm+NJ
+cHSkkY06zvdD4RrE4Xh04iNP8V7vJmr6t/D5zNolhKMKoAkJsZCZG9G/Z1knQa4E
+x80uagrFPrlx0sjB/FnLrshyK0RmMr3awM/7G7Yk3t2SdA9wl7c=
+=/wYn
 -----END PGP SIGNATURE-----

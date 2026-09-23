@@ -1,23 +1,23 @@
 Architectures: amd64
 Codename: trixie
 Components: main
-Date: Wed, 23 Sep 2026 19:21:24 +0000
+Date: Wed, 23 Sep 2026 23:46:21 +0000
 Label: plasma-face-unlock
 Origin: plasma-face-unlock
 Suite: trixie
 MD5Sum:
- 197f2ec2ff08b0f1c583d1aa6a14c492             2234 Packages
- 5adca530d6879af372e25a9390993ff4             1166 Packages.gz
- 6b8cb5c8d125574f9003098525c9f895              160 Release
+ b2ca2886f8ab895cd6a5d95381b511a4             4553 Packages
+ 5cb8683b6f55a457acae10e50a36324b             1419 Packages.gz
+ 6076322ca260bcbc69d3ae76236fedba              160 Release
 SHA1:
- 18a858a80112b36348998c11ea31c981933d1994             2234 Packages
- c6da2c5007e59be40cabef21e1243f323235ede9             1166 Packages.gz
- efcd6af0129e2758b5a811a19701bb5b5136a434              160 Release
+ fb4ca3c5061352c726eb8706acbf9fddc10aafa8             4553 Packages
+ b153ba3b2d9010903dfbc6e84c0e8cf3e0baf2ba             1419 Packages.gz
+ 67ccd7b23c70afecda25c6b683aaa9a25cfc9771              160 Release
 SHA256:
- bf77b899439acf8b005552b0dfeaca090b5a7a123c2c046080777aa98d0b9cc4             2234 Packages
- 2f102b21ff7b7fef7faf935527bdf0f6db12ca06421d7aef2b32355ab784a2a5             1166 Packages.gz
- aec414f2ae76eaf30f18b8ab8216ecb69d9c95bceb980d50f47911c3407bc372              160 Release
+ 8c9ad2ec2c7d580cfb14b7c4b75838ebf83821787f4b1729902c84c47727fb00             4553 Packages
+ 0f8d151548b21254ceb2b7187bdfbfaf0fc8cff297cebd06de48578e1fd5d527             1419 Packages.gz
+ 38f25e880ed5439e2aec675ffbd854c23f45491f02dea694e3896136c6262e4b              160 Release
 SHA512:
- a0105063c767ab0911550ee47fd423e55ee9e6288221812a80391f595b055d33112a6b9fa9d030366e16e0a5e9fc84fefd4fdb4522216ebb3d1e8f29c22e600f             2234 Packages
- c5fb2b1937d0e8dc1dbf02b991ab4bd1d10e98eb6828ac7ab64cca52f34c37dc683a8c6694c5ef3b1f6950d33ef223d02056949e0aa098831c0a398a3a41e9cb             1166 Packages.gz
- 863724865a3e8cb82d6428f61d2fd2d30eff178f136978d299a12e7b2debe1d7710a740bb2f935f49ad96657014bd4e659f4f52f9707fd20e9d6d31a8b142428              160 Release
+ ba14fbd3a33c11f4d2afa8d8e256a352be04fa3919c57aa0e35b6b71aad99e748b528764e13a23985ba96aa66c00de2b467e1bfa95df37473fd488ec2c70037e             4553 Packages
+ 8eca167ef24f027b2d2713c298cc3c66bd2359ac00f7764fbc4cefef646e95911fe51560450da6489ccc3cdcbe3c026288e3ec5bc204d9c9078edba9c540d08c             1419 Packages.gz
+ 8b1c343be125db67d9d9a02792dbabf47a60a8ffcbf67996ac0cc4251b2db601bfc8314956d9e96d6c64331f76ee7ee49677e54c2e562e15f02d521c5b045843              160 Release

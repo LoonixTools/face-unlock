@@ -27,3 +27,34 @@ Description: face unlock for KDE Plasma
  root, never as pictures. Run "plasma-face-unlock disable" before removing
  this package, so that sudo and polkit go back to the password alone.
 
+Package: plasma-face-unlock
+Version: 1.0.1~deb13
+Architecture: amd64
+Maintainer: Felitendo <felitendoyt@gmail.com>
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libkf6i18n6 (>= 6.0.0), libkf6i18nqml6 (>= 6.8.0), liblayershellqtinterface6 (>= 6.1.0), libopencv-core410 (>= 4.10.0+dfsg), libopencv-imgcodecs410 (>= 4.10.0+dfsg), libopencv-imgproc410 (>= 4.10.0+dfsg), libopencv-objdetect410 (>= 4.10.0+dfsg), libopencv-videoio410 (>= 4.10.0+dfsg), libpam0g (>= 0.99.7.1), libqt6core6t64 (>= 6.8.2), libqt6dbus6 (>= 6.4.0), libqt6gui6 (>= 6.2.0), libqt6network6 (>= 6.1.2), libqt6qml6 (>= 6.6.0), libqt6quick6 (>= 6.7.2), libqt6waylandclient6 (>= 6.6.0), libstdc++6 (>= 13.1), libsystemd0, libwayland-client0 (>= 1.20.0), qt6-base-private-abi (= 6.8.2), qt6-declarative-private-abi (= 6.8.2), bash (>= 4.2), coreutils, grep, sed, mawk | gawk, systemd, polkitd | policykit-1, qml6-module-qtquick, qml6-module-qtquick-shapes, qml6-module-qtquick-effects, qml6-module-qtquick-window, qml6-module-qtqml-workerscript
+Recommends: gettext-base, kscreenlocker
+Filename: ./plasma-face-unlock_1.0.1~deb13_amd64.deb
+Size: 36258392
+MD5sum: 2307100778861a69b3d279a776e246e4
+SHA1: 383aa9c7a377c9f3d295d2567e48f6dda08c85c8
+SHA256: dc2a2e453f3a25ee33ccc56d1bea37e0d6d5289845aca581ac450b8e14b6f54a
+Section: admin
+Priority: optional
+Homepage: https://github.com/LoonixTools/plasma-face-unlock
+Description: face unlock for KDE Plasma
+ Look at the screen and it unlocks, the way a phone does. The lock screen,
+ sudo in a terminal and the admin password prompts of Plasma can take a face
+ instead of a password. A bubble at the top of the screen, above the lock
+ screen too, shows the face being looked for, recognised or refused.
+ .
+ A photo on a phone, a tablet or a glossy print is refused by its
+ reflection and its straight edges. The strict photo check also wants a sign
+ of life (a blink, or the nose moving the way a real nose does when the head
+ turns), which stops a printed photo too. It is a convenience, not a security
+ upgrade: a webcam sees a flat picture, and a video of the person can get
+ through.
+ .
+ Everything runs on the machine. Faces are stored as numbers readable only by
+ root, never as pictures. Run "plasma-face-unlock disable" before removing
+ this package, so that sudo and polkit go back to the password alone.
+
