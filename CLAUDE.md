@@ -61,8 +61,10 @@ Welcome to plasma-face-unlock `v1.4.0`! One or two sentences on what this releas
 - Second highlight
 ```
 
-A picture or a snippet of the menu under the welcome is optional. The highlights stay a plain list:
-no heading or text per highlight, the list of commits explains the rest.
+A picture under the welcome is optional. To show the menu or another screen of the program, use a
+real screenshot of it running in Konsole, in English. Never a text copy of the screen. The same goes
+for the README. The highlights stay a plain list: no heading or text per highlight, the list of
+commits explains the rest.
 
 A patch release is just a sentence or two, for example: "A small patch. The menu no longer closes
 when you press Enter." The list of commits follows on its own.

@@ -72,16 +72,22 @@ You need Plasma 6 on Wayland and a camera. Infrared cameras (the Windows Hello k
 plasma-face-unlock
 ```
 
-This opens a menu. Press **1** and follow the setup window: look at the camera, then turn your head
-slowly in a circle until the ring is full. Then lock the screen and look at it.
+This opens a menu:
 
-| Key | |
-|---|---|
-| **1** | Turn face unlock on or off |
-| **2** | Add another face, for example with glasses |
-| **3** | Rename, turn off or delete faces |
-| **4** | Settings: sudo, admin prompts, photo check, camera, bubble style, animation speed and more |
-| **5** | One test scan that shows what the camera sees. Try this first when something does not work. |
+<p align="center">
+  <img src="res/screenshots/menu.png" alt="The plasma-face-unlock menu in Konsole: face unlock on, one face, lock screen, sudo and admin prompts on" width="560">
+</p>
+
+Press **1** and follow the setup window: look at the camera, then turn your head slowly in a circle
+until the ring is full. Then lock the screen and look at it. **2** adds another face, for example
+with glasses, and **5** runs one test scan that shows what the camera sees. Try that first when
+something does not work.
+
+**4** opens the settings. The text at the bottom says what the selected one does:
+
+<p align="center">
+  <img src="res/screenshots/settings.png" alt="The settings in Konsole, grouped into lock screen, password prompts, recognition and bubble, with the photo check explained at the bottom" width="680">
+</p>
 
 Without the menu: `plasma-face-unlock enable`, `disable`, `setup [NAME]`, `faces`, `remove ID`,
 `test` and `status`.
