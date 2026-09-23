@@ -168,12 +168,18 @@ pfu_time_ago() {
 
 	if [[ $delta -lt 60 ]]; then
 		pfu_msg "just now"
+	elif [[ $delta -lt 120 ]]; then
+		pfu_msg "1 minute ago"
 	elif [[ $delta -lt 3600 ]]; then
 		n=$(( delta / 60 ))
 		pfu_msg "%d minutes ago" "$n"
+	elif [[ $delta -lt 7200 ]]; then
+		pfu_msg "1 hour ago"
 	elif [[ $delta -lt 86400 ]]; then
 		n=$(( delta / 3600 ))
 		pfu_msg "%d hours ago" "$n"
+	elif [[ $delta -lt 172800 ]]; then
+		pfu_msg "1 day ago"
 	else
 		n=$(( delta / 86400 ))
 		pfu_msg "%d days ago" "$n"

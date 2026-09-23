@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: plasma-face-unlock 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/"
 "issues\n"
-"POT-Creation-Date: 2026-09-23 22:32+0200\n"
+"POT-Creation-Date: 2026-09-24 01:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,17 +174,29 @@ msgstr ""
 msgid "just now"
 msgstr ""
 
-#: src/lib/common.sh:173
+#: src/lib/common.sh:172
+msgid "1 minute ago"
+msgstr ""
+
+#: src/lib/common.sh:175
 #, sh-printf-format
 msgid "%d minutes ago"
 msgstr ""
 
-#: src/lib/common.sh:176
+#: src/lib/common.sh:177
+msgid "1 hour ago"
+msgstr ""
+
+#: src/lib/common.sh:180
 #, sh-printf-format
 msgid "%d hours ago"
 msgstr ""
 
-#: src/lib/common.sh:179
+#: src/lib/common.sh:182
+msgid "1 day ago"
+msgstr ""
+
+#: src/lib/common.sh:185
 #, sh-printf-format
 msgid "%d days ago"
 msgstr ""
@@ -405,11 +417,11 @@ msgstr ""
 msgid "none found"
 msgstr ""
 
-#: src/lib/menu.sh:233 /tmp/tmp.jqZ9OxnSvo/settings.sh:12
+#: src/lib/menu.sh:233 /tmp/tmp.3ElRvSMg8S/settings.sh:12
 msgid "Camera"
 msgstr ""
 
-#: src/lib/menu.sh:235 /tmp/tmp.jqZ9OxnSvo/settings.sh:1
+#: src/lib/menu.sh:235 /tmp/tmp.3ElRvSMg8S/settings.sh:1
 msgid "Lock screen"
 msgstr ""
 
@@ -417,11 +429,11 @@ msgstr ""
 msgid "sudo"
 msgstr ""
 
-#: src/lib/menu.sh:237 /tmp/tmp.jqZ9OxnSvo/settings.sh:7
+#: src/lib/menu.sh:237 /tmp/tmp.3ElRvSMg8S/settings.sh:7
 msgid "Admin prompts"
 msgstr ""
 
-#: src/lib/menu.sh:238 /tmp/tmp.jqZ9OxnSvo/settings.sh:9
+#: src/lib/menu.sh:238 /tmp/tmp.3ElRvSMg8S/settings.sh:9
 msgid "Photo check"
 msgstr ""
 
