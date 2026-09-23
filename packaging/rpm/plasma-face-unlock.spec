@@ -1,6 +1,6 @@
 # Built with `packaging/build-rpm.sh`, which passes the version in rather than
 # editing this file: the Makefile is where the version is written down.
-%global upstream_version %{?_version}%{!?_version:1.0.0}
+%global upstream_version %{?_version}%{!?_version:1.0.1}
 
 Name:           plasma-face-unlock
 Version:        %{upstream_version}

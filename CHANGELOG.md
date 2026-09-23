@@ -2,6 +2,14 @@
 
 What each release brings, newest first. The [GitHub releases](https://github.com/LoonixTools/plasma-face-unlock/releases) add every commit that went into it.
 
+## v1.0.1
+
+_2026-09-24_
+
+A small update that makes everyday use smoother. You no longer have to blink: the basic photo check is now the default, and it still stops a photo on a phone, a tablet or glossy paper. If you want the blink back, set **Photo check** to `strict` in the settings.
+
+The settings are now grouped and explain the selected one, the animations are a little calmer, and the lock screen unlocks as soon as your face matches.
+
 ## v1.0.0
 
 _2026-09-23_

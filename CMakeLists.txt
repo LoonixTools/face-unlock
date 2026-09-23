@@ -6,7 +6,7 @@
 # installed by the Makefile, which is where the paths come from.
 
 cmake_minimum_required(VERSION 3.22)
-project(plasma-face-unlock VERSION 1.0.0 LANGUAGES C CXX)
+project(plasma-face-unlock VERSION 1.0.1 LANGUAGES C CXX)
 
 set(PFU_VERSION "${PROJECT_VERSION}" CACHE STRING "Version reported by every binary")
 
