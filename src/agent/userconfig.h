@@ -55,8 +55,9 @@ public:
     {
         return m_bubbleForPrompts;
     }
-    // How long the bubble's animations take, as a multiple of normal: the
-    // animation speed setting (fast 0.6, normal 1, slow 1.5).
+    // How long the bubble's animations take, as a multiple of the durations
+    // in the code: the animation speed setting (fast 1, normal 1.3,
+    // slow 2).
     qreal pace() const
     {
         return m_pace;
@@ -77,6 +78,6 @@ private:
     bool m_bubble = true;
     QString m_bubbleStyle = QStringLiteral("full");
     bool m_bubbleForPrompts = true;
-    qreal m_pace = 1;
+    qreal m_pace = 1.3;
     QString m_styleOverride;
 };
