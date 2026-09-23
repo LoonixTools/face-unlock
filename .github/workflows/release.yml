@@ -55,6 +55,10 @@ jobs:
       - name: Check the tag against the Makefile
         run: packaging/check-version.sh "${{ github.ref_name }}"
 
+      - name: Check CHANGELOG.md has this release
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: .github/release-notes.sh --title "${{ github.ref_name }}"
+
       - run: packaging/build-deb.sh
         env:
           DEB_SUFFIX: ${{ matrix.suffix }}
@@ -130,6 +134,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # All tags, for the link to the changes since the last release.
+          fetch-depth: 0
 
       - uses: actions/download-artifact@v8
         with:
@@ -141,9 +148,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          .github/release-notes.sh "${{ github.ref_name }}" > notes.md
           gh release create "${{ github.ref_name }}" \
-            --title "${{ github.ref_name }}" \
-            --generate-notes \
+            --title "$(.github/release-notes.sh --title "${{ github.ref_name }}")" \
+            --notes-file notes.md \
             incoming/*.deb incoming/*.rpm \
           || gh release upload "${{ github.ref_name }}" \
             incoming/*.deb incoming/*.rpm --clobber

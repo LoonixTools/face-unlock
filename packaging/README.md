@@ -53,12 +53,13 @@ argument.
 
 1. Bump `VERSION` in the Makefile. The compiled programs get it from there
    too (`-DPFU_VERSION`).
-2. Commit, then `git tag vX.Y.Z && git push --tags`.
+2. Add the release to `CHANGELOG.md`, in the format CLAUDE.md describes.
+3. Commit, then `git tag vX.Y.Z && git push --tags`.
 
 The `release` workflow builds both packages in a Debian and a Fedora container,
-refuses the tag if it disagrees with the Makefile, attaches the packages to a
-GitHub release, and adds them to the APT and RPM repositories on the `gh-pages`
-branch.
+refuses the tag if it disagrees with the Makefile or has no changelog entry,
+attaches the packages to a GitHub release with the entry as its notes, and adds
+them to the APT and RPM repositories on the `gh-pages` branch.
 
 ## Trying the release path first
 
