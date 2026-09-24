@@ -1,0 +1,97 @@
+name: 🐛 Bug report
+description: Something does not work as it should.
+labels:
+- bug
+body:
+- type: markdown
+  attributes:
+    value: Thanks for taking the time! The more you fill in, the faster it can be fixed.
+- type: checkboxes
+  id: checks
+  attributes:
+    label: Before you start
+    options:
+    - label: I searched the issues and this is not reported yet.
+      required: true
+    - label: I use the latest version.
+      required: true
+- type: textarea
+  id: what
+  attributes:
+    label: What happened?
+    description: What did you do, and what went wrong?
+  validations:
+    required: true
+- type: textarea
+  id: steps
+  attributes:
+    label: Steps to reproduce
+    placeholder: |
+      1.
+      2.
+      3.
+- type: textarea
+  id: expected
+  attributes:
+    label: What did you expect?
+  validations:
+    required: true
+- type: dropdown
+  id: where
+  attributes:
+    label: Where does it happen?
+    multiple: true
+    options:
+    - Lock screen
+    - sudo
+    - Admin prompts
+    - Setting up a face
+    - The menu
+    - Other
+  validations:
+    required: true
+- type: input
+  id: camera
+  attributes:
+    label: Camera
+    description: The model, and if it is an infrared camera.
+    placeholder: Logitech C920, not infrared
+- type: input
+  id: version
+  attributes:
+    label: Version
+    description: The output of `plasma-face-unlock --version`.
+    placeholder: plasma-face-unlock 1.0.1
+  validations:
+    required: true
+- type: dropdown
+  id: install
+  attributes:
+    label: How did you install it?
+    options:
+    - AUR (Arch, CachyOS, EndeavourOS, Manjaro)
+    - Fedora package
+    - Debian or Kubuntu package
+    - Built from source
+    - Other
+  validations:
+    required: true
+- type: input
+  id: system
+  attributes:
+    label: System
+    description: Distribution, desktop and session (Wayland or X11).
+    placeholder: CachyOS, Plasma 6.4, Wayland
+  validations:
+    required: true
+- type: textarea
+  id: logs
+  attributes:
+    label: Status and logs
+    description: The output of `plasma-face-unlock status`. If a scan goes wrong, also `journalctl -b -u plasma-face-unlockd` and `journalctl --user -b -u plasma-face-unlock-agent`.
+    render: shell
+- type: textarea
+  id: more
+  attributes:
+    label: Anything else?
+    description: Screenshots, videos or anything else that could help.

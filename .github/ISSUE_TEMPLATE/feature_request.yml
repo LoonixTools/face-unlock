@@ -1,0 +1,35 @@
+name: 💡 Feature request
+description: An idea to make plasma-face-unlock better.
+labels:
+- enhancement
+body:
+- type: checkboxes
+  id: checks
+  attributes:
+    label: Before you start
+    options:
+    - label: I searched the issues and this is not requested yet.
+      required: true
+- type: textarea
+  id: problem
+  attributes:
+    label: What problem would this solve?
+    description: What are you trying to do, and what gets in the way?
+  validations:
+    required: true
+- type: textarea
+  id: idea
+  attributes:
+    label: What would you like?
+    description: How it could work. A rough idea is fine.
+  validations:
+    required: true
+- type: textarea
+  id: alternatives
+  attributes:
+    label: Other ways you thought of
+- type: textarea
+  id: more
+  attributes:
+    label: Anything else?
+    description: Mockups, screenshots, or other tools that do it well.
