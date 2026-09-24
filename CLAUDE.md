@@ -14,6 +14,9 @@
 - Subject as short as possible. Imperative, lowercase, no trailing period.
 - Body only when something genuinely cannot be inferred from the diff.
 - Never add `Co-Authored-By`, "Generated with" or any other AI attribution to commits or PR descriptions.
+- Do not commit or push before I have checked the changes locally and said they are fine. Then
+  commit the result once and push. No commits for attempts that did not work. This also goes for
+  releases and tags.
 
 ## Layout
 
