@@ -95,9 +95,9 @@ A convenience, not extra security. A webcam only sees a flat picture.
 
 | | |
 |---|---|
-| Photo on a phone, tablet or glossy paper | ✅ Stopped |
+| Photo or video on a phone, tablet or glossy screen | ✅ Stopped |
 | Matte printed photo | ⚠️ Only stopped with photo check *strict* |
-| Video of you | ❌ Can get in |
+| Video of you on a big matte screen | ❌ Can get in |
 | Five failed tries | ⏸️ Paused for 15 minutes |
 | Your face data | 🔒 Numbers, no pictures. Root only. |
 | sudo over SSH | 🚫 Never unlocked by a face |
