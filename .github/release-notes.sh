@@ -125,7 +125,7 @@ $entry
 
 If $name is useful to you, you can buy me a coffee. It keeps these tools going. Found a bug or have an idea? Tell me in the [issues](https://github.com/$repo/issues).
 
-<a href="https://buymeacoffee.com/felitendo"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="48"></a>
+<a href="https://ko-fi.com/felitendo"><img src="https://storage.ko-fi.com/cdn/kofi5.png?v=6" alt="Buy me a coffee on Ko-fi" height="48"></a>
 
 ----
 
