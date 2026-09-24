@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: plasma-face-unlock 1.0.0\n"
+"Project-Id-Version: plasma-face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/"
 "issues\n"
-"POT-Creation-Date: 2026-09-24 01:31+0200\n"
+"POT-Creation-Date: 2026-09-24 10:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -417,11 +417,11 @@ msgstr ""
 msgid "none found"
 msgstr ""
 
-#: src/lib/menu.sh:233 /tmp/tmp.3ElRvSMg8S/settings.sh:12
+#: src/lib/menu.sh:233 /tmp/tmp.bBbo63fNu2/settings.sh:12
 msgid "Camera"
 msgstr ""
 
-#: src/lib/menu.sh:235 /tmp/tmp.3ElRvSMg8S/settings.sh:1
+#: src/lib/menu.sh:235 /tmp/tmp.bBbo63fNu2/settings.sh:1
 msgid "Lock screen"
 msgstr ""
 
@@ -429,11 +429,11 @@ msgstr ""
 msgid "sudo"
 msgstr ""
 
-#: src/lib/menu.sh:237 /tmp/tmp.3ElRvSMg8S/settings.sh:7
+#: src/lib/menu.sh:237 /tmp/tmp.bBbo63fNu2/settings.sh:7
 msgid "Admin prompts"
 msgstr ""
 
-#: src/lib/menu.sh:238 /tmp/tmp.3ElRvSMg8S/settings.sh:9
+#: src/lib/menu.sh:238 /tmp/tmp.bBbo63fNu2/settings.sh:9
 msgid "Photo check"
 msgstr ""
 
@@ -826,19 +826,19 @@ msgstr ""
 msgid "Bubble style for the demo: full or minimal."
 msgstr ""
 
-#: src/pam/pam_plasma_face_unlock.c:293
+#: src/pam/pam_plasma_face_unlock.c:311
 msgid "Look at the camera to unlock."
 msgstr ""
 
-#: src/pam/pam_plasma_face_unlock.c:296
+#: src/pam/pam_plasma_face_unlock.c:314
 msgid "Blink, or turn your head a little."
 msgstr ""
 
-#: src/pam/pam_plasma_face_unlock.c:312
+#: src/pam/pam_plasma_face_unlock.c:330
 msgid "Face unlock is paused after too many tries. Use your password."
 msgstr ""
 
-#: src/pam/pam_plasma_face_unlock.c:316
+#: src/pam/pam_plasma_face_unlock.c:334
 msgid "Face not recognised."
 msgstr ""
 

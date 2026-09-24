@@ -32,6 +32,7 @@
 
 #include <errno.h>
 #include <libintl.h>
+#include <locale.h>
 #include <poll.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -49,7 +50,8 @@
 #endif
 
 #define DOMAIN PFU_NAME
-#define _(s) dgettext(DOMAIN, s)
+// Marks a message for translation. say() translates it.
+#define _(s) (s)
 
 struct options {
     const char *socket;
@@ -200,10 +202,26 @@ static bool json_true(const char *line, const char *key)
     return strstr(line, pattern) != NULL;
 }
 
+// Admin prompts run this in polkit's helper. It keeps LANG but never calls
+// setlocale, so gettext would stay in English. Take the language from the
+// environment for this thread while the message goes out.
 static void say(pam_handle_t *pamh, int flags, const char *message)
 {
-    if (!(flags & PAM_SILENT)) {
-        pam_info(pamh, "%s", message);
+    if (flags & PAM_SILENT) {
+        return;
+    }
+    locale_t loc = (locale_t)0, old = (locale_t)0;
+    const char *global = setlocale(LC_MESSAGES, NULL);
+    if (!global || strcmp(global, "C") == 0 || strcmp(global, "POSIX") == 0) {
+        loc = newlocale(LC_MESSAGES_MASK, "", (locale_t)0);
+        if (loc) {
+            old = uselocale(loc);
+        }
+    }
+    pam_info(pamh, "%s", dgettext(DOMAIN, message));
+    if (loc) {
+        uselocale(old);
+        freelocale(loc);
     }
 }
 
