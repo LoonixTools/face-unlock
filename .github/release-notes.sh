@@ -80,7 +80,8 @@ while IFS=$'\t' read -r sha subject body; do
 		perf:* | perf\(*) kind=enh ;;
 		docs:* | docs\(*) kind=docs ;;
 		chore* | ci:* | ci\(* | build* | refactor* | test* | style*) kind=maint ;;
-		# Older commits without a prefix, sorted by their first word.
+		# Older commits without a prefix, sorted by what they say.
+		*README* | *readme* | *Readme*) kind=docs ;;
 		Add\ * | Put\ * | Introduce\ *) kind=feat ;;
 		Fix\ * | Repair\ * | Recover\ * | Stop\ *) kind=fix ;;
 		*\ *) kind=enh ;;
