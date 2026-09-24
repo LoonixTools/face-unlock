@@ -26,7 +26,7 @@ common=(--from-code=UTF-8 --add-comments=TRANSLATORS --package-name=plasma-face-
 
 xgettext "${common[@]}" -L Shell -k --keyword=pfu_msg --keyword=pfu_msg_into:2 --keyword=pfu_msg_in:2 \
 	-o "$tmp/shell.pot" src/plasma-face-unlock src/lib/*.sh "$tmp/settings.sh"
-sed -i "s|#: $tmp/settings.sh:[0-9]*|#: src/lib/menu.sh|" "$tmp/shell.pot"
+sed -i "s|$tmp/settings.sh:[0-9]*|src/lib/menu.sh|g" "$tmp/shell.pot"
 xgettext "${common[@]}" -L C++ --keyword=i18n --keyword=_ -o "$tmp/native.pot" src/agent/*.cpp src/pam/*.c
 xgettext "${common[@]}" -L JavaScript --keyword=i18n -o "$tmp/qml.pot" src/agent/qml/*.qml
 

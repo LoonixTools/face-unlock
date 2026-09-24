@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: plasma-face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/"
 "issues\n"
-"POT-Creation-Date: 2026-09-24 10:37+0200\n"
+"POT-Creation-Date: 2026-09-24 11:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -417,11 +417,11 @@ msgstr ""
 msgid "none found"
 msgstr ""
 
-#: src/lib/menu.sh:233 /tmp/tmp.bBbo63fNu2/settings.sh:12
+#: src/lib/menu.sh:233 src/lib/menu.sh
 msgid "Camera"
 msgstr ""
 
-#: src/lib/menu.sh:235 /tmp/tmp.bBbo63fNu2/settings.sh:1
+#: src/lib/menu.sh:235 src/lib/menu.sh
 msgid "Lock screen"
 msgstr ""
 
@@ -429,11 +429,11 @@ msgstr ""
 msgid "sudo"
 msgstr ""
 
-#: src/lib/menu.sh:237 /tmp/tmp.bBbo63fNu2/settings.sh:7
+#: src/lib/menu.sh:237 src/lib/menu.sh
 msgid "Admin prompts"
 msgstr ""
 
-#: src/lib/menu.sh:238 /tmp/tmp.bBbo63fNu2/settings.sh:9
+#: src/lib/menu.sh:238 src/lib/menu.sh
 msgid "Photo check"
 msgstr ""
 
