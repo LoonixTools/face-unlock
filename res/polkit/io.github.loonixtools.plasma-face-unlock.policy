@@ -13,8 +13,32 @@
   <action id="io.github.loonixtools.plasma-face-unlock.manage">
     <description>Change the faces that can unlock your account</description>
     <description xml:lang="de">Gesichter ändern, die dein Konto entsperren können</description>
+    <description xml:lang="fr">Modifier les visages qui peuvent déverrouiller votre compte</description>
+    <description xml:lang="es">Cambiar las caras que pueden desbloquear tu cuenta</description>
+    <description xml:lang="it">Modificare i volti che possono sbloccare il tuo account</description>
+    <description xml:lang="pt_BR">Alterar os rostos que podem desbloquear sua conta</description>
+    <description xml:lang="nl">De gezichten wijzigen die je account kunnen ontgrendelen</description>
+    <description xml:lang="pl">Zmień twarze, które mogą odblokować twoje konto</description>
+    <description xml:lang="ru">Изменить лица, которые могут разблокировать вашу учётную запись</description>
+    <description xml:lang="uk">Змінити обличчя, які можуть розблокувати ваш обліковий запис</description>
+    <description xml:lang="tr">Hesabınızın kilidini açabilen yüzleri değiştir</description>
+    <description xml:lang="zh_CN">更改可以解锁你账户的人脸</description>
+    <description xml:lang="ja">アカウントのロックを解除できる顔を変更</description>
+    <description xml:lang="ko">계정 잠금을 해제할 수 있는 얼굴 변경</description>
     <message>Authentication is required to change the faces that can unlock your account.</message>
     <message xml:lang="de">Zum Ändern der Gesichter, die dein Konto entsperren können, ist eine Legitimierung erforderlich.</message>
+    <message xml:lang="fr">Une authentification est nécessaire pour modifier les visages qui peuvent déverrouiller votre compte.</message>
+    <message xml:lang="es">Se necesita autenticación para cambiar las caras que pueden desbloquear tu cuenta.</message>
+    <message xml:lang="it">È richiesta l'autenticazione per modificare i volti che possono sbloccare il tuo account.</message>
+    <message xml:lang="pt_BR">É necessária autenticação para alterar os rostos que podem desbloquear sua conta.</message>
+    <message xml:lang="nl">Authenticatie is vereist om de gezichten te wijzigen die je account kunnen ontgrendelen.</message>
+    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zmienić twarze, które mogą odblokować twoje konto.</message>
+    <message xml:lang="ru">Для изменения лиц, которые могут разблокировать вашу учётную запись, требуется аутентификация.</message>
+    <message xml:lang="uk">Для зміни облич, які можуть розблокувати ваш обліковий запис, потрібна автентифікація.</message>
+    <message xml:lang="tr">Hesabınızın kilidini açabilen yüzleri değiştirmek için kimlik doğrulaması gerekiyor.</message>
+    <message xml:lang="zh_CN">更改可以解锁你账户的人脸需要身份验证。</message>
+    <message xml:lang="ja">アカウントのロックを解除できる顔を変更するには認証が必要です。</message>
+    <message xml:lang="ko">계정 잠금을 해제할 수 있는 얼굴을 변경하려면 인증이 필요합니다.</message>
     <defaults>
       <allow_any>no</allow_any>
       <allow_inactive>no</allow_inactive>

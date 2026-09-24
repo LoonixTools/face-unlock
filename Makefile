@@ -46,7 +46,7 @@ BUILDDIR     ?= build
 CMAKE        ?= cmake
 CMAKE_FLAGS  ?=
 
-LINGUAS      := de
+LINGUAS      := de es fr it ja ko nl pl pt_BR ru tr uk zh_CN
 MOFILES      := $(patsubst %,po/%.mo,$(LINGUAS))
 MANPAGE      := doc/plasma-face-unlock.1
 

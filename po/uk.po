@@ -1,0 +1,864 @@
+# Ukrainian translation for plasma-face-unlock.
+# Copyright (C) 2026 Felitendo
+# This file is distributed under the same license as plasma-face-unlock.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plasma-face-unlock 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/issues\n"
+"POT-Creation-Date: 2026-09-24 10:46+0200\n"
+"PO-Revision-Date: 2026-09-24 12:00+0200\n"
+"Last-Translator: Felitendo\n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/plasma-face-unlock:50
+msgid "Face unlock's service has to be switched on once for this computer. That needs your password."
+msgstr "Службу розблокування обличчям треба один раз увімкнути на цьому комп'ютері. Для цього потрібен ваш пароль."
+
+#: src/plasma-face-unlock:57
+#, sh-printf-format
+msgid "Check it with: systemctl status %s"
+msgstr "Перевірте командою: systemctl status %s"
+
+#: src/plasma-face-unlock:67
+msgid "Setting up a face needs the camera picture on screen. Run this inside your Plasma session."
+msgstr "Для налаштування обличчя зображення з камери має бути видно на екрані. Запустіть це у своєму сеансі Plasma."
+
+#: src/plasma-face-unlock:71
+msgid "The setup window is open. Follow it there."
+msgstr "Вікно налаштування відкрито. Виконайте кроки в ньому."
+
+#: src/plasma-face-unlock:80
+msgid "The face is set up."
+msgstr "Обличчя налаштовано."
+
+#: src/plasma-face-unlock:83
+#, sh-printf-format
+msgid "Face unlock is still off. Turn it on with [1] or `%s enable`."
+msgstr "Розблокування обличчям досі вимкнено. Увімкніть його через [1] або `%s enable`."
+
+#: src/plasma-face-unlock:87
+msgid "No face was added."
+msgstr "Обличчя не додано."
+
+#: src/plasma-face-unlock:96
+msgid "First, set up your face."
+msgstr "Спершу налаштуйте своє обличчя."
+
+#: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:434
+#: src/lib/menu.sh:438 src/lib/menu.sh:444 src/lib/menu.sh:446
+msgid "Could not save the setting."
+msgstr "Не вдалося зберегти налаштування."
+
+#: src/plasma-face-unlock:104
+msgid "Could not start the lock screen agent."
+msgstr "Не вдалося запустити агент екрана блокування."
+
+#: src/plasma-face-unlock:106
+msgid "No systemd user session, so the lock screen agent was not started."
+msgstr "Немає користувацького сеансу systemd, тому агент екрана блокування не запущено."
+
+#: src/plasma-face-unlock:113
+msgid "Face unlock is on. Lock the screen and look at it to try."
+msgstr "Розблокування обличчям увімкнено. Заблокуйте екран і подивіться на нього, щоб спробувати."
+
+#: src/plasma-face-unlock:115
+msgid "It can do sudo and admin prompts too. See Settings."
+msgstr "Воно працює і для sudo, і для запитів адміністратора. Див. Налаштування."
+
+#: src/plasma-face-unlock:130
+msgid "Face unlock is off. Your faces are kept; delete them under Faces."
+msgstr "Розблокування обличчям вимкнено. Ваші обличчя збережено; видалити їх можна в розділі Обличчя."
+
+#: src/plasma-face-unlock:144 src/lib/daemon.sh:109
+msgid "No face is set up yet."
+msgstr "Ще не налаштовано жодного обличчя."
+
+#: src/plasma-face-unlock:148 src/lib/menu.sh:180 src/lib/menu.sh:594
+msgid "on"
+msgstr "увімк."
+
+#: src/plasma-face-unlock:148 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/lib/menu.sh:595
+msgid "off"
+msgstr "вимк."
+
+#: src/plasma-face-unlock:150 src/lib/menu.sh:612
+#, sh-printf-format
+msgid "%s samples, %s learned"
+msgstr "зразків: %s, вивчено: %s"
+
+#: src/plasma-face-unlock:156
+#, sh-printf-format
+msgid "Which face? See `%s faces` for the ids."
+msgstr "Яке обличчя? Номери показує `%s faces`."
+
+#: src/plasma-face-unlock:160
+msgid "Deleted."
+msgstr "Видалено."
+
+#: src/plasma-face-unlock:171
+msgid "Usage: plasma-face-unlock [command]"
+msgstr "Використання: plasma-face-unlock [команда]"
+
+#: src/plasma-face-unlock:173
+msgid "Commands:"
+msgstr "Команди:"
+
+#: src/plasma-face-unlock:174
+msgid "Turn face unlock on"
+msgstr "Увімкнути розблокування обличчям"
+
+#: src/plasma-face-unlock:175
+msgid "Turn it off (faces are kept)"
+msgstr "Вимкнути його (обличчя зберігаються)"
+
+#: src/plasma-face-unlock:176 src/lib/menu.sh:678
+msgid "Add a face"
+msgstr "Додати обличчя"
+
+#: src/plasma-face-unlock:177
+msgid "List the faces"
+msgstr "Показати список облич"
+
+#: src/plasma-face-unlock:178
+msgid "Delete a face"
+msgstr "Видалити обличчя"
+
+#: src/plasma-face-unlock:179
+msgid "Look at the camera and see what it sees"
+msgstr "Подивитися в камеру і побачити, що вона бачить"
+
+#: src/plasma-face-unlock:180
+msgid "Show what is on"
+msgstr "Показати, що увімкнено"
+
+#: src/plasma-face-unlock:181
+msgid "Show this help"
+msgstr "Показати цю довідку"
+
+#: src/plasma-face-unlock:182
+msgid "Show the version"
+msgstr "Показати версію"
+
+#: src/plasma-face-unlock:184
+msgid "Without a command an interactive menu is shown."
+msgstr "Без команди відкривається інтерактивне меню."
+
+#: src/plasma-face-unlock:203
+msgid "Run this as your own user, not as root. It asks for your password when it needs to."
+msgstr "Запускайте це від свого користувача, не від root. Пароль буде запитано, коли він знадобиться."
+
+#: src/plasma-face-unlock:221 src/lib/system.sh:89
+#, sh-printf-format
+msgid "Unknown command: %s"
+msgstr "Невідома команда: %s"
+
+#: src/lib/common.sh:160
+msgid "never"
+msgstr "ніколи"
+
+#: src/lib/common.sh:170
+msgid "just now"
+msgstr "щойно"
+
+#: src/lib/common.sh:172
+msgid "1 minute ago"
+msgstr "1 хвилину тому"
+
+#: src/lib/common.sh:175
+#, sh-printf-format
+msgid "%d minutes ago"
+msgstr "%d хв тому"
+
+#: src/lib/common.sh:177
+msgid "1 hour ago"
+msgstr "1 годину тому"
+
+#: src/lib/common.sh:180
+#, sh-printf-format
+msgid "%d hours ago"
+msgstr "%d год тому"
+
+#: src/lib/common.sh:182
+msgid "1 day ago"
+msgstr "1 день тому"
+
+#: src/lib/common.sh:185
+#, sh-printf-format
+msgid "%d days ago"
+msgstr "%d дн. тому"
+
+#: src/lib/daemon.sh:102
+msgid "The face did not match."
+msgstr "Обличчя не збіглося."
+
+#: src/lib/daemon.sh:103
+msgid "That looked like a photo or a screen."
+msgstr "Це було схоже на фото або екран."
+
+#: src/lib/daemon.sh:104
+msgid "The face matched, but did not blink or move."
+msgstr "Обличчя збіглося, але не кліпнуло і не поворухнулося."
+
+#: src/lib/daemon.sh:105
+msgid "The face was not looking at the screen."
+msgstr "Обличчя не дивилося на екран."
+
+#: src/lib/daemon.sh:106
+msgid "The picture was too dark, too blurry or too far away."
+msgstr "Зображення було надто темним, розмитим або далеким."
+
+#: src/lib/daemon.sh:107
+msgid "No face in view."
+msgstr "Обличчя не видно."
+
+#: src/lib/daemon.sh:108
+msgid "Face unlock is paused after too many tries. Unlock once with your password."
+msgstr "Розблокування обличчям призупинено після надто багатьох спроб. Розблокуйте один раз паролем."
+
+#: src/lib/daemon.sh:110
+msgid "The camera could not be used."
+msgstr "Не вдалося використати камеру."
+
+#: src/lib/daemon.sh:111 src/lib/menu.sh:259
+msgid "The recognition models are missing. Reinstall the package."
+msgstr "Немає моделей розпізнавання. Перевстановіть пакунок."
+
+#: src/lib/daemon.sh:112
+msgid "The lid is closed."
+msgstr "Кришку закрито."
+
+#: src/lib/daemon.sh:113
+msgid "The camera is busy with another scan."
+msgstr "Камера зайнята іншим скануванням."
+
+#: src/lib/daemon.sh:114
+msgid "The face unlock service is not running."
+msgstr "Служба розблокування обличчям не запущена."
+
+#: src/lib/daemon.sh:115
+msgid "Not allowed."
+msgstr "Немає доступу."
+
+#: src/lib/daemon.sh:116
+#, sh-printf-format
+msgid "Something went wrong (%s)."
+msgstr "Щось пішло не так (%s)."
+
+#: src/lib/daemon.sh:127
+msgid "Look at the camera. Blink once, or turn your head a little."
+msgstr "Подивіться в камеру. Кліпніть один раз або трохи поверніть голову."
+
+#: src/lib/daemon.sh:137
+msgid "Face found."
+msgstr "Обличчя знайдено."
+
+#: src/lib/daemon.sh:141
+msgid "Recognised. Now blink once, or turn your head a little."
+msgstr "Розпізнано. Тепер кліпніть один раз або трохи поверніть голову."
+
+#: src/lib/daemon.sh:142
+msgid "Look at the screen."
+msgstr "Подивіться на екран."
+
+#: src/lib/daemon.sh:143
+msgid "Move closer to the camera."
+msgstr "Підсуньтеся ближче до камери."
+
+#: src/lib/daemon.sh:144
+msgid "It is too dark to see your face."
+msgstr "Надто темно, щоб побачити ваше обличчя."
+
+#: src/lib/daemon.sh:153
+msgid "match"
+msgstr "схожість"
+
+#: src/lib/daemon.sh:153
+msgid "turn"
+msgstr "поворот"
+
+#: src/lib/daemon.sh:154
+msgid "eyes"
+msgstr "очі"
+
+#: src/lib/daemon.sh:155
+msgid "depth"
+msgstr "глибина"
+
+#: src/lib/daemon.sh:155 src/lib/daemon.sh:164
+msgid "blink"
+msgstr "кліпання"
+
+#: src/lib/daemon.sh:156
+msgid "glare"
+msgstr "відблиск"
+
+#: src/lib/daemon.sh:156
+msgid "edge"
+msgstr "край"
+
+#: src/lib/daemon.sh:165
+msgid "head turn"
+msgstr "поворот голови"
+
+#: src/lib/daemon.sh:167
+#, sh-printf-format
+msgid "Recognised as %s (match %s) in %s ms."
+msgstr "Розпізнано як %s (схожість %s) за %s мс."
+
+#: src/lib/daemon.sh:168
+#, sh-printf-format
+msgid "Sign of life: %s"
+msgstr "Ознака життя: %s"
+
+#: src/lib/daemon.sh:173
+msgid "That was too many tries. Face unlock is paused until you unlock with your password."
+msgstr "Надто багато спроб. Розблокування обличчям призупинено, доки ви не розблокуєте паролем."
+
+#. TRANSLATORS: the letter after "[" is the key for yes. y works too.
+#: src/lib/menu.sh:141
+msgid "[y/N]"
+msgstr "[т/Н]"
+
+#: src/lib/menu.sh:172 src/lib/menu.sh:497
+msgid "ON"
+msgstr "УВІМК"
+
+#: src/lib/menu.sh:174 src/lib/menu.sh:498
+msgid "OFF"
+msgstr "ВИМК"
+
+#: src/lib/menu.sh:190 src/lib/menu.sh:194
+msgid "strict"
+msgstr "сувора"
+
+#: src/lib/menu.sh:191
+msgid "basic"
+msgstr "базова"
+
+#: src/lib/menu.sh:193 src/lib/menu.sh:198
+msgid "normal"
+msgstr "звичайна"
+
+#: src/lib/menu.sh:195
+msgid "relaxed"
+msgstr "м'яка"
+
+#: src/lib/menu.sh:196
+msgid "island with the face"
+msgstr "острів з обличчям"
+
+#: src/lib/menu.sh:197
+msgid "small pill with a lock"
+msgstr "маленька пігулка із замком"
+
+#: src/lib/menu.sh:199
+msgid "fast"
+msgstr "швидка"
+
+#: src/lib/menu.sh:200
+msgid "slow"
+msgstr "повільна"
+
+#: src/lib/menu.sh:201
+#, sh-printf-format
+msgid "%s seconds"
+msgstr "%s с"
+
+#: src/lib/menu.sh:202 src/lib/menu.sh:409
+msgid "automatic"
+msgstr "автоматично"
+
+#: src/lib/menu.sh:219
+msgid "Face unlock"
+msgstr "Розблокування обличчям"
+
+#: src/lib/menu.sh:223
+msgid "Service"
+msgstr "Служба"
+
+#: src/lib/menu.sh:223
+msgid "not running"
+msgstr "не запущена"
+
+#: src/lib/menu.sh:225
+msgid "Turning face unlock on again starts it."
+msgstr "Повторне ввімкнення розблокування обличчям запустить її."
+
+#: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:590
+#: src/lib/menu.sh:679
+msgid "Faces"
+msgstr "Обличчя"
+
+#: src/lib/menu.sh:236
+msgid "none set up yet"
+msgstr "ще не налаштовано"
+
+#: src/lib/menu.sh:238
+msgid "all turned off"
+msgstr "усі вимкнено"
+
+#: src/lib/menu.sh:244
+msgid "none found"
+msgstr "не знайдено"
+
+#: src/lib/menu.sh:246 src/lib/menu.sh
+msgid "Camera"
+msgstr "Камера"
+
+#: src/lib/menu.sh:248 src/lib/menu.sh
+msgid "Lock screen"
+msgstr "Екран блокування"
+
+#: src/lib/menu.sh:249
+msgid "sudo"
+msgstr "sudo"
+
+#: src/lib/menu.sh:250 src/lib/menu.sh
+msgid "Admin prompts"
+msgstr "Запити адміністратора"
+
+#: src/lib/menu.sh:251 src/lib/menu.sh
+msgid "Photo check"
+msgstr "Перевірка на фото"
+
+#: src/lib/menu.sh:254
+msgid "Paused"
+msgstr "Призупинено"
+
+#: src/lib/menu.sh:254
+#, sh-printf-format
+msgid "for %d more minutes, or until the password is used"
+msgstr "ще %d хв або до введення пароля"
+
+#: src/lib/menu.sh:256
+msgid "Last unlock"
+msgstr "Останнє розблокування"
+
+#: src/lib/menu.sh:300
+msgid "Unlocks the lock screen when it sees your face. Off: only your password works there."
+msgstr "Розблоковує екран блокування, коли бачить ваше обличчя. Вимк.: там працює лише пароль."
+
+#: src/lib/menu.sh:301
+msgid "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up."
+msgstr "Сканує, коли ви натискаєте клавішу або рухаєте мишею на екрані блокування, і коли комп'ютер прокидається."
+
+#: src/lib/menu.sh:302
+msgid "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away."
+msgstr "Сканує одразу після блокування екрана. Типово вимк.: якщо ви блокуєте самі, він одразу б розблокувався."
+
+#: src/lib/menu.sh:303
+msgid "sudo takes your face instead of the password. No match: you type the password as usual."
+msgstr "sudo приймає ваше обличчя замість пароля. Не збіглося: ви вводите пароль як зазвичай."
+
+#: src/lib/menu.sh:304
+msgid "The password windows of Plasma and apps, for example when you install software. No match: you type the password."
+msgstr "Вікна введення пароля Plasma і програм, наприклад під час встановлення програм. Не збіглося: ви вводите пароль."
+
+#: src/lib/menu.sh:305
+msgid "You have to blink or turn your head a little. This also stops printed photos."
+msgstr "Треба кліпнути або трохи повернути голову. Це також зупиняє надруковані фото."
+
+#: src/lib/menu.sh:306
+msgid "No check at all. Only for trying out a camera."
+msgstr "Жодної перевірки. Лише щоб випробувати камеру."
+
+#: src/lib/menu.sh:307
+msgid "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through."
+msgstr "Зупиняє фото на телефоні, планшеті чи глянцевому папері. Кліпати не треба. Матове надруковане фото може пройти."
+
+#: src/lib/menu.sh:308
+msgid "Fewer wrong matches, but it may not know you with glasses or in bad light."
+msgstr "Менше хибних збігів, але може не впізнати вас в окулярах або при поганому світлі."
+
+#: src/lib/menu.sh:309
+msgid "Knows you more easily, but also somebody who looks a lot like you."
+msgstr "Впізнає вас легше, але й того, хто дуже на вас схожий."
+
+#: src/lib/menu.sh:310
+msgid "The default. Right for most people."
+msgstr "Типове значення. Підходить більшості."
+
+#: src/lib/menu.sh:311
+msgid "Your eyes have to be open and on the screen. So it does not unlock while you look away or sleep."
+msgstr "Ваші очі мають бути розплющені й дивитися на екран. Так він не розблокується, коли ви дивитеся вбік або спите."
+
+#: src/lib/menu.sh:312
+msgid "Automatic takes the first normal camera. After a change, set up your face again. An infrared camera needs its light on (linux-enable-ir-emitter)."
+msgstr "Автоматично береться перша звичайна камера. Після зміни налаштуйте обличчя знову. Інфрачервоній камері потрібне ввімкнене підсвічування (linux-enable-ir-emitter)."
+
+#: src/lib/menu.sh:313
+msgid "How long the camera looks for your face before it gives up."
+msgstr "Як довго камера шукає ваше обличчя, перш ніж здатися."
+
+#: src/lib/menu.sh:314
+msgid "After a sure match it keeps how you look now. So a new haircut or glasses need no new setup."
+msgstr "Після впевненого збігу запам'ятовує, як ви виглядаєте зараз. Нова зачіска чи окуляри не потребують нового налаштування."
+
+#: src/lib/menu.sh:315
+msgid "No scan while the laptop is closed, for example at a desk with an external screen."
+msgstr "Без сканування, коли ноутбук закрито, наприклад за столом із зовнішнім монітором."
+
+#: src/lib/menu.sh:316
+msgid "The bubble at the top of the screen shows what the camera is doing."
+msgstr "Бульбашка вгорі екрана показує, що робить камера."
+
+#: src/lib/menu.sh:317
+msgid "A small pill with a lock that opens."
+msgstr "Маленька пігулка із замком, що відкривається."
+
+#: src/lib/menu.sh:318
+msgid "An island with a face that looks around, then rings and a tick."
+msgstr "Острів з обличчям, яке озирається, потім кільця і галочка."
+
+#: src/lib/menu.sh:319
+msgid "How fast the bubble moves."
+msgstr "Як швидко рухається бульбашка."
+
+#: src/lib/menu.sh:320
+msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
+msgstr "Показує бульбашку й тоді, коли sudo або запит адміністратора сканує ваше обличчя."
+
+#: src/lib/menu.sh:405
+#, sh-printf-format
+msgid "automatic (%s)"
+msgstr "автоматично (%s)"
+
+#: src/lib/menu.sh:415
+msgid "(infrared)"
+msgstr "(інфрачервона)"
+
+#: src/lib/menu.sh:419
+msgid "(not connected)"
+msgstr "(не під'єднана)"
+
+#: src/lib/menu.sh:494 src/lib/menu.sh:680
+msgid "Settings"
+msgstr "Налаштування"
+
+#: src/lib/menu.sh:495
+msgid "↑↓ select   ←→ or Space: change   q: back"
+msgstr "↑↓ вибір   ←→ або Пробіл: змінити   q: назад"
+
+#: src/lib/menu.sh:496
+msgid "for all users, asks for your password"
+msgstr "для всіх користувачів, запитує пароль"
+
+#. TRANSLATORS: keep the letters, they are the keys.
+#: src/lib/menu.sh:592
+msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
+msgstr "Вгору/Вниз: вибір, Пробіл: увімк./вимк., r: перейменувати, d: видалити, a: додати, q: назад"
+
+#: src/lib/menu.sh:593
+msgid "No face is set up yet. Press a to add one."
+msgstr "Ще не налаштовано жодного обличчя. Натисніть a, щоб додати."
+
+#: src/lib/menu.sh:639
+msgid "New name:"
+msgstr "Нова назва:"
+
+#: src/lib/menu.sh:646
+#, sh-printf-format
+msgid "Delete \"%s\"?"
+msgstr "Видалити «%s»?"
+
+#: src/lib/menu.sh:677
+msgid "Turn face unlock on or off"
+msgstr "Увімкнути або вимкнути розблокування обличчям"
+
+#: src/lib/menu.sh:681
+msgid "Try it"
+msgstr "Спробувати"
+
+#: src/lib/menu.sh:682
+msgid "Quit"
+msgstr "Вийти"
+
+#: src/lib/pam.sh:132
+#, sh-printf-format
+msgid "The PAM module is not installed at %s."
+msgstr "Модуль PAM не встановлено в %s."
+
+#: src/lib/pam.sh:140
+#, sh-printf-format
+msgid "There is no PAM configuration for %s on this system."
+msgstr "У цій системі немає налаштування PAM для %s."
+
+#: src/lib/system.sh:47
+msgid "This needs root, and neither sudo, run0 nor doas is installed."
+msgstr "Для цього потрібен root, але не встановлено ні sudo, ні run0, ні doas."
+
+#: src/lib/system.sh:56
+msgid "This command has to run as root."
+msgstr "Цю команду треба запускати від root."
+
+#: src/lib/system.sh:64
+#, sh-printf-format
+msgid "Not a valid setting: %s=%s"
+msgstr "Неприпустиме налаштування: %s=%s"
+
+#: src/lib/system.sh:75
+#, sh-printf-format
+msgid "Not a service this can be used for: %s"
+msgstr "Для цієї служби використати не можна: %s"
+
+#: src/lib/menu.sh
+msgid "Unlock with your face"
+msgstr "Розблоковувати обличчям"
+
+#: src/lib/menu.sh
+msgid "Scan when you come back"
+msgstr "Сканувати, коли ви повертаєтеся"
+
+#: src/lib/menu.sh
+msgid "Scan right after locking"
+msgstr "Сканувати одразу після блокування"
+
+#: src/lib/menu.sh
+msgid "Password prompts"
+msgstr "Запити пароля"
+
+#: src/lib/menu.sh
+msgid "sudo in a terminal"
+msgstr "sudo у терміналі"
+
+#: src/lib/menu.sh
+msgid "Recognition"
+msgstr "Розпізнавання"
+
+#: src/lib/menu.sh
+msgid "How closely the face has to match"
+msgstr "Наскільки точно має збігатися обличчя"
+
+#: src/lib/menu.sh
+msgid "Only when you look at the screen"
+msgstr "Лише коли ви дивитеся на екран"
+
+#: src/lib/menu.sh
+msgid "How long a scan lasts"
+msgstr "Скільки триває сканування"
+
+#: src/lib/menu.sh
+msgid "Learn from every unlock"
+msgstr "Вчитися при кожному розблокуванні"
+
+#: src/lib/menu.sh
+msgid "Not when the lid is closed"
+msgstr "Не при закритій кришці"
+
+#: src/lib/menu.sh
+msgid "Bubble"
+msgstr "Бульбашка"
+
+#: src/lib/menu.sh
+msgid "Show the bubble"
+msgstr "Показувати бульбашку"
+
+#: src/lib/menu.sh
+msgid "Style"
+msgstr "Стиль"
+
+#: src/lib/menu.sh
+msgid "Animation speed"
+msgstr "Швидкість анімації"
+
+#: src/lib/menu.sh
+msgid "Also for sudo and admin prompts"
+msgstr "Також для sudo і запитів адміністратора"
+
+#: src/agent/bubblecontroller.cpp:98
+msgid "Blink once"
+msgstr "Кліпніть"
+
+#: src/agent/bubblecontroller.cpp:100
+msgid "Look at the screen"
+msgstr "Подивіться на екран"
+
+#: src/agent/bubblecontroller.cpp:102
+msgid "Move closer"
+msgstr "Підсуньтеся ближче"
+
+#: src/agent/bubblecontroller.cpp:104
+msgid "Too dark"
+msgstr "Надто темно"
+
+#: src/agent/bubblecontroller.cpp:124
+msgid "Use your password"
+msgstr "Введіть пароль"
+
+#: src/agent/bubblecontroller.cpp:130
+msgid "Not recognized"
+msgstr "Не розпізнано"
+
+#: src/agent/bubblecontroller.cpp:132
+msgid "Try again and blink"
+msgstr "Ще раз, і кліпніть"
+
+#: src/agent/bubblecontroller.cpp:134
+msgid "Camera unavailable"
+msgstr "Камера недоступна"
+
+#: src/agent/enrollcontroller.cpp:68
+msgid "Bring your face into the circle."
+msgstr "Помістіть обличчя в коло."
+
+#: src/agent/enrollcontroller.cpp:70
+msgid "Only one face, please."
+msgstr "Лише одне обличчя, будь ласка."
+
+#: src/agent/enrollcontroller.cpp:72
+msgid "Move a little closer."
+msgstr "Підсуньтеся трохи ближче."
+
+#: src/agent/enrollcontroller.cpp:74
+msgid "It is too dark. Turn on a light."
+msgstr "Надто темно. Увімкніть світло."
+
+#: src/agent/enrollcontroller.cpp:76
+msgid "Too bright. Turn away from the light."
+msgstr "Надто яскраво. Відверніться від світла."
+
+#: src/agent/enrollcontroller.cpp:78
+msgid "Hold still for a moment."
+msgstr "Завмріть на мить."
+
+#: src/agent/enrollcontroller.cpp:80
+msgid "Look straight at the camera."
+msgstr "Дивіться прямо в камеру."
+
+#: src/agent/enrollcontroller.cpp:82
+msgid "Move your head slowly to complete the circle."
+msgstr "Повільно рухайте головою, щоб замкнути коло."
+
+#: src/agent/enrollcontroller.cpp:99 src/agent/enrollcontroller.cpp:132
+msgid "Starting the camera…"
+msgstr "Запуск камери…"
+
+#: src/agent/enrollcontroller.cpp:129
+msgid "Confirm with your password to add a face."
+msgstr "Підтвердьте паролем, щоб додати обличчя."
+
+#: src/agent/enrollcontroller.cpp:184
+msgid "Face Unlock is set up."
+msgstr "Розблокування обличчям налаштовано."
+
+#: src/agent/enrollcontroller.cpp:193
+msgid "A face can only be added with your password."
+msgstr "Обличчя можна додати лише з вашим паролем."
+
+#: src/agent/enrollcontroller.cpp:195
+msgid "The camera could not be used: %1"
+msgstr "Не вдалося використати камеру: %1"
+
+#: src/agent/enrollcontroller.cpp:197
+msgid "The face recognition models are missing. Reinstall the package."
+msgstr "Немає моделей розпізнавання облич. Перевстановіть пакунок."
+
+#: src/agent/enrollcontroller.cpp:199
+msgid "That took too long. Try again, in good light."
+msgstr "Це тривало надто довго. Спробуйте ще раз при доброму світлі."
+
+#: src/agent/enrollcontroller.cpp:201
+msgid "The face unlock service is not running. Turn face unlock on first."
+msgstr "Служба розблокування обличчям не запущена. Спершу увімкніть розблокування обличчям."
+
+#: src/agent/enrollcontroller.cpp:203
+msgid "The camera is busy with another scan. Try again in a moment."
+msgstr "Камера зайнята іншим скануванням. Спробуйте трохи згодом."
+
+#: src/agent/enrollcontroller.cpp:205
+msgid "The face could not be added (%1)."
+msgstr "Не вдалося додати обличчя (%1)."
+
+#: src/agent/main.cpp:85
+msgid "Face unlock for KDE Plasma"
+msgstr "Розблокування обличчям для KDE Plasma"
+
+#: src/agent/main.cpp:88
+msgid "Set up a face."
+msgstr "Налаштувати обличчя."
+
+#: src/agent/main.cpp:89
+msgid "What to call the new face."
+msgstr "Як назвати нове обличчя."
+
+#: src/agent/main.cpp:90
+msgid "Play the bubble's animations once."
+msgstr "Один раз програти анімації бульбашки."
+
+#: src/agent/main.cpp:92
+msgid "Bubble style for the demo: full or minimal."
+msgstr "Стиль бульбашки для демо: full або minimal."
+
+#: src/pam/pam_plasma_face_unlock.c:311
+msgid "Look at the camera to unlock."
+msgstr "Подивіться в камеру, щоб розблокувати."
+
+#: src/pam/pam_plasma_face_unlock.c:314
+msgid "Blink, or turn your head a little."
+msgstr "Кліпніть або трохи поверніть голову."
+
+#: src/pam/pam_plasma_face_unlock.c:330
+msgid "Face unlock is paused after too many tries. Use your password."
+msgstr "Розблокування обличчям призупинено після надто багатьох спроб. Введіть пароль."
+
+#: src/pam/pam_plasma_face_unlock.c:334
+msgid "Face not recognised."
+msgstr "Обличчя не розпізнано."
+
+#: src/agent/qml/Enroll.qml:22
+msgid "Set up Face Unlock"
+msgstr "Налаштування розблокування обличчям"
+
+#: src/agent/qml/Enroll.qml:105
+msgid "Face Unlock"
+msgstr "Розблокування обличчям"
+
+#: src/agent/qml/Enroll.qml:106
+msgid "Confirm it is you"
+msgstr "Підтвердьте, що це ви"
+
+#: src/agent/qml/Enroll.qml:107
+msgid "You are all set"
+msgstr "Усе готово"
+
+#: src/agent/qml/Enroll.qml:108
+msgid "Setup did not finish"
+msgstr "Налаштування не завершено"
+
+#: src/agent/qml/Enroll.qml:121
+msgid "Look at the camera, then move your head slowly in a circle. Your face is turned into numbers on this computer and never stored as a picture."
+msgstr "Подивіться в камеру, потім повільно поведіть головою по колу. Ваше обличчя перетворюється на числа на цьому комп'ютері й ніколи не зберігається як зображення."
+
+#: src/agent/qml/Enroll.qml:123
+msgid "Lock the screen and look at it to try it out. You can add a second look, with glasses for example, from the menu."
+msgstr "Заблокуйте екран і подивіться на нього, щоб спробувати. У меню можна додати другий вигляд, наприклад в окулярах."
+
+#: src/agent/qml/Enroll.qml:157
+msgid "Name (optional)"
+msgstr "Назва (необов'язково)"
+
+#: src/agent/qml/Enroll.qml:172
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: src/agent/qml/Enroll.qml:178
+msgid "Finish now"
+msgstr "Завершити зараз"
+
+#: src/agent/qml/Enroll.qml:183
+msgid "Try again"
+msgstr "Повторити"
+
+#: src/agent/qml/Enroll.qml:183
+msgid "Get started"
+msgstr "Почати"
+
+#: src/agent/qml/Enroll.qml:188
+msgid "Done"
+msgstr "Готово"

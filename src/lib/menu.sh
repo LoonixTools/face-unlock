@@ -136,20 +136,33 @@ _pfu_ui_take_notices() {
 
 # pfu_ui_confirm <question>
 pfu_ui_confirm() {
-	local key
-	printf '\n  %s %s ' "$1" "$(pfu_msg "[y/N]")"
+	local key hint yes
+	# TRANSLATORS: the letter after "[" is the key for yes. y works too.
+	hint="$(pfu_msg "[y/N]")"
+	yes="${hint:1:1}"
+	printf '\n  %s %s ' "$1" "$hint"
 	key="$(pfu_read_key)" || return 1
 	printf '%s\n' "$key"
-	[[ $key == [yYjJ] ]]
+	[[ ${key,,} == y || ${key,,} == "${yes,,}" ]]
+}
+
+# _pfu_width <text>
+# The columns the text takes, into PFU_WIDTH. ${#s} counts characters, but
+# Chinese, Japanese and Korean ones take two columns each.
+PFU_WIDTH=0
+
+_pfu_width() {
+	local wide="${1//[^　-〿぀-ヿ㐀-䶿一-鿿가-힯豈-﫿＀-｠]/}"
+	PFU_WIDTH=$(( ${#1} + ${#wide} ))
 }
 
 # _pfu_row <label> <value>
 # printf's %-28s pads by bytes, so a label containing "ü" comes out one column
-# short. ${#s} counts characters in a UTF-8 locale, so the padding is computed
-# here instead.
+# short. The padding is computed here instead.
 _pfu_row() {
 	local label="$1" value="$2" pad
-	pad=$(( 30 - ${#label} ))
+	_pfu_width "$label"
+	pad=$(( 30 - PFU_WIDTH ))
 	(( pad < 0 )) && pad=0
 	printf '  %s%*s %s\n' "$label" "$pad" '' "$value"
 }
@@ -313,17 +326,32 @@ pfu_setting_help() {
 PFU_WRAP_LINES=()
 
 _pfu_wrap() {
-	local width="$1" word line=''
+	local width="$1" word line='' used=0 c i
 	local -a words
 	PFU_WRAP_LINES=()
 	read -r -a words <<< "$2"
 	for word in "${words[@]}"; do
-		if [[ -n $line ]] && (( ${#line} + 1 + ${#word} > width )); then
+		_pfu_width "$word"
+		if (( used > 0 && used + 1 + PFU_WIDTH > width )); then
 			PFU_WRAP_LINES+=("$line")
-			line="$word"
-		else
-			line="${line:+$line }$word"
+			line='' used=0
 		fi
+		(( used > 0 )) && line+=' ' used=$(( used + 1 ))
+		if (( used + PFU_WIDTH <= width )); then
+			line+="$word" used=$(( used + PFU_WIDTH ))
+			continue
+		fi
+		# Longer than a line: Chinese and Japanese have no spaces, so break
+		# between any two characters.
+		for (( i = 0; i < ${#word}; i++ )); do
+			c="${word:i:1}"
+			_pfu_width "$c"
+			if (( used + PFU_WIDTH > width )); then
+				PFU_WRAP_LINES+=("$line")
+				line='' used=0
+			fi
+			line+="$c" used=$(( used + PFU_WIDTH ))
+		done
 	done
 	[[ -n $line ]] && PFU_WRAP_LINES+=("$line")
 	return 0
@@ -432,7 +460,7 @@ _pfu_setting_change() {
 # frame is assembled in memory and written once, and everything constant is
 # resolved before the loop.
 pfu_ui_settings() {
-	local -a scopes=() keys=() types=() defaults=() labels=() choices=() needs=() values=() rows=()
+	local -a scopes=() keys=() types=() defaults=() labels=() widths=() choices=() needs=() values=() rows=()
 	local spec scope key type default label choice need locale i j frame row pad dirty=1 cursor=0 shown
 	local width=0 wrap cols
 
@@ -445,9 +473,11 @@ pfu_ui_settings() {
 		choices+=("$choice"); needs+=("$need")
 		pfu_msg_into "$locale" "$label"
 		labels+=("$PFU_MSG_RESULT")
+		_pfu_width "$PFU_MSG_RESULT"
+		widths+=("$PFU_WIDTH")
 		if [[ $scope != group ]]; then
 			rows+=($(( ${#keys[@]} - 1 )))
-			(( ${#PFU_MSG_RESULT} > width )) && width=${#PFU_MSG_RESULT}
+			(( PFU_WIDTH > width )) && width=$PFU_WIDTH
 		fi
 	done
 	local count=${#rows[@]}
@@ -513,7 +543,7 @@ pfu_ui_settings() {
 			fi
 			dim=''
 			[[ -n ${needs[i]} ]] && ! pfu_is_true "${current[${needs[i]}]}" && dim="$PFU_C_DIM"
-			pad=$(( width + 2 - ${#labels[i]} ))
+			pad=$(( width + 2 - widths[i] ))
 			if (( i == selected )); then marker="${PFU_C_BLUE}▸${PFU_C_RESET} "; else marker='  '; fi
 			printf -v row '  %s%s%s%s%*s%s%s%s' "$marker" "$dim" "${labels[i]}" "$PFU_C_RESET" "$pad" '' "$before" "$dim$shown$PFU_C_RESET" "$after"
 			frame+="$row"$'\n'
@@ -558,6 +588,7 @@ pfu_ui_faces() {
 	locale="$(pfu_ui_locale)"
 	local title hint empty l_on l_off
 	pfu_msg_into "$locale" "Faces"; title="$PFU_MSG_RESULT"
+	# TRANSLATORS: keep the letters, they are the keys.
 	pfu_msg_into "$locale" "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"; hint="$PFU_MSG_RESULT"
 	pfu_msg_into "$locale" "No face is set up yet. Press a to add one."; empty="$PFU_MSG_RESULT"
 	pfu_msg_into "$locale" "on"; l_on="$PFU_MSG_RESULT"
@@ -579,7 +610,8 @@ pfu_ui_faces() {
 		for i in "${!PFU_FACE_IDS[@]}"; do
 			if [[ ${PFU_FACE_ON[i]} == true ]]; then shown="${PFU_C_GREEN}${l_on}${PFU_C_RESET}"; else shown="${PFU_C_DIM}${l_off}${PFU_C_RESET}"; fi
 			samples="$(pfu_msg "%s samples, %s learned" "${PFU_FACE_SAMPLES[i]}" "${PFU_FACE_LEARNED[i]}")"
-			pad=$(( 30 - ${#PFU_FACE_NAMES[i]} ))
+			_pfu_width "${PFU_FACE_NAMES[i]}"
+			pad=$(( 30 - PFU_WIDTH ))
 			(( pad < 0 )) && pad=0
 			if (( i == cursor )); then marker="$selected"; else marker='  '; fi
 			printf -v row '  %s%s%*s %s  %s%s%s' "$marker" "${PFU_FACE_NAMES[i]}" "$pad" '' "$shown" "$PFU_C_DIM" "$samples" "$PFU_C_RESET"

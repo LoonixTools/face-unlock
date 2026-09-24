@@ -1,447 +1,419 @@
-# German translation for plasma-face-unlock.
+# Korean translation for plasma-face-unlock.
 # Copyright (C) 2026 Felitendo
 # This file is distributed under the same license as plasma-face-unlock.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: plasma-face-unlock 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/"
-"issues\n"
+"Project-Id-Version: plasma-face-unlock 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/issues\n"
 "POT-Creation-Date: 2026-09-24 10:46+0200\n"
-"PO-Revision-Date: 2026-09-23 22:32+0200\n"
+"PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
-"Language-Team: German\n"
-"Language: de\n"
+"Language-Team: Korean\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/plasma-face-unlock:50
-msgid ""
-"Face unlock's service has to be switched on once for this computer. That "
-"needs your password."
-msgstr ""
-"Der Dienst für die Gesichtsentsperrung muss auf diesem Computer einmal "
-"eingeschaltet werden. Dafür wird dein Passwort gebraucht."
+msgid "Face unlock's service has to be switched on once for this computer. That needs your password."
+msgstr "얼굴 잠금 해제 서비스를 이 컴퓨터에서 한 번 켜야 합니다. 이때 비밀번호가 필요합니다."
 
 #: src/plasma-face-unlock:57
 #, sh-printf-format
 msgid "Check it with: systemctl status %s"
-msgstr "Prüfen mit: systemctl status %s"
+msgstr "확인 방법: systemctl status %s"
 
 #: src/plasma-face-unlock:67
-msgid ""
-"Setting up a face needs the camera picture on screen. Run this inside your "
-"Plasma session."
-msgstr ""
-"Zum Einrichten eines Gesichts muss das Kamerabild auf dem Bildschirm zu "
-"sehen sein. Starte das in deiner Plasma-Sitzung."
+msgid "Setting up a face needs the camera picture on screen. Run this inside your Plasma session."
+msgstr "얼굴을 등록하려면 카메라 화면이 보여야 합니다. Plasma 세션 안에서 실행하세요."
 
 #: src/plasma-face-unlock:71
 msgid "The setup window is open. Follow it there."
-msgstr "Das Einrichtungsfenster ist offen. Folge den Schritten dort."
+msgstr "등록 창이 열려 있습니다. 창의 안내를 따르세요."
 
 #: src/plasma-face-unlock:80
 msgid "The face is set up."
-msgstr "Das Gesicht ist eingerichtet."
+msgstr "얼굴이 등록되었습니다."
 
 #: src/plasma-face-unlock:83
 #, sh-printf-format
 msgid "Face unlock is still off. Turn it on with [1] or `%s enable`."
-msgstr ""
-"Die Gesichtsentsperrung ist noch aus. Schalte sie mit [1] oder `%s enable` "
-"ein."
+msgstr "얼굴 잠금 해제가 아직 꺼져 있습니다. [1] 또는 `%s enable`로 켜세요."
 
 #: src/plasma-face-unlock:87
 msgid "No face was added."
-msgstr "Es wurde kein Gesicht hinzugefügt."
+msgstr "얼굴이 추가되지 않았습니다."
 
 #: src/plasma-face-unlock:96
 msgid "First, set up your face."
-msgstr "Richte zuerst dein Gesicht ein."
+msgstr "먼저 얼굴을 등록하세요."
 
 #: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:434
 #: src/lib/menu.sh:438 src/lib/menu.sh:444 src/lib/menu.sh:446
 msgid "Could not save the setting."
-msgstr "Einstellung konnte nicht gespeichert werden."
+msgstr "설정을 저장하지 못했습니다."
 
 #: src/plasma-face-unlock:104
 msgid "Could not start the lock screen agent."
-msgstr "Der Sperrbildschirm-Dienst konnte nicht gestartet werden."
+msgstr "잠금 화면 에이전트를 시작하지 못했습니다."
 
 #: src/plasma-face-unlock:106
 msgid "No systemd user session, so the lock screen agent was not started."
-msgstr ""
-"Keine systemd-Benutzersitzung, daher wurde der Sperrbildschirm-Dienst nicht "
-"gestartet."
+msgstr "systemd 사용자 세션이 없어 잠금 화면 에이전트를 시작하지 않았습니다."
 
 #: src/plasma-face-unlock:113
 msgid "Face unlock is on. Lock the screen and look at it to try."
-msgstr ""
-"Die Gesichtsentsperrung ist an. Sperre den Bildschirm und schau ihn an, um "
-"es auszuprobieren."
+msgstr "얼굴 잠금 해제가 켜졌습니다. 화면을 잠그고 화면을 바라보며 사용해 보세요."
 
 #: src/plasma-face-unlock:115
 msgid "It can do sudo and admin prompts too. See Settings."
-msgstr "Sie kann auch sudo und Admin-Abfragen übernehmen. Siehe Einstellungen."
+msgstr "sudo와 관리자 인증 창에서도 쓸 수 있습니다. 설정을 참고하세요."
 
 #: src/plasma-face-unlock:130
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
-msgstr ""
-"Die Gesichtsentsperrung ist aus. Deine Gesichter bleiben erhalten; löschen "
-"kannst du sie unter Gesichter."
+msgstr "얼굴 잠금 해제가 꺼졌습니다. 얼굴 데이터는 남아 있으며, 얼굴 메뉴에서 삭제할 수 있습니다."
 
 #: src/plasma-face-unlock:144 src/lib/daemon.sh:109
 msgid "No face is set up yet."
-msgstr "Es ist noch kein Gesicht eingerichtet."
+msgstr "아직 등록된 얼굴이 없습니다."
 
 #: src/plasma-face-unlock:148 src/lib/menu.sh:180 src/lib/menu.sh:594
 msgid "on"
-msgstr "an"
+msgstr "켜짐"
 
 #: src/plasma-face-unlock:148 src/lib/menu.sh:182 src/lib/menu.sh:192
 #: src/lib/menu.sh:595
 msgid "off"
-msgstr "aus"
+msgstr "꺼짐"
 
 #: src/plasma-face-unlock:150 src/lib/menu.sh:612
 #, sh-printf-format
 msgid "%s samples, %s learned"
-msgstr "%s Aufnahmen, %s dazugelernt"
+msgstr "샘플 %s개, 학습 %s개"
 
 #: src/plasma-face-unlock:156
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
-msgstr "Welches Gesicht? Die IDs zeigt `%s faces`."
+msgstr "어떤 얼굴인가요? ID는 `%s faces`에서 확인하세요."
 
 #: src/plasma-face-unlock:160
 msgid "Deleted."
-msgstr "Gelöscht."
+msgstr "삭제했습니다."
 
 #: src/plasma-face-unlock:171
 msgid "Usage: plasma-face-unlock [command]"
-msgstr "Aufruf: plasma-face-unlock [Befehl]"
+msgstr "사용법: plasma-face-unlock [명령]"
 
 #: src/plasma-face-unlock:173
 msgid "Commands:"
-msgstr "Befehle:"
+msgstr "명령:"
 
 #: src/plasma-face-unlock:174
 msgid "Turn face unlock on"
-msgstr "Gesichtsentsperrung einschalten"
+msgstr "얼굴 잠금 해제 켜기"
 
 #: src/plasma-face-unlock:175
 msgid "Turn it off (faces are kept)"
-msgstr "Ausschalten (Gesichter bleiben erhalten)"
+msgstr "끄기 (얼굴 데이터는 유지)"
 
 #: src/plasma-face-unlock:176 src/lib/menu.sh:678
 msgid "Add a face"
-msgstr "Gesicht hinzufügen"
+msgstr "얼굴 추가"
 
 #: src/plasma-face-unlock:177
 msgid "List the faces"
-msgstr "Gesichter auflisten"
+msgstr "얼굴 목록"
 
 #: src/plasma-face-unlock:178
 msgid "Delete a face"
-msgstr "Ein Gesicht löschen"
+msgstr "얼굴 삭제"
 
 #: src/plasma-face-unlock:179
 msgid "Look at the camera and see what it sees"
-msgstr "In die Kamera schauen und sehen, was sie sieht"
+msgstr "카메라를 보고 카메라에 보이는 것을 확인"
 
 #: src/plasma-face-unlock:180
 msgid "Show what is on"
-msgstr "Anzeigen, was eingeschaltet ist"
+msgstr "켜져 있는 기능 보기"
 
 #: src/plasma-face-unlock:181
 msgid "Show this help"
-msgstr "Diese Hilfe anzeigen"
+msgstr "이 도움말 보기"
 
 #: src/plasma-face-unlock:182
 msgid "Show the version"
-msgstr "Die Version anzeigen"
+msgstr "버전 보기"
 
 #: src/plasma-face-unlock:184
 msgid "Without a command an interactive menu is shown."
-msgstr "Ohne Befehl wird ein interaktives Menü angezeigt."
+msgstr "명령 없이 실행하면 대화형 메뉴가 나옵니다."
 
 #: src/plasma-face-unlock:203
-msgid ""
-"Run this as your own user, not as root. It asks for your password when it "
-"needs to."
-msgstr ""
-"Starte das als dein eigener Benutzer, nicht als root. Wenn nötig, wird nach "
-"deinem Passwort gefragt."
+msgid "Run this as your own user, not as root. It asks for your password when it needs to."
+msgstr "root가 아닌 본인 사용자로 실행하세요. 필요하면 비밀번호를 묻습니다."
 
 #: src/plasma-face-unlock:221 src/lib/system.sh:89
 #, sh-printf-format
 msgid "Unknown command: %s"
-msgstr "Unbekannter Befehl: %s"
+msgstr "알 수 없는 명령: %s"
 
 #: src/lib/common.sh:160
 msgid "never"
-msgstr "nie"
+msgstr "없음"
 
 #: src/lib/common.sh:170
 msgid "just now"
-msgstr "gerade eben"
+msgstr "방금"
 
 #: src/lib/common.sh:172
 msgid "1 minute ago"
-msgstr "vor 1 Minute"
+msgstr "1분 전"
 
 #: src/lib/common.sh:175
 #, sh-printf-format
 msgid "%d minutes ago"
-msgstr "vor %d Minuten"
+msgstr "%d분 전"
 
 #: src/lib/common.sh:177
 msgid "1 hour ago"
-msgstr "vor 1 Stunde"
+msgstr "1시간 전"
 
 #: src/lib/common.sh:180
 #, sh-printf-format
 msgid "%d hours ago"
-msgstr "vor %d Stunden"
+msgstr "%d시간 전"
 
 #: src/lib/common.sh:182
 msgid "1 day ago"
-msgstr "vor 1 Tag"
+msgstr "1일 전"
 
 #: src/lib/common.sh:185
 #, sh-printf-format
 msgid "%d days ago"
-msgstr "vor %d Tagen"
+msgstr "%d일 전"
 
 #: src/lib/daemon.sh:102
 msgid "The face did not match."
-msgstr "Das Gesicht passte nicht."
+msgstr "얼굴이 일치하지 않았습니다."
 
 #: src/lib/daemon.sh:103
 msgid "That looked like a photo or a screen."
-msgstr "Das sah aus wie ein Foto oder ein Bildschirm."
+msgstr "사진이나 화면처럼 보였습니다."
 
 #: src/lib/daemon.sh:104
 msgid "The face matched, but did not blink or move."
-msgstr "Das Gesicht passte, hat aber nicht geblinzelt und sich nicht bewegt."
+msgstr "얼굴은 일치했지만 눈을 깜빡이거나 움직이지 않았습니다."
 
 #: src/lib/daemon.sh:105
 msgid "The face was not looking at the screen."
-msgstr "Das Gesicht hat nicht auf den Bildschirm geschaut."
+msgstr "얼굴이 화면을 보고 있지 않았습니다."
 
 #: src/lib/daemon.sh:106
 msgid "The picture was too dark, too blurry or too far away."
-msgstr "Das Bild war zu dunkel, zu unscharf oder zu weit weg."
+msgstr "영상이 너무 어둡거나, 흐리거나, 멀었습니다."
 
 #: src/lib/daemon.sh:107
 msgid "No face in view."
-msgstr "Kein Gesicht zu sehen."
+msgstr "보이는 얼굴이 없습니다."
 
 #: src/lib/daemon.sh:108
-msgid ""
-"Face unlock is paused after too many tries. Unlock once with your password."
-msgstr ""
-"Die Gesichtsentsperrung ist nach zu vielen Versuchen pausiert. Entsperre "
-"einmal mit deinem Passwort."
+msgid "Face unlock is paused after too many tries. Unlock once with your password."
+msgstr "시도가 너무 많아 얼굴 잠금 해제가 일시 중지되었습니다. 비밀번호로 한 번 잠금을 해제하세요."
 
 #: src/lib/daemon.sh:110
 msgid "The camera could not be used."
-msgstr "Die Kamera konnte nicht benutzt werden."
+msgstr "카메라를 사용할 수 없었습니다."
 
 #: src/lib/daemon.sh:111 src/lib/menu.sh:259
 msgid "The recognition models are missing. Reinstall the package."
-msgstr "Die Erkennungsmodelle fehlen. Installiere das Paket neu."
+msgstr "인식 모델이 없습니다. 패키지를 다시 설치하세요."
 
 #: src/lib/daemon.sh:112
 msgid "The lid is closed."
-msgstr "Der Deckel ist zu."
+msgstr "노트북 덮개가 닫혀 있습니다."
 
 #: src/lib/daemon.sh:113
 msgid "The camera is busy with another scan."
-msgstr "Die Kamera ist gerade mit einem anderen Scan beschäftigt."
+msgstr "카메라가 다른 스캔으로 사용 중입니다."
 
 #: src/lib/daemon.sh:114
 msgid "The face unlock service is not running."
-msgstr "Der Dienst für die Gesichtsentsperrung läuft nicht."
+msgstr "얼굴 잠금 해제 서비스가 실행 중이 아닙니다."
 
 #: src/lib/daemon.sh:115
 msgid "Not allowed."
-msgstr "Nicht erlaubt."
+msgstr "허용되지 않습니다."
 
 #: src/lib/daemon.sh:116
 #, sh-printf-format
 msgid "Something went wrong (%s)."
-msgstr "Etwas ist schiefgelaufen (%s)."
+msgstr "문제가 발생했습니다 (%s)."
 
 #: src/lib/daemon.sh:127
 msgid "Look at the camera. Blink once, or turn your head a little."
-msgstr "Schau in die Kamera. Blinzle einmal oder dreh den Kopf ein wenig."
+msgstr "카메라를 보세요. 눈을 한 번 깜빡이거나 고개를 살짝 돌리세요."
 
 #: src/lib/daemon.sh:137
 msgid "Face found."
-msgstr "Gesicht gefunden."
+msgstr "얼굴을 찾았습니다."
 
 #: src/lib/daemon.sh:141
 msgid "Recognised. Now blink once, or turn your head a little."
-msgstr "Erkannt. Jetzt einmal blinzeln oder den Kopf ein wenig drehen."
+msgstr "인식했습니다. 이제 눈을 한 번 깜빡이거나 고개를 살짝 돌리세요."
 
 #: src/lib/daemon.sh:142
 msgid "Look at the screen."
-msgstr "Schau auf den Bildschirm."
+msgstr "화면을 보세요."
 
 #: src/lib/daemon.sh:143
 msgid "Move closer to the camera."
-msgstr "Geh näher an die Kamera."
+msgstr "카메라에 더 가까이 오세요."
 
 #: src/lib/daemon.sh:144
 msgid "It is too dark to see your face."
-msgstr "Es ist zu dunkel, um dein Gesicht zu sehen."
+msgstr "너무 어두워서 얼굴이 보이지 않습니다."
 
 #: src/lib/daemon.sh:153
 msgid "match"
-msgstr "Treffer"
+msgstr "일치도"
 
 #: src/lib/daemon.sh:153
 msgid "turn"
-msgstr "Drehung"
+msgstr "회전"
 
 #: src/lib/daemon.sh:154
 msgid "eyes"
-msgstr "Augen"
+msgstr "눈"
 
 #: src/lib/daemon.sh:155
 msgid "depth"
-msgstr "Tiefe"
+msgstr "깊이"
 
 #: src/lib/daemon.sh:155 src/lib/daemon.sh:164
 msgid "blink"
-msgstr "Blinzeln"
+msgstr "깜빡임"
 
 #: src/lib/daemon.sh:156
 msgid "glare"
-msgstr "Spiegelung"
+msgstr "반사"
 
 #: src/lib/daemon.sh:156
 msgid "edge"
-msgstr "Rand"
+msgstr "가장자리"
 
 #: src/lib/daemon.sh:165
 msgid "head turn"
-msgstr "Kopfdrehung"
+msgstr "고개 돌림"
 
 #: src/lib/daemon.sh:167
 #, sh-printf-format
 msgid "Recognised as %s (match %s) in %s ms."
-msgstr "Erkannt als %s (Treffer %s) in %s ms."
+msgstr "인식됨: %s (일치도 %s), %s ms."
 
 #: src/lib/daemon.sh:168
 #, sh-printf-format
 msgid "Sign of life: %s"
-msgstr "Lebenszeichen: %s"
+msgstr "생체 신호: %s"
 
 #: src/lib/daemon.sh:173
-msgid ""
-"That was too many tries. Face unlock is paused until you unlock with your "
-"password."
-msgstr ""
-"Das waren zu viele Versuche. Die Gesichtsentsperrung ist pausiert, bis du "
-"mit deinem Passwort entsperrst."
+msgid "That was too many tries. Face unlock is paused until you unlock with your password."
+msgstr "시도가 너무 많습니다. 비밀번호로 잠금을 해제할 때까지 얼굴 잠금 해제가 일시 중지됩니다."
 
 #. TRANSLATORS: the letter after "[" is the key for yes. y works too.
 #: src/lib/menu.sh:141
 msgid "[y/N]"
-msgstr "[j/N]"
+msgstr "[y/N]"
 
 #: src/lib/menu.sh:172 src/lib/menu.sh:497
 msgid "ON"
-msgstr "AN"
+msgstr "켜짐"
 
 #: src/lib/menu.sh:174 src/lib/menu.sh:498
 msgid "OFF"
-msgstr "AUS"
+msgstr "꺼짐"
 
 #: src/lib/menu.sh:190 src/lib/menu.sh:194
 msgid "strict"
-msgstr "streng"
+msgstr "엄격"
 
 #: src/lib/menu.sh:191
 msgid "basic"
-msgstr "einfach"
+msgstr "기본"
 
 #: src/lib/menu.sh:193 src/lib/menu.sh:198
 msgid "normal"
-msgstr "normal"
+msgstr "보통"
 
 #: src/lib/menu.sh:195
 msgid "relaxed"
-msgstr "locker"
+msgstr "느슨"
 
 #: src/lib/menu.sh:196
 msgid "island with the face"
-msgstr "Insel mit Gesicht"
+msgstr "얼굴이 있는 아일랜드"
 
 #: src/lib/menu.sh:197
 msgid "small pill with a lock"
-msgstr "kleine Pille mit Schloss"
+msgstr "자물쇠가 있는 작은 알약"
 
 #: src/lib/menu.sh:199
 msgid "fast"
-msgstr "schnell"
+msgstr "빠르게"
 
 #: src/lib/menu.sh:200
 msgid "slow"
-msgstr "langsam"
+msgstr "느리게"
 
 #: src/lib/menu.sh:201
 #, sh-printf-format
 msgid "%s seconds"
-msgstr "%s Sekunden"
+msgstr "%s초"
 
 #: src/lib/menu.sh:202 src/lib/menu.sh:409
 msgid "automatic"
-msgstr "automatisch"
+msgstr "자동"
 
 #: src/lib/menu.sh:219
 msgid "Face unlock"
-msgstr "Gesichtsentsperrung"
+msgstr "얼굴 잠금 해제"
 
 #: src/lib/menu.sh:223
 msgid "Service"
-msgstr "Dienst"
+msgstr "서비스"
 
 #: src/lib/menu.sh:223
 msgid "not running"
-msgstr "läuft nicht"
+msgstr "실행 중 아님"
 
 #: src/lib/menu.sh:225
 msgid "Turning face unlock on again starts it."
-msgstr "Die Gesichtsentsperrung erneut einzuschalten startet ihn."
+msgstr "얼굴 잠금 해제를 다시 켜면 시작됩니다."
 
 #: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:590
 #: src/lib/menu.sh:679
 msgid "Faces"
-msgstr "Gesichter"
+msgstr "얼굴"
 
 #: src/lib/menu.sh:236
 msgid "none set up yet"
-msgstr "noch keins eingerichtet"
+msgstr "아직 없음"
 
 #: src/lib/menu.sh:238
 msgid "all turned off"
-msgstr "alle ausgeschaltet"
+msgstr "모두 꺼짐"
 
 #: src/lib/menu.sh:244
 msgid "none found"
-msgstr "keine gefunden"
+msgstr "찾을 수 없음"
 
 #: src/lib/menu.sh:246 src/lib/menu.sh
 msgid "Camera"
-msgstr "Kamera"
+msgstr "카메라"
 
 #: src/lib/menu.sh:248 src/lib/menu.sh
 msgid "Lock screen"
-msgstr "Sperrbildschirm"
+msgstr "잠금 화면"
 
 #: src/lib/menu.sh:249
 msgid "sudo"
@@ -449,511 +421,444 @@ msgstr "sudo"
 
 #: src/lib/menu.sh:250 src/lib/menu.sh
 msgid "Admin prompts"
-msgstr "Admin-Abfragen"
+msgstr "관리자 인증 창"
 
 #: src/lib/menu.sh:251 src/lib/menu.sh
 msgid "Photo check"
-msgstr "Foto-Prüfung"
+msgstr "사진 검사"
 
 #: src/lib/menu.sh:254
 msgid "Paused"
-msgstr "Pausiert"
+msgstr "일시 중지됨"
 
 #: src/lib/menu.sh:254
 #, sh-printf-format
 msgid "for %d more minutes, or until the password is used"
-msgstr "noch %d Minuten, oder bis das Passwort benutzt wird"
+msgstr "%d분 더, 또는 비밀번호를 사용할 때까지"
 
 #: src/lib/menu.sh:256
 msgid "Last unlock"
-msgstr "Letzte Entsperrung"
+msgstr "마지막 잠금 해제"
 
 #: src/lib/menu.sh:300
-msgid ""
-"Unlocks the lock screen when it sees your face. Off: only your password "
-"works there."
-msgstr ""
-"Entsperrt den Sperrbildschirm, wenn er dein Gesicht sieht. Aus: Dort geht "
-"nur dein Passwort."
+msgid "Unlocks the lock screen when it sees your face. Off: only your password works there."
+msgstr "얼굴을 보면 잠금 화면을 해제합니다. 꺼짐: 잠금 화면에서는 비밀번호만 됩니다."
 
 #: src/lib/menu.sh:301
-msgid ""
-"Scans when you press a key or move the mouse on the lock screen, and when "
-"the computer wakes up."
-msgstr ""
-"Scannt, wenn du auf dem Sperrbildschirm eine Taste drückst oder die Maus "
-"bewegst, und wenn der Computer aufwacht."
+msgid "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up."
+msgstr "잠금 화면에서 키를 누르거나 마우스를 움직일 때, 그리고 컴퓨터가 깨어날 때 스캔합니다."
 
 #: src/lib/menu.sh:302
-msgid ""
-"Scans as soon as the screen locks. Off by default: if you lock it yourself, "
-"it would unlock again right away."
-msgstr ""
-"Scannt, sobald der Bildschirm gesperrt wird. Normalerweise aus: Sperrst du "
-"selbst, würde er gleich wieder entsperren."
+msgid "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away."
+msgstr "화면이 잠기자마자 스캔합니다. 기본값은 꺼짐: 직접 잠그면 곧바로 다시 풀려 버리기 때문입니다."
 
 #: src/lib/menu.sh:303
-msgid ""
-"sudo takes your face instead of the password. No match: you type the "
-"password as usual."
-msgstr ""
-"sudo nimmt dein Gesicht statt des Passworts. Passt es nicht, tippst du wie "
-"gewohnt dein Passwort."
+msgid "sudo takes your face instead of the password. No match: you type the password as usual."
+msgstr "sudo가 비밀번호 대신 얼굴을 사용합니다. 일치하지 않으면 평소처럼 비밀번호를 입력합니다."
 
 #: src/lib/menu.sh:304
-msgid ""
-"The password windows of Plasma and apps, for example when you install "
-"software. No match: you type the password."
-msgstr ""
-"Die Passwort-Fenster von Plasma und Apps, zum Beispiel beim Installieren. "
-"Passt das Gesicht nicht, tippst du dein Passwort."
+msgid "The password windows of Plasma and apps, for example when you install software. No match: you type the password."
+msgstr "Plasma와 앱의 비밀번호 창입니다. 예를 들어 소프트웨어를 설치할 때입니다. 일치하지 않으면 비밀번호를 입력합니다."
 
 #: src/lib/menu.sh:305
-msgid ""
-"You have to blink or turn your head a little. This also stops printed photos."
-msgstr ""
-"Du musst blinzeln oder den Kopf leicht drehen. Das hält auch ausgedruckte "
-"Fotos auf."
+msgid "You have to blink or turn your head a little. This also stops printed photos."
+msgstr "눈을 깜빡이거나 고개를 살짝 돌려야 합니다. 인쇄한 사진도 막아 줍니다."
 
 #: src/lib/menu.sh:306
 msgid "No check at all. Only for trying out a camera."
-msgstr "Keine Prüfung. Nur zum Ausprobieren einer Kamera."
+msgstr "검사하지 않습니다. 카메라를 시험할 때만 쓰세요."
 
 #: src/lib/menu.sh:307
-msgid ""
-"Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
-"A matte printed photo can get through."
-msgstr ""
-"Hält Fotos auf Handy, Tablet oder Hochglanzpapier auf. Blinzeln ist nicht "
-"nötig. Ein matter Ausdruck kann durchkommen."
+msgid "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through."
+msgstr "휴대폰, 태블릿, 광택지에 있는 사진을 막습니다. 눈을 깜빡일 필요는 없습니다. 무광 인쇄 사진은 통과할 수 있습니다."
 
 #: src/lib/menu.sh:308
-msgid ""
-"Fewer wrong matches, but it may not know you with glasses or in bad light."
-msgstr ""
-"Seltener Verwechslungen, aber mit Brille oder bei schlechtem Licht erkennt "
-"es dich vielleicht nicht."
+msgid "Fewer wrong matches, but it may not know you with glasses or in bad light."
+msgstr "잘못 일치하는 경우가 줄지만, 안경을 쓰거나 조명이 나쁘면 알아보지 못할 수 있습니다."
 
 #: src/lib/menu.sh:309
 msgid "Knows you more easily, but also somebody who looks a lot like you."
-msgstr "Erkennt dich leichter, aber auch jemanden, der dir sehr ähnlich sieht."
+msgstr "더 쉽게 알아보지만, 당신과 많이 닮은 사람도 알아볼 수 있습니다."
 
 #: src/lib/menu.sh:310
 msgid "The default. Right for most people."
-msgstr "Der Standard. Passt für die meisten."
+msgstr "기본값입니다. 대부분의 사람에게 알맞습니다."
 
 #: src/lib/menu.sh:311
-msgid ""
-"Your eyes have to be open and on the screen. So it does not unlock while you "
-"look away or sleep."
-msgstr ""
-"Deine Augen müssen offen sein und auf den Bildschirm schauen. So entsperrt "
-"es nicht, wenn du wegschaust oder schläfst."
+msgid "Your eyes have to be open and on the screen. So it does not unlock while you look away or sleep."
+msgstr "눈을 뜨고 화면을 보고 있어야 합니다. 그래서 다른 곳을 보거나 자는 동안에는 풀리지 않습니다."
 
 #: src/lib/menu.sh:312
-msgid ""
-"Automatic takes the first normal camera. After a change, set up your face "
-"again. An infrared camera needs its light on (linux-enable-ir-emitter)."
-msgstr ""
-"Automatisch nimmt die erste normale Kamera. Nach einem Wechsel dein Gesicht "
-"neu einrichten. Eine Infrarot-Kamera braucht ihr Licht (linux-enable-ir-"
-"emitter)."
+msgid "Automatic takes the first normal camera. After a change, set up your face again. An infrared camera needs its light on (linux-enable-ir-emitter)."
+msgstr "자동은 첫 번째 일반 카메라를 사용합니다. 바꾼 뒤에는 얼굴을 다시 등록하세요. 적외선 카메라는 조명을 켜야 합니다 (linux-enable-ir-emitter)."
 
 #: src/lib/menu.sh:313
 msgid "How long the camera looks for your face before it gives up."
-msgstr "Wie lange die Kamera nach deinem Gesicht sucht, bevor sie aufgibt."
+msgstr "카메라가 포기하기 전까지 얼굴을 찾는 시간입니다."
 
 #: src/lib/menu.sh:314
-msgid ""
-"After a sure match it keeps how you look now. So a new haircut or glasses "
-"need no new setup."
-msgstr ""
-"Nach einem sicheren Treffer merkt es sich, wie du gerade aussiehst. So musst "
-"du nach neuer Frisur oder Brille nichts neu einrichten."
+msgid "After a sure match it keeps how you look now. So a new haircut or glasses need no new setup."
+msgstr "확실히 일치하면 지금 모습을 기억합니다. 그래서 머리 모양이 바뀌거나 안경을 써도 다시 등록할 필요가 없습니다."
 
 #: src/lib/menu.sh:315
-msgid ""
-"No scan while the laptop is closed, for example at a desk with an external "
-"screen."
-msgstr ""
-"Kein Scan bei zugeklapptem Laptop, zum Beispiel am Schreibtisch mit externem "
-"Bildschirm."
+msgid "No scan while the laptop is closed, for example at a desk with an external screen."
+msgstr "노트북을 덮었을 때는 스캔하지 않습니다. 예를 들어 외부 모니터를 연결해 책상에서 쓸 때입니다."
 
 #: src/lib/menu.sh:316
 msgid "The bubble at the top of the screen shows what the camera is doing."
-msgstr "Die Bubble oben am Bildschirm zeigt, was die Kamera gerade macht."
+msgstr "화면 위쪽의 버블이 카메라가 하는 일을 보여 줍니다."
 
 #: src/lib/menu.sh:317
 msgid "A small pill with a lock that opens."
-msgstr "Eine kleine Pille mit einem Schloss, das aufgeht."
+msgstr "자물쇠가 열리는 작은 알약입니다."
 
 #: src/lib/menu.sh:318
 msgid "An island with a face that looks around, then rings and a tick."
-msgstr ""
-"Eine Insel mit einem Gesicht, das sich umschaut, danach Ringe und ein Haken."
+msgstr "주위를 둘러보는 얼굴이 있는 아일랜드, 그다음 링과 체크 표시입니다."
 
 #: src/lib/menu.sh:319
 msgid "How fast the bubble moves."
-msgstr "Wie schnell sich die Bubble bewegt."
+msgstr "버블이 움직이는 속도입니다."
 
 #: src/lib/menu.sh:320
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
-msgstr ""
-"Zeigt die Bubble auch, wenn sudo oder eine Admin-Abfrage dein Gesicht scannt."
+msgstr "sudo나 관리자 인증 창이 얼굴을 스캔할 때도 버블을 보여 줍니다."
 
 #: src/lib/menu.sh:405
 #, sh-printf-format
 msgid "automatic (%s)"
-msgstr "automatisch (%s)"
+msgstr "자동 (%s)"
 
 #: src/lib/menu.sh:415
 msgid "(infrared)"
-msgstr "(Infrarot)"
+msgstr "(적외선)"
 
 #: src/lib/menu.sh:419
 msgid "(not connected)"
-msgstr "(nicht angeschlossen)"
+msgstr "(연결 안 됨)"
 
 #: src/lib/menu.sh:494 src/lib/menu.sh:680
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "설정"
 
 #: src/lib/menu.sh:495
 msgid "↑↓ select   ←→ or Space: change   q: back"
-msgstr "↑↓ auswählen   ←→ oder Leertaste: ändern   q: zurück"
+msgstr "↑↓ 선택   ←→ 또는 스페이스: 변경   q: 뒤로"
 
 #: src/lib/menu.sh:496
 msgid "for all users, asks for your password"
-msgstr "für alle Nutzer, fragt nach deinem Passwort"
+msgstr "모든 사용자에게 적용, 비밀번호 필요"
 
 #. TRANSLATORS: keep the letters, they are the keys.
 #: src/lib/menu.sh:592
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
-msgstr ""
-"Hoch/Runter: wählen, Leertaste: an/aus, r: umbenennen, d: löschen, a: "
-"hinzufügen, q: zurück"
+msgstr "위/아래: 선택, 스페이스: 켜기/끄기, r: 이름 바꾸기, d: 삭제, a: 추가, q: 뒤로"
 
 #: src/lib/menu.sh:593
 msgid "No face is set up yet. Press a to add one."
-msgstr "Es ist noch kein Gesicht eingerichtet. Drück a, um eins hinzuzufügen."
+msgstr "아직 등록된 얼굴이 없습니다. a를 눌러 추가하세요."
 
 #: src/lib/menu.sh:639
 msgid "New name:"
-msgstr "Neuer Name:"
+msgstr "새 이름:"
 
 #: src/lib/menu.sh:646
 #, sh-printf-format
 msgid "Delete \"%s\"?"
-msgstr "„%s“ löschen?"
+msgstr "\"%s\" 항목을 삭제할까요?"
 
 #: src/lib/menu.sh:677
 msgid "Turn face unlock on or off"
-msgstr "Gesichtsentsperrung ein- oder ausschalten"
+msgstr "얼굴 잠금 해제 켜기/끄기"
 
 #: src/lib/menu.sh:681
 msgid "Try it"
-msgstr "Ausprobieren"
+msgstr "사용해 보기"
 
 #: src/lib/menu.sh:682
 msgid "Quit"
-msgstr "Beenden"
+msgstr "끝내기"
 
 #: src/lib/pam.sh:132
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
-msgstr "Das PAM-Modul ist nicht unter %s installiert."
+msgstr "PAM 모듈이 다음 위치에 설치되어 있지 않습니다: %s"
 
 #: src/lib/pam.sh:140
 #, sh-printf-format
 msgid "There is no PAM configuration for %s on this system."
-msgstr "Auf diesem System gibt es keine PAM-Konfiguration für %s."
+msgstr "이 시스템에는 %s용 PAM 설정이 없습니다."
 
 #: src/lib/system.sh:47
 msgid "This needs root, and neither sudo, run0 nor doas is installed."
-msgstr ""
-"Dafür braucht es root, aber weder sudo noch run0 noch doas ist installiert."
+msgstr "root 권한이 필요하지만 sudo, run0, doas 중 아무것도 설치되어 있지 않습니다."
 
 #: src/lib/system.sh:56
 msgid "This command has to run as root."
-msgstr "Dieser Befehl muss als root laufen."
+msgstr "이 명령은 root로 실행해야 합니다."
 
 #: src/lib/system.sh:64
 #, sh-printf-format
 msgid "Not a valid setting: %s=%s"
-msgstr "Keine gültige Einstellung: %s=%s"
+msgstr "올바르지 않은 설정: %s=%s"
 
 #: src/lib/system.sh:75
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
-msgstr "Dafür kann es nicht verwendet werden: %s"
+msgstr "이 서비스에는 사용할 수 없습니다: %s"
 
 #: src/lib/menu.sh
 msgid "Unlock with your face"
-msgstr "Mit dem Gesicht entsperren"
+msgstr "얼굴로 잠금 해제"
 
 #: src/lib/menu.sh
 msgid "Scan when you come back"
-msgstr "Scannen, wenn du zurückkommst"
+msgstr "돌아오면 스캔"
 
 #: src/lib/menu.sh
 msgid "Scan right after locking"
-msgstr "Gleich nach dem Sperren scannen"
+msgstr "잠근 직후 스캔"
 
 #: src/lib/menu.sh
 msgid "Password prompts"
-msgstr "Passwort-Abfragen"
+msgstr "비밀번호 입력 창"
 
 #: src/lib/menu.sh
 msgid "sudo in a terminal"
-msgstr "sudo im Terminal"
+msgstr "터미널의 sudo"
 
 #: src/lib/menu.sh
 msgid "Recognition"
-msgstr "Erkennung"
+msgstr "인식"
 
 #: src/lib/menu.sh
 msgid "How closely the face has to match"
-msgstr "Wie genau das Gesicht passen muss"
+msgstr "얼굴이 얼마나 일치해야 하는지"
 
 #: src/lib/menu.sh
 msgid "Only when you look at the screen"
-msgstr "Nur wenn du auf den Bildschirm schaust"
+msgstr "화면을 볼 때만"
 
 #: src/lib/menu.sh
 msgid "How long a scan lasts"
-msgstr "Wie lange ein Scan dauert"
+msgstr "스캔 시간"
 
 #: src/lib/menu.sh
 msgid "Learn from every unlock"
-msgstr "Bei jeder Entsperrung dazulernen"
+msgstr "잠금 해제할 때마다 학습"
 
 #: src/lib/menu.sh
 msgid "Not when the lid is closed"
-msgstr "Nicht bei zugeklapptem Laptop"
+msgstr "덮개가 닫혀 있으면 사용 안 함"
 
 #: src/lib/menu.sh
 msgid "Bubble"
-msgstr "Bubble"
+msgstr "버블"
 
 #: src/lib/menu.sh
 msgid "Show the bubble"
-msgstr "Bubble anzeigen"
+msgstr "버블 보이기"
 
 #: src/lib/menu.sh
 msgid "Style"
-msgstr "Stil"
+msgstr "스타일"
 
 #: src/lib/menu.sh
 msgid "Animation speed"
-msgstr "Animationsgeschwindigkeit"
+msgstr "애니메이션 속도"
 
 #: src/lib/menu.sh
 msgid "Also for sudo and admin prompts"
-msgstr "Auch bei sudo und Admin-Abfragen"
+msgstr "sudo와 관리자 인증 창에서도"
 
 #: src/agent/bubblecontroller.cpp:98
 msgid "Blink once"
-msgstr "Einmal blinzeln"
+msgstr "한 번 깜빡이세요"
 
 #: src/agent/bubblecontroller.cpp:100
 msgid "Look at the screen"
-msgstr "Auf den Bildschirm schauen"
+msgstr "화면을 보세요"
 
 #: src/agent/bubblecontroller.cpp:102
 msgid "Move closer"
-msgstr "Näher kommen"
+msgstr "더 가까이"
 
 #: src/agent/bubblecontroller.cpp:104
 msgid "Too dark"
-msgstr "Zu dunkel"
+msgstr "너무 어두움"
 
 #: src/agent/bubblecontroller.cpp:124
 msgid "Use your password"
-msgstr "Nutze dein Passwort"
+msgstr "비밀번호를 사용하세요"
 
 #: src/agent/bubblecontroller.cpp:130
 msgid "Not recognized"
-msgstr "Nicht erkannt"
+msgstr "인식되지 않음"
 
 #: src/agent/bubblecontroller.cpp:132
 msgid "Try again and blink"
-msgstr "Nochmal, und blinzeln"
+msgstr "깜빡이며 다시 시도"
 
 #: src/agent/bubblecontroller.cpp:134
 msgid "Camera unavailable"
-msgstr "Kamera nicht verfügbar"
+msgstr "카메라 사용 불가"
 
 #: src/agent/enrollcontroller.cpp:68
 msgid "Bring your face into the circle."
-msgstr "Bring dein Gesicht in den Kreis."
+msgstr "얼굴을 원 안에 맞추세요."
 
 #: src/agent/enrollcontroller.cpp:70
 msgid "Only one face, please."
-msgstr "Bitte nur ein Gesicht."
+msgstr "얼굴은 하나만 보여 주세요."
 
 #: src/agent/enrollcontroller.cpp:72
 msgid "Move a little closer."
-msgstr "Komm etwas näher."
+msgstr "조금 더 가까이 오세요."
 
 #: src/agent/enrollcontroller.cpp:74
 msgid "It is too dark. Turn on a light."
-msgstr "Es ist zu dunkel. Mach ein Licht an."
+msgstr "너무 어둡습니다. 불을 켜세요."
 
 #: src/agent/enrollcontroller.cpp:76
 msgid "Too bright. Turn away from the light."
-msgstr "Zu hell. Dreh dich vom Licht weg."
+msgstr "너무 밝습니다. 빛을 등지세요."
 
 #: src/agent/enrollcontroller.cpp:78
 msgid "Hold still for a moment."
-msgstr "Halte kurz still."
+msgstr "잠시 가만히 계세요."
 
 #: src/agent/enrollcontroller.cpp:80
 msgid "Look straight at the camera."
-msgstr "Schau direkt in die Kamera."
+msgstr "카메라를 똑바로 보세요."
 
 #: src/agent/enrollcontroller.cpp:82
 msgid "Move your head slowly to complete the circle."
-msgstr "Beweg den Kopf langsam, bis der Kreis voll ist."
+msgstr "원이 채워지도록 고개를 천천히 움직이세요."
 
 #: src/agent/enrollcontroller.cpp:99 src/agent/enrollcontroller.cpp:132
 msgid "Starting the camera…"
-msgstr "Kamera wird gestartet …"
+msgstr "카메라를 시작하는 중…"
 
 #: src/agent/enrollcontroller.cpp:129
 msgid "Confirm with your password to add a face."
-msgstr "Bestätige mit deinem Passwort, um ein Gesicht hinzuzufügen."
+msgstr "얼굴을 추가하려면 비밀번호로 확인하세요."
 
 #: src/agent/enrollcontroller.cpp:184
 msgid "Face Unlock is set up."
-msgstr "Die Gesichtsentsperrung ist eingerichtet."
+msgstr "얼굴 잠금 해제가 설정되었습니다."
 
 #: src/agent/enrollcontroller.cpp:193
 msgid "A face can only be added with your password."
-msgstr "Ein Gesicht kann nur mit deinem Passwort hinzugefügt werden."
+msgstr "얼굴은 비밀번호가 있어야만 추가할 수 있습니다."
 
 #: src/agent/enrollcontroller.cpp:195
 msgid "The camera could not be used: %1"
-msgstr "Die Kamera konnte nicht benutzt werden: %1"
+msgstr "카메라를 사용할 수 없었습니다: %1"
 
 #: src/agent/enrollcontroller.cpp:197
 msgid "The face recognition models are missing. Reinstall the package."
-msgstr ""
-"Die Modelle für die Gesichtserkennung fehlen. Installiere das Paket neu."
+msgstr "얼굴 인식 모델이 없습니다. 패키지를 다시 설치하세요."
 
 #: src/agent/enrollcontroller.cpp:199
 msgid "That took too long. Try again, in good light."
-msgstr "Das hat zu lange gedauert. Versuch es nochmal, bei gutem Licht."
+msgstr "시간이 너무 오래 걸렸습니다. 밝은 곳에서 다시 시도하세요."
 
 #: src/agent/enrollcontroller.cpp:201
 msgid "The face unlock service is not running. Turn face unlock on first."
-msgstr ""
-"Der Dienst für die Gesichtsentsperrung läuft nicht. Schalte die "
-"Gesichtsentsperrung zuerst ein."
+msgstr "얼굴 잠금 해제 서비스가 실행 중이 아닙니다. 먼저 얼굴 잠금 해제를 켜세요."
 
 #: src/agent/enrollcontroller.cpp:203
 msgid "The camera is busy with another scan. Try again in a moment."
-msgstr ""
-"Die Kamera ist gerade mit einem anderen Scan beschäftigt. Versuch es gleich "
-"nochmal."
+msgstr "카메라가 다른 스캔으로 사용 중입니다. 잠시 후 다시 시도하세요."
 
 #: src/agent/enrollcontroller.cpp:205
 msgid "The face could not be added (%1)."
-msgstr "Das Gesicht konnte nicht hinzugefügt werden (%1)."
+msgstr "얼굴을 추가하지 못했습니다 (%1)."
 
 #: src/agent/main.cpp:85
 msgid "Face unlock for KDE Plasma"
-msgstr "Gesichtsentsperrung für KDE Plasma"
+msgstr "KDE Plasma용 얼굴 잠금 해제"
 
 #: src/agent/main.cpp:88
 msgid "Set up a face."
-msgstr "Ein Gesicht einrichten."
+msgstr "얼굴을 등록합니다."
 
 #: src/agent/main.cpp:89
 msgid "What to call the new face."
-msgstr "Wie das neue Gesicht heißen soll."
+msgstr "새 얼굴의 이름."
 
 #: src/agent/main.cpp:90
 msgid "Play the bubble's animations once."
-msgstr "Die Animationen der Bubble einmal abspielen."
+msgstr "버블 애니메이션을 한 번 재생합니다."
 
 #: src/agent/main.cpp:92
 msgid "Bubble style for the demo: full or minimal."
-msgstr "Bubble-Stil für die Demo: full oder minimal."
+msgstr "데모용 버블 스타일: full 또는 minimal."
 
 #: src/pam/pam_plasma_face_unlock.c:311
 msgid "Look at the camera to unlock."
-msgstr "Schau zum Entsperren in die Kamera."
+msgstr "잠금을 해제하려면 카메라를 보세요."
 
 #: src/pam/pam_plasma_face_unlock.c:314
 msgid "Blink, or turn your head a little."
-msgstr "Blinzle oder dreh den Kopf ein wenig."
+msgstr "눈을 깜빡이거나 고개를 살짝 돌리세요."
 
 #: src/pam/pam_plasma_face_unlock.c:330
 msgid "Face unlock is paused after too many tries. Use your password."
-msgstr ""
-"Die Gesichtsentsperrung ist nach zu vielen Versuchen pausiert. Nutze dein "
-"Passwort."
+msgstr "시도가 너무 많아 얼굴 잠금 해제가 일시 중지되었습니다. 비밀번호를 사용하세요."
 
 #: src/pam/pam_plasma_face_unlock.c:334
 msgid "Face not recognised."
-msgstr "Gesicht nicht erkannt."
+msgstr "얼굴을 인식하지 못했습니다."
 
 #: src/agent/qml/Enroll.qml:22
 msgid "Set up Face Unlock"
-msgstr "Gesichtsentsperrung einrichten"
+msgstr "얼굴 잠금 해제 설정"
 
 #: src/agent/qml/Enroll.qml:105
 msgid "Face Unlock"
-msgstr "Gesichtsentsperrung"
+msgstr "얼굴 잠금 해제"
 
 #: src/agent/qml/Enroll.qml:106
 msgid "Confirm it is you"
-msgstr "Bestätige, dass du es bist"
+msgstr "본인 확인"
 
 #: src/agent/qml/Enroll.qml:107
 msgid "You are all set"
-msgstr "Alles bereit"
+msgstr "모두 준비되었습니다"
 
 #: src/agent/qml/Enroll.qml:108
 msgid "Setup did not finish"
-msgstr "Die Einrichtung wurde nicht abgeschlossen"
+msgstr "설정을 마치지 못했습니다"
 
 #: src/agent/qml/Enroll.qml:121
-msgid ""
-"Look at the camera, then move your head slowly in a circle. Your face is "
-"turned into numbers on this computer and never stored as a picture."
-msgstr ""
-"Schau in die Kamera und beweg dann den Kopf langsam im Kreis. Dein Gesicht "
-"wird auf diesem Computer in Zahlen umgewandelt und nie als Bild gespeichert."
+msgid "Look at the camera, then move your head slowly in a circle. Your face is turned into numbers on this computer and never stored as a picture."
+msgstr "카메라를 본 다음 고개를 천천히 돌려 원을 그리세요. 얼굴은 이 컴퓨터에서 숫자로 바뀌며 사진으로 저장되지 않습니다."
 
 #: src/agent/qml/Enroll.qml:123
-msgid ""
-"Lock the screen and look at it to try it out. You can add a second look, "
-"with glasses for example, from the menu."
-msgstr ""
-"Sperre den Bildschirm und schau ihn an, um es auszuprobieren. Einen zweiten "
-"Look, zum Beispiel mit Brille, kannst du im Menü hinzufügen."
+msgid "Lock the screen and look at it to try it out. You can add a second look, with glasses for example, from the menu."
+msgstr "화면을 잠그고 화면을 바라보며 사용해 보세요. 안경을 쓴 모습 같은 두 번째 모습을 메뉴에서 추가할 수 있습니다."
 
 #: src/agent/qml/Enroll.qml:157
 msgid "Name (optional)"
-msgstr "Name (optional)"
+msgstr "이름 (선택)"
 
 #: src/agent/qml/Enroll.qml:172
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr "취소"
 
 #: src/agent/qml/Enroll.qml:178
 msgid "Finish now"
-msgstr "Jetzt abschließen"
+msgstr "지금 완료"
 
 #: src/agent/qml/Enroll.qml:183
 msgid "Try again"
-msgstr "Nochmal versuchen"
+msgstr "다시 시도"
 
 #: src/agent/qml/Enroll.qml:183
 msgid "Get started"
-msgstr "Los geht's"
+msgstr "시작하기"
 
 #: src/agent/qml/Enroll.qml:188
 msgid "Done"
-msgstr "Fertig"
+msgstr "완료"

@@ -88,4 +88,4 @@ Never test against the real setup: enrolling and the PAM files belong to the use
 - A development daemon needs no root: `plasma-face-unlockd --socket $XDG_RUNTIME_DIR/pfu/socket
   --state-dir DIR --config FILE --models DIR`. It skips polkit when it does not run as root. Point
   the other parts at it with `PFU_SOCKET`.
-- `make check` after every change. New strings: `po/update-pot.sh`, then translate them in `po/de.po`.
+- `make check` after every change. New strings: `po/update-pot.sh`, then translate them in every `po/*.po`.
