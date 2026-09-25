@@ -45,12 +45,18 @@ Requires:       polkit
 Requires:       systemd
 Requires:       qt6-qtdeclarative
 Recommends:     /usr/bin/gettext
+# The old name.
+Obsoletes:      plasma-face-unlock < 2
+Provides:       plasma-face-unlock = %{version}-%{release}
 
 %description
 Look at the screen and it unlocks, the way a phone does. The lock screen, sudo
 in a terminal and the admin password prompts can take a face instead of a
 password, on KDE Plasma, GNOME, Hyprland and Niri. A bubble at the top of the
 screen shows the face being looked for, recognised or refused.
+
+This package was called plasma-face-unlock before. It takes over its faces and
+settings.
 
 A photo on a phone, a tablet or a glossy print is refused by its reflection and
 its straight edges. The strict photo check also wants a sign of life (a blink,
@@ -81,6 +87,10 @@ make install DESTDIR=%{buildroot} PREFIX=%{_prefix} VERSION=%{upstream_version} 
 
 %postun
 %systemd_postun face-unlockd.socket face-unlockd.service
+
+# After the old package is gone: its faces, settings and PAM lines.
+%posttrans
+%{_bindir}/face-unlock --root migrate || :
 
 %files -f %{name}.lang
 %license LICENSE

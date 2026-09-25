@@ -13,6 +13,7 @@
 #   --root pam-disable <service>
 #   --root socket-enable         start the daemon's socket, and at boot
 #   --root socket-disable
+#   --root migrate               move over from plasma-face-unlock, see migrate.sh
 
 FU_SELF="${FU_SELF:-$(readlink -f "${BASH_SOURCE[1]:-$0}")}"
 
@@ -84,6 +85,9 @@ fu_root_verb() {
 			;;
 		socket-disable)
 			systemctl disable --now "$FU_UNIT_SOCKET" > /dev/null 2>&1
+			;;
+		migrate)
+			fu_migrate_system
 			;;
 		*)
 			fu_bad "$(fu_msg "Unknown command: %s" "$verb")"

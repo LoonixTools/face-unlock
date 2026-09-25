@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-25 09:29+0200\n"
+"POT-Creation-Date: 2026-09-25 08:20+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Polish\n"
@@ -173,7 +173,7 @@ msgstr ""
 "Uruchom to jako swój użytkownik, nie jako root. Hasło zostanie zapytane, gdy "
 "będzie potrzebne."
 
-#: src/face-unlock:222 src/lib/system.sh:89
+#: src/face-unlock:226 src/lib/system.sh:93
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Nieznane polecenie: %s"
@@ -668,6 +668,12 @@ msgstr "Wypróbuj"
 msgid "Quit"
 msgstr "Zakończ"
 
+#: src/lib/migrate.sh:119
+msgid ""
+"Moving your faces and settings over from plasma-face-unlock. That needs your "
+"password."
+msgstr "Przenoszenie twarzy i ustawień z plasma-face-unlock. To wymaga hasła."
+
 #: src/lib/pam.sh:132
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
@@ -678,26 +684,26 @@ msgstr "Moduł PAM nie jest zainstalowany w %s."
 msgid "There is no PAM configuration for %s on this system."
 msgstr "Na tym systemie nie ma konfiguracji PAM dla %s."
 
-#: src/lib/system.sh:47
+#: src/lib/system.sh:48
 msgid "This needs root, and neither sudo, run0 nor doas is installed."
 msgstr ""
 "To wymaga roota, a nie jest zainstalowane ani sudo, ani run0, ani doas."
 
-#: src/lib/system.sh:56
+#: src/lib/system.sh:57
 msgid "This command has to run as root."
 msgstr "To polecenie musi działać jako root."
 
-#: src/lib/system.sh:64
+#: src/lib/system.sh:65
 #, sh-printf-format
 msgid "Not a valid setting: %s=%s"
 msgstr "Nieprawidłowe ustawienie: %s=%s"
 
-#: src/lib/system.sh:75
+#: src/lib/system.sh:76
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "Nie można tego użyć dla tej usługi: %s"
 
-#: src/lib/system.sh:131
+#: src/lib/system.sh:135
 #, sh-printf-format
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this line to %s:"

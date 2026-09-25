@@ -23,12 +23,12 @@ FU_SELF="$(readlink -f "${BASH_SOURCE[0]}")"
 # An environment that points the libraries somewhere else is ignored then.
 if [[ $EUID -eq 0 ]]; then
 	unset FU_LIBDIR FU_LIBEXECDIR FU_LOCALEDIR FU_PAMDIR FU_CTL FU_AGENT FU_PAM_MODULE FU_SYSCONFIG \
-		FU_PAM_ETC_DIR FU_PAM_VENDOR_DIRS
+		FU_PAM_ETC_DIR FU_PAM_VENDOR_DIRS FU_OLD_SYSDIR FU_OLD_STATEDIR FU_STATEDIR FU_SYSTEMD_ETC
 fi
 
 FU_LIBDIR="${FU_LIBDIR:-@LIBDIR@}"
 
-for _mod in common config daemon pam system menu; do
+for _mod in common config daemon pam system migrate menu; do
 	# shellcheck source=/dev/null
 	if ! source "$FU_LIBDIR/$_mod.sh"; then
 		printf 'face-unlock: cannot load %s/%s.sh\n' "$FU_LIBDIR" "$_mod" >&2
@@ -204,6 +204,10 @@ main() {
 		fu_bad "$(fu_msg "Run this as your own user, not as root. It asks for your password when it needs to.")"
 		exit 2
 	fi
+
+	case "$cmd" in
+		''|enable|disable|setup|add|enroll|faces|list|remove|delete|test|try) fu_migrate ;;
+	esac
 
 	case "$cmd" in
 		enable)        fu_do_enable ;;

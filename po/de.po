@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-25 09:29+0200\n"
+"POT-Creation-Date: 2026-09-25 08:20+0200\n"
 "PO-Revision-Date: 2026-09-23 22:32+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: German\n"
@@ -173,7 +173,7 @@ msgstr ""
 "Starte das als dein eigener Benutzer, nicht als root. Wenn nötig, wird nach "
 "deinem Passwort gefragt."
 
-#: src/face-unlock:222 src/lib/system.sh:89
+#: src/face-unlock:226 src/lib/system.sh:93
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Unbekannter Befehl: %s"
@@ -669,6 +669,14 @@ msgstr "Ausprobieren"
 msgid "Quit"
 msgstr "Beenden"
 
+#: src/lib/migrate.sh:119
+msgid ""
+"Moving your faces and settings over from plasma-face-unlock. That needs your "
+"password."
+msgstr ""
+"Deine Gesichter und Einstellungen werden von plasma-face-unlock übernommen. "
+"Dafür ist dein Passwort nötig."
+
 #: src/lib/pam.sh:132
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
@@ -679,26 +687,26 @@ msgstr "Das PAM-Modul ist nicht unter %s installiert."
 msgid "There is no PAM configuration for %s on this system."
 msgstr "Auf diesem System gibt es keine PAM-Konfiguration für %s."
 
-#: src/lib/system.sh:47
+#: src/lib/system.sh:48
 msgid "This needs root, and neither sudo, run0 nor doas is installed."
 msgstr ""
 "Dafür braucht es root, aber weder sudo noch run0 noch doas ist installiert."
 
-#: src/lib/system.sh:56
+#: src/lib/system.sh:57
 msgid "This command has to run as root."
 msgstr "Dieser Befehl muss als root laufen."
 
-#: src/lib/system.sh:64
+#: src/lib/system.sh:65
 #, sh-printf-format
 msgid "Not a valid setting: %s=%s"
 msgstr "Keine gültige Einstellung: %s=%s"
 
-#: src/lib/system.sh:75
+#: src/lib/system.sh:76
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "Dafür kann es nicht verwendet werden: %s"
 
-#: src/lib/system.sh:131
+#: src/lib/system.sh:135
 #, sh-printf-format
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this line to %s:"

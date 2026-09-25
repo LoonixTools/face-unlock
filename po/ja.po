@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-25 09:29+0200\n"
+"POT-Creation-Date: 2026-09-25 08:20+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Japanese\n"
@@ -167,7 +167,7 @@ msgstr ""
 "root ではなく、自分のユーザーで実行してください。必要なときはパスワードを尋ね"
 "ます。"
 
-#: src/face-unlock:222 src/lib/system.sh:89
+#: src/face-unlock:226 src/lib/system.sh:93
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "不明なコマンド: %s"
@@ -657,6 +657,12 @@ msgstr "試す"
 msgid "Quit"
 msgstr "終了"
 
+#: src/lib/migrate.sh:119
+msgid ""
+"Moving your faces and settings over from plasma-face-unlock. That needs your "
+"password."
+msgstr "plasma-face-unlock から顔と設定を引き継ぎます。パスワードが必要です。"
+
 #: src/lib/pam.sh:132
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
@@ -667,26 +673,26 @@ msgstr "PAM モジュールが %s にインストールされていません。"
 msgid "There is no PAM configuration for %s on this system."
 msgstr "このシステムには %s の PAM 設定がありません。"
 
-#: src/lib/system.sh:47
+#: src/lib/system.sh:48
 msgid "This needs root, and neither sudo, run0 nor doas is installed."
 msgstr ""
 "root 権限が必要ですが、sudo も run0 も doas もインストールされていません。"
 
-#: src/lib/system.sh:56
+#: src/lib/system.sh:57
 msgid "This command has to run as root."
 msgstr "このコマンドは root で実行する必要があります。"
 
-#: src/lib/system.sh:64
+#: src/lib/system.sh:65
 #, sh-printf-format
 msgid "Not a valid setting: %s=%s"
 msgstr "無効な設定です: %s=%s"
 
-#: src/lib/system.sh:75
+#: src/lib/system.sh:76
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "このサービスには使えません: %s"
 
-#: src/lib/system.sh:131
+#: src/lib/system.sh:135
 #, sh-printf-format
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this line to %s:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-25 09:29+0200\n"
+"POT-Creation-Date: 2026-09-25 08:20+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: French\n"
@@ -176,7 +176,7 @@ msgstr ""
 "Lancez ceci avec votre propre utilisateur, pas en root. Le mot de passe est "
 "demandé quand il le faut."
 
-#: src/face-unlock:222 src/lib/system.sh:89
+#: src/face-unlock:226 src/lib/system.sh:93
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Commande inconnue : %s"
@@ -679,6 +679,14 @@ msgstr "Essayer"
 msgid "Quit"
 msgstr "Quitter"
 
+#: src/lib/migrate.sh:119
+msgid ""
+"Moving your faces and settings over from plasma-face-unlock. That needs your "
+"password."
+msgstr ""
+"Reprise de vos visages et réglages depuis plasma-face-unlock. Cela demande "
+"votre mot de passe."
+
 #: src/lib/pam.sh:132
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
@@ -689,26 +697,26 @@ msgstr "Le module PAM n'est pas installé dans %s."
 msgid "There is no PAM configuration for %s on this system."
 msgstr "Il n'y a pas de configuration PAM pour %s sur ce système."
 
-#: src/lib/system.sh:47
+#: src/lib/system.sh:48
 msgid "This needs root, and neither sudo, run0 nor doas is installed."
 msgstr ""
 "Il faut les droits root, mais ni sudo, ni run0, ni doas n'est installé."
 
-#: src/lib/system.sh:56
+#: src/lib/system.sh:57
 msgid "This command has to run as root."
 msgstr "Cette commande doit être lancée en root."
 
-#: src/lib/system.sh:64
+#: src/lib/system.sh:65
 #, sh-printf-format
 msgid "Not a valid setting: %s=%s"
 msgstr "Réglage non valide : %s=%s"
 
-#: src/lib/system.sh:75
+#: src/lib/system.sh:76
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "Ne peut pas servir pour ce service : %s"
 
-#: src/lib/system.sh:131
+#: src/lib/system.sh:135
 #, sh-printf-format
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this line to %s:"

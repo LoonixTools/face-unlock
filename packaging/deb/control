@@ -6,12 +6,17 @@ Architecture: @ARCH@
 Maintainer: Felitendo <felitendoyt@gmail.com>
 Depends: @DEPENDS@, bash (>= 4.2), coreutils, grep, sed, mawk | gawk, systemd, polkitd | policykit-1, qml6-module-qtquick, qml6-module-qtquick-shapes, qml6-module-qtquick-effects, qml6-module-qtquick-window, qml6-module-qtqml-workerscript
 Recommends: gettext-base
+Replaces: plasma-face-unlock
+Conflicts: plasma-face-unlock
 Homepage: https://github.com/LoonixTools/face-unlock
 Description: face unlock for Plasma, GNOME, Hyprland and Niri
  Look at the screen and it unlocks, the way a phone does. The lock screen,
  sudo in a terminal and the admin password prompts can take a face instead
  of a password, on KDE Plasma, GNOME, Hyprland and Niri. A bubble at the top
  of the screen shows the face being looked for, recognised or refused.
+ .
+ This package was called plasma-face-unlock before. It takes over its faces
+ and settings.
  .
  A photo on a phone, a tablet or a glossy print is refused by its
  reflection and its straight edges. The strict photo check also wants a sign

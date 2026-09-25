@@ -10,6 +10,8 @@
 # When the pam_harness from the build is there, the files that come out are
 # also run through real PAM, with the module missing on purpose: the dash in
 # front of the line has to make PAM skip it without a word.
+#
+# Last, moving over from plasma-face-unlock: its PAM lines, settings and faces.
 
 # check() runs its second argument with eval, so that is quoted on purpose.
 # shellcheck disable=SC2016
@@ -29,6 +31,10 @@ source "$FU_LIBDIR/common.sh"
 source "$FU_LIBDIR/config.sh"
 # shellcheck source=/dev/null
 source "$FU_LIBDIR/pam.sh"
+# shellcheck source=/dev/null
+source "$FU_LIBDIR/system.sh"
+# shellcheck source=/dev/null
+source "$FU_LIBDIR/migrate.sh"
 
 FU_PAM_MODULE="$tmp/lib/pam_face_unlock.so"
 mkdir -p "$tmp/lib" "$tmp/etc" "$tmp/vendor"
@@ -116,6 +122,73 @@ check "vendor polkit-1: turning it off removes our file" '[[ ! -e $tmp/etc/polki
 
 # No configuration at all.
 check "an unknown service is refused" '! fu_pam_enable nosuchservice 2>/dev/null'
+
+# ---------------------------------------------------------------------------
+# Moving over from plasma-face-unlock
+# ---------------------------------------------------------------------------
+
+FU_OLD_SYSDIR="$tmp/old-etc"
+FU_OLD_STATEDIR="$tmp/old-state"
+FU_STATEDIR="$tmp/state"
+FU_SYSCONFIG="$tmp/new-etc/config"
+FU_SYSTEMD_ETC="$tmp/systemd"
+old_module=/usr/lib/security/pam_plasma_face_unlock.so
+
+# What plasma-face-unlock wrote is what this writes, under the old name.
+make_old() {
+	sed -i -e "s|^$FU_PAM_MARK\$|$FU_OLD_PAM_MARK|" -e "s|$FU_PAM_WRAPPER_MARK|$FU_OLD_PAM_WRAPPER_MARK|" \
+		-e "s|$FU_PAM_MODULE|$old_module|" "$1"
+}
+
+for layout in arch_sudo debian_sudo fedora_sudo; do
+	printf '%s\n' "${!layout}" > "$tmp/etc/sudo"
+	cp "$tmp/etc/sudo" "$tmp/original"
+	fu_pam_enable sudo
+	make_old "$tmp/etc/sudo"
+	check "$layout: the old line is found" '_fu_pam_has_old sudo && ! fu_pam_enabled sudo && fu_migrate_pending'
+
+	fu_migrate_system
+	check "$layout: moved over to the new line" 'fu_pam_enabled sudo && ! _fu_pam_has_old sudo'
+	check "$layout: the old comment is gone" '! grep -qF "$FU_OLD_PAM_MARK" "$tmp/etc/sudo"'
+	check "$layout: nothing is left over" '! fu_migrate_pending'
+
+	fu_pam_disable sudo
+	check "$layout: off again gives back the file from before" 'cmp -s "$tmp/etc/sudo" "$tmp/original"'
+	rm -f "$tmp/etc/sudo"
+done
+
+fu_pam_enable polkit-1
+make_old "$tmp/etc/polkit-1"
+fu_migrate_system
+check "vendor polkit-1: moved over to a file of the new name" 'grep -qF "$FU_PAM_WRAPPER_MARK" "$tmp/etc/polkit-1" && ! grep -q plasma "$tmp/etc/polkit-1"'
+fu_pam_disable polkit-1
+
+mkdir -p "$FU_OLD_SYSDIR" "$FU_OLD_STATEDIR/users"
+echo 'Liveness=heavy' > "$FU_OLD_SYSDIR/config"
+echo '{}' > "$FU_OLD_STATEDIR/users/1000.json"
+check "old settings and faces are found" 'fu_migrate_pending'
+fu_migrate_system
+check "the system settings moved" '[[ $(cat "$FU_SYSCONFIG") == Liveness=heavy && ! -e $FU_OLD_SYSDIR ]]'
+check "the faces moved" '[[ $(cat "$FU_STATEDIR/users/1000.json") == "{}" && ! -e $FU_OLD_STATEDIR ]]'
+
+mkdir -p "$FU_OLD_STATEDIR/users"
+echo old > "$FU_OLD_STATEDIR/users/1000.json"
+fu_migrate_system
+check "faces set up under the new name win" '[[ $(cat "$FU_STATEDIR/users/1000.json") == "{}" && ! -e $FU_OLD_STATEDIR ]]'
+check "nothing is left over at the end" '! fu_migrate_pending'
+
+# This user's side, with systemctl only written down.
+# shellcheck disable=SC2329  # called by fu_migrate_user
+systemctl() { printf '%s\n' "$*" >> "$tmp/systemctl"; }
+FU_XDG_CONFIG="$tmp/home-config"
+FU_CONFDIR="$FU_XDG_CONFIG/face-unlock"
+mkdir -p "$FU_XDG_CONFIG/plasma-face-unlock" "$FU_XDG_CONFIG/systemd/user/graphical-session.target.wants"
+echo 'Enabled=yes' > "$FU_XDG_CONFIG/plasma-face-unlock/config"
+ln -s /nowhere "$FU_XDG_CONFIG/systemd/user/graphical-session.target.wants/plasma-face-unlock-agent.service"
+XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$tmp}" fu_migrate_user
+check "user settings moved" '[[ $(cat "$FU_CONFDIR/config") == Enabled=yes && ! -e $FU_XDG_CONFIG/plasma-face-unlock ]]'
+check "the old agent is off and the new one on" 'grep -q "disable --now plasma-face-unlock-agent" "$tmp/systemctl" && grep -q "enable --now face-unlock-agent" "$tmp/systemctl"'
+unset -f systemctl
 
 # ---------------------------------------------------------------------------
 # Through real PAM

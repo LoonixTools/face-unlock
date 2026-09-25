@@ -81,6 +81,16 @@ On Hyprland and Niri, admin prompts and setting up a face need a polkit agent
 (for example hyprpolkitagent). Hyprland without uwsm does not start the lock
 screen part by itself: the menu shows the line to add to `hyprland.conf`.
 
+<details>
+<summary>Coming from plasma-face-unlock?</summary>
+
+This is the same program with a new name. Your faces and settings move over
+on their own. On Debian, Ubuntu and Fedora the repository moved too: remove the
+old `plasma-face-unlock` repository file and add the new one above. On Arch,
+`yay -S face-unlock` replaces the old package.
+
+</details>
+
 ## How to use
 
 ```bash

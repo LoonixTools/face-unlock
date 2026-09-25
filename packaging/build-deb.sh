@@ -68,6 +68,16 @@ fi
 SH
 chmod 755 "$root/DEBIAN/prerm"
 
+# Faces, settings and PAM lines of plasma-face-unlock, the old name.
+cat > "$root/DEBIAN/postinst" <<'SH'
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+	face-unlock --root migrate || true
+fi
+SH
+chmod 755 "$root/DEBIAN/postinst"
+
 ( cd "$root" && find . -type f ! -path './DEBIAN/*' -printf '%P\0' \
 	| LC_ALL=C sort -z | xargs -0 md5sum > DEBIAN/md5sums )
 
