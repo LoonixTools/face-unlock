@@ -119,13 +119,15 @@ else
 endif
 
 # Syntax-check every shell file, and run shellcheck when it is available.
+# SC2034 is off: the files share their variables, and shellcheck looks at one
+# file at a time.
 check:
 	@set -e; for f in src/face-unlock $(LIBS) tests/*.sh; do \
 		bash -n "$$f" && echo "ok  $$f"; \
 	done
 	@if command -v shellcheck >/dev/null 2>&1; then \
-		shellcheck -x -e SC1090,SC1091 src/face-unlock $(LIBS) tests/*.sh; \
-		echo "ok  shellcheck"; \
+		shellcheck -x -e SC1090,SC1091,SC2034 src/face-unlock $(LIBS) tests/*.sh \
+			&& echo "ok  shellcheck"; \
 	else \
 		echo "shellcheck not found, skipped"; \
 	fi

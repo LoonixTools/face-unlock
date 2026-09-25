@@ -11,6 +11,9 @@
 # also run through real PAM, with the module missing on purpose: the dash in
 # front of the line has to make PAM skip it without a word.
 
+# check() runs its second argument with eval, so that is quoted on purpose.
+# shellcheck disable=SC2016
+
 set -uo pipefail
 
 here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"

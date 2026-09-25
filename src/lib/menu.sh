@@ -421,11 +421,11 @@ _fu_camera_label() {
 
 # _fu_setting_change <scope> <Key> <type> <current> <choices> <step>
 _fu_setting_change() {
-	local scope="$1" key="$2" type="$3" current="$4" choices="$5" step="$6" next
+	local scope="$1" key="$2" type="$3" current="$4" options="$5" step="$6" next
 
 	case "$type" in
 		bool)   if fu_is_true "$current"; then next=no; else next=yes; fi ;;
-		choice) next="$(_fu_next_choice "$current" "$choices" "$step")" ;;
+		choice) next="$(_fu_next_choice "$current" "$options" "$step")" ;;
 		camera) next="$(_fu_next_camera "$current" "$step")" ;;
 	esac
 

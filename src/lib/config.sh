@@ -65,6 +65,7 @@ fu_kv_set() {
 		{
 			printf '# %s\n' "$header"
 			printf '#\n'
+			# shellcheck disable=SC2016  # the backticks are text
 			printf '# Written by `%s`. Nothing here needs editing by hand:\n' "$FU_NAME"
 			printf '# every option is in the menu.\n'
 		} > "$file" || return 1
