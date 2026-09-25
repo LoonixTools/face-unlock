@@ -44,6 +44,9 @@ endif
 
 BUILDDIR     ?= build
 CMAKE        ?= cmake
+# One compiler per core. A bare --parallel lets make start them all at once,
+# and a few dozen Qt and OpenCV files at once can use up the memory.
+JOBS         ?= $(shell nproc 2>/dev/null || echo 2)
 CMAKE_FLAGS  ?=
 
 LINGUAS      := de es fr it ja ko nl pl pt_BR ru tr uk zh_CN
@@ -91,7 +94,7 @@ native:
 		-DFU_LOCALEDIR=$(LOCALEDIR) \
 		-DFU_PAMDIR=$(PAMDIR) \
 		$(CMAKE_FLAGS)
-	$(CMAKE) --build $(BUILDDIR) --parallel
+	$(CMAKE) --build $(BUILDDIR) --parallel $(JOBS)
 
 models: $(addprefix models/,$(MODELS))
 
