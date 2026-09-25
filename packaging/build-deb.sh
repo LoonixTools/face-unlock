@@ -21,7 +21,7 @@ version="${1:-$(make -s -C "$here" version)}"
 # The package depends on the exact Qt of the distribution it is built on, so
 # each one gets a build of its own, told apart by a suffix: ~deb13, ~ubuntu26.04.
 debversion="$version${DEB_SUFFIX:-}"
-name=plasma-face-unlock
+name=face-unlock
 
 # A package without its man page or its translations is not a package this
 # should be quietly willing to produce.
@@ -63,7 +63,7 @@ cat > "$root/DEBIAN/prerm" <<'SH'
 #!/bin/sh
 set -e
 if [ "$1" = remove ] && [ -d /run/systemd/system ]; then
-	systemctl disable --now plasma-face-unlockd.socket plasma-face-unlockd.service >/dev/null 2>&1 || true
+	systemctl disable --now face-unlockd.socket face-unlockd.service >/dev/null 2>&1 || true
 fi
 SH
 chmod 755 "$root/DEBIAN/prerm"

@@ -3,7 +3,7 @@
 // Telling a user's session about a scan it did not start itself (sudo, an
 // admin prompt, a test from the menu), so the bubble can show it.
 //
-// The agent listens on /run/user/UID/plasma-face-unlock/agent.socket. That is
+// The agent listens on /run/user/UID/face-unlock/agent.socket. That is
 // a place the user controls, so nothing is taken for granted: the socket has
 // to belong to the user, and so does the process that answers on it, checked
 // by the kernel before a single byte is written. What is written is only

@@ -2,9 +2,9 @@
 #
 # Reading and writing the settings files.
 #
-# Two of them, in the same format: ~/.config/plasma-face-unlock/config for
+# Two of them, in the same format: ~/.config/face-unlock/config for
 # what this user wants from the lock screen and the bubble, and
-# /etc/plasma-face-unlock/config for what the daemon does (which camera, how
+# /etc/face-unlock/config for what the daemon does (which camera, how
 # strict), which only root writes. Neither is meant to be edited by hand:
 # every option is in the menu.
 #
@@ -12,25 +12,25 @@
 # comments. The daemon and the agent read them with the same rules (see
 # src/core/keyvalue.cpp).
 
-declare -A PFU_KV_CACHE=()
+declare -A FU_KV_CACHE=()
 
-# _pfu_kv_lookup <file> <Key> [default]
-# Result in PFU_KV_VALUE. Assigning rather than printing matters on the
+# _fu_kv_lookup <file> <Key> [default]
+# Result in FU_KV_VALUE. Assigning rather than printing matters on the
 # settings screen, which reads every key on every frame: a command
 # substitution there is a fork, and forks are the whole cost of a redraw.
-PFU_KV_VALUE=''
+FU_KV_VALUE=''
 
-_pfu_kv_lookup() {
+_fu_kv_lookup() {
 	local file="$1" key="$2" default="${3:-}" val='' line content
 
-	PFU_KV_VALUE="$default"
+	FU_KV_VALUE="$default"
 	[[ -r $file ]] || return 0
 
-	if [[ -n ${PFU_KV_CACHE[$file]+set} ]]; then
-		content="${PFU_KV_CACHE[$file]}"
+	if [[ -n ${FU_KV_CACHE[$file]+set} ]]; then
+		content="${FU_KV_CACHE[$file]}"
 	else
 		content="$(< "$file")"
-		PFU_KV_CACHE[$file]="$content"
+		FU_KV_CACHE[$file]="$content"
 	fi
 
 	while IFS= read -r line; do
@@ -45,19 +45,19 @@ _pfu_kv_lookup() {
 	val="${val%\"}"
 	val="${val#\"}"
 
-	[[ -n $val ]] && PFU_KV_VALUE="$val"
+	[[ -n $val ]] && FU_KV_VALUE="$val"
 	return 0
 }
 
-pfu_is_true() {
+fu_is_true() {
 	case "${1,,}" in
 		yes|y|true|1|on|enabled) return 0 ;;
 		*) return 1 ;;
 	esac
 }
 
-# pfu_kv_set <file> <Key> <Value> <header line>
-pfu_kv_set() {
+# fu_kv_set <file> <Key> <Value> <header line>
+fu_kv_set() {
 	local file="$1" key="$2" value="$3" header="$4" tmp
 
 	if [[ ! -e $file ]]; then
@@ -65,7 +65,7 @@ pfu_kv_set() {
 		{
 			printf '# %s\n' "$header"
 			printf '#\n'
-			printf '# Written by `%s`. Nothing here needs editing by hand:\n' "$PFU_NAME"
+			printf '# Written by `%s`. Nothing here needs editing by hand:\n' "$FU_NAME"
 			printf '# every option is in the menu.\n'
 		} > "$file" || return 1
 	fi
@@ -91,42 +91,42 @@ pfu_kv_set() {
 	# Replaced, not rewritten in place: the agent watches the directory and
 	# picks up the new file the moment it lands.
 	mv -f "$tmp" "$file"
-	unset 'PFU_KV_CACHE[$file]'
+	unset 'FU_KV_CACHE[$file]'
 }
 
 # ---------------------------------------------------------------------------
 # This user's settings
 # ---------------------------------------------------------------------------
 
-pfu_config_get() {
-	_pfu_kv_lookup "$PFU_CONFIG" "$@"
-	printf '%s\n' "$PFU_KV_VALUE"
+fu_config_get() {
+	_fu_kv_lookup "$FU_CONFIG" "$@"
+	printf '%s\n' "$FU_KV_VALUE"
 }
 
-pfu_config_set() {
-	pfu_kv_set "$PFU_CONFIG" "$1" "$2" "$PFU_PRETTY"
+fu_config_set() {
+	fu_kv_set "$FU_CONFIG" "$1" "$2" "$FU_PRETTY"
 }
 
 # ---------------------------------------------------------------------------
 # The system settings (read by anybody, written by root)
 # ---------------------------------------------------------------------------
 
-pfu_sys_get() {
-	_pfu_kv_lookup "$PFU_SYSCONFIG" "$@"
-	printf '%s\n' "$PFU_KV_VALUE"
+fu_sys_get() {
+	_fu_kv_lookup "$FU_SYSCONFIG" "$@"
+	printf '%s\n' "$FU_KV_VALUE"
 }
 
-# pfu_config_load
+# fu_config_load
 # Everything the menu shows, resolved once per screen.
-pfu_config_load() {
-	PFU_KV_CACHE=()
+fu_config_load() {
+	FU_KV_CACHE=()
 
-	_pfu_kv_lookup "$PFU_CONFIG" Enabled no;          CFG_ENABLED=no;  pfu_is_true "$PFU_KV_VALUE" && CFG_ENABLED=yes
-	_pfu_kv_lookup "$PFU_CONFIG" LockScreen yes;      CFG_LOCK=no;     pfu_is_true "$PFU_KV_VALUE" && CFG_LOCK=yes
-	_pfu_kv_lookup "$PFU_CONFIG" Sudo no;             CFG_SUDO=no;     pfu_is_true "$PFU_KV_VALUE" && CFG_SUDO=yes
-	_pfu_kv_lookup "$PFU_CONFIG" Polkit no;           CFG_POLKIT=no;   pfu_is_true "$PFU_KV_VALUE" && CFG_POLKIT=yes
+	_fu_kv_lookup "$FU_CONFIG" Enabled no;          CFG_ENABLED=no;  fu_is_true "$FU_KV_VALUE" && CFG_ENABLED=yes
+	_fu_kv_lookup "$FU_CONFIG" LockScreen yes;      CFG_LOCK=no;     fu_is_true "$FU_KV_VALUE" && CFG_LOCK=yes
+	_fu_kv_lookup "$FU_CONFIG" Sudo no;             CFG_SUDO=no;     fu_is_true "$FU_KV_VALUE" && CFG_SUDO=yes
+	_fu_kv_lookup "$FU_CONFIG" Polkit no;           CFG_POLKIT=no;   fu_is_true "$FU_KV_VALUE" && CFG_POLKIT=yes
 
-	_pfu_kv_lookup "$PFU_SYSCONFIG" Liveness light;   CFG_LIVENESS="$PFU_KV_VALUE"
-	_pfu_kv_lookup "$PFU_SYSCONFIG" Camera auto;      CFG_CAMERA="$PFU_KV_VALUE"
+	_fu_kv_lookup "$FU_SYSCONFIG" Liveness light;   CFG_LIVENESS="$FU_KV_VALUE"
+	_fu_kv_lookup "$FU_SYSCONFIG" Camera auto;      CFG_CAMERA="$FU_KV_VALUE"
 	return 0
 }

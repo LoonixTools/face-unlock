@@ -1,14 +1,14 @@
 [Unit]
 Description=Face unlock for KDE Plasma
-Documentation=man:plasma-face-unlock(1)
-Requires=plasma-face-unlockd.socket
-After=plasma-face-unlockd.socket
+Documentation=man:face-unlock(1)
+Requires=face-unlockd.socket
+After=face-unlockd.socket
 
 [Service]
 Type=simple
 # Started by the socket, and gone again after a minute with nothing to do.
-ExecStart=@LIBEXECDIR@/plasma-face-unlockd
-StateDirectory=plasma-face-unlock
+ExecStart=@LIBEXECDIR@/face-unlockd
+StateDirectory=face-unlock
 StateDirectoryMode=0700
 UMask=0077
 

@@ -1,17 +1,17 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: plasma-face-unlock
-Source: https://github.com/LoonixTools/plasma-face-unlock
+Upstream-Name: face-unlock
+Source: https://github.com/LoonixTools/face-unlock
 
 Files: *
 Copyright: 2026 Felitendo
 License: GPL-3+
 
-Files: usr/share/plasma-face-unlock/models/face_detection_yunet_2023mar.onnx
+Files: usr/share/face-unlock/models/face_detection_yunet_2023mar.onnx
 Copyright: 2021-2023 Shiqi Yu, Wei Wu and the YuNet authors
 License: MIT
 Comment: https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet
 
-Files: usr/share/plasma-face-unlock/models/face_recognition_sface_2021dec.onnx
+Files: usr/share/face-unlock/models/face_recognition_sface_2021dec.onnx
 Copyright: 2021 Yaoyao Zhong and Weihong Deng
 License: Apache-2.0
 Comment: https://github.com/opencv/opencv_zoo/tree/main/models/face_recognition_sface

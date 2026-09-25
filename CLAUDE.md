@@ -20,7 +20,7 @@
 
 ## Layout
 
-- `src/plasma-face-unlock` and `src/lib/*.sh`: the command and its menu, plain bash.
+- `src/face-unlock` and `src/lib/*.sh`: the command and its menu, plain bash.
 - `src/core`: camera, detection, recognition, liveness, face store. Used by the daemon and the tests.
 - `src/daemon`: the root service. It owns the camera and the face data.
 - `src/agent`: the Qt/QML program in the session: bubble, lock screen, setup window.
@@ -48,10 +48,10 @@ A minor or major release (has `### Highlights`, gets a heading and the support s
 
 _2026-09-24_
 
-Welcome to plasma-face-unlock `v1.4.0`! One or two sentences on what this release is about.
+Welcome to face-unlock `v1.4.0`! One or two sentences on what this release is about.
 
 <p align="center">
-  <img width="480" alt="What the picture shows" src="https://raw.githubusercontent.com/LoonixTools/plasma-face-unlock/v1.4.0/<path>">
+  <img width="480" alt="What the picture shows" src="https://raw.githubusercontent.com/LoonixTools/face-unlock/v1.4.0/<path>">
 </p>
 
 ### 🚨 Breaking changes
@@ -85,7 +85,7 @@ Never test against the real setup: enrolling and the PAM files belong to the use
   PAM file editing against copies of real PAM files. No camera, no root.
 - Without a camera, point the daemon at pictures or a video: `Camera=images:<dir>` or
   `Camera=file:<video>` in the config passed to `--config`.
-- A development daemon needs no root: `plasma-face-unlockd --socket $XDG_RUNTIME_DIR/pfu/socket
+- A development daemon needs no root: `face-unlockd --socket $XDG_RUNTIME_DIR/fu/socket
   --state-dir DIR --config FILE --models DIR`. It skips polkit when it does not run as root. Point
-  the other parts at it with `PFU_SOCKET`.
+  the other parts at it with `FU_SOCKET`.
 - `make check` after every change. New strings: `po/update-pot.sh`, then translate them in every `po/*.po`.

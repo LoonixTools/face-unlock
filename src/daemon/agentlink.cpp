@@ -25,7 +25,7 @@ AgentLink::AgentLink(uid_t uid, QObject *parent)
     : QObject(parent)
     , m_uid(uid)
 {
-    const QString dir = QStringLiteral("/run/user/%1/plasma-face-unlock").arg(uid);
+    const QString dir = QStringLiteral("/run/user/%1/face-unlock").arg(uid);
     const QString path = dir + QStringLiteral("/agent.socket");
     if (!ownedBy(dir, uid, false) || !ownedBy(path, uid, true)) {
         // No agent in that session, or not one of this user's making.

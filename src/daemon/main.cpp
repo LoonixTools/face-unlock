@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// plasma-face-unlockd: the part that runs as root.
+// face-unlockd: the part that runs as root.
 //
 // It owns the camera and the face data, and it is the only thing that does.
 // Everything else (the lock screen agent, sudo, the setup window, the menu)
@@ -66,8 +66,8 @@ int main(int argc, char **argv)
     umask(077);
 
     QCoreApplication app(argc, argv);
-    app.setApplicationName(QStringLiteral("plasma-face-unlockd"));
-    app.setApplicationVersion(QStringLiteral(PFU_VERSION));
+    app.setApplicationName(QStringLiteral("face-unlockd"));
+    app.setApplicationVersion(QStringLiteral(FU_VERSION));
     qSetMessagePattern(QStringLiteral("%{if-warning}warning: %{endif}%{if-critical}error: %{endif}%{message}"));
 
     QCommandLineParser parser;
@@ -75,12 +75,12 @@ int main(int argc, char **argv)
     parser.addHelpOption();
     parser.addVersionOption();
     const QCommandLineOption socketOpt(QStringLiteral("socket"), QStringLiteral("Listen here instead of the system socket."), QStringLiteral("path"),
-                                       QStringLiteral(PFU_SOCKET));
+                                       QStringLiteral(FU_SOCKET));
     const QCommandLineOption stateOpt(QStringLiteral("state-dir"), QStringLiteral("Where face data is kept."), QStringLiteral("dir"),
-                                      QStringLiteral(PFU_STATEDIR));
-    const QCommandLineOption configOpt(QStringLiteral("config"), QStringLiteral("The settings file."), QStringLiteral("file"), QStringLiteral(PFU_CONFIG));
+                                      QStringLiteral(FU_STATEDIR));
+    const QCommandLineOption configOpt(QStringLiteral("config"), QStringLiteral("The settings file."), QStringLiteral("file"), QStringLiteral(FU_CONFIG));
     const QCommandLineOption modelOpt(QStringLiteral("models"), QStringLiteral("Where the networks are."), QStringLiteral("dir"),
-                                      QStringLiteral(PFU_MODELDIR));
+                                      QStringLiteral(FU_MODELDIR));
     const QCommandLineOption idleOpt(QStringLiteral("idle-exit"), QStringLiteral("Exit after this many idle seconds (0: never)."), QStringLiteral("seconds"));
     parser.addOptions({socketOpt, stateOpt, configOpt, modelOpt, idleOpt});
     parser.process(app);

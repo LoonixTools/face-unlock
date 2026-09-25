@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// plasma-face-unlock-agent: the part in the user's session.
+// face-unlock-agent: the part in the user's session.
 //
 //   (no arguments)   stay in the background: unlock the lock screen by face,
 //                    and show the bubble for every scan
@@ -39,7 +39,7 @@ int runEnroll(QGuiApplication &app, const QString &name)
     QQmlApplicationEngine engine;
     KLocalization::setupLocalizedContext(&engine);
     engine.setInitialProperties({{QStringLiteral("controller"), QVariant::fromValue(&controller)}});
-    engine.loadFromModule(QStringLiteral("PlasmaFaceUnlock"), QStringLiteral("Enroll"));
+    engine.loadFromModule(QStringLiteral("FaceUnlock"), QStringLiteral("Enroll"));
     if (engine.rootObjects().isEmpty()) {
         return 2;
     }
@@ -76,10 +76,10 @@ void scheduleDemo(BubbleController *bubble)
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-    app.setApplicationName(QStringLiteral("plasma-face-unlock-agent"));
-    app.setApplicationVersion(QStringLiteral(PFU_VERSION));
-    app.setDesktopFileName(QStringLiteral("io.github.loonixtools.plasma-face-unlock-agent"));
-    KLocalizedString::setApplicationDomain(PFU_NAME);
+    app.setApplicationName(QStringLiteral("face-unlock-agent"));
+    app.setApplicationVersion(QStringLiteral(FU_VERSION));
+    app.setDesktopFileName(QStringLiteral("io.github.loonixtools.face-unlock-agent"));
+    KLocalizedString::setApplicationDomain(FU_NAME);
 
     QCommandLineParser parser;
     parser.setApplicationDescription(i18n("Face unlock for KDE Plasma"));

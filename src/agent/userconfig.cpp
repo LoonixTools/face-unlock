@@ -23,7 +23,7 @@ UserConfig::UserConfig(QObject *parent)
 
 QString UserConfig::path()
 {
-    return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QStringLiteral("/plasma-face-unlock/config");
+    return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QStringLiteral("/face-unlock/config");
 }
 
 void UserConfig::load()

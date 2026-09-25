@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Plasma Face Unlock
+Name=Face Unlock
 Name[de]=Plasma-Gesichtsentsperrung
 Name[fr]=Déverrouillage facial Plasma
 Name[es]=Desbloqueo facial de Plasma
@@ -28,8 +28,8 @@ Comment[tr]=Kilit ekranını, sudo'yu ve yönetici istemlerini yüzünüzle aça
 Comment[zh_CN]=用你的脸解锁锁屏、sudo 和管理员授权
 Comment[ja]=顔でロック画面、sudo、管理者の認証を解除します
 Comment[ko]=얼굴로 잠금 화면, sudo, 관리자 인증 창의 잠금을 해제합니다
-Exec=@LIBEXECDIR@/plasma-face-unlock-agent
-Icon=plasma-face-unlock
+Exec=@LIBEXECDIR@/face-unlock-agent
+Icon=face-unlock
 NoDisplay=true
 OnlyShowIn=KDE;
 # KWin only lets a program show above the lock screen when its desktop file

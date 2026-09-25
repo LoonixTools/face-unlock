@@ -19,7 +19,7 @@ pages="$(cd -- "$1" && pwd)"
 incoming="$(cd -- "$2" && pwd)"
 here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 
-base_url="${PFU_REPO_URL:-https://loonixtools.github.io/plasma-face-unlock}"
+base_url="${FU_REPO_URL:-https://loonixtools.github.io/face-unlock}"
 
 keyid="$(gpg --list-secret-keys --with-colons | awk -F: '/^sec:/ { print $5; exit }')"
 [[ -n $keyid ]] || { echo "$0: no secret key in the keyring" >&2; exit 1; }
@@ -40,8 +40,8 @@ for suite in trixie:deb13 resolute:ubuntu26.04; do
 		dpkg-scanpackages --multiversion . > Packages
 		gzip -9kf Packages
 		apt-ftparchive \
-			-o APT::FTPArchive::Release::Origin=plasma-face-unlock \
-			-o APT::FTPArchive::Release::Label=plasma-face-unlock \
+			-o APT::FTPArchive::Release::Origin=face-unlock \
+			-o APT::FTPArchive::Release::Label=face-unlock \
 			-o APT::FTPArchive::Release::Suite="$codename" \
 			-o APT::FTPArchive::Release::Codename="$codename" \
 			-o APT::FTPArchive::Release::Architectures=amd64 \
@@ -65,8 +65,8 @@ done
 gpg --armor --export "$keyid" > "$pages/KEY.gpg"
 
 sed "s|@BASEURL@|$base_url|g" "$here/packaging/pages/index.html" > "$pages/index.html"
-sed "s|@BASEURL@|$base_url|g" "$here/packaging/pages/plasma-face-unlock.repo" \
-	> "$pages/plasma-face-unlock.repo"
+sed "s|@BASEURL@|$base_url|g" "$here/packaging/pages/face-unlock.repo" \
+	> "$pages/face-unlock.repo"
 
 # Pages would otherwise hand the whole directory to Jekyll, which drops every
 # file whose name starts with an underscore and can rewrite the rest.

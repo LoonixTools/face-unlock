@@ -1,4 +1,4 @@
-# plasma-face-unlock: build and install
+# face-unlock: build and install
 #
 # The shell front end installs as it is, like middleclick-autoscroll. The rest
 # is compiled by CMake (the daemon, the agent, the PAM module, the client the
@@ -15,9 +15,9 @@ PREFIX       ?= /usr
 DESTDIR      ?=
 BINDIR       ?= $(PREFIX)/bin
 DATADIR      ?= $(PREFIX)/share
-LIBDIR       ?= $(DATADIR)/plasma-face-unlock/lib
-LIBEXECDIR   ?= $(PREFIX)/lib/plasma-face-unlock
-MODELDIR     ?= $(DATADIR)/plasma-face-unlock/models
+LIBDIR       ?= $(DATADIR)/face-unlock/lib
+LIBEXECDIR   ?= $(PREFIX)/lib/face-unlock
+MODELDIR     ?= $(DATADIR)/face-unlock/models
 LOCALEDIR    ?= $(DATADIR)/locale
 MANDIR       ?= $(DATADIR)/man
 APPDIR       ?= $(DATADIR)/applications
@@ -48,7 +48,7 @@ CMAKE_FLAGS  ?=
 
 LINGUAS      := de es fr it ja ko nl pl pt_BR ru tr uk zh_CN
 MOFILES      := $(patsubst %,po/%.mo,$(LINGUAS))
-MANPAGE      := doc/plasma-face-unlock.1
+MANPAGE      := doc/face-unlock.1
 
 LIBS         := $(wildcard src/lib/*.sh)
 
@@ -85,11 +85,11 @@ native:
 	$(CMAKE) -S . -B $(BUILDDIR) \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=$(PREFIX) \
-		-DPFU_VERSION=$(VERSION) \
-		-DPFU_LIBEXECDIR=$(LIBEXECDIR) \
-		-DPFU_MODELDIR=$(MODELDIR) \
-		-DPFU_LOCALEDIR=$(LOCALEDIR) \
-		-DPFU_PAMDIR=$(PAMDIR) \
+		-DFU_VERSION=$(VERSION) \
+		-DFU_LIBEXECDIR=$(LIBEXECDIR) \
+		-DFU_MODELDIR=$(MODELDIR) \
+		-DFU_LOCALEDIR=$(LOCALEDIR) \
+		-DFU_PAMDIR=$(PAMDIR) \
 		$(CMAKE_FLAGS)
 	$(CMAKE) --build $(BUILDDIR) --parallel
 
@@ -108,7 +108,7 @@ else
 	@echo "msgfmt not found, skipping $@"
 endif
 
-$(MANPAGE): doc/plasma-face-unlock.1.scd
+$(MANPAGE): doc/face-unlock.1.scd
 ifdef SCDOC
 	$(SCDOC) < $< > $@
 else
@@ -117,11 +117,11 @@ endif
 
 # Syntax-check every shell file, and run shellcheck when it is available.
 check:
-	@set -e; for f in src/plasma-face-unlock $(LIBS) tests/*.sh; do \
+	@set -e; for f in src/face-unlock $(LIBS) tests/*.sh; do \
 		bash -n "$$f" && echo "ok  $$f"; \
 	done
 	@if command -v shellcheck >/dev/null 2>&1; then \
-		shellcheck -x -e SC1090,SC1091 src/plasma-face-unlock $(LIBS) tests/*.sh; \
+		shellcheck -x -e SC1090,SC1091 src/face-unlock $(LIBS) tests/*.sh; \
 		echo "ok  shellcheck"; \
 	else \
 		echo "shellcheck not found, skipped"; \
@@ -144,7 +144,7 @@ install: build
 	DESTDIR="$(DESTDIR)" $(CMAKE) --install $(BUILDDIR)
 
 	# the command
-	install -Dm755 src/plasma-face-unlock "$(DESTDIR)$(BINDIR)/plasma-face-unlock"
+	install -Dm755 src/face-unlock "$(DESTDIR)$(BINDIR)/face-unlock"
 	install -d "$(DESTDIR)$(LIBDIR)"
 	install -Dm644 -t "$(DESTDIR)$(LIBDIR)" $(LIBS)
 	sed -i -e 's|@VERSION@|$(VERSION)|g' \
@@ -152,7 +152,7 @@ install: build
 	       -e 's|@LIBEXECDIR@|$(LIBEXECDIR)|g' \
 	       -e 's|@LOCALEDIR@|$(LOCALEDIR)|g' \
 	       -e 's|@PAMDIR@|$(PAMDIR)|g' \
-	       "$(DESTDIR)$(BINDIR)/plasma-face-unlock" \
+	       "$(DESTDIR)$(BINDIR)/face-unlock" \
 	       "$(DESTDIR)$(LIBDIR)"/*.sh
 
 	# the models
@@ -161,50 +161,50 @@ install: build
 	done
 
 	# the daemon's socket and service, the agent's user service
-	install -Dm644 res/systemd/plasma-face-unlockd.socket "$(DESTDIR)$(SYSTEMUNITDIR)/plasma-face-unlockd.socket"
-	install -Dm644 res/systemd/plasma-face-unlockd.service "$(DESTDIR)$(SYSTEMUNITDIR)/plasma-face-unlockd.service"
-	install -Dm644 res/systemd/plasma-face-unlock-agent.service "$(DESTDIR)$(USERUNITDIR)/plasma-face-unlock-agent.service"
+	install -Dm644 res/systemd/face-unlockd.socket "$(DESTDIR)$(SYSTEMUNITDIR)/face-unlockd.socket"
+	install -Dm644 res/systemd/face-unlockd.service "$(DESTDIR)$(SYSTEMUNITDIR)/face-unlockd.service"
+	install -Dm644 res/systemd/face-unlock-agent.service "$(DESTDIR)$(USERUNITDIR)/face-unlock-agent.service"
 	sed -i -e 's|@LIBEXECDIR@|$(LIBEXECDIR)|g' \
-		"$(DESTDIR)$(SYSTEMUNITDIR)/plasma-face-unlockd.service" \
-		"$(DESTDIR)$(USERUNITDIR)/plasma-face-unlock-agent.service"
+		"$(DESTDIR)$(SYSTEMUNITDIR)/face-unlockd.service" \
+		"$(DESTDIR)$(USERUNITDIR)/face-unlock-agent.service"
 
 	# the desktop file KWin looks for before it lets the bubble above the
 	# lock screen, the polkit action, the icon
-	install -Dm644 res/applications/io.github.loonixtools.plasma-face-unlock-agent.desktop \
-		"$(DESTDIR)$(APPDIR)/io.github.loonixtools.plasma-face-unlock-agent.desktop"
-	sed -i -e 's|@LIBEXECDIR@|$(LIBEXECDIR)|g' "$(DESTDIR)$(APPDIR)/io.github.loonixtools.plasma-face-unlock-agent.desktop"
-	install -Dm644 res/polkit/io.github.loonixtools.plasma-face-unlock.policy \
-		"$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.plasma-face-unlock.policy"
-	install -Dm644 res/plasma-face-unlock.svg "$(DESTDIR)$(ICONDIR)/plasma-face-unlock.svg"
+	install -Dm644 res/applications/io.github.loonixtools.face-unlock-agent.desktop \
+		"$(DESTDIR)$(APPDIR)/io.github.loonixtools.face-unlock-agent.desktop"
+	sed -i -e 's|@LIBEXECDIR@|$(LIBEXECDIR)|g' "$(DESTDIR)$(APPDIR)/io.github.loonixtools.face-unlock-agent.desktop"
+	install -Dm644 res/polkit/io.github.loonixtools.face-unlock.policy \
+		"$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.face-unlock.policy"
+	install -Dm644 res/face-unlock.svg "$(DESTDIR)$(ICONDIR)/face-unlock.svg"
 
 	# translations
 	@for l in $(LINGUAS); do \
 		if [ -f "po/$$l.mo" ]; then \
 			install -Dm644 "po/$$l.mo" \
-				"$(DESTDIR)$(LOCALEDIR)/$$l/LC_MESSAGES/plasma-face-unlock.mo"; \
+				"$(DESTDIR)$(LOCALEDIR)/$$l/LC_MESSAGES/face-unlock.mo"; \
 		fi; \
 	done
 
 	# documentation
 	@if [ -f $(MANPAGE) ]; then \
-		install -Dm644 $(MANPAGE) "$(DESTDIR)$(MANDIR)/man1/plasma-face-unlock.1"; \
+		install -Dm644 $(MANPAGE) "$(DESTDIR)$(MANDIR)/man1/face-unlock.1"; \
 	fi
-	install -Dm644 README.md "$(DESTDIR)$(DATADIR)/doc/plasma-face-unlock/README.md"
+	install -Dm644 README.md "$(DESTDIR)$(DATADIR)/doc/face-unlock/README.md"
 
 uninstall:
-	rm -f  "$(DESTDIR)$(BINDIR)/plasma-face-unlock"
-	rm -rf "$(DESTDIR)$(DATADIR)/plasma-face-unlock"
+	rm -f  "$(DESTDIR)$(BINDIR)/face-unlock"
+	rm -rf "$(DESTDIR)$(DATADIR)/face-unlock"
 	rm -rf "$(DESTDIR)$(LIBEXECDIR)"
-	rm -f  "$(DESTDIR)$(PAMDIR)/pam_plasma_face_unlock.so"
-	rm -f  "$(DESTDIR)$(SYSTEMUNITDIR)/plasma-face-unlockd.socket"
-	rm -f  "$(DESTDIR)$(SYSTEMUNITDIR)/plasma-face-unlockd.service"
-	rm -f  "$(DESTDIR)$(USERUNITDIR)/plasma-face-unlock-agent.service"
-	rm -f  "$(DESTDIR)$(APPDIR)/io.github.loonixtools.plasma-face-unlock-agent.desktop"
-	rm -f  "$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.plasma-face-unlock.policy"
-	rm -f  "$(DESTDIR)$(ICONDIR)/plasma-face-unlock.svg"
-	rm -f  "$(DESTDIR)$(MANDIR)/man1/plasma-face-unlock.1"
-	rm -rf "$(DESTDIR)$(DATADIR)/doc/plasma-face-unlock"
-	@for l in $(LINGUAS); do rm -f "$(DESTDIR)$(LOCALEDIR)/$$l/LC_MESSAGES/plasma-face-unlock.mo"; done
+	rm -f  "$(DESTDIR)$(PAMDIR)/pam_face_unlock.so"
+	rm -f  "$(DESTDIR)$(SYSTEMUNITDIR)/face-unlockd.socket"
+	rm -f  "$(DESTDIR)$(SYSTEMUNITDIR)/face-unlockd.service"
+	rm -f  "$(DESTDIR)$(USERUNITDIR)/face-unlock-agent.service"
+	rm -f  "$(DESTDIR)$(APPDIR)/io.github.loonixtools.face-unlock-agent.desktop"
+	rm -f  "$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.face-unlock.policy"
+	rm -f  "$(DESTDIR)$(ICONDIR)/face-unlock.svg"
+	rm -f  "$(DESTDIR)$(MANDIR)/man1/face-unlock.1"
+	rm -rf "$(DESTDIR)$(DATADIR)/doc/face-unlock"
+	@for l in $(LINGUAS); do rm -f "$(DESTDIR)$(LOCALEDIR)/$$l/LC_MESSAGES/face-unlock.mo"; done
 
 clean:
 	rm -rf $(BUILDDIR) po/*.mo $(MANPAGE)

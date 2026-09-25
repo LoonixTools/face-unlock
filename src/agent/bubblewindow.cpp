@@ -74,13 +74,13 @@ void BubbleWindow::create()
         // faint box with sharp corners around the bubble. An on-screen
         // display only fades, which a clear window does not show.
         layer->setScope(QStringLiteral("on-screen-display"));
-#ifdef PFU_LAYERSHELL_HAS_SCREEN
+#ifdef FU_LAYERSHELL_HAS_SCREEN
         layer->setScreen(QGuiApplication::primaryScreen());
 #endif
     }
 
     m_view->setInitialProperties({{QStringLiteral("bubble"), QVariant::fromValue(m_controller)}});
-    m_view->loadFromModule(QStringLiteral("PlasmaFaceUnlock"), QStringLiteral("Bubble"));
+    m_view->loadFromModule(QStringLiteral("FaceUnlock"), QStringLiteral("Bubble"));
     if (m_view->status() == QQuickView::Error) {
         for (const QQmlError &e : m_view->errors()) {
             qWarning("%s", qPrintable(e.toString()));

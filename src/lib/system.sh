@@ -8,17 +8,17 @@
 # is already looking at. The verbs are all there is: there is no way to hand
 # the root side a command of one's own.
 #
-#   --root set <Key> <Value>     one line of /etc/plasma-face-unlock/config
+#   --root set <Key> <Value>     one line of /etc/face-unlock/config
 #   --root pam-enable <service>  sudo or polkit-1, see pam.sh
 #   --root pam-disable <service>
 #   --root socket-enable         start the daemon's socket, and at boot
 #   --root socket-disable
 
-PFU_SELF="${PFU_SELF:-$(readlink -f "${BASH_SOURCE[1]:-$0}")}"
+FU_SELF="${FU_SELF:-$(readlink -f "${BASH_SOURCE[1]:-$0}")}"
 
 # What each system setting may be set to. Anything else is refused on the root
 # side, whatever the menu sent.
-declare -A PFU_SYS_VALID=(
+declare -A FU_SYS_VALID=(
 	[Camera]='^(auto|/dev/video[0-9]+)$'
 	[Liveness]='^(off|light|heavy)$'
 	[Strictness]='^(relaxed|normal|strict)$'
@@ -30,63 +30,63 @@ declare -A PFU_SYS_VALID=(
 	[LockoutMinutes]='^[1-9][0-9]{0,3}$'
 )
 
-# pfu_root <verb> [args...]
-pfu_root() {
+# fu_root <verb> [args...]
+fu_root() {
 	local candidate
 
 	if [[ $EUID -eq 0 ]]; then
-		pfu_root_verb "$@"
+		fu_root_verb "$@"
 		return
 	fi
 	for candidate in sudo run0 doas; do
-		if pfu_have "$candidate"; then
-			"$candidate" "$PFU_SELF" --root "$@"
+		if fu_have "$candidate"; then
+			"$candidate" "$FU_SELF" --root "$@"
 			return
 		fi
 	done
-	pfu_bad "$(pfu_msg "This needs root, and neither sudo, run0 nor doas is installed.")"
+	fu_bad "$(fu_msg "This needs root, and neither sudo, run0 nor doas is installed.")"
 	return 1
 }
 
-pfu_root_verb() {
+fu_root_verb() {
 	local verb="${1:-}"
 	[[ $# -gt 0 ]] && shift
 
 	if [[ $EUID -ne 0 ]]; then
-		pfu_bad "$(pfu_msg "This command has to run as root.")"
+		fu_bad "$(fu_msg "This command has to run as root.")"
 		return 2
 	fi
 
 	case "$verb" in
 		set)
 			local key="${1:-}" value="${2:-}"
-			if [[ -z ${PFU_SYS_VALID[$key]+set} || ! $value =~ ${PFU_SYS_VALID[$key]} ]]; then
-				pfu_bad "$(pfu_msg "Not a valid setting: %s=%s" "$key" "$value")"
+			if [[ -z ${FU_SYS_VALID[$key]+set} || ! $value =~ ${FU_SYS_VALID[$key]} ]]; then
+				fu_bad "$(fu_msg "Not a valid setting: %s=%s" "$key" "$value")"
 				return 1
 			fi
-			pfu_kv_set "$PFU_SYSCONFIG" "$key" "$value" "$PFU_PRETTY (system settings)" || return 1
-			chmod 0644 "$PFU_SYSCONFIG"
+			fu_kv_set "$FU_SYSCONFIG" "$key" "$value" "$FU_PRETTY (system settings)" || return 1
+			chmod 0644 "$FU_SYSCONFIG"
 			;;
 		pam-enable|pam-disable)
 			local service="${1:-}" known=0 s
-			for s in "${PFU_PAM_SERVICES[@]}"; do
+			for s in "${FU_PAM_SERVICES[@]}"; do
 				[[ $s == "$service" ]] && known=1
 			done
-			(( known )) || { pfu_bad "$(pfu_msg "Not a service this can be used for: %s" "$service")"; return 1; }
+			(( known )) || { fu_bad "$(fu_msg "Not a service this can be used for: %s" "$service")"; return 1; }
 			if [[ $verb == pam-enable ]]; then
-				pfu_pam_enable "$service"
+				fu_pam_enable "$service"
 			else
-				pfu_pam_disable "$service"
+				fu_pam_disable "$service"
 			fi
 			;;
 		socket-enable)
-			systemctl enable --now "$PFU_UNIT_SOCKET" > /dev/null 2>&1
+			systemctl enable --now "$FU_UNIT_SOCKET" > /dev/null 2>&1
 			;;
 		socket-disable)
-			systemctl disable --now "$PFU_UNIT_SOCKET" > /dev/null 2>&1
+			systemctl disable --now "$FU_UNIT_SOCKET" > /dev/null 2>&1
 			;;
 		*)
-			pfu_bad "$(pfu_msg "Unknown command: %s" "$verb")"
+			fu_bad "$(fu_msg "Unknown command: %s" "$verb")"
 			return 1
 			;;
 	esac
@@ -96,27 +96,27 @@ pfu_root_verb() {
 # The two services
 # ---------------------------------------------------------------------------
 
-pfu_socket_enabled() {
-	systemctl is-enabled --quiet "$PFU_UNIT_SOCKET" 2>/dev/null
+fu_socket_enabled() {
+	systemctl is-enabled --quiet "$FU_UNIT_SOCKET" 2>/dev/null
 }
 
-pfu_agent_available() {
-	pfu_have systemctl && [[ -n ${XDG_RUNTIME_DIR:-} ]]
+fu_agent_available() {
+	fu_have systemctl && [[ -n ${XDG_RUNTIME_DIR:-} ]]
 }
 
-pfu_agent_enabled() {
-	systemctl --user is-enabled --quiet "$PFU_UNIT_AGENT" 2>/dev/null
+fu_agent_enabled() {
+	systemctl --user is-enabled --quiet "$FU_UNIT_AGENT" 2>/dev/null
 }
 
-pfu_agent_running() {
-	systemctl --user is-active --quiet "$PFU_UNIT_AGENT" 2>/dev/null
+fu_agent_running() {
+	systemctl --user is-active --quiet "$FU_UNIT_AGENT" 2>/dev/null
 }
 
-pfu_agent_enable() {
+fu_agent_enable() {
 	systemctl --user daemon-reload > /dev/null 2>&1 || true
-	systemctl --user enable --now "$PFU_UNIT_AGENT" > /dev/null 2>&1
+	systemctl --user enable --now "$FU_UNIT_AGENT" > /dev/null 2>&1
 }
 
-pfu_agent_disable() {
-	systemctl --user disable --now "$PFU_UNIT_AGENT" > /dev/null 2>&1 || true
+fu_agent_disable() {
+	systemctl --user disable --now "$FU_UNIT_AGENT" > /dev/null 2>&1 || true
 }

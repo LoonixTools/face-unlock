@@ -1,5 +1,5 @@
-[plasma-face-unlock]
-name=plasma-face-unlock
+[face-unlock]
+name=face-unlock
 baseurl=@BASEURL@/rpm
 enabled=1
 gpgcheck=1

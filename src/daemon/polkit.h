@@ -17,7 +17,7 @@
 
 namespace Polkit
 {
-inline constexpr char ManageAction[] = "io.github.loonixtools.plasma-face-unlock.manage";
+inline constexpr char ManageAction[] = "io.github.loonixtools.face-unlock.manage";
 
 // Calls done(true) when the process may go ahead. Interactive: this can take
 // as long as it takes somebody to type a password.

@@ -2,7 +2,7 @@
 # editing this file: the Makefile is where the version is written down.
 %global upstream_version %{?_version}%{!?_version:1.0.1}
 
-Name:           plasma-face-unlock
+Name:           face-unlock
 Version:        %{upstream_version}
 Release:        1%{?dist}
 Summary:        Face unlock for KDE Plasma
@@ -10,7 +10,7 @@ Summary:        Face unlock for KDE Plasma
 # The program is GPL; the two networks it ships are MIT (YuNet) and
 # Apache-2.0 (SFace).
 License:        GPL-3.0-or-later AND MIT AND Apache-2.0
-URL:            https://github.com/LoonixTools/plasma-face-unlock
+URL:            https://github.com/LoonixTools/face-unlock
 Source0:        %{name}-%{version}.tar.gz
 Source1:        https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx
 Source2:        https://github.com/opencv/opencv_zoo/raw/main/models/face_recognition_sface/face_recognition_sface_2021dec.onnx
@@ -59,7 +59,7 @@ or the nose moving the way a real nose does when the head turns), which stops a
 printed photo too. It is a convenience, not a security upgrade: a webcam sees a
 flat picture, and a video of the person can get through.
 
-Run "plasma-face-unlock disable" before removing this package, so that sudo
+Run "face-unlock disable" before removing this package, so that sudo
 and polkit go back to the password alone.
 
 %prep
@@ -78,10 +78,10 @@ make install DESTDIR=%{buildroot} PREFIX=%{_prefix} VERSION=%{upstream_version} 
 %find_lang %{name}
 
 %preun
-%systemd_preun plasma-face-unlockd.socket plasma-face-unlockd.service
+%systemd_preun face-unlockd.socket face-unlockd.service
 
 %postun
-%systemd_postun plasma-face-unlockd.socket plasma-face-unlockd.service
+%systemd_postun face-unlockd.socket face-unlockd.service
 
 %files -f %{name}.lang
 %license LICENSE
@@ -89,13 +89,13 @@ make install DESTDIR=%{buildroot} PREFIX=%{_prefix} VERSION=%{upstream_version} 
 %{_bindir}/%{name}
 %{_prefix}/lib/%{name}/
 %{_datadir}/%{name}/
-%{_libdir}/security/pam_plasma_face_unlock.so
-%{_unitdir}/plasma-face-unlockd.socket
-%{_unitdir}/plasma-face-unlockd.service
-%{_userunitdir}/plasma-face-unlock-agent.service
-%{_datadir}/applications/io.github.loonixtools.plasma-face-unlock-agent.desktop
-%{_datadir}/polkit-1/actions/io.github.loonixtools.plasma-face-unlock.policy
-%{_datadir}/icons/hicolor/scalable/apps/plasma-face-unlock.svg
+%{_libdir}/security/pam_face_unlock.so
+%{_unitdir}/face-unlockd.socket
+%{_unitdir}/face-unlockd.service
+%{_userunitdir}/face-unlock-agent.service
+%{_datadir}/applications/io.github.loonixtools.face-unlock-agent.desktop
+%{_datadir}/polkit-1/actions/io.github.loonixtools.face-unlock.policy
+%{_datadir}/icons/hicolor/scalable/apps/face-unlock.svg
 %{_mandir}/man1/%{name}.1*
 
 %changelog

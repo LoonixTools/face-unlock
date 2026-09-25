@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// The system settings, /etc/plasma-face-unlock/config.
+// The system settings, /etc/face-unlock/config.
 //
 // These are the ones that decide how hard it is to get in: which camera, how
 // strict the match is, whether a photo is checked for. They belong to root

@@ -1,11 +1,11 @@
-# Chinese (simplified) translation for plasma-face-unlock.
+# Chinese (simplified) translation for face-unlock.
 # Copyright (C) 2026 Felitendo
-# This file is distributed under the same license as plasma-face-unlock.
+# This file is distributed under the same license as face-unlock.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: plasma-face-unlock 1.0.1\n"
-"Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/issues\n"
+"Project-Id-Version: face-unlock 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
 "POT-Creation-Date: 2026-09-24 10:46+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
@@ -15,145 +15,145 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/plasma-face-unlock:50
+#: src/face-unlock:50
 msgid "Face unlock's service has to be switched on once for this computer. That needs your password."
 msgstr "人脸解锁服务需要在这台电脑上开启一次。这需要你的密码。"
 
-#: src/plasma-face-unlock:57
+#: src/face-unlock:57
 #, sh-printf-format
 msgid "Check it with: systemctl status %s"
 msgstr "用以下命令检查：systemctl status %s"
 
-#: src/plasma-face-unlock:67
+#: src/face-unlock:67
 msgid "Setting up a face needs the camera picture on screen. Run this inside your Plasma session."
 msgstr "设置人脸需要在屏幕上显示摄像头画面。请在你的 Plasma 会话中运行。"
 
-#: src/plasma-face-unlock:71
+#: src/face-unlock:71
 msgid "The setup window is open. Follow it there."
 msgstr "设置窗口已打开。请按窗口中的步骤操作。"
 
-#: src/plasma-face-unlock:80
+#: src/face-unlock:80
 msgid "The face is set up."
 msgstr "人脸已设置。"
 
-#: src/plasma-face-unlock:83
+#: src/face-unlock:83
 #, sh-printf-format
 msgid "Face unlock is still off. Turn it on with [1] or `%s enable`."
 msgstr "人脸解锁仍处于关闭状态。用 [1] 或 `%s enable` 开启。"
 
-#: src/plasma-face-unlock:87
+#: src/face-unlock:87
 msgid "No face was added."
 msgstr "没有添加人脸。"
 
-#: src/plasma-face-unlock:96
+#: src/face-unlock:96
 msgid "First, set up your face."
 msgstr "请先设置你的人脸。"
 
-#: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:434
+#: src/face-unlock:100 src/face-unlock:120 src/lib/menu.sh:434
 #: src/lib/menu.sh:438 src/lib/menu.sh:444 src/lib/menu.sh:446
 msgid "Could not save the setting."
 msgstr "无法保存设置。"
 
-#: src/plasma-face-unlock:104
+#: src/face-unlock:104
 msgid "Could not start the lock screen agent."
 msgstr "无法启动锁屏代理。"
 
-#: src/plasma-face-unlock:106
+#: src/face-unlock:106
 msgid "No systemd user session, so the lock screen agent was not started."
 msgstr "没有 systemd 用户会话，因此未启动锁屏代理。"
 
-#: src/plasma-face-unlock:113
+#: src/face-unlock:113
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr "人脸解锁已开启。锁定屏幕并看着它来试试。"
 
-#: src/plasma-face-unlock:115
+#: src/face-unlock:115
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "它也可以用于 sudo 和管理员授权。见“设置”。"
 
-#: src/plasma-face-unlock:130
+#: src/face-unlock:130
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr "人脸解锁已关闭。你的人脸会保留；可在“人脸”中删除。"
 
-#: src/plasma-face-unlock:144 src/lib/daemon.sh:109
+#: src/face-unlock:144 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "尚未设置任何人脸。"
 
-#: src/plasma-face-unlock:148 src/lib/menu.sh:180 src/lib/menu.sh:594
+#: src/face-unlock:148 src/lib/menu.sh:180 src/lib/menu.sh:594
 msgid "on"
 msgstr "开"
 
-#: src/plasma-face-unlock:148 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/face-unlock:148 src/lib/menu.sh:182 src/lib/menu.sh:192
 #: src/lib/menu.sh:595
 msgid "off"
 msgstr "关"
 
-#: src/plasma-face-unlock:150 src/lib/menu.sh:612
+#: src/face-unlock:150 src/lib/menu.sh:612
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s 个样本，已学习 %s 个"
 
-#: src/plasma-face-unlock:156
+#: src/face-unlock:156
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "哪张人脸？用 `%s faces` 查看 ID。"
 
-#: src/plasma-face-unlock:160
+#: src/face-unlock:160
 msgid "Deleted."
 msgstr "已删除。"
 
-#: src/plasma-face-unlock:171
-msgid "Usage: plasma-face-unlock [command]"
-msgstr "用法：plasma-face-unlock [命令]"
+#: src/face-unlock:171
+msgid "Usage: face-unlock [command]"
+msgstr "用法：face-unlock [命令]"
 
-#: src/plasma-face-unlock:173
+#: src/face-unlock:173
 msgid "Commands:"
 msgstr "命令："
 
-#: src/plasma-face-unlock:174
+#: src/face-unlock:174
 msgid "Turn face unlock on"
 msgstr "开启人脸解锁"
 
-#: src/plasma-face-unlock:175
+#: src/face-unlock:175
 msgid "Turn it off (faces are kept)"
 msgstr "关闭（保留人脸）"
 
-#: src/plasma-face-unlock:176 src/lib/menu.sh:678
+#: src/face-unlock:176 src/lib/menu.sh:678
 msgid "Add a face"
 msgstr "添加人脸"
 
-#: src/plasma-face-unlock:177
+#: src/face-unlock:177
 msgid "List the faces"
 msgstr "列出人脸"
 
-#: src/plasma-face-unlock:178
+#: src/face-unlock:178
 msgid "Delete a face"
 msgstr "删除人脸"
 
-#: src/plasma-face-unlock:179
+#: src/face-unlock:179
 msgid "Look at the camera and see what it sees"
 msgstr "看着摄像头，查看它看到的画面"
 
-#: src/plasma-face-unlock:180
+#: src/face-unlock:180
 msgid "Show what is on"
 msgstr "显示已开启的功能"
 
-#: src/plasma-face-unlock:181
+#: src/face-unlock:181
 msgid "Show this help"
 msgstr "显示此帮助"
 
-#: src/plasma-face-unlock:182
+#: src/face-unlock:182
 msgid "Show the version"
 msgstr "显示版本"
 
-#: src/plasma-face-unlock:184
+#: src/face-unlock:184
 msgid "Without a command an interactive menu is shown."
 msgstr "不带命令时显示交互式菜单。"
 
-#: src/plasma-face-unlock:203
+#: src/face-unlock:203
 msgid "Run this as your own user, not as root. It asks for your password when it needs to."
 msgstr "请以你自己的用户运行，不要用 root。需要时会询问你的密码。"
 
-#: src/plasma-face-unlock:221 src/lib/system.sh:89
+#: src/face-unlock:221 src/lib/system.sh:89
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "未知命令：%s"
@@ -795,19 +795,19 @@ msgstr "播放一次气泡动画。"
 msgid "Bubble style for the demo: full or minimal."
 msgstr "演示用的气泡样式：full 或 minimal。"
 
-#: src/pam/pam_plasma_face_unlock.c:311
+#: src/pam/pam_face_unlock.c:311
 msgid "Look at the camera to unlock."
 msgstr "看着摄像头来解锁。"
 
-#: src/pam/pam_plasma_face_unlock.c:314
+#: src/pam/pam_face_unlock.c:314
 msgid "Blink, or turn your head a little."
 msgstr "眨眼，或稍微转一下头。"
 
-#: src/pam/pam_plasma_face_unlock.c:330
+#: src/pam/pam_face_unlock.c:330
 msgid "Face unlock is paused after too many tries. Use your password."
 msgstr "尝试次数过多，人脸解锁已暂停。请使用密码。"
 
-#: src/pam/pam_plasma_face_unlock.c:334
+#: src/pam/pam_face_unlock.c:334
 msgid "Face not recognised."
 msgstr "未识别出人脸。"
 

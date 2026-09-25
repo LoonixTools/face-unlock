@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// plasma-face-unlock-ctl: the shell code's way to the daemon.
+// face-unlock-ctl: the shell code's way to the daemon.
 //
 // bash has no Unix sockets, so this sends one request and prints every
 // message that comes back as one line of tab separated key=value pairs:
@@ -68,7 +68,7 @@ void printObject(const QJsonObject &o, const QString &event)
 int usage()
 {
     std::fprintf(stderr,
-                 "usage: plasma-face-unlock-ctl [--socket PATH] COMMAND\n"
+                 "usage: face-unlock-ctl [--socket PATH] COMMAND\n"
                  "  hello | status | cameras | list | watch | unlocked\n"
                  "  verify [USER] [PURPOSE] | test\n"
                  "  remove ID | rename ID NAME | enable ID | disable ID | clear\n");
@@ -81,12 +81,12 @@ int main(int argc, char **argv)
     QCoreApplication app(argc, argv);
     QStringList args = app.arguments().mid(1);
 
-    QString socketPath = QStringLiteral(PFU_SOCKET);
+    QString socketPath = QStringLiteral(FU_SOCKET);
     if (args.size() >= 2 && args.first() == u"--socket") {
         socketPath = args.at(1);
         args = args.mid(2);
     }
-    if (const QByteArray env = qgetenv("PFU_SOCKET"); !env.isEmpty()) {
+    if (const QByteArray env = qgetenv("FU_SOCKET"); !env.isEmpty()) {
         socketPath = QString::fromLocal8Bit(env);
     }
     if (args.isEmpty()) {

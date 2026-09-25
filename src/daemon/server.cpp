@@ -282,7 +282,7 @@ void Server::onRequest(Client *client, const QJsonObject &request)
     client->role = cmd;
 
     if (cmd == u"hello") {
-        reply(client, {{QStringLiteral("event"), QStringLiteral("result")}, {QStringLiteral("ok"), true}, {QStringLiteral("version"), QStringLiteral(PFU_VERSION)}});
+        reply(client, {{QStringLiteral("event"), QStringLiteral("result")}, {QStringLiteral("ok"), true}, {QStringLiteral("version"), QStringLiteral(FU_VERSION)}});
     } else if (cmd == u"status") {
         handleStatus(client);
     } else if (cmd == u"cameras") {
@@ -344,7 +344,7 @@ void Server::handleStatus(Client *client)
     reply(client,
           {{QStringLiteral("event"), QStringLiteral("result")},
            {QStringLiteral("ok"), true},
-           {QStringLiteral("version"), QStringLiteral(PFU_VERSION)},
+           {QStringLiteral("version"), QStringLiteral(FU_VERSION)},
            {QStringLiteral("user"), System::nameOf(uid)},
            {QStringLiteral("faces"), enabled},
            {QStringLiteral("identities"), int(faces.size())},

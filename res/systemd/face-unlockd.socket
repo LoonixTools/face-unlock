@@ -1,11 +1,11 @@
 [Unit]
 Description=Face unlock for KDE Plasma (socket)
-Documentation=man:plasma-face-unlock(1)
+Documentation=man:face-unlock(1)
 
 [Socket]
 # Everybody may connect. Who may ask for what is decided per request, by the
 # daemon, from the credentials the kernel reports for the other end.
-ListenStream=/run/plasma-face-unlock/socket
+ListenStream=/run/face-unlock/socket
 SocketMode=0666
 DirectoryMode=0755
 RemoveOnStop=yes

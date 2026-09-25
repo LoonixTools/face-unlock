@@ -7,13 +7,13 @@ description of the layout, and two descriptions drift.
 | | |
 |---|---|
 | `deb/control`, `deb/copyright` | metadata for the Debian binary package |
-| `rpm/plasma-face-unlock.spec` | the RPM spec |
+| `rpm/face-unlock.spec` | the RPM spec |
 | `build-deb.sh`, `build-rpm.sh` | build one package into `dist/` |
 | `check-version.sh` | refuses a tag that disagrees with the Makefile |
 | `publish-repos.sh` | regenerates the APT and RPM repositories |
 | `pages/` | the landing page and the `.repo` file served from GitHub Pages |
 
-The AUR package lives in [Felitendo/PKGBUILDS](https://github.com/Felitendo/PKGBUILDS/tree/main/plasma-face-unlock).
+The AUR package lives in [Felitendo/PKGBUILDS](https://github.com/Felitendo/PKGBUILDS/tree/main/face-unlock).
 Its CI notices a new GitHub release, updates the checksum and pushes to the AUR.
 
 Unlike the shell-only LoonixTools, this one is compiled. The packages are per
@@ -34,7 +34,7 @@ checksums in the Makefile. The RPM spec and the PKGBUILD list them as sources
 of their own, with the same checksums.
 
 Neither the deb nor the rpm switches anything on at install time. The daemon's
-socket is enabled by `plasma-face-unlock` the first time somebody turns it on,
+socket is enabled by `face-unlock` the first time somebody turns it on,
 the agent is a user service each user enables, and the PAM files are only
 touched when somebody asks for sudo or admin prompts. Removing a package
 disables the socket.
@@ -52,7 +52,7 @@ argument.
 ## Making a release
 
 1. Bump `VERSION` in the Makefile. The compiled programs get it from there
-   too (`-DPFU_VERSION`).
+   too (`-DFU_VERSION`).
 2. Add the release to `CHANGELOG.md`, in the format CLAUDE.md describes.
 3. Commit, then `git tag vX.Y.Z && git push --tags`.
 
@@ -75,9 +75,9 @@ repositories. Nothing is pushed and no release is made.
 
 ```bash
 gpg --batch --passphrase '' --quick-generate-key \
-    'plasma-face-unlock repository <felitendoyt@gmail.com>' rsa4096 sign never
+    'face-unlock repository <felitendoyt@gmail.com>' rsa4096 sign never
 
-gpg --armor --export-secret-keys 'plasma-face-unlock repository' \
+gpg --armor --export-secret-keys 'face-unlock repository' \
     | gh secret set GPG_PRIVATE_KEY
 ```
 

@@ -1,0 +1,229 @@
+#!/usr/bin/env bash
+#
+# face-unlock: face unlock for KDE Plasma
+#
+# Look at the screen and it unlocks, the way a phone does. The lock screen,
+# sudo in a terminal and the admin password prompts can all take a face
+# instead of a password, with a check that it is a face and not a photo of one.
+#
+# This is the front end: the menu and the commands. The camera, the face data
+# and the decision are the daemon's (face-unlockd, running as root),
+# the lock screen and the bubble at the top of the screen are the agent's
+# (face-unlock-agent, in the session), and sudo and polkit reach the
+# daemon through a PAM module. See the man page for how the pieces fit.
+#
+# Copyright (C) 2026 Felitendo
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+set -uo pipefail
+
+FU_SELF="$(readlink -f "${BASH_SOURCE[0]}")"
+
+# Run as root (through sudo from the menu), only what was installed counts.
+# An environment that points the libraries somewhere else is ignored then.
+if [[ $EUID -eq 0 ]]; then
+	unset FU_LIBDIR FU_LIBEXECDIR FU_LOCALEDIR FU_PAMDIR FU_CTL FU_AGENT FU_PAM_MODULE FU_SYSCONFIG \
+		FU_PAM_ETC_DIR FU_PAM_VENDOR_DIRS
+fi
+
+FU_LIBDIR="${FU_LIBDIR:-@LIBDIR@}"
+
+for _mod in common config daemon pam system menu; do
+	# shellcheck source=/dev/null
+	if ! source "$FU_LIBDIR/$_mod.sh"; then
+		printf 'face-unlock: cannot load %s/%s.sh\n' "$FU_LIBDIR" "$_mod" >&2
+		exit 14
+	fi
+done
+unset _mod
+
+# ---------------------------------------------------------------------------
+# Commands
+# ---------------------------------------------------------------------------
+
+# The daemon is started by its socket. Enabling the socket is the one thing
+# that needs root once per machine.
+fu_ensure_service() {
+	fu_status_load && return 0
+
+	if ! fu_socket_enabled; then
+		fu_say "  $(fu_msg "Face unlock's service has to be switched on once for this computer. That needs your password.")"
+		fu_root socket-enable || return 1
+		sleep 0.3
+	fi
+	fu_status_load && return 0
+
+	fu_bad "$(fu_reason_text unreachable)"
+	fu_note "$(fu_msg "Check it with: systemctl status %s" "$FU_UNIT_SOCKET")"
+	return 1
+}
+
+fu_do_setup() {
+	local name="${1:-}" rc
+
+	fu_ensure_service || return 1
+
+	if [[ -z ${WAYLAND_DISPLAY:-} && -z ${DISPLAY:-} ]]; then
+		fu_bad "$(fu_msg "Setting up a face needs the camera picture on screen. Run this inside your Plasma session.")"
+		return 1
+	fi
+
+	fu_say "  $(fu_msg "The setup window is open. Follow it there.")"
+	if [[ -n $name ]]; then
+		"$FU_AGENT" --enroll --name "$name" > /dev/null 2>&1
+	else
+		"$FU_AGENT" --enroll > /dev/null 2>&1
+	fi
+	rc=$?
+
+	if (( rc == 0 )); then
+		fu_ok "$(fu_msg "The face is set up.")"
+		fu_config_load
+		if [[ $CFG_ENABLED != yes ]]; then
+			fu_note "$(fu_msg "Face unlock is still off. Turn it on with [1] or \`%s enable\`." "$FU_NAME")"
+		fi
+		return 0
+	fi
+	fu_note "$(fu_msg "No face was added.")"
+	return 1
+}
+
+fu_do_enable() {
+	fu_ensure_service || return 1
+
+	fu_faces_load
+	if (( ${#FU_FACE_IDS[@]} == 0 )); then
+		fu_say "  $(fu_msg "First, set up your face.")"
+		fu_do_setup || return 1
+	fi
+
+	fu_config_set Enabled yes || { fu_bad "$(fu_msg "Could not save the setting.")"; return 1; }
+	fu_config_load
+
+	if fu_agent_available; then
+		fu_agent_enable || fu_bad "$(fu_msg "Could not start the lock screen agent.")"
+	else
+		fu_note "$(fu_msg "No systemd user session, so the lock screen agent was not started.")"
+	fi
+
+	# What was on the last time face unlock was on.
+	[[ $CFG_SUDO == yes ]] && ! fu_pam_enabled sudo && fu_root pam-enable sudo
+	[[ $CFG_POLKIT == yes ]] && ! fu_pam_enabled polkit-1 && fu_root pam-enable polkit-1
+
+	fu_ok "$(fu_msg "Face unlock is on. Lock the screen and look at it to try.")"
+	if [[ $CFG_SUDO != yes && $CFG_POLKIT != yes ]]; then
+		fu_note "$(fu_msg "It can do sudo and admin prompts too. See Settings.")"
+	fi
+}
+
+fu_do_disable() {
+	fu_config_set Enabled no || { fu_bad "$(fu_msg "Could not save the setting.")"; return 1; }
+	fu_agent_available && fu_agent_disable
+
+	local service
+	for service in "${FU_PAM_SERVICES[@]}"; do
+		if fu_pam_enabled "$service"; then
+			fu_root pam-disable "$service" || true
+		fi
+	done
+
+	fu_ok "$(fu_msg "Face unlock is off. Your faces are kept; delete them under Faces.")"
+}
+
+fu_do_status() {
+	fu_head "  $FU_PRETTY"
+	fu_ui_status
+	printf '\n'
+}
+
+fu_do_faces() {
+	local i state
+	fu_status_load || { fu_bad "$(fu_reason_text unreachable)"; return 1; }
+	fu_faces_load
+	if (( ${#FU_FACE_IDS[@]} == 0 )); then
+		fu_note "$(fu_msg "No face is set up yet.")"
+		return 0
+	fi
+	for i in "${!FU_FACE_IDS[@]}"; do
+		if [[ ${FU_FACE_ON[i]} == true ]]; then state="$(fu_msg "on")"; else state="$(fu_msg "off")"; fi
+		printf '  %s  %-24s %-4s %s\n' "${FU_FACE_IDS[i]}" "${FU_FACE_NAMES[i]}" "$state" \
+			"$(fu_msg "%s samples, %s learned" "${FU_FACE_SAMPLES[i]}" "${FU_FACE_LEARNED[i]}")"
+	done
+}
+
+fu_do_remove() {
+	local id="${1:-}" line
+	[[ -n $id ]] || { fu_bad "$(fu_msg "Which face? See \`%s faces\` for the ids." "$FU_NAME")"; return 1; }
+	line="$(fu_ctl remove "$id" | tail -n1)"
+	_fu_fields "$line"
+	if [[ ${FU_F[ok]:-} == true ]]; then
+		fu_ok "$(fu_msg "Deleted.")"
+	else
+		fu_bad "$(fu_reason_text "${FU_F[reason]:-unreachable}")"
+		return 1
+	fi
+}
+
+fu_do_help() {
+	cat <<- EOF
+	$FU_PRETTY $FU_VERSION
+
+	$(fu_msg "Usage: face-unlock [command]")
+
+	$(fu_msg "Commands:")
+	  enable              $(fu_msg "Turn face unlock on")
+	  disable             $(fu_msg "Turn it off (faces are kept)")
+	  setup [NAME]        $(fu_msg "Add a face")
+	  faces               $(fu_msg "List the faces")
+	  remove ID           $(fu_msg "Delete a face")
+	  test                $(fu_msg "Look at the camera and see what it sees")
+	  status              $(fu_msg "Show what is on")
+	  -h, --help          $(fu_msg "Show this help")
+	  -V, --version       $(fu_msg "Show the version")
+
+	$(fu_msg "Without a command an interactive menu is shown.")
+	EOF
+}
+
+# ---------------------------------------------------------------------------
+# Dispatch
+# ---------------------------------------------------------------------------
+
+main() {
+	local cmd="${1:-}"
+	[[ $# -gt 0 ]] && shift
+
+	case "$cmd" in
+		--root) fu_root_verb "$@"; return ;;
+	esac
+
+	# Face data and settings are per user; root has neither a lock screen
+	# nor a face of its own to set up.
+	if [[ $EUID -eq 0 && -z ${FU_ALLOW_ROOT:-} ]]; then
+		fu_bad "$(fu_msg "Run this as your own user, not as root. It asks for your password when it needs to.")"
+		exit 2
+	fi
+
+	case "$cmd" in
+		enable)        fu_do_enable ;;
+		disable)       fu_do_disable ;;
+		setup|add|enroll) fu_do_setup "$@" ;;
+		faces|list)    fu_do_faces ;;
+		remove|delete) fu_do_remove "$@" ;;
+		test|try)      fu_ensure_service && fu_test ;;
+		status)        fu_do_status ;;
+
+		-h|--help|help) fu_do_help ;;
+		-V|--version)   printf '%s %s\n' "$FU_NAME" "$FU_VERSION" ;;
+
+		'') fu_ui_menu ;;
+		*)
+			fu_bad "$(fu_msg "Unknown command: %s" "$cmd")"
+			printf '\n'
+			fu_do_help
+			exit 1
+			;;
+	esac
+}
+
+main "$@"

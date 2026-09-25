@@ -14,39 +14,39 @@
 # character, so the line discipline eats it instead of delivering it, and a
 # backspace typed while the interface was between reads simply vanishes.
 # Holding non-canonical mode for the whole interface removes the gap.
-PFU_TERM_SAVED=''
+FU_TERM_SAVED=''
 
-pfu_ui_term_raw() {
-	pfu_have stty || return 0
+fu_ui_term_raw() {
+	fu_have stty || return 0
 	[[ -t 0 ]] || return 0
-	[[ -n $PFU_TERM_SAVED ]] && return 0
+	[[ -n $FU_TERM_SAVED ]] && return 0
 
-	PFU_TERM_SAVED="$(stty -g 2>/dev/null)" || { PFU_TERM_SAVED=''; return 0; }
+	FU_TERM_SAVED="$(stty -g 2>/dev/null)" || { FU_TERM_SAVED=''; return 0; }
 	stty -icanon -echo min 1 time 0 2>/dev/null || true
 }
 
-pfu_ui_term_restore() {
-	[[ -n $PFU_TERM_SAVED ]] || return 0
-	stty "$PFU_TERM_SAVED" 2>/dev/null || true
-	PFU_TERM_SAVED=''
+fu_ui_term_restore() {
+	[[ -n $FU_TERM_SAVED ]] || return 0
+	stty "$FU_TERM_SAVED" 2>/dev/null || true
+	FU_TERM_SAVED=''
 }
 
 # Runs an action with the terminal handed back to normal line mode, so anything
 # it prints or prompts for (sudo's password prompt, above all) behaves the way
 # a program expects.
-pfu_ui_cooked() {
-	pfu_ui_term_restore
+fu_ui_cooked() {
+	fu_ui_term_restore
 	"$@"
 	local rc=$?
-	pfu_ui_term_raw
+	fu_ui_term_raw
 	return $rc
 }
 
-# pfu_read_key
+# fu_read_key
 # One keypress, resolved to a symbolic name. Arrow keys arrive as ESC [ A, so
 # the tail of the sequence is consumed here rather than being mistaken for
 # three separate presses.
-pfu_read_key() {
+fu_read_key() {
 	local k rest
 
 	IFS= read -rsn1 k || return 1
@@ -72,26 +72,26 @@ pfu_read_key() {
 	esac
 }
 
-# pfu_ui_read_line <initial>
-# A minimal line editor built on pfu_read_key, with the result in
-# PFU_LINE_RESULT. This exists instead of bash's own `read -r` because mixing
+# fu_ui_read_line <initial>
+# A minimal line editor built on fu_read_key, with the result in
+# FU_LINE_RESULT. This exists instead of bash's own `read -r` because mixing
 # line mode into a single-key interface breaks it: after one cooked-mode read
 # the following `read -sn1` stops receiving keystrokes entirely.
-PFU_LINE_RESULT=''
+FU_LINE_RESULT=''
 
-pfu_ui_read_line() {
+fu_ui_read_line() {
 	local buf="${1:-}" key
 
-	PFU_LINE_RESULT=''
+	FU_LINE_RESULT=''
 	printf '%s' "$buf"
 
 	while true; do
-		key="$(pfu_read_key)" || { printf '\n'; return 1; }
+		key="$(fu_read_key)" || { printf '\n'; return 1; }
 
 		case "$key" in
 			enter)
 				printf '\n'
-				PFU_LINE_RESULT="$buf"
+				FU_LINE_RESULT="$buf"
 				return 0
 				;;
 			escape)
@@ -118,88 +118,88 @@ pfu_ui_read_line() {
 	done
 }
 
-# _pfu_ui_take_notices
+# _fu_ui_take_notices
 # The messages the last action left, as lines for under a frame, in
-# PFU_UI_NOTICE_TEXT. Each is shown once.
-PFU_UI_NOTICE_TEXT=''
+# FU_UI_NOTICE_TEXT. Each is shown once.
+FU_UI_NOTICE_TEXT=''
 
-_pfu_ui_take_notices() {
+_fu_ui_take_notices() {
 	local n
-	PFU_UI_NOTICE_TEXT=''
-	(( ${#PFU_UI_NOTICES[@]} )) || return 0
-	PFU_UI_NOTICE_TEXT=$'\n'
-	for n in "${PFU_UI_NOTICES[@]}"; do
-		PFU_UI_NOTICE_TEXT+="  $n"$'\n'
+	FU_UI_NOTICE_TEXT=''
+	(( ${#FU_UI_NOTICES[@]} )) || return 0
+	FU_UI_NOTICE_TEXT=$'\n'
+	for n in "${FU_UI_NOTICES[@]}"; do
+		FU_UI_NOTICE_TEXT+="  $n"$'\n'
 	done
-	PFU_UI_NOTICES=()
+	FU_UI_NOTICES=()
 }
 
-# pfu_ui_confirm <question>
-pfu_ui_confirm() {
+# fu_ui_confirm <question>
+fu_ui_confirm() {
 	local key hint yes
 	# TRANSLATORS: the letter after "[" is the key for yes. y works too.
-	hint="$(pfu_msg "[y/N]")"
+	hint="$(fu_msg "[y/N]")"
 	yes="${hint:1:1}"
 	printf '\n  %s %s ' "$1" "$hint"
-	key="$(pfu_read_key)" || return 1
+	key="$(fu_read_key)" || return 1
 	printf '%s\n' "$key"
 	[[ ${key,,} == y || ${key,,} == "${yes,,}" ]]
 }
 
-# _pfu_width <text>
-# The columns the text takes, into PFU_WIDTH. ${#s} counts characters, but
+# _fu_width <text>
+# The columns the text takes, into FU_WIDTH. ${#s} counts characters, but
 # Chinese, Japanese and Korean ones take two columns each.
-PFU_WIDTH=0
+FU_WIDTH=0
 
-_pfu_width() {
+_fu_width() {
 	local wide="${1//[^　-〿぀-ヿ㐀-䶿一-鿿가-힯豈-﫿＀-｠]/}"
-	PFU_WIDTH=$(( ${#1} + ${#wide} ))
+	FU_WIDTH=$(( ${#1} + ${#wide} ))
 }
 
-# _pfu_row <label> <value>
+# _fu_row <label> <value>
 # printf's %-28s pads by bytes, so a label containing "ü" comes out one column
 # short. The padding is computed here instead.
-_pfu_row() {
+_fu_row() {
 	local label="$1" value="$2" pad
-	_pfu_width "$label"
-	pad=$(( 30 - PFU_WIDTH ))
+	_fu_width "$label"
+	pad=$(( 30 - FU_WIDTH ))
 	(( pad < 0 )) && pad=0
 	printf '  %s%*s %s\n' "$label" "$pad" '' "$value"
 }
 
-_pfu_onoff() {
+_fu_onoff() {
 	if [[ $1 == yes ]]; then
-		printf '%s%s%s' "$PFU_C_GREEN" "$(pfu_msg "ON")" "$PFU_C_RESET"
+		printf '%s%s%s' "$FU_C_GREEN" "$(fu_msg "ON")" "$FU_C_RESET"
 	else
-		printf '%s%s%s' "$PFU_C_DIM" "$(pfu_msg "OFF")" "$PFU_C_RESET"
+		printf '%s%s%s' "$FU_C_DIM" "$(fu_msg "OFF")" "$FU_C_RESET"
 	fi
 }
 
-_pfu_small_onoff() {
+_fu_small_onoff() {
 	if [[ $1 == yes ]]; then
-		printf '%s%s%s' "$PFU_C_GREEN" "$(pfu_msg "on")" "$PFU_C_RESET"
+		printf '%s%s%s' "$FU_C_GREEN" "$(fu_msg "on")" "$FU_C_RESET"
 	else
-		printf '%s%s%s' "$PFU_C_DIM" "$(pfu_msg "off")" "$PFU_C_RESET"
+		printf '%s%s%s' "$FU_C_DIM" "$(fu_msg "off")" "$FU_C_RESET"
 	fi
 }
 
-# pfu_value_label <Key> <value>
+# fu_value_label <Key> <value>
 # How a setting's value reads in the menu.
-pfu_value_label() {
+fu_value_label() {
 	case "$1:$2" in
-		Liveness:heavy)     pfu_msg "strict" ;;
-		Liveness:light)     pfu_msg "basic" ;;
-		Liveness:off)       pfu_msg "off" ;;
-		Strictness:normal)  pfu_msg "normal" ;;
-		Strictness:strict)  pfu_msg "strict" ;;
-		Strictness:relaxed) pfu_msg "relaxed" ;;
-		BubbleStyle:full)   pfu_msg "island with the face" ;;
-		BubbleStyle:minimal) pfu_msg "small pill with a lock" ;;
-		AnimationSpeed:normal) pfu_msg "normal" ;;
-		AnimationSpeed:fast) pfu_msg "fast" ;;
-		AnimationSpeed:slow) pfu_msg "slow" ;;
-		ScanSeconds:*)      pfu_msg "%s seconds" "$2" ;;
-		Camera:auto)        pfu_msg "automatic" ;;
+		Liveness:heavy)     fu_msg "strict" ;;
+		Liveness:light)     fu_msg "basic" ;;
+		Liveness:off)       fu_msg "off" ;;
+		Strictness:normal)  fu_msg "normal" ;;
+		Strictness:strict)  fu_msg "strict" ;;
+		Strictness:relaxed) fu_msg "relaxed" ;;
+		BubbleStyle:full)   fu_msg "island with the face" ;;
+		BubbleStyle:minimal) fu_msg "small pill with a lock" ;;
+		AnimationSpeed:normal) fu_msg "normal" ;;
+		AnimationSpeed:fast) fu_msg "fast" ;;
+		AnimationSpeed:slow) fu_msg "slow" ;;
+		ScanSeconds:*)      fu_msg "%s seconds" "$2" ;;
+		Camera:auto)        fu_msg "automatic" ;;
 		*)                  printf '%s' "$2" ;;
 	esac
 }
@@ -208,55 +208,55 @@ pfu_value_label() {
 # Status
 # ---------------------------------------------------------------------------
 
-# pfu_ui_status
+# fu_ui_status
 # Shared by the `status` subcommand and the menu header.
-pfu_ui_status() {
+fu_ui_status() {
 	local names='' i camera
 
-	pfu_config_load
-	pfu_status_load
+	fu_config_load
+	fu_status_load
 
-	_pfu_row "$(pfu_msg "Face unlock")" "$(_pfu_onoff "$CFG_ENABLED")"
+	_fu_row "$(fu_msg "Face unlock")" "$(_fu_onoff "$CFG_ENABLED")"
 	printf '\n'
 
-	if [[ $PFU_ST_REACHABLE != yes ]]; then
-		_pfu_row "$(pfu_msg "Service")" "${PFU_C_YELLOW}$(pfu_msg "not running")${PFU_C_RESET}"
+	if [[ $FU_ST_REACHABLE != yes ]]; then
+		_fu_row "$(fu_msg "Service")" "${FU_C_YELLOW}$(fu_msg "not running")${FU_C_RESET}"
 		if [[ $CFG_ENABLED == yes ]]; then
-			printf '\n  %s%s%s\n' "$PFU_C_DIM" "$(pfu_msg "Turning face unlock on again starts it.")" "$PFU_C_RESET"
+			printf '\n  %s%s%s\n' "$FU_C_DIM" "$(fu_msg "Turning face unlock on again starts it.")" "$FU_C_RESET"
 		fi
 		return 0
 	fi
 
-	pfu_faces_load
-	for i in "${!PFU_FACE_NAMES[@]}"; do
-		[[ ${PFU_FACE_ON[i]} == true ]] || continue
-		names="${names:+$names, }${PFU_FACE_NAMES[i]}"
+	fu_faces_load
+	for i in "${!FU_FACE_NAMES[@]}"; do
+		[[ ${FU_FACE_ON[i]} == true ]] || continue
+		names="${names:+$names, }${FU_FACE_NAMES[i]}"
 	done
-	if (( ${#PFU_FACE_IDS[@]} == 0 )); then
-		_pfu_row "$(pfu_msg "Faces")" "${PFU_C_YELLOW}$(pfu_msg "none set up yet")${PFU_C_RESET}"
+	if (( ${#FU_FACE_IDS[@]} == 0 )); then
+		_fu_row "$(fu_msg "Faces")" "${FU_C_YELLOW}$(fu_msg "none set up yet")${FU_C_RESET}"
 	else
-		_pfu_row "$(pfu_msg "Faces")" "${PFU_ST_FACES} ${PFU_C_DIM}(${names:-$(pfu_msg "all turned off")})${PFU_C_RESET}"
+		_fu_row "$(fu_msg "Faces")" "${FU_ST_FACES} ${FU_C_DIM}(${names:-$(fu_msg "all turned off")})${FU_C_RESET}"
 	fi
 
-	if [[ $PFU_ST_CAMERA_PRESENT == true ]]; then
-		camera="${PFU_ST_CAMERA_NAME:-$PFU_ST_CAMERA}"
+	if [[ $FU_ST_CAMERA_PRESENT == true ]]; then
+		camera="${FU_ST_CAMERA_NAME:-$FU_ST_CAMERA}"
 	else
-		camera="${PFU_C_YELLOW}$(pfu_msg "none found")${PFU_C_RESET}"
+		camera="${FU_C_YELLOW}$(fu_msg "none found")${FU_C_RESET}"
 	fi
-	_pfu_row "$(pfu_msg "Camera")" "$camera"
+	_fu_row "$(fu_msg "Camera")" "$camera"
 
-	_pfu_row "$(pfu_msg "Lock screen")" "$(_pfu_small_onoff "$( [[ $CFG_ENABLED == yes && $CFG_LOCK == yes ]] && echo yes || echo no)")"
-	_pfu_row "$(pfu_msg "sudo")" "$(_pfu_small_onoff "$(pfu_pam_enabled sudo && echo yes || echo no)")"
-	_pfu_row "$(pfu_msg "Admin prompts")" "$(_pfu_small_onoff "$(pfu_pam_enabled polkit-1 && echo yes || echo no)")"
-	_pfu_row "$(pfu_msg "Photo check")" "$(pfu_value_label Liveness "$CFG_LIVENESS")"
+	_fu_row "$(fu_msg "Lock screen")" "$(_fu_small_onoff "$( [[ $CFG_ENABLED == yes && $CFG_LOCK == yes ]] && echo yes || echo no)")"
+	_fu_row "$(fu_msg "sudo")" "$(_fu_small_onoff "$(fu_pam_enabled sudo && echo yes || echo no)")"
+	_fu_row "$(fu_msg "Admin prompts")" "$(_fu_small_onoff "$(fu_pam_enabled polkit-1 && echo yes || echo no)")"
+	_fu_row "$(fu_msg "Photo check")" "$(fu_value_label Liveness "$CFG_LIVENESS")"
 
-	if (( PFU_ST_LOCKOUT > 0 )); then
-		_pfu_row "$(pfu_msg "Paused")" "${PFU_C_YELLOW}$(pfu_msg "for %d more minutes, or until the password is used" "$(( (PFU_ST_LOCKOUT + 59) / 60 ))")${PFU_C_RESET}"
+	if (( FU_ST_LOCKOUT > 0 )); then
+		_fu_row "$(fu_msg "Paused")" "${FU_C_YELLOW}$(fu_msg "for %d more minutes, or until the password is used" "$(( (FU_ST_LOCKOUT + 59) / 60 ))")${FU_C_RESET}"
 	fi
-	_pfu_row "$(pfu_msg "Last unlock")" "$(pfu_time_ago "$PFU_ST_LAST")"
+	_fu_row "$(fu_msg "Last unlock")" "$(fu_time_ago "$FU_ST_LAST")"
 
-	if [[ $PFU_ST_MODELS != true ]]; then
-		printf '\n  %s%s%s\n' "$PFU_C_RED" "$(pfu_msg "The recognition models are missing. Reinstall the package.")" "$PFU_C_RESET"
+	if [[ $FU_ST_MODELS != true ]]; then
+		printf '\n  %s%s%s\n' "$FU_C_RED" "$(fu_msg "The recognition models are missing. Reinstall the package.")" "$FU_C_RESET"
 	fi
 }
 
@@ -270,7 +270,7 @@ pfu_ui_status() {
 #   type   bool, choice (steps through the choices) or camera
 #   needs  a bool setting this one does nothing without; it is dimmed while
 #          that is off
-PFU_SETTINGS=(
+FU_SETTINGS=(
 	"group|Lock screen"
 	"user|LockScreen|bool|yes|Unlock with your face"
 	"user|ScanOnWake|bool|yes|Scan when you come back||LockScreen"
@@ -293,85 +293,85 @@ PFU_SETTINGS=(
 	"user|BubbleForPrompts|bool|yes|Also for sudo and admin prompts||Bubble"
 )
 
-# pfu_setting_help <Key> <value>
+# fu_setting_help <Key> <value>
 # What a setting does, shown under the list for the selected one.
-pfu_setting_help() {
+fu_setting_help() {
 	case "$1:$2" in
-		LockScreen:*)       pfu_msg "Unlocks the lock screen when it sees your face. Off: only your password works there." ;;
-		ScanOnWake:*)       pfu_msg "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up." ;;
-		ScanOnLock:*)       pfu_msg "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away." ;;
-		sudo:*)             pfu_msg "sudo takes your face instead of the password. No match: you type the password as usual." ;;
-		polkit-1:*)         pfu_msg "The password windows of Plasma and apps, for example when you install software. No match: you type the password." ;;
-		Liveness:heavy)     pfu_msg "You have to blink or turn your head a little. This also stops printed photos." ;;
-		Liveness:off)       pfu_msg "No check at all. Only for trying out a camera." ;;
-		Liveness:*)         pfu_msg "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through." ;;
-		Strictness:strict)  pfu_msg "Fewer wrong matches, but it may not know you with glasses or in bad light." ;;
-		Strictness:relaxed) pfu_msg "Knows you more easily, but also somebody who looks a lot like you." ;;
-		Strictness:*)       pfu_msg "The default. Right for most people." ;;
-		Attention:*)        pfu_msg "Your eyes have to be open and on the screen. So it does not unlock while you look away or sleep." ;;
-		Camera:*)           pfu_msg "Automatic takes the first normal camera. After a change, set up your face again. An infrared camera needs its light on (linux-enable-ir-emitter)." ;;
-		ScanSeconds:*)      pfu_msg "How long the camera looks for your face before it gives up." ;;
-		Adapt:*)            pfu_msg "After a sure match it keeps how you look now. So a new haircut or glasses need no new setup." ;;
-		SkipLidClosed:*)    pfu_msg "No scan while the laptop is closed, for example at a desk with an external screen." ;;
-		Bubble:*)           pfu_msg "The bubble at the top of the screen shows what the camera is doing." ;;
-		BubbleStyle:minimal) pfu_msg "A small pill with a lock that opens." ;;
-		BubbleStyle:*)      pfu_msg "An island with a face that looks around, then rings and a tick." ;;
-		AnimationSpeed:*)   pfu_msg "How fast the bubble moves." ;;
-		BubbleForPrompts:*) pfu_msg "Shows the bubble when sudo or an admin prompt scans your face, too." ;;
+		LockScreen:*)       fu_msg "Unlocks the lock screen when it sees your face. Off: only your password works there." ;;
+		ScanOnWake:*)       fu_msg "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up." ;;
+		ScanOnLock:*)       fu_msg "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away." ;;
+		sudo:*)             fu_msg "sudo takes your face instead of the password. No match: you type the password as usual." ;;
+		polkit-1:*)         fu_msg "The password windows of Plasma and apps, for example when you install software. No match: you type the password." ;;
+		Liveness:heavy)     fu_msg "You have to blink or turn your head a little. This also stops printed photos." ;;
+		Liveness:off)       fu_msg "No check at all. Only for trying out a camera." ;;
+		Liveness:*)         fu_msg "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through." ;;
+		Strictness:strict)  fu_msg "Fewer wrong matches, but it may not know you with glasses or in bad light." ;;
+		Strictness:relaxed) fu_msg "Knows you more easily, but also somebody who looks a lot like you." ;;
+		Strictness:*)       fu_msg "The default. Right for most people." ;;
+		Attention:*)        fu_msg "Your eyes have to be open and on the screen. So it does not unlock while you look away or sleep." ;;
+		Camera:*)           fu_msg "Automatic takes the first normal camera. After a change, set up your face again. An infrared camera needs its light on (linux-enable-ir-emitter)." ;;
+		ScanSeconds:*)      fu_msg "How long the camera looks for your face before it gives up." ;;
+		Adapt:*)            fu_msg "After a sure match it keeps how you look now. So a new haircut or glasses need no new setup." ;;
+		SkipLidClosed:*)    fu_msg "No scan while the laptop is closed, for example at a desk with an external screen." ;;
+		Bubble:*)           fu_msg "The bubble at the top of the screen shows what the camera is doing." ;;
+		BubbleStyle:minimal) fu_msg "A small pill with a lock that opens." ;;
+		BubbleStyle:*)      fu_msg "An island with a face that looks around, then rings and a tick." ;;
+		AnimationSpeed:*)   fu_msg "How fast the bubble moves." ;;
+		BubbleForPrompts:*) fu_msg "Shows the bubble when sudo or an admin prompt scans your face, too." ;;
 	esac
 }
 
-# _pfu_wrap <width> <text>
-# Word wrap, into PFU_WRAP_LINES.
-PFU_WRAP_LINES=()
+# _fu_wrap <width> <text>
+# Word wrap, into FU_WRAP_LINES.
+FU_WRAP_LINES=()
 
-_pfu_wrap() {
+_fu_wrap() {
 	local width="$1" word line='' used=0 c i
 	local -a words
-	PFU_WRAP_LINES=()
+	FU_WRAP_LINES=()
 	read -r -a words <<< "$2"
 	for word in "${words[@]}"; do
-		_pfu_width "$word"
-		if (( used > 0 && used + 1 + PFU_WIDTH > width )); then
-			PFU_WRAP_LINES+=("$line")
+		_fu_width "$word"
+		if (( used > 0 && used + 1 + FU_WIDTH > width )); then
+			FU_WRAP_LINES+=("$line")
 			line='' used=0
 		fi
 		(( used > 0 )) && line+=' ' used=$(( used + 1 ))
-		if (( used + PFU_WIDTH <= width )); then
-			line+="$word" used=$(( used + PFU_WIDTH ))
+		if (( used + FU_WIDTH <= width )); then
+			line+="$word" used=$(( used + FU_WIDTH ))
 			continue
 		fi
 		# Longer than a line: Chinese and Japanese have no spaces, so break
 		# between any two characters.
 		for (( i = 0; i < ${#word}; i++ )); do
 			c="${word:i:1}"
-			_pfu_width "$c"
-			if (( used + PFU_WIDTH > width )); then
-				PFU_WRAP_LINES+=("$line")
+			_fu_width "$c"
+			if (( used + FU_WIDTH > width )); then
+				FU_WRAP_LINES+=("$line")
 				line='' used=0
 			fi
-			line+="$c" used=$(( used + PFU_WIDTH ))
+			line+="$c" used=$(( used + FU_WIDTH ))
 		done
 	done
-	[[ -n $line ]] && PFU_WRAP_LINES+=("$line")
+	[[ -n $line ]] && FU_WRAP_LINES+=("$line")
 	return 0
 }
 
-# _pfu_setting_value <scope> <Key> <default>
-# The current value, in PFU_SETTING_VALUE.
-PFU_SETTING_VALUE=''
+# _fu_setting_value <scope> <Key> <default>
+# The current value, in FU_SETTING_VALUE.
+FU_SETTING_VALUE=''
 
-_pfu_setting_value() {
+_fu_setting_value() {
 	case "$1" in
-		user) _pfu_kv_lookup "$PFU_CONFIG" "$2" "$3"; PFU_SETTING_VALUE="$PFU_KV_VALUE" ;;
-		sys)  _pfu_kv_lookup "$PFU_SYSCONFIG" "$2" "$3"; PFU_SETTING_VALUE="$PFU_KV_VALUE" ;;
-		pam)  if pfu_pam_enabled "$2"; then PFU_SETTING_VALUE=yes; else PFU_SETTING_VALUE=no; fi ;;
+		user) _fu_kv_lookup "$FU_CONFIG" "$2" "$3"; FU_SETTING_VALUE="$FU_KV_VALUE" ;;
+		sys)  _fu_kv_lookup "$FU_SYSCONFIG" "$2" "$3"; FU_SETTING_VALUE="$FU_KV_VALUE" ;;
+		pam)  if fu_pam_enabled "$2"; then FU_SETTING_VALUE=yes; else FU_SETTING_VALUE=no; fi ;;
 	esac
 }
 
-# _pfu_step <current> <step> <choice>...
+# _fu_step <current> <step> <choice>...
 # The choice <step> (1 or -1) away from the current one, round at the ends.
-_pfu_step() {
+_fu_step() {
 	local current="$1" step="$2" i
 	shift 2
 	local -a all=("$@")
@@ -384,100 +384,100 @@ _pfu_step() {
 	printf '%s\n' "${all[0]}"
 }
 
-# _pfu_next_choice <current> <a,b,c> <step>
-_pfu_next_choice() {
+# _fu_next_choice <current> <a,b,c> <step>
+_fu_next_choice() {
 	local -a choices
 	IFS=',' read -r -a choices <<< "$2"
-	_pfu_step "$1" "$3" "${choices[@]}"
+	_fu_step "$1" "$3" "${choices[@]}"
 }
 
-# _pfu_next_camera <current> <step>
-_pfu_next_camera() {
-	pfu_cameras_load
-	_pfu_step "$1" "$2" auto "${PFU_CAM_PATHS[@]}"
+# _fu_next_camera <current> <step>
+_fu_next_camera() {
+	fu_cameras_load
+	_fu_step "$1" "$2" auto "${FU_CAM_PATHS[@]}"
 }
 
-_pfu_camera_label() {
+_fu_camera_label() {
 	local value="$1" i
 	if [[ $value == auto ]]; then
-		for i in "${!PFU_CAM_PATHS[@]}"; do
-			if [[ ${PFU_CAM_PATHS[i]} == "$PFU_CAM_AUTO" ]]; then
-				pfu_msg "automatic (%s)" "${PFU_CAM_NAMES[i]}"
+		for i in "${!FU_CAM_PATHS[@]}"; do
+			if [[ ${FU_CAM_PATHS[i]} == "$FU_CAM_AUTO" ]]; then
+				fu_msg "automatic (%s)" "${FU_CAM_NAMES[i]}"
 				return
 			fi
 		done
-		pfu_msg "automatic"
+		fu_msg "automatic"
 		return
 	fi
-	for i in "${!PFU_CAM_PATHS[@]}"; do
-		if [[ ${PFU_CAM_PATHS[i]} == "$value" ]]; then
-			printf '%s' "${PFU_CAM_NAMES[i]}"
-			[[ ${PFU_CAM_IR[i]} == true ]] && printf ' %s' "$(pfu_msg "(infrared)")"
+	for i in "${!FU_CAM_PATHS[@]}"; do
+		if [[ ${FU_CAM_PATHS[i]} == "$value" ]]; then
+			printf '%s' "${FU_CAM_NAMES[i]}"
+			[[ ${FU_CAM_IR[i]} == true ]] && printf ' %s' "$(fu_msg "(infrared)")"
 			return
 		fi
 	done
-	printf '%s %s' "$value" "$(pfu_msg "(not connected)")"
+	printf '%s %s' "$value" "$(fu_msg "(not connected)")"
 }
 
-# _pfu_setting_change <scope> <Key> <type> <current> <choices> <step>
-_pfu_setting_change() {
+# _fu_setting_change <scope> <Key> <type> <current> <choices> <step>
+_fu_setting_change() {
 	local scope="$1" key="$2" type="$3" current="$4" choices="$5" step="$6" next
 
 	case "$type" in
-		bool)   if pfu_is_true "$current"; then next=no; else next=yes; fi ;;
-		choice) next="$(_pfu_next_choice "$current" "$choices" "$step")" ;;
-		camera) next="$(_pfu_next_camera "$current" "$step")" ;;
+		bool)   if fu_is_true "$current"; then next=no; else next=yes; fi ;;
+		choice) next="$(_fu_next_choice "$current" "$choices" "$step")" ;;
+		camera) next="$(_fu_next_camera "$current" "$step")" ;;
 	esac
 
 	case "$scope" in
 		user)
-			pfu_config_set "$key" "$next" || pfu_bad "$(pfu_msg "Could not save the setting.")"
+			fu_config_set "$key" "$next" || fu_bad "$(fu_msg "Could not save the setting.")"
 			;;
 		sys)
 			printf '\n'
-			pfu_ui_cooked pfu_root set "$key" "$next" || pfu_bad "$(pfu_msg "Could not save the setting.")"
-			PFU_KV_CACHE=()
+			fu_ui_cooked fu_root set "$key" "$next" || fu_bad "$(fu_msg "Could not save the setting.")"
+			FU_KV_CACHE=()
 			;;
 		pam)
 			printf '\n'
 			if [[ $next == yes ]]; then
-				pfu_ui_cooked pfu_root pam-enable "$key" || pfu_bad "$(pfu_msg "Could not save the setting.")"
+				fu_ui_cooked fu_root pam-enable "$key" || fu_bad "$(fu_msg "Could not save the setting.")"
 			else
-				pfu_ui_cooked pfu_root pam-disable "$key" || pfu_bad "$(pfu_msg "Could not save the setting.")"
+				fu_ui_cooked fu_root pam-disable "$key" || fu_bad "$(fu_msg "Could not save the setting.")"
 			fi
 			# Remembered, so that turning face unlock off and on again brings
 			# it back.
 			case "$key" in
-				sudo)     pfu_config_set Sudo "$next" ;;
-				polkit-1) pfu_config_set Polkit "$next" ;;
+				sudo)     fu_config_set Sudo "$next" ;;
+				polkit-1) fu_config_set Polkit "$next" ;;
 			esac
 			;;
 	esac
 }
 
-# pfu_ui_settings
+# fu_ui_settings
 # A cursor list in groups, with what the selected setting does under it. The
 # frame is assembled in memory and written once, and everything constant is
 # resolved before the loop.
-pfu_ui_settings() {
+fu_ui_settings() {
 	local -a scopes=() keys=() types=() defaults=() labels=() widths=() choices=() needs=() values=() rows=()
 	local spec scope key type default label choice need locale i j frame row pad dirty=1 cursor=0 shown
 	local width=0 wrap cols
 
-	locale="$(pfu_ui_locale)"
-	for spec in "${PFU_SETTINGS[@]}"; do
+	locale="$(fu_ui_locale)"
+	for spec in "${FU_SETTINGS[@]}"; do
 		IFS='|' read -r scope key type default label choice need <<< "$spec"
 		# A heading has its label where the key would be.
 		[[ $scope == group ]] && label="$key" key=''
 		scopes+=("$scope"); keys+=("$key"); types+=("$type"); defaults+=("$default")
 		choices+=("$choice"); needs+=("$need")
-		pfu_msg_into "$locale" "$label"
-		labels+=("$PFU_MSG_RESULT")
-		_pfu_width "$PFU_MSG_RESULT"
-		widths+=("$PFU_WIDTH")
+		fu_msg_into "$locale" "$label"
+		labels+=("$FU_MSG_RESULT")
+		_fu_width "$FU_MSG_RESULT"
+		widths+=("$FU_WIDTH")
 		if [[ $scope != group ]]; then
 			rows+=($(( ${#keys[@]} - 1 )))
-			(( PFU_WIDTH > width )) && width=$PFU_WIDTH
+			(( FU_WIDTH > width )) && width=$FU_WIDTH
 		fi
 	done
 	local count=${#rows[@]}
@@ -491,77 +491,77 @@ pfu_ui_settings() {
 	rule="${rule// /─}"
 
 	local title hint shared l_on l_off
-	pfu_msg_into "$locale" "Settings"; title="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "↑↓ select   ←→ or Space: change   q: back"; hint="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "for all users, asks for your password"; shared="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "ON"; l_on="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "OFF"; l_off="$PFU_MSG_RESULT"
+	fu_msg_into "$locale" "Settings"; title="$FU_MSG_RESULT"
+	fu_msg_into "$locale" "↑↓ select   ←→ or Space: change   q: back"; hint="$FU_MSG_RESULT"
+	fu_msg_into "$locale" "for all users, asks for your password"; shared="$FU_MSG_RESULT"
+	fu_msg_into "$locale" "ON"; l_on="$FU_MSG_RESULT"
+	fu_msg_into "$locale" "OFF"; l_off="$FU_MSG_RESULT"
 
 	local clearseq
 	clearseq="$(clear 2>/dev/null)" || clearseq=$'\033[H\033[2J'
 
-	pfu_cameras_load
+	fu_cameras_load
 
 	while true; do
 		if (( dirty )); then
-			PFU_KV_CACHE=()
+			FU_KV_CACHE=()
 			declare -A current=()
 			for i in "${rows[@]}"; do
-				_pfu_setting_value "${scopes[i]}" "${keys[i]}" "${defaults[i]}"
-				values[i]="$PFU_SETTING_VALUE"
-				current[${keys[i]}]="$PFU_SETTING_VALUE"
+				_fu_setting_value "${scopes[i]}" "${keys[i]}" "${defaults[i]}"
+				values[i]="$FU_SETTING_VALUE"
+				current[${keys[i]}]="$FU_SETTING_VALUE"
 			done
 			dirty=0
 		fi
 
-		frame="$clearseq"$'\n'"${PFU_C_BOLD}${PFU_C_BLUE}  ${title}${PFU_C_RESET}"$'\n'
+		frame="$clearseq"$'\n'"${FU_C_BOLD}${FU_C_BLUE}  ${title}${FU_C_RESET}"$'\n'
 
 		local selected=${rows[cursor]} marker before after dim
 		for i in "${!keys[@]}"; do
 			if [[ ${scopes[i]} == group ]]; then
-				frame+=$'\n'"  ${PFU_C_BOLD}${labels[i]}${PFU_C_RESET}"
+				frame+=$'\n'"  ${FU_C_BOLD}${labels[i]}${FU_C_RESET}"
 				# The next row says whose settings these are.
-				[[ ${scopes[i + 1]} != user ]] && frame+="  ${PFU_C_DIM}${shared}${PFU_C_RESET}"
+				[[ ${scopes[i + 1]} != user ]] && frame+="  ${FU_C_DIM}${shared}${FU_C_RESET}"
 				frame+=$'\n'
 				continue
 			fi
 			case "${types[i]}" in
 				bool)
-					if pfu_is_true "${values[i]}"; then
-						shown="${PFU_C_GREEN}${l_on}${PFU_C_RESET}"
+					if fu_is_true "${values[i]}"; then
+						shown="${FU_C_GREEN}${l_on}${FU_C_RESET}"
 					else
-						shown="${PFU_C_DIM}${l_off}${PFU_C_RESET}"
+						shown="${FU_C_DIM}${l_off}${FU_C_RESET}"
 					fi
 					;;
-				camera) shown="$(_pfu_camera_label "${values[i]}")" ;;
-				*)      shown="$(pfu_value_label "${keys[i]}" "${values[i]}")" ;;
+				camera) shown="$(_fu_camera_label "${values[i]}")" ;;
+				*)      shown="$(fu_value_label "${keys[i]}" "${values[i]}")" ;;
 			esac
 			# Arrows on the selected choice: left and right step through it.
 			before='  ' after=''
 			if (( i == selected )) && [[ ${types[i]} != bool ]]; then
-				before="${PFU_C_BLUE}◂${PFU_C_RESET} " after=" ${PFU_C_BLUE}▸${PFU_C_RESET}"
+				before="${FU_C_BLUE}◂${FU_C_RESET} " after=" ${FU_C_BLUE}▸${FU_C_RESET}"
 			fi
 			dim=''
-			[[ -n ${needs[i]} ]] && ! pfu_is_true "${current[${needs[i]}]}" && dim="$PFU_C_DIM"
+			[[ -n ${needs[i]} ]] && ! fu_is_true "${current[${needs[i]}]}" && dim="$FU_C_DIM"
 			pad=$(( width + 2 - widths[i] ))
-			if (( i == selected )); then marker="${PFU_C_BLUE}▸${PFU_C_RESET} "; else marker='  '; fi
-			printf -v row '  %s%s%s%s%*s%s%s%s' "$marker" "$dim" "${labels[i]}" "$PFU_C_RESET" "$pad" '' "$before" "$dim$shown$PFU_C_RESET" "$after"
+			if (( i == selected )); then marker="${FU_C_BLUE}▸${FU_C_RESET} "; else marker='  '; fi
+			printf -v row '  %s%s%s%s%*s%s%s%s' "$marker" "$dim" "${labels[i]}" "$FU_C_RESET" "$pad" '' "$before" "$dim$shown$FU_C_RESET" "$after"
 			frame+="$row"$'\n'
 		done
 
 		# What the selected setting does, in a box of fixed height so the
 		# screen does not jump while moving through the list.
-		_pfu_wrap "$wrap" "$(pfu_setting_help "${keys[selected]}" "${values[selected]}")"
-		frame+=$'\n'"  ${PFU_C_DIM}${rule}${PFU_C_RESET}"$'\n'
+		_fu_wrap "$wrap" "$(fu_setting_help "${keys[selected]}" "${values[selected]}")"
+		frame+=$'\n'"  ${FU_C_DIM}${rule}${FU_C_RESET}"$'\n'
 		for j in 0 1 2; do
-			frame+="  ${PFU_WRAP_LINES[j]:-}"$'\n'
+			frame+="  ${FU_WRAP_LINES[j]:-}"$'\n'
 		done
-		frame+=$'\n'"  ${PFU_C_DIM}${hint}${PFU_C_RESET}"$'\n'
-		_pfu_ui_take_notices
-		frame+="$PFU_UI_NOTICE_TEXT"
+		frame+=$'\n'"  ${FU_C_DIM}${hint}${FU_C_RESET}"$'\n'
+		_fu_ui_take_notices
+		frame+="$FU_UI_NOTICE_TEXT"
 		printf '%s' "$frame"
 
-		key="$(pfu_read_key)" || return 0
+		key="$(fu_read_key)" || return 0
 
 		case "$key" in
 			up|k)   cursor=$(( (cursor - 1 + count) % count )) ;;
@@ -569,7 +569,7 @@ pfu_ui_settings() {
 			space|enter|right|l|left|h)
 				local step=1
 				[[ $key == left || $key == h ]] && step=-1
-				_pfu_setting_change "${scopes[selected]}" "${keys[selected]}" "${types[selected]}" "${values[selected]}" "${choices[selected]}" "$step"
+				_fu_setting_change "${scopes[selected]}" "${keys[selected]}" "${types[selected]}" "${values[selected]}" "${choices[selected]}" "$step"
 				dirty=1
 				;;
 			q|Q|escape) return 0 ;;
@@ -582,72 +582,72 @@ pfu_ui_settings() {
 # Faces
 # ---------------------------------------------------------------------------
 
-pfu_ui_faces() {
+fu_ui_faces() {
 	local key frame row pad i cursor=0 count locale shown
 
-	locale="$(pfu_ui_locale)"
+	locale="$(fu_ui_locale)"
 	local title hint empty l_on l_off
-	pfu_msg_into "$locale" "Faces"; title="$PFU_MSG_RESULT"
+	fu_msg_into "$locale" "Faces"; title="$FU_MSG_RESULT"
 	# TRANSLATORS: keep the letters, they are the keys.
-	pfu_msg_into "$locale" "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"; hint="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "No face is set up yet. Press a to add one."; empty="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "on"; l_on="$PFU_MSG_RESULT"
-	pfu_msg_into "$locale" "off"; l_off="$PFU_MSG_RESULT"
+	fu_msg_into "$locale" "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"; hint="$FU_MSG_RESULT"
+	fu_msg_into "$locale" "No face is set up yet. Press a to add one."; empty="$FU_MSG_RESULT"
+	fu_msg_into "$locale" "on"; l_on="$FU_MSG_RESULT"
+	fu_msg_into "$locale" "off"; l_off="$FU_MSG_RESULT"
 
 	local clearseq
 	clearseq="$(clear 2>/dev/null)" || clearseq=$'\033[H\033[2J'
 
 	while true; do
-		pfu_faces_load
-		count=${#PFU_FACE_IDS[@]}
+		fu_faces_load
+		count=${#FU_FACE_IDS[@]}
 		(( cursor >= count )) && cursor=$(( count > 0 ? count - 1 : 0 ))
 
-		frame="$clearseq"$'\n'"${PFU_C_BOLD}${PFU_C_BLUE}  ${title}${PFU_C_RESET}"$'\n\n'
+		frame="$clearseq"$'\n'"${FU_C_BOLD}${FU_C_BLUE}  ${title}${FU_C_RESET}"$'\n\n'
 		if (( count == 0 )); then
-			frame+="  ${PFU_C_DIM}${empty}${PFU_C_RESET}"$'\n'
+			frame+="  ${FU_C_DIM}${empty}${FU_C_RESET}"$'\n'
 		fi
-		local marker selected="${PFU_C_BLUE}▸${PFU_C_RESET} " samples
-		for i in "${!PFU_FACE_IDS[@]}"; do
-			if [[ ${PFU_FACE_ON[i]} == true ]]; then shown="${PFU_C_GREEN}${l_on}${PFU_C_RESET}"; else shown="${PFU_C_DIM}${l_off}${PFU_C_RESET}"; fi
-			samples="$(pfu_msg "%s samples, %s learned" "${PFU_FACE_SAMPLES[i]}" "${PFU_FACE_LEARNED[i]}")"
-			_pfu_width "${PFU_FACE_NAMES[i]}"
-			pad=$(( 30 - PFU_WIDTH ))
+		local marker selected="${FU_C_BLUE}▸${FU_C_RESET} " samples
+		for i in "${!FU_FACE_IDS[@]}"; do
+			if [[ ${FU_FACE_ON[i]} == true ]]; then shown="${FU_C_GREEN}${l_on}${FU_C_RESET}"; else shown="${FU_C_DIM}${l_off}${FU_C_RESET}"; fi
+			samples="$(fu_msg "%s samples, %s learned" "${FU_FACE_SAMPLES[i]}" "${FU_FACE_LEARNED[i]}")"
+			_fu_width "${FU_FACE_NAMES[i]}"
+			pad=$(( 30 - FU_WIDTH ))
 			(( pad < 0 )) && pad=0
 			if (( i == cursor )); then marker="$selected"; else marker='  '; fi
-			printf -v row '  %s%s%*s %s  %s%s%s' "$marker" "${PFU_FACE_NAMES[i]}" "$pad" '' "$shown" "$PFU_C_DIM" "$samples" "$PFU_C_RESET"
+			printf -v row '  %s%s%*s %s  %s%s%s' "$marker" "${FU_FACE_NAMES[i]}" "$pad" '' "$shown" "$FU_C_DIM" "$samples" "$FU_C_RESET"
 			frame+="$row"$'\n'
 		done
-		frame+=$'\n'"  ${PFU_C_DIM}${hint}${PFU_C_RESET}"$'\n'
-		_pfu_ui_take_notices
-		frame+="$PFU_UI_NOTICE_TEXT"
+		frame+=$'\n'"  ${FU_C_DIM}${hint}${FU_C_RESET}"$'\n'
+		_fu_ui_take_notices
+		frame+="$FU_UI_NOTICE_TEXT"
 		printf '%s' "$frame"
 
-		key="$(pfu_read_key)" || return 0
+		key="$(fu_read_key)" || return 0
 		case "$key" in
 			up|k)   (( count )) && cursor=$(( (cursor - 1 + count) % count )) ;;
 			down|j) (( count )) && cursor=$(( (cursor + 1) % count )) ;;
 			space|enter)
 				(( count )) || continue
-				if [[ ${PFU_FACE_ON[cursor]} == true ]]; then
-					pfu_ctl disable "${PFU_FACE_IDS[cursor]}" > /dev/null
+				if [[ ${FU_FACE_ON[cursor]} == true ]]; then
+					fu_ctl disable "${FU_FACE_IDS[cursor]}" > /dev/null
 				else
-					pfu_ctl enable "${PFU_FACE_IDS[cursor]}" > /dev/null
+					fu_ctl enable "${FU_FACE_IDS[cursor]}" > /dev/null
 				fi
 				;;
 			r|R)
 				(( count )) || continue
-				printf '\n  %s ' "$(pfu_msg "New name:")"
-				if pfu_ui_read_line "${PFU_FACE_NAMES[cursor]}" && [[ -n $PFU_LINE_RESULT ]]; then
-					pfu_ctl rename "${PFU_FACE_IDS[cursor]}" "$PFU_LINE_RESULT" > /dev/null
+				printf '\n  %s ' "$(fu_msg "New name:")"
+				if fu_ui_read_line "${FU_FACE_NAMES[cursor]}" && [[ -n $FU_LINE_RESULT ]]; then
+					fu_ctl rename "${FU_FACE_IDS[cursor]}" "$FU_LINE_RESULT" > /dev/null
 				fi
 				;;
 			d|D)
 				(( count )) || continue
-				if pfu_ui_confirm "$(pfu_msg "Delete \"%s\"?" "${PFU_FACE_NAMES[cursor]}")"; then
-					pfu_ctl remove "${PFU_FACE_IDS[cursor]}" > /dev/null
+				if fu_ui_confirm "$(fu_msg "Delete \"%s\"?" "${FU_FACE_NAMES[cursor]}")"; then
+					fu_ctl remove "${FU_FACE_IDS[cursor]}" > /dev/null
 				fi
 				;;
-			a|A) pfu_ui_cooked pfu_do_setup ;;
+			a|A) fu_ui_cooked fu_do_setup ;;
 			q|Q|escape) return 0 ;;
 			*) ;;
 		esac
@@ -658,11 +658,11 @@ pfu_ui_faces() {
 # The menu
 # ---------------------------------------------------------------------------
 
-pfu_ui_menu() {
+fu_ui_menu() {
 	local choice keep=0
 
-	pfu_ui_term_raw
-	trap 'pfu_ui_term_restore' EXIT INT TERM
+	fu_ui_term_raw
+	trap 'fu_ui_term_restore' EXIT INT TERM
 
 	while true; do
 		# After a test the menu goes under what the camera saw instead.
@@ -671,21 +671,21 @@ pfu_ui_menu() {
 		else
 			clear 2>/dev/null || true
 		fi
-		pfu_head "  $PFU_PRETTY"
-		pfu_ui_status
+		fu_head "  $FU_PRETTY"
+		fu_ui_status
 		printf '\n'
-		printf '  [1] %s\n' "$(pfu_msg "Turn face unlock on or off")"
-		printf '  [2] %s\n' "$(pfu_msg "Add a face")"
-		printf '  [3] %s\n' "$(pfu_msg "Faces")"
-		printf '  [4] %s\n' "$(pfu_msg "Settings")"
-		printf '  [5] %s\n' "$(pfu_msg "Try it")"
-		printf '  [q] %s\n' "$(pfu_msg "Quit")"
-		_pfu_ui_take_notices
-		printf '%s' "$PFU_UI_NOTICE_TEXT"
+		printf '  [1] %s\n' "$(fu_msg "Turn face unlock on or off")"
+		printf '  [2] %s\n' "$(fu_msg "Add a face")"
+		printf '  [3] %s\n' "$(fu_msg "Faces")"
+		printf '  [4] %s\n' "$(fu_msg "Settings")"
+		printf '  [5] %s\n' "$(fu_msg "Try it")"
+		printf '  [q] %s\n' "$(fu_msg "Quit")"
+		_fu_ui_take_notices
+		printf '%s' "$FU_UI_NOTICE_TEXT"
 		printf '\n  > '
 
-		choice="$(pfu_read_key)" || {
-			printf '\n'; pfu_ui_term_restore; trap - EXIT INT TERM; return 0
+		choice="$(fu_read_key)" || {
+			printf '\n'; fu_ui_term_restore; trap - EXIT INT TERM; return 0
 		}
 		case "$choice" in
 			enter|space|up|down|left|right|escape) choice='' ;;
@@ -694,24 +694,24 @@ pfu_ui_menu() {
 
 		case "$choice" in
 			1)
-				pfu_config_load
+				fu_config_load
 				if [[ $CFG_ENABLED == yes ]]; then
-					pfu_ui_cooked pfu_do_disable
+					fu_ui_cooked fu_do_disable
 				else
-					pfu_ui_cooked pfu_do_enable
+					fu_ui_cooked fu_do_enable
 				fi
 				;;
-			2) pfu_ui_cooked pfu_do_setup ;;
-			3) pfu_ui_faces ;;
-			4) pfu_ui_settings ;;
+			2) fu_ui_cooked fu_do_setup ;;
+			3) fu_ui_faces ;;
+			4) fu_ui_settings ;;
 			5)
 				printf '\n'
-				pfu_ui_cooked pfu_test
+				fu_ui_cooked fu_test
 				# Already on screen, with the rest of the test.
-				PFU_UI_NOTICES=()
+				FU_UI_NOTICES=()
 				keep=1
 				;;
-			q|Q) pfu_ui_term_restore; trap - EXIT INT TERM; return 0 ;;
+			q|Q) fu_ui_term_restore; trap - EXIT INT TERM; return 0 ;;
 			# Anything else (Enter, arrow keys, stray characters) just
 			# redraws. Escape is deliberately not a quit key, so a mistyped
 			# arrow key cannot close the menu.

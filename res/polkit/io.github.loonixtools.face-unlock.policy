@@ -4,13 +4,13 @@
  "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
 <policyconfig>
   <vendor>LoonixTools</vendor>
-  <vendor_url>https://github.com/LoonixTools/plasma-face-unlock</vendor_url>
-  <icon_name>plasma-face-unlock</icon_name>
+  <vendor_url>https://github.com/LoonixTools/face-unlock</vendor_url>
+  <icon_name>face-unlock</icon_name>
 
   <!-- A face is a way in, so adding, changing or deleting one takes the
        password, the way a phone asks for its code before it sets up a face.
        The daemon refuses to let a face answer this particular question. -->
-  <action id="io.github.loonixtools.plasma-face-unlock.manage">
+  <action id="io.github.loonixtools.face-unlock.manage">
     <description>Change the faces that can unlock your account</description>
     <description xml:lang="de">Gesichter ändern, die dein Konto entsperren können</description>
     <description xml:lang="fr">Modifier les visages qui peuvent déverrouiller votre compte</description>

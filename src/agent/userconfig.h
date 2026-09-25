@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// ~/.config/plasma-face-unlock/config: what this user wants from the agent.
+// ~/.config/face-unlock/config: what this user wants from the agent.
 // Written by the menu, read here, and read again whenever it changes.
 
 #pragma once

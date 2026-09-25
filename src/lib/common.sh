@@ -4,42 +4,42 @@
 #
 # The shell side never touches the camera or the face data. Those belong to
 # the daemon, and everything here that needs them asks it through
-# plasma-face-unlock-ctl. What this side does write is the user's own settings
+# face-unlock-ctl. What this side does write is the user's own settings
 # file, and (through sudo, and only when asked) the system settings and the
 # PAM files of sudo and polkit.
 
-PFU_VERSION="@VERSION@"
-PFU_NAME="plasma-face-unlock"
-PFU_PRETTY="Plasma Face Unlock"
+FU_VERSION="@VERSION@"
+FU_NAME="face-unlock"
+FU_PRETTY="Face Unlock"
 
-PFU_LIBDIR="${PFU_LIBDIR:-@LIBDIR@}"
-PFU_LIBEXECDIR="${PFU_LIBEXECDIR:-@LIBEXECDIR@}"
-PFU_LOCALEDIR="${PFU_LOCALEDIR:-@LOCALEDIR@}"
-PFU_PAMDIR="${PFU_PAMDIR:-@PAMDIR@}"
+FU_LIBDIR="${FU_LIBDIR:-@LIBDIR@}"
+FU_LIBEXECDIR="${FU_LIBEXECDIR:-@LIBEXECDIR@}"
+FU_LOCALEDIR="${FU_LOCALEDIR:-@LOCALEDIR@}"
+FU_PAMDIR="${FU_PAMDIR:-@PAMDIR@}"
 
-PFU_CTL="${PFU_CTL:-$PFU_LIBEXECDIR/plasma-face-unlock-ctl}"
-PFU_AGENT="${PFU_AGENT:-$PFU_LIBEXECDIR/plasma-face-unlock-agent}"
-PFU_PAM_MODULE="${PFU_PAM_MODULE:-$PFU_PAMDIR/pam_plasma_face_unlock.so}"
+FU_CTL="${FU_CTL:-$FU_LIBEXECDIR/face-unlock-ctl}"
+FU_AGENT="${FU_AGENT:-$FU_LIBEXECDIR/face-unlock-agent}"
+FU_PAM_MODULE="${FU_PAM_MODULE:-$FU_PAMDIR/pam_face_unlock.so}"
 
-PFU_XDG_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
-PFU_CONFDIR="${PFU_CONFDIR:-${PFU_XDG_CONFIG}/${PFU_NAME}}"
-PFU_CONFIG="${PFU_CONFIG:-${PFU_CONFDIR}/config}"
+FU_XDG_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
+FU_CONFDIR="${FU_CONFDIR:-${FU_XDG_CONFIG}/${FU_NAME}}"
+FU_CONFIG="${FU_CONFIG:-${FU_CONFDIR}/config}"
 
 # The system settings. Only root writes them; see system.sh.
-PFU_SYSCONFIG="${PFU_SYSCONFIG:-/etc/${PFU_NAME}/config}"
+FU_SYSCONFIG="${FU_SYSCONFIG:-/etc/${FU_NAME}/config}"
 
-PFU_UNIT_SOCKET="plasma-face-unlockd.socket"
-PFU_UNIT_AGENT="plasma-face-unlock-agent.service"
+FU_UNIT_SOCKET="face-unlockd.socket"
+FU_UNIT_AGENT="face-unlock-agent.service"
 
 # ---------------------------------------------------------------------------
 # Translations
 # ---------------------------------------------------------------------------
 
-export TEXTDOMAIN="plasma-face-unlock"
-export TEXTDOMAINDIR="${PFU_LOCALEDIR}"
+export TEXTDOMAIN="face-unlock"
+export TEXTDOMAINDIR="${FU_LOCALEDIR}"
 
-pfu_ui_locale() {
-	local l="${PFU_UI_LOCALE:-}"
+fu_ui_locale() {
+	local l="${FU_UI_LOCALE:-}"
 
 	if [[ -z $l ]]; then
 		l="${LC_ALL:-}"
@@ -63,53 +63,53 @@ pfu_ui_locale() {
 
 # Every gettext lookup is a fork and the settings screen redraws a screenful of
 # labels per keypress, so results are memoized.
-declare -A PFU_MSG_CACHE=()
+declare -A FU_MSG_CACHE=()
 
-PFU_MSG_RESULT=''
+FU_MSG_RESULT=''
 
-# pfu_msg_into <locale> <msgid>
-# Plain lookup with the result in PFU_MSG_RESULT and no printf formatting, for
+# fu_msg_into <locale> <msgid>
+# Plain lookup with the result in FU_MSG_RESULT and no printf formatting, for
 # callers that would otherwise pay a fork per label per frame.
-pfu_msg_into() {
+fu_msg_into() {
 	local locale="$1" msgid="$2" cachekey
 	cachekey="${locale}"$'\x1f'"${msgid}"
 
-	if [[ -n ${PFU_MSG_CACHE[$cachekey]+set} ]]; then
-		PFU_MSG_RESULT="${PFU_MSG_CACHE[$cachekey]}"
+	if [[ -n ${FU_MSG_CACHE[$cachekey]+set} ]]; then
+		FU_MSG_RESULT="${FU_MSG_CACHE[$cachekey]}"
 		return 0
 	fi
 
-	PFU_MSG_RESULT="$(LC_ALL="$locale" LANGUAGE="${locale%%.*}" gettext -- "$msgid" 2>/dev/null)"
-	[[ -n $PFU_MSG_RESULT ]] || PFU_MSG_RESULT="$msgid"
-	PFU_MSG_CACHE[$cachekey]="$PFU_MSG_RESULT"
+	FU_MSG_RESULT="$(LC_ALL="$locale" LANGUAGE="${locale%%.*}" gettext -- "$msgid" 2>/dev/null)"
+	[[ -n $FU_MSG_RESULT ]] || FU_MSG_RESULT="$msgid"
+	FU_MSG_CACHE[$cachekey]="$FU_MSG_RESULT"
 	return 0
 }
 
-# pfu_msg_in <locale> <msgid> [printf args...]
-pfu_msg_in() {
+# fu_msg_in <locale> <msgid> [printf args...]
+fu_msg_in() {
 	local locale="$1" msgid="$2"
 	shift 2
 
-	pfu_msg_into "$locale" "$msgid"
+	fu_msg_into "$locale" "$msgid"
 
 	# With no arguments the message is plain text, not a format string. Feeding
 	# it to printf anyway would turn a literal percent sign in a translation
 	# into an invalid conversion.
 	if (( $# == 0 )); then
-		printf '%s' "$PFU_MSG_RESULT"
+		printf '%s' "$FU_MSG_RESULT"
 		return
 	fi
 
 	# shellcheck disable=SC2059  # the format string is the translated message
-	printf -- "$PFU_MSG_RESULT" "$@"
+	printf -- "$FU_MSG_RESULT" "$@"
 }
 
-PFU_LOCALE_CACHED=''
+FU_LOCALE_CACHED=''
 
-# pfu_msg <msgid> [printf args...]
-pfu_msg() {
-	[[ -n $PFU_LOCALE_CACHED ]] || PFU_LOCALE_CACHED="$(pfu_ui_locale)"
-	pfu_msg_in "$PFU_LOCALE_CACHED" "$@"
+# fu_msg <msgid> [printf args...]
+fu_msg() {
+	[[ -n $FU_LOCALE_CACHED ]] || FU_LOCALE_CACHED="$(fu_ui_locale)"
+	fu_msg_in "$FU_LOCALE_CACHED" "$@"
 }
 
 # ---------------------------------------------------------------------------
@@ -119,45 +119,45 @@ pfu_msg() {
 # Decided once, while stdout is still whatever the process was started with:
 # testing -t 1 at the point of use is wrong for anything called through $(...),
 # which sees a pipe and would conclude nobody is watching.
-PFU_INTERACTIVE=''
-[[ -t 1 ]] && PFU_INTERACTIVE=1
+FU_INTERACTIVE=''
+[[ -t 1 ]] && FU_INTERACTIVE=1
 
-if [[ -n $PFU_INTERACTIVE && -z ${NO_COLOR:-} ]]; then
-	PFU_C_RESET=$'\033[0m'
-	PFU_C_BOLD=$'\033[1m'
-	PFU_C_DIM=$'\033[2m'
-	PFU_C_BLUE=$'\033[38;2;52;153;255m'
-	PFU_C_GREEN=$'\033[32m'
-	PFU_C_YELLOW=$'\033[33m'
-	PFU_C_RED=$'\033[31m'
+if [[ -n $FU_INTERACTIVE && -z ${NO_COLOR:-} ]]; then
+	FU_C_RESET=$'\033[0m'
+	FU_C_BOLD=$'\033[1m'
+	FU_C_DIM=$'\033[2m'
+	FU_C_BLUE=$'\033[38;2;52;153;255m'
+	FU_C_GREEN=$'\033[32m'
+	FU_C_YELLOW=$'\033[33m'
+	FU_C_RED=$'\033[31m'
 else
-	PFU_C_RESET='' PFU_C_BOLD='' PFU_C_DIM='' PFU_C_BLUE=''
-	PFU_C_GREEN='' PFU_C_YELLOW='' PFU_C_RED=''
+	FU_C_RESET='' FU_C_BOLD='' FU_C_DIM='' FU_C_BLUE=''
+	FU_C_GREEN='' FU_C_YELLOW='' FU_C_RED=''
 fi
 
-# What pfu_ok, pfu_bad and pfu_note printed. The menu redraws straight after an
+# What fu_ok, fu_bad and fu_note printed. The menu redraws straight after an
 # action, which wipes the screen, so it shows these again under the new frame
 # rather than holding everything up for a key press.
-PFU_UI_NOTICES=()
+FU_UI_NOTICES=()
 
-pfu_say()  { printf '%s\n' "$*"; }
-pfu_head() { printf '\n%s%s%s\n\n' "$PFU_C_BOLD$PFU_C_BLUE" "$*" "$PFU_C_RESET"; }
-pfu_ok()   { PFU_UI_NOTICES+=("$PFU_C_GREEN✔$PFU_C_RESET $*"); printf '%s✔%s %s\n' "$PFU_C_GREEN" "$PFU_C_RESET" "$*"; }
-pfu_bad()  { PFU_UI_NOTICES+=("$PFU_C_RED✘$PFU_C_RESET $*"); printf '%s✘%s %s\n' "$PFU_C_RED" "$PFU_C_RESET" "$*" >&2; }
-pfu_note() { PFU_UI_NOTICES+=("$PFU_C_DIM•$PFU_C_RESET $*"); printf '%s•%s %s\n' "$PFU_C_DIM" "$PFU_C_RESET" "$*"; }
+fu_say()  { printf '%s\n' "$*"; }
+fu_head() { printf '\n%s%s%s\n\n' "$FU_C_BOLD$FU_C_BLUE" "$*" "$FU_C_RESET"; }
+fu_ok()   { FU_UI_NOTICES+=("$FU_C_GREEN✔$FU_C_RESET $*"); printf '%s✔%s %s\n' "$FU_C_GREEN" "$FU_C_RESET" "$*"; }
+fu_bad()  { FU_UI_NOTICES+=("$FU_C_RED✘$FU_C_RESET $*"); printf '%s✘%s %s\n' "$FU_C_RED" "$FU_C_RESET" "$*" >&2; }
+fu_note() { FU_UI_NOTICES+=("$FU_C_DIM•$FU_C_RESET $*"); printf '%s•%s %s\n' "$FU_C_DIM" "$FU_C_RESET" "$*"; }
 
-pfu_have() { command -v "$1" > /dev/null 2>&1; }
+fu_have() { command -v "$1" > /dev/null 2>&1; }
 
 # Human-readable "x minutes ago" for a unix timestamp. 0 or empty yields the
 # translated "never".
 #
 # Written with [[ ]] and a variable for each number on purpose: xgettext reads
 # the < of an (( )) as a redirection and loses every string after it.
-pfu_time_ago() {
+fu_time_ago() {
 	local ts="$1" now delta n
 
 	if [[ ! $ts =~ ^[0-9]+$ || $ts -eq 0 ]]; then
-		pfu_msg "never"
+		fu_msg "never"
 		printf '\n'
 		return
 	fi
@@ -167,22 +167,22 @@ pfu_time_ago() {
 	[[ $delta -lt 0 ]] && delta=0
 
 	if [[ $delta -lt 60 ]]; then
-		pfu_msg "just now"
+		fu_msg "just now"
 	elif [[ $delta -lt 120 ]]; then
-		pfu_msg "1 minute ago"
+		fu_msg "1 minute ago"
 	elif [[ $delta -lt 3600 ]]; then
 		n=$(( delta / 60 ))
-		pfu_msg "%d minutes ago" "$n"
+		fu_msg "%d minutes ago" "$n"
 	elif [[ $delta -lt 7200 ]]; then
-		pfu_msg "1 hour ago"
+		fu_msg "1 hour ago"
 	elif [[ $delta -lt 86400 ]]; then
 		n=$(( delta / 3600 ))
-		pfu_msg "%d hours ago" "$n"
+		fu_msg "%d hours ago" "$n"
 	elif [[ $delta -lt 172800 ]]; then
-		pfu_msg "1 day ago"
+		fu_msg "1 day ago"
 	else
 		n=$(( delta / 86400 ))
-		pfu_msg "%d days ago" "$n"
+		fu_msg "%d days ago" "$n"
 	fi
 	printf '\n'
 }

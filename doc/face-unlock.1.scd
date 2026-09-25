@@ -1,12 +1,12 @@
-plasma-face-unlock(1)
+face-unlock(1)
 
 # NAME
 
-plasma-face-unlock - face unlock for KDE Plasma
+face-unlock - face unlock for KDE Plasma
 
 # SYNOPSIS
 
-*plasma-face-unlock* [_command_]
+*face-unlock* [_command_]
 
 # DESCRIPTION
 
@@ -64,23 +64,23 @@ It is a convenience, not a security upgrade. See *HOW SAFE IS THIS*.
 
 # THE PIECES
 
-*plasma-face-unlockd*
+*face-unlockd*
 	The daemon, running as root and started by its socket
-	(_plasma-face-unlockd.socket_). It is the only thing that opens the camera
+	(_face-unlockd.socket_). It is the only thing that opens the camera
 	and the only thing that can read the face data. It exits after a minute
 	with nothing to do.
 
-*plasma-face-unlock-agent*
+*face-unlock-agent*
 	Runs in the Plasma session as a user service
-	(_plasma-face-unlock-agent.service_). It watches the lock screen, asks the
+	(_face-unlock-agent.service_). It watches the lock screen, asks the
 	daemon to scan when somebody comes back, unlocks the session when the face
 	matches, draws the bubble, and is the setup window.
 
-*pam_plasma_face_unlock.so*
+*pam_face_unlock.so*
 	The PAM module for sudo and admin prompts. It asks the daemon and turns
 	the answer into a PAM result.
 
-*plasma-face-unlock-ctl*
+*face-unlock-ctl*
 	How this command talks to the daemon.
 
 # RECOGNITION
@@ -196,14 +196,14 @@ never lock the account.
 The bubble is a layer-shell surface that KWin keeps above the lock screen
 (kde_lockscreen_overlay_v1). KWin only allows that for a program whose desktop
 file asks for it, which is
-_io.github.loonixtools.plasma-face-unlock-agent.desktop_.
+_io.github.loonixtools.face-unlock-agent.desktop_.
 
 # SUDO AND ADMIN PROMPTS
 
 Turned on under *Settings*, one line goes in front of the service's PAM stack:
 
 ```
--auth  sufficient  /usr/lib/security/pam_plasma_face_unlock.so
+-auth  sufficient  /usr/lib/security/pam_face_unlock.so
 ```
 
 A match lets the person in; anything else falls through to the password as if
@@ -232,27 +232,27 @@ A laptop with its lid shut is not scanned (*Not when the lid is closed*).
 
 # FILES
 
-_~/.config/plasma-face-unlock/config_
+_~/.config/face-unlock/config_
 	This user's settings: the lock screen, the bubble and its animation
 	speed. Written by the menu.
 
-_/etc/plasma-face-unlock/config_
+_/etc/face-unlock/config_
 	The system settings: camera, photo check, strictness, attention, scan
 	length. Written by the menu through sudo.
 
-_/var/lib/plasma-face-unlock/users/<uid>.json_
+_/var/lib/face-unlock/users/<uid>.json_
 	The face data: numbers, no pictures. Root only.
 
-_/var/lib/plasma-face-unlock/users/<uid>.state_
+_/var/lib/face-unlock/users/<uid>.state_
 	Failed scans in a row, the pause they lead to, the last unlock.
 
-_/usr/share/plasma-face-unlock/models/_
+_/usr/share/face-unlock/models/_
 	The two networks.
 
-_/run/plasma-face-unlock/socket_
+_/run/face-unlock/socket_
 	The daemon's socket.
 
-_$XDG_RUNTIME_DIR/plasma-face-unlock/agent.socket_
+_$XDG_RUNTIME_DIR/face-unlock/agent.socket_
 	Where the daemon tells the agent about scans it did not start, for the
 	bubble.
 
@@ -273,7 +273,7 @@ Qt 6, LayerShellQt, KI18n, systemd, polkit and Linux-PAM.
 # AUTHORS
 
 Felitendo. Source and issue tracker at
-https://github.com/LoonixTools/plasma-face-unlock
+https://github.com/LoonixTools/face-unlock
 
 The liveness model and the look of the bubble follow Glance by Jonathan Zhou
 (https://github.com/jonnyoo/glance, MIT). The models are YuNet and SFace from

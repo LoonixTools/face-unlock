@@ -1,8 +1,8 @@
 <p align="center">
-  <img width="200" src="res/plasma-face-unlock.svg" alt="plasma-face-unlock">
+  <img width="200" src="res/face-unlock.svg" alt="face-unlock">
 </p>
 
-<h1 align="center">plasma-face-unlock</h1>
+<h1 align="center">face-unlock</h1>
 
 <h3 align="center">Face ID for KDE Plasma.</h3>
 
@@ -14,7 +14,7 @@
   <a href="#install">Install</a> |
   <a href="#how-to-use">How to use</a> |
   <a href="#is-it-safe">Is it safe?</a> |
-  <a href="https://github.com/LoonixTools/plasma-face-unlock/issues">Report a bug</a>
+  <a href="https://github.com/LoonixTools/face-unlock/issues">Report a bug</a>
 </h5>
 
 <p align="center">
@@ -35,7 +35,7 @@
 <summary><b>Arch</b>, CachyOS, EndeavourOS, Manjaro</summary>
 
 ```bash
-yay -S plasma-face-unlock
+yay -S face-unlock
 ```
 
 </details>
@@ -44,9 +44,9 @@ yay -S plasma-face-unlock
 <summary><b>Fedora</b></summary>
 
 ```bash
-sudo curl -fsSL -o /etc/yum.repos.d/plasma-face-unlock.repo \
-  https://loonixtools.github.io/plasma-face-unlock/plasma-face-unlock.repo
-sudo dnf install plasma-face-unlock
+sudo curl -fsSL -o /etc/yum.repos.d/face-unlock.repo \
+  https://loonixtools.github.io/face-unlock/face-unlock.repo
+sudo dnf install face-unlock
 ```
 
 </details>
@@ -57,11 +57,11 @@ sudo dnf install plasma-face-unlock
 ```bash
 codename="$(sed -n 's/^VERSION_CODENAME=//p' /etc/os-release)"
 sudo install -d -m 0755 /etc/apt/keyrings
-curl -fsSL https://loonixtools.github.io/plasma-face-unlock/KEY.gpg \
-  | sudo gpg --dearmor -o /etc/apt/keyrings/plasma-face-unlock.gpg
-echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] https://loonixtools.github.io/plasma-face-unlock/deb/$codename ./" \
-  | sudo tee /etc/apt/sources.list.d/plasma-face-unlock.list
-sudo apt update && sudo apt install plasma-face-unlock
+curl -fsSL https://loonixtools.github.io/face-unlock/KEY.gpg \
+  | sudo gpg --dearmor -o /etc/apt/keyrings/face-unlock.gpg
+echo "deb [signed-by=/etc/apt/keyrings/face-unlock.gpg] https://loonixtools.github.io/face-unlock/deb/$codename ./" \
+  | sudo tee /etc/apt/sources.list.d/face-unlock.list
+sudo apt update && sudo apt install face-unlock
 ```
 
 </details>
@@ -71,11 +71,11 @@ Needs Plasma 6 on Wayland and a camera. Updates come with your system updates.
 ## How to use
 
 ```bash
-plasma-face-unlock
+face-unlock
 ```
 
 <p align="center">
-  <img src="res/screenshots/menu.png" alt="The plasma-face-unlock menu in Konsole: face unlock on, one face, lock screen, sudo and admin prompts on" width="560">
+  <img src="res/screenshots/menu.png" alt="The face-unlock menu in Konsole: face unlock on, one face, lock screen, sudo and admin prompts on" width="560">
 </p>
 
 Press **1** and look at the camera. Then lock the screen and look at it.
@@ -109,13 +109,13 @@ A convenience, not extra security. A webcam only sees a flat picture.
 
 | | |
 |---|---|
-| `plasma-face-unlockd` | The root service. Owns the camera and the face data. |
-| `plasma-face-unlock-agent` | Runs in your session. Watches the lock screen, draws the bubble. |
-| `pam_plasma_face_unlock.so` | Lets sudo and admin prompts ask the service. |
-| `plasma-face-unlock` | The menu. |
+| `face-unlockd` | The root service. Owns the camera and the face data. |
+| `face-unlock-agent` | Runs in your session. Watches the lock screen, draws the bubble. |
+| `pam_face_unlock.so` | Lets sudo and admin prompts ask the service. |
+| `face-unlock` | The menu. |
 
 Two small networks from the OpenCV model zoo run on the CPU: YuNet finds the face, SFace turns it
-into numbers. All details: `man plasma-face-unlock`.
+into numbers. All details: `man face-unlock`.
 
 </details>
 

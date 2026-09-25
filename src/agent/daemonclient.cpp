@@ -38,8 +38,8 @@ DaemonRequest::~DaemonRequest()
 
 QString DaemonRequest::socketPath()
 {
-    const QByteArray env = qgetenv("PFU_SOCKET");
-    return env.isEmpty() ? QStringLiteral(PFU_SOCKET) : QString::fromLocal8Bit(env);
+    const QByteArray env = qgetenv("FU_SOCKET");
+    return env.isEmpty() ? QStringLiteral(FU_SOCKET) : QString::fromLocal8Bit(env);
 }
 
 void DaemonRequest::send(const QJsonObject &message)

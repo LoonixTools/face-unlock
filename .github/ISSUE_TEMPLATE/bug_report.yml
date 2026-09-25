@@ -60,8 +60,8 @@ body:
   id: version
   attributes:
     label: Version
-    description: The output of `plasma-face-unlock --version`.
-    placeholder: plasma-face-unlock 1.0.1
+    description: The output of `face-unlock --version`.
+    placeholder: face-unlock 1.0.1
   validations:
     required: true
 - type: dropdown
@@ -88,7 +88,7 @@ body:
   id: logs
   attributes:
     label: Status and logs
-    description: The output of `plasma-face-unlock status`. If a scan goes wrong, also `journalctl -b -u plasma-face-unlockd` and `journalctl --user -b -u plasma-face-unlock-agent`.
+    description: The output of `face-unlock status`. If a scan goes wrong, also `journalctl -b -u face-unlockd` and `journalctl --user -b -u face-unlock-agent`.
     render: shell
 - type: textarea
   id: more

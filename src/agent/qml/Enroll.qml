@@ -6,7 +6,7 @@
 
 import QtQuick
 import QtQuick.Window
-import PlasmaFaceUnlock
+import FaceUnlock
 
 Window {
     id: window

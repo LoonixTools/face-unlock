@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// pam_plasma_face_unlock: face unlock for sudo and for admin prompts.
+// pam_face_unlock: face unlock for sudo and for admin prompts.
 //
 // All the vision is in the daemon. This asks it to scan for the user and
 // turns the answer into a PAM result, and it is meant to sit first in a stack
@@ -49,7 +49,7 @@
 #include <systemd/sd-login.h>
 #endif
 
-#define DOMAIN PFU_NAME
+#define DOMAIN FU_NAME
 // Marks a message for translation. say() translates it.
 #define _(s) (s)
 
@@ -62,7 +62,7 @@ struct options {
 
 static void parse_options(struct options *o, int argc, const char **argv)
 {
-    o->socket = PFU_SOCKET;
+    o->socket = FU_SOCKET;
     o->purpose = NULL;
     o->timeout = 25;
     o->debug = false;
@@ -229,7 +229,7 @@ __attribute__((visibility("default"))) PAM_EXTERN int pam_sm_authenticate(pam_ha
 {
     struct options o;
     parse_options(&o, argc, argv);
-    bindtextdomain(DOMAIN, PFU_LOCALEDIR);
+    bindtextdomain(DOMAIN, FU_LOCALEDIR);
 
     const char *user = NULL;
     if (pam_get_user(pamh, &user, NULL) != PAM_SUCCESS || !nonempty(user)) {

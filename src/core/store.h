@@ -2,7 +2,7 @@
 //
 // The face data.
 //
-// One file per user under /var/lib/plasma-face-unlock/users, named after the
+// One file per user under /var/lib/face-unlock/users, named after the
 // numeric user id so a rename cannot hand one person's faces to another. Only
 // root can read or write the directory. There are no pictures in it: every
 // sample is the 128 numbers the recognizer made of one frame, and the frame

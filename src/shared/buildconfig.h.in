@@ -2,11 +2,11 @@
 // rest of the installation is.
 #pragma once
 
-#define PFU_VERSION "@PFU_VERSION@"
-#define PFU_NAME "plasma-face-unlock"
-#define PFU_LIBEXECDIR "@PFU_LIBEXECDIR@"
-#define PFU_MODELDIR "@PFU_MODELDIR@"
-#define PFU_LOCALEDIR "@PFU_LOCALEDIR@"
-#define PFU_SOCKET "@PFU_SOCKET@"
-#define PFU_STATEDIR "@PFU_STATEDIR@"
-#define PFU_CONFIG "@PFU_CONFIG@"
+#define FU_VERSION "@FU_VERSION@"
+#define FU_NAME "face-unlock"
+#define FU_LIBEXECDIR "@FU_LIBEXECDIR@"
+#define FU_MODELDIR "@FU_MODELDIR@"
+#define FU_LOCALEDIR "@FU_LOCALEDIR@"
+#define FU_SOCKET "@FU_SOCKET@"
+#define FU_STATEDIR "@FU_STATEDIR@"
+#define FU_CONFIG "@FU_CONFIG@"

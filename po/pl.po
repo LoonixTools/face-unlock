@@ -1,11 +1,11 @@
-# Polish translation for plasma-face-unlock.
+# Polish translation for face-unlock.
 # Copyright (C) 2026 Felitendo
-# This file is distributed under the same license as plasma-face-unlock.
+# This file is distributed under the same license as face-unlock.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: plasma-face-unlock 1.0.1\n"
-"Report-Msgid-Bugs-To: https://github.com/LoonixTools/plasma-face-unlock/issues\n"
+"Project-Id-Version: face-unlock 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
 "POT-Creation-Date: 2026-09-24 10:46+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
@@ -15,145 +15,145 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/plasma-face-unlock:50
+#: src/face-unlock:50
 msgid "Face unlock's service has to be switched on once for this computer. That needs your password."
 msgstr "Usługę odblokowywania twarzą trzeba raz włączyć na tym komputerze. Potrzebne jest do tego twoje hasło."
 
-#: src/plasma-face-unlock:57
+#: src/face-unlock:57
 #, sh-printf-format
 msgid "Check it with: systemctl status %s"
 msgstr "Sprawdź poleceniem: systemctl status %s"
 
-#: src/plasma-face-unlock:67
+#: src/face-unlock:67
 msgid "Setting up a face needs the camera picture on screen. Run this inside your Plasma session."
 msgstr "Do skonfigurowania twarzy obraz z kamery musi być widoczny na ekranie. Uruchom to w swojej sesji Plasmy."
 
-#: src/plasma-face-unlock:71
+#: src/face-unlock:71
 msgid "The setup window is open. Follow it there."
 msgstr "Okno konfiguracji jest otwarte. Postępuj zgodnie z nim."
 
-#: src/plasma-face-unlock:80
+#: src/face-unlock:80
 msgid "The face is set up."
 msgstr "Twarz jest skonfigurowana."
 
-#: src/plasma-face-unlock:83
+#: src/face-unlock:83
 #, sh-printf-format
 msgid "Face unlock is still off. Turn it on with [1] or `%s enable`."
 msgstr "Odblokowywanie twarzą jest nadal wyłączone. Włącz je przez [1] lub `%s enable`."
 
-#: src/plasma-face-unlock:87
+#: src/face-unlock:87
 msgid "No face was added."
 msgstr "Nie dodano żadnej twarzy."
 
-#: src/plasma-face-unlock:96
+#: src/face-unlock:96
 msgid "First, set up your face."
 msgstr "Najpierw skonfiguruj swoją twarz."
 
-#: src/plasma-face-unlock:100 src/plasma-face-unlock:120 src/lib/menu.sh:434
+#: src/face-unlock:100 src/face-unlock:120 src/lib/menu.sh:434
 #: src/lib/menu.sh:438 src/lib/menu.sh:444 src/lib/menu.sh:446
 msgid "Could not save the setting."
 msgstr "Nie udało się zapisać ustawienia."
 
-#: src/plasma-face-unlock:104
+#: src/face-unlock:104
 msgid "Could not start the lock screen agent."
 msgstr "Nie udało się uruchomić agenta ekranu blokady."
 
-#: src/plasma-face-unlock:106
+#: src/face-unlock:106
 msgid "No systemd user session, so the lock screen agent was not started."
 msgstr "Brak sesji użytkownika systemd, więc agent ekranu blokady nie został uruchomiony."
 
-#: src/plasma-face-unlock:113
+#: src/face-unlock:113
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr "Odblokowywanie twarzą jest włączone. Zablokuj ekran i spójrz na niego, aby wypróbować."
 
-#: src/plasma-face-unlock:115
+#: src/face-unlock:115
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "Działa też dla sudo i okien administratora. Zobacz Ustawienia."
 
-#: src/plasma-face-unlock:130
+#: src/face-unlock:130
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr "Odblokowywanie twarzą jest wyłączone. Twoje twarze zostają zachowane; usuniesz je w Twarzach."
 
-#: src/plasma-face-unlock:144 src/lib/daemon.sh:109
+#: src/face-unlock:144 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Nie skonfigurowano jeszcze żadnej twarzy."
 
-#: src/plasma-face-unlock:148 src/lib/menu.sh:180 src/lib/menu.sh:594
+#: src/face-unlock:148 src/lib/menu.sh:180 src/lib/menu.sh:594
 msgid "on"
 msgstr "wł."
 
-#: src/plasma-face-unlock:148 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/face-unlock:148 src/lib/menu.sh:182 src/lib/menu.sh:192
 #: src/lib/menu.sh:595
 msgid "off"
 msgstr "wył."
 
-#: src/plasma-face-unlock:150 src/lib/menu.sh:612
+#: src/face-unlock:150 src/lib/menu.sh:612
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "próbki: %s, wyuczone: %s"
 
-#: src/plasma-face-unlock:156
+#: src/face-unlock:156
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "Która twarz? Identyfikatory pokazuje `%s faces`."
 
-#: src/plasma-face-unlock:160
+#: src/face-unlock:160
 msgid "Deleted."
 msgstr "Usunięto."
 
-#: src/plasma-face-unlock:171
-msgid "Usage: plasma-face-unlock [command]"
-msgstr "Użycie: plasma-face-unlock [polecenie]"
+#: src/face-unlock:171
+msgid "Usage: face-unlock [command]"
+msgstr "Użycie: face-unlock [polecenie]"
 
-#: src/plasma-face-unlock:173
+#: src/face-unlock:173
 msgid "Commands:"
 msgstr "Polecenia:"
 
-#: src/plasma-face-unlock:174
+#: src/face-unlock:174
 msgid "Turn face unlock on"
 msgstr "Włącz odblokowywanie twarzą"
 
-#: src/plasma-face-unlock:175
+#: src/face-unlock:175
 msgid "Turn it off (faces are kept)"
 msgstr "Wyłącz je (twarze zostają zachowane)"
 
-#: src/plasma-face-unlock:176 src/lib/menu.sh:678
+#: src/face-unlock:176 src/lib/menu.sh:678
 msgid "Add a face"
 msgstr "Dodaj twarz"
 
-#: src/plasma-face-unlock:177
+#: src/face-unlock:177
 msgid "List the faces"
 msgstr "Pokaż listę twarzy"
 
-#: src/plasma-face-unlock:178
+#: src/face-unlock:178
 msgid "Delete a face"
 msgstr "Usuń twarz"
 
-#: src/plasma-face-unlock:179
+#: src/face-unlock:179
 msgid "Look at the camera and see what it sees"
 msgstr "Spójrz w kamerę i zobacz, co widzi"
 
-#: src/plasma-face-unlock:180
+#: src/face-unlock:180
 msgid "Show what is on"
 msgstr "Pokaż, co jest włączone"
 
-#: src/plasma-face-unlock:181
+#: src/face-unlock:181
 msgid "Show this help"
 msgstr "Pokaż tę pomoc"
 
-#: src/plasma-face-unlock:182
+#: src/face-unlock:182
 msgid "Show the version"
 msgstr "Pokaż wersję"
 
-#: src/plasma-face-unlock:184
+#: src/face-unlock:184
 msgid "Without a command an interactive menu is shown."
 msgstr "Bez polecenia wyświetla się interaktywne menu."
 
-#: src/plasma-face-unlock:203
+#: src/face-unlock:203
 msgid "Run this as your own user, not as root. It asks for your password when it needs to."
 msgstr "Uruchom to jako swój użytkownik, nie jako root. Hasło zostanie zapytane, gdy będzie potrzebne."
 
-#: src/plasma-face-unlock:221 src/lib/system.sh:89
+#: src/face-unlock:221 src/lib/system.sh:89
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Nieznane polecenie: %s"
@@ -795,19 +795,19 @@ msgstr "Odtwórz raz animacje dymka."
 msgid "Bubble style for the demo: full or minimal."
 msgstr "Styl dymka w demo: full lub minimal."
 
-#: src/pam/pam_plasma_face_unlock.c:311
+#: src/pam/pam_face_unlock.c:311
 msgid "Look at the camera to unlock."
 msgstr "Spójrz w kamerę, aby odblokować."
 
-#: src/pam/pam_plasma_face_unlock.c:314
+#: src/pam/pam_face_unlock.c:314
 msgid "Blink, or turn your head a little."
 msgstr "Mrugnij albo lekko obróć głowę."
 
-#: src/pam/pam_plasma_face_unlock.c:330
+#: src/pam/pam_face_unlock.c:330
 msgid "Face unlock is paused after too many tries. Use your password."
 msgstr "Odblokowywanie twarzą jest wstrzymane po zbyt wielu próbach. Użyj hasła."
 
-#: src/pam/pam_plasma_face_unlock.c:334
+#: src/pam/pam_face_unlock.c:334
 msgid "Face not recognised."
 msgstr "Nie rozpoznano twarzy."
 

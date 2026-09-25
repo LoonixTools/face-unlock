@@ -14,7 +14,7 @@ set -euo pipefail
 
 here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 version="${1:-$(make -s -C "$here" version)}"
-name=plasma-face-unlock
+name=face-unlock
 
 command -v rpmbuild > /dev/null || { echo "$0: rpmbuild is not installed" >&2; exit 1; }
 

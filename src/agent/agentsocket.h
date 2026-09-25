@@ -2,7 +2,7 @@
 //
 // Where the daemon tells this session about scans it did not ask for: sudo in
 // a terminal, an admin prompt, a test from the menu. The daemon connects to
-// $XDG_RUNTIME_DIR/plasma-face-unlock/agent.socket when such a scan starts,
+// $XDG_RUNTIME_DIR/face-unlock/agent.socket when such a scan starts,
 // so neither side has to keep a connection open (and the daemon can exit when
 // it is idle).
 //

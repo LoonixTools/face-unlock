@@ -116,8 +116,8 @@ jobs:
 
       - name: Look inside what was built
         run: |
-          rpm -qip dist/plasma-face-unlock-[0-9]*.rpm
-          rpm -qlp dist/plasma-face-unlock-[0-9]*.rpm
+          rpm -qip dist/face-unlock-[0-9]*.rpm
+          rpm -qlp dist/face-unlock-[0-9]*.rpm
 
       - uses: actions/upload-artifact@v7
         with:
@@ -254,13 +254,13 @@ jobs:
         run: |
           apt-get update -qq && apt-get install -y --no-install-recommends gpg
           install -d -m 0755 /etc/apt/keyrings
-          gpg --dearmor -o /etc/apt/keyrings/plasma-face-unlock.gpg < pages/KEY.gpg
-          echo "deb [signed-by=/etc/apt/keyrings/plasma-face-unlock.gpg] file://$PWD/pages/deb/${{ matrix.codename }} ./" \
-            > /etc/apt/sources.list.d/plasma-face-unlock.list
+          gpg --dearmor -o /etc/apt/keyrings/face-unlock.gpg < pages/KEY.gpg
+          echo "deb [signed-by=/etc/apt/keyrings/face-unlock.gpg] file://$PWD/pages/deb/${{ matrix.codename }} ./" \
+            > /etc/apt/sources.list.d/face-unlock.list
           apt-get update
-          apt-get install -y plasma-face-unlock
+          apt-get install -y face-unlock
           useradd -m tester
-          runuser -u tester -- plasma-face-unlock --version
+          runuser -u tester -- face-unlock --version
 
   verify-dnf:
     name: Install from the RPM repository
@@ -281,15 +281,15 @@ jobs:
         run: |
           rpm --import pages/KEY.gpg
           rpm --import signer/rpm-signer.asc
-          cat > /etc/yum.repos.d/plasma-face-unlock.repo <<EOF
-          [plasma-face-unlock]
-          name=plasma-face-unlock
+          cat > /etc/yum.repos.d/face-unlock.repo <<EOF
+          [face-unlock]
+          name=face-unlock
           baseurl=file://$PWD/pages/rpm
           enabled=1
           gpgcheck=1
           repo_gpgcheck=1
           gpgkey=file://$PWD/pages/KEY.gpg
           EOF
-          dnf install -y plasma-face-unlock util-linux
+          dnf install -y face-unlock util-linux
           useradd -m tester
-          runuser -u tester -- plasma-face-unlock --version
+          runuser -u tester -- face-unlock --version

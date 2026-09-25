@@ -48,7 +48,7 @@ AgentSocket::AgentSocket(QObject *parent)
 
 QString AgentSocket::path()
 {
-    return QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation) + QStringLiteral("/plasma-face-unlock/agent.socket");
+    return QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation) + QStringLiteral("/face-unlock/agent.socket");
 }
 
 bool AgentSocket::listen()

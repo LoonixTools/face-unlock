@@ -17,19 +17,19 @@ here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 tmp="$(mktemp -d)"
 trap 'rm -rf -- "$tmp"' EXIT
 
-export PFU_PAM_ETC_DIR="$tmp/etc"
-export PFU_PAM_VENDOR_DIRS="$tmp/vendor"
-PFU_LIBDIR="$here/src/lib"
+export FU_PAM_ETC_DIR="$tmp/etc"
+export FU_PAM_VENDOR_DIRS="$tmp/vendor"
+FU_LIBDIR="$here/src/lib"
 # shellcheck source=/dev/null
-source "$PFU_LIBDIR/common.sh"
+source "$FU_LIBDIR/common.sh"
 # shellcheck source=/dev/null
-source "$PFU_LIBDIR/config.sh"
+source "$FU_LIBDIR/config.sh"
 # shellcheck source=/dev/null
-source "$PFU_LIBDIR/pam.sh"
+source "$FU_LIBDIR/pam.sh"
 
-PFU_PAM_MODULE="$tmp/lib/pam_plasma_face_unlock.so"
+FU_PAM_MODULE="$tmp/lib/pam_face_unlock.so"
 mkdir -p "$tmp/lib" "$tmp/etc" "$tmp/vendor"
-: > "$PFU_PAM_MODULE"
+: > "$FU_PAM_MODULE"
 
 failures=0
 check() {
@@ -86,33 +86,33 @@ for layout in arch_sudo debian_sudo fedora_sudo; do
 	printf '%s\n' "${!layout}" > "$tmp/etc/sudo"
 	cp "$tmp/etc/sudo" "$tmp/original"
 
-	pfu_pam_enable sudo
-	check "$layout: turned on" 'pfu_pam_enabled sudo'
-	check "$layout: the face comes before the password" '[[ "$(first_auth "$tmp/etc/sudo")" == *pam_plasma_face_unlock.so* ]]'
-	check "$layout: with the dash and as sufficient" 'grep -qE "^-auth[[:space:]]+sufficient[[:space:]]+$PFU_PAM_MODULE\$" "$tmp/etc/sudo"'
+	fu_pam_enable sudo
+	check "$layout: turned on" 'fu_pam_enabled sudo'
+	check "$layout: the face comes before the password" '[[ "$(first_auth "$tmp/etc/sudo")" == *pam_face_unlock.so* ]]'
+	check "$layout: with the dash and as sufficient" 'grep -qE "^-auth[[:space:]]+sufficient[[:space:]]+$FU_PAM_MODULE\$" "$tmp/etc/sudo"'
 	check "$layout: the header stays first" '[[ "$(head -n1 "$tmp/etc/sudo")" == "#%PAM-1.0" ]]'
 
-	pfu_pam_enable sudo
-	check "$layout: turning it on twice adds it once" '[[ $(grep -c pam_plasma_face_unlock "$tmp/etc/sudo") -eq 1 ]]'
+	fu_pam_enable sudo
+	check "$layout: turning it on twice adds it once" '[[ $(grep -c pam_face_unlock "$tmp/etc/sudo") -eq 1 ]]'
 
-	pfu_pam_disable sudo
+	fu_pam_disable sudo
 	check "$layout: turning it off gives back the same file" 'cmp -s "$tmp/etc/sudo" "$tmp/original"'
-	check "$layout: turned off" '! pfu_pam_enabled sudo'
+	check "$layout: turned off" '! fu_pam_enabled sudo'
 	rm -f "$tmp/etc/sudo"
 done
 
 # Only the distribution's copy, in /usr/lib/pam.d.
 printf '%s\n' "$arch_polkit" > "$tmp/vendor/polkit-1"
-pfu_pam_enable polkit-1
-check "vendor polkit-1: a small file of our own in /etc" '[[ -f $tmp/etc/polkit-1 ]] && grep -qF "$PFU_PAM_WRAPPER_MARK" "$tmp/etc/polkit-1"'
+fu_pam_enable polkit-1
+check "vendor polkit-1: a small file of our own in /etc" '[[ -f $tmp/etc/polkit-1 ]] && grep -qF "$FU_PAM_WRAPPER_MARK" "$tmp/etc/polkit-1"'
 check "vendor polkit-1: it includes the distribution's file" 'grep -qE "^auth[[:space:]]+include[[:space:]]+$tmp/vendor/polkit-1\$" "$tmp/etc/polkit-1"'
-check "vendor polkit-1: face first" '[[ "$(first_auth "$tmp/etc/polkit-1")" == *pam_plasma_face_unlock.so* ]]'
+check "vendor polkit-1: face first" '[[ "$(first_auth "$tmp/etc/polkit-1")" == *pam_face_unlock.so* ]]'
 check "vendor polkit-1: the distribution's file is left alone" '[[ "$(cat "$tmp/vendor/polkit-1")" == "$arch_polkit" ]]'
-pfu_pam_disable polkit-1
+fu_pam_disable polkit-1
 check "vendor polkit-1: turning it off removes our file" '[[ ! -e $tmp/etc/polkit-1 ]]'
 
 # No configuration at all.
-check "an unknown service is refused" '! pfu_pam_enable nosuchservice 2>/dev/null'
+check "an unknown service is refused" '! fu_pam_enable nosuchservice 2>/dev/null'
 
 # ---------------------------------------------------------------------------
 # Through real PAM
@@ -122,12 +122,12 @@ harness="$here/build/pam_harness"
 if [[ -x $harness ]]; then
 	mkdir -p "$tmp/real/vendor" "$tmp/real/etc"
 	printf 'auth required pam_permit.so\naccount required pam_permit.so\n' > "$tmp/real/vendor/svc"
-	PFU_PAM_ETC_DIR="$tmp/real/etc"
-	PFU_PAM_VENDOR_DIRS=("$tmp/real/vendor")
-	PFU_PAM_MODULE="$tmp/real/missing/pam_plasma_face_unlock.so"
-	mkdir -p "$tmp/real/missing" && : > "$PFU_PAM_MODULE"
-	pfu_pam_enable svc
-	rm -f "$PFU_PAM_MODULE"
+	FU_PAM_ETC_DIR="$tmp/real/etc"
+	FU_PAM_VENDOR_DIRS=("$tmp/real/vendor")
+	FU_PAM_MODULE="$tmp/real/missing/pam_face_unlock.so"
+	mkdir -p "$tmp/real/missing" && : > "$FU_PAM_MODULE"
+	fu_pam_enable svc
+	rm -f "$FU_PAM_MODULE"
 	check "a missing module is skipped, the rest of the stack still decides" '"$harness" "$tmp/real/etc" svc "$(id -un)" > /dev/null 2>&1'
 
 	printf 'auth required pam_deny.so\n' > "$tmp/real/vendor/svc"
