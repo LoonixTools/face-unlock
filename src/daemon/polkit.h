@@ -4,9 +4,9 @@
 //
 // Adding a face is adding a way in, so it asks for the password first, the
 // same way a phone asks for its code before it sets up a face. The question
-// goes to the polkit agent of the person's own session (on Plasma, the
-// familiar password dialog), which is why the daemon never sees the
-// password.
+// goes to the polkit agent of the person's own session (the desktop's usual
+// password dialog), which is why the daemon never sees the password.
+// Hyprland and Niri have none of their own: one has to be running there.
 
 #pragma once
 

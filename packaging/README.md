@@ -17,14 +17,14 @@ The AUR package lives in [Felitendo/PKGBUILDS](https://github.com/Felitendo/PKGB
 Its CI notices a new GitHub release, updates the checksum and pushes to the AUR.
 
 Unlike the shell-only LoonixTools, this one is compiled. The packages are per
-architecture (amd64 and x86_64), and they need the Plasma 6 and Qt 6
+architecture (amd64 and x86_64), and they need the Qt 6 and KDE Frameworks 6
 development packages to build: Debian 13 (trixie) and current Fedora have
 them. The Debian package's library dependencies are read off the binaries by
 `dpkg-shlibdeps`; RPM does the same on its own.
 
 The program uses Qt's private API, so a package only fits the Qt it was built
 against. The `.deb` is therefore built twice, in Debian 13 and in Ubuntu 26.04
-(for Kubuntu), with a suffix on the version (`~deb13`, `~ubuntu26.04`), and each
+(for Ubuntu and Kubuntu), with a suffix on the version (`~deb13`, `~ubuntu26.04`), and each
 gets an APT repository of its own: `deb/trixie` and `deb/resolute`. The RPM is
 built on the current Fedora.
 

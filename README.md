@@ -4,10 +4,11 @@
 
 <h1 align="center">face-unlock</h1>
 
-<h3 align="center">Face ID for KDE Plasma.</h3>
+<h3 align="center">Face ID for Linux.</h3>
 
 <p align="center">
-  Unlock the lock screen, sudo and admin prompts with your face.
+  Unlock the lock screen, sudo and admin prompts with your face.<br>
+  On KDE Plasma, GNOME, Hyprland and Niri.
 </p>
 
 <h5 align="center">
@@ -26,7 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="res/screenshots/bubble.png" alt="The bubble above the lock screen: looking, recognised, not recognised" width="720">
+  <img src="res/screenshots/bubble.png" alt="The bubble above the Plasma lock screen: looking, recognised, not recognised" width="720">
 </p>
 
 ## Install
@@ -52,7 +53,7 @@ sudo dnf install face-unlock
 </details>
 
 <details>
-<summary><b>Debian</b>, Kubuntu</summary>
+<summary><b>Debian</b>, Ubuntu</summary>
 
 ```bash
 codename="$(sed -n 's/^VERSION_CODENAME=//p' /etc/os-release)"
@@ -66,7 +67,19 @@ sudo apt update && sudo apt install face-unlock
 
 </details>
 
-Needs Plasma 6 on Wayland and a camera. Updates come with your system updates.
+Updates come with your system updates. It needs a camera and one of these
+desktops, on Wayland:
+
+| | Lock screen | sudo and admin prompts | Bubble |
+|---|---|---|---|
+| KDE Plasma 6 | ✅ | ✅ | ✅ above the lock screen too |
+| GNOME | ✅ | ✅ | ❌ GNOME does not allow it |
+| Hyprland | ✅ with hyprlock or swaylock | ✅ | ✅ once the lock screen is gone |
+| Niri | ✅ with swaylock or hyprlock | ✅ | ✅ once the lock screen is gone |
+
+On Hyprland and Niri, admin prompts and setting up a face need a polkit agent
+(for example hyprpolkitagent). Hyprland without uwsm does not start the lock
+screen part by itself: the menu shows the line to add to `hyprland.conf`.
 
 ## How to use
 

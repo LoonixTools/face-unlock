@@ -71,7 +71,7 @@ int main(int argc, char **argv)
     qSetMessagePattern(QStringLiteral("%{if-warning}warning: %{endif}%{if-critical}error: %{endif}%{message}"));
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(QStringLiteral("Face unlock daemon for KDE Plasma"));
+    parser.setApplicationDescription(QStringLiteral("Face unlock daemon"));
     parser.addHelpOption();
     parser.addVersionOption();
     const QCommandLineOption socketOpt(QStringLiteral("socket"), QStringLiteral("Listen here instead of the system socket."), QStringLiteral("path"),

@@ -5,7 +5,7 @@
 Name:           face-unlock
 Version:        %{upstream_version}
 Release:        1%{?dist}
-Summary:        Face unlock for KDE Plasma
+Summary:        Face unlock for Plasma, GNOME, Hyprland and Niri
 
 # The program is GPL; the two networks it ships are MIT (YuNet) and
 # Apache-2.0 (SFace).
@@ -45,13 +45,12 @@ Requires:       polkit
 Requires:       systemd
 Requires:       qt6-qtdeclarative
 Recommends:     /usr/bin/gettext
-Recommends:     kscreenlocker
 
 %description
 Look at the screen and it unlocks, the way a phone does. The lock screen, sudo
-in a terminal and the admin password prompts of Plasma can take a face instead
-of a password. A bubble at the top of the screen, above the lock screen too,
-shows the face being looked for, recognised or refused.
+in a terminal and the admin password prompts can take a face instead of a
+password, on KDE Plasma, GNOME, Hyprland and Niri. A bubble at the top of the
+screen shows the face being looked for, recognised or refused.
 
 A photo on a phone, a tablet or a glossy print is refused by its reflection and
 its straight edges. The strict photo check also wants a sign of life (a blink,

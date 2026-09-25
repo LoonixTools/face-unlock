@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# face-unlock: face unlock for KDE Plasma
+# face-unlock: face unlock for Plasma, GNOME, Hyprland and Niri
 #
 # Look at the screen and it unlocks, the way a phone does. The lock screen,
 # sudo in a terminal and the admin password prompts can all take a face
@@ -64,7 +64,7 @@ fu_do_setup() {
 	fu_ensure_service || return 1
 
 	if [[ -z ${WAYLAND_DISPLAY:-} && -z ${DISPLAY:-} ]]; then
-		fu_bad "$(fu_msg "Setting up a face needs the camera picture on screen. Run this inside your Plasma session.")"
+		fu_bad "$(fu_msg "Setting up a face needs the camera picture on screen. Run this inside your desktop session.")"
 		return 1
 	fi
 
@@ -102,6 +102,7 @@ fu_do_enable() {
 
 	if fu_agent_available; then
 		fu_agent_enable || fu_bad "$(fu_msg "Could not start the lock screen agent.")"
+		fu_agent_autostarts || fu_agent_hint
 	else
 		fu_note "$(fu_msg "No systemd user session, so the lock screen agent was not started.")"
 	fi

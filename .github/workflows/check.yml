@@ -10,7 +10,7 @@ jobs:
   check:
     name: build, tests and shellcheck
     runs-on: ubuntu-latest
-    # Arch has every Plasma 6 and Qt 6 development package this needs, and the
+    # Arch has every Qt 6 and KDE Frameworks 6 package this needs, and the
     # newest OpenCV, which is the one that moved things around.
     container: archlinux:latest
     steps:

@@ -24,12 +24,12 @@ jobs:
     strategy:
       matrix:
         include:
-          # Plasma 6 arrived in Debian with trixie.
+          # Qt 6 and KDE Frameworks 6 arrived in Debian with trixie.
           - name: Debian 13
             image: debian:trixie
             codename: trixie
             suffix: "~deb13"
-          - name: Kubuntu 26.04
+          - name: Ubuntu 26.04
             image: ubuntu:26.04
             codename: resolute
             suffix: "~ubuntu26.04"
@@ -239,7 +239,7 @@ jobs:
           - name: Debian 13
             image: debian:trixie
             codename: trixie
-          - name: Kubuntu 26.04
+          - name: Ubuntu 26.04
             image: ubuntu:26.04
             codename: resolute
     container: ${{ matrix.image }}

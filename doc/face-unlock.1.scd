@@ -2,7 +2,7 @@ face-unlock(1)
 
 # NAME
 
-face-unlock - face unlock for KDE Plasma
+face-unlock - face unlock for Plasma, GNOME, Hyprland and Niri
 
 # SYNOPSIS
 
@@ -11,14 +11,14 @@ face-unlock - face unlock for KDE Plasma
 # DESCRIPTION
 
 Look at the screen and it unlocks, the way a phone does. The lock screen, sudo
-in a terminal and the admin password prompts of Plasma can all take a face
-instead of a password. A photo of somebody on a phone or tablet does not get
+in a terminal and the admin password prompts can all take a face instead of a
+password, on KDE Plasma, GNOME, Hyprland and Niri (see *DESKTOPS*). A photo of somebody on a phone or tablet does not get
 in, and with the strict photo check a printed one does not either.
 
 A bubble at the top of the screen shows what is going on: it drops down when
 the camera starts looking, the face in it looks around, and when it recognises
-somebody two green rings spin and land around a tick. It shows above the lock
-screen too. *Animation speed* makes all of it faster or slower.
+somebody two green rings spin and land around a tick. On Plasma it shows above
+the lock screen too. *Animation speed* makes all of it faster or slower.
 
 Run without a command it shows an interactive menu. Everything it can be told
 is reachable from there; the settings files behind it do not need to be edited
@@ -71,7 +71,7 @@ It is a convenience, not a security upgrade. See *HOW SAFE IS THIS*.
 	with nothing to do.
 
 *face-unlock-agent*
-	Runs in the Plasma session as a user service
+	Runs in the desktop session as a user service
 	(_face-unlock-agent.service_). It watches the lock screen, asks the
 	daemon to scan when somebody comes back, unlocks the session when the face
 	matches, draws the bubble, and is the setup window.
@@ -171,14 +171,16 @@ prompts off, or face unlock altogether.
 
 Plasma's lock screen runs a fingerprint stack next to the password, but starts
 it once per lock, gives up for good after the first failure and labels it for
-fingerprints. So face unlock does not go through the lock screen's PAM at all.
-The agent watches for the screen to lock (org.freedesktop.ScreenSaver) and
-scans when somebody comes back:
+fingerprints. GNOME's, hyprlock and swaylock only ask their PAM stack once the
+password is typed. So face unlock does not go through the lock screen's PAM at
+all. The agent watches for the screen to lock (see *DESKTOPS*) and scans when
+somebody comes back:
 
 - on any key or mouse movement after the screen locked, once 1.5 seconds have
   passed (the key that locked it does not count). Enter on the empty password
   field is a key like any other. This works while a video or an app keeps the
-  screen on, too (ext_idle_notifier_v1, input notification);
+  screen on, too (ext_idle_notifier_v1 with its input notification, and
+  Mutter's IdleMonitor on GNOME);
 - when the machine wakes from sleep;
 - right after locking, if *Scan right after locking* is on. Off by
   default: whoever locks their screen on purpose is usually still in front of
@@ -188,8 +190,12 @@ After a scan that did not get anybody in, the next one waits for the person to
 be still for two seconds and then touch something again, so typing the password
 does not start a scan with every key.
 
-Unlocked through logind, the lock screen cuts off its own password prompt and
-counts that as a wrong password. After a face unlock the daemon resets the
+When the face matches, the agent unlocks the session the way its lock screen
+wants it: through logind, as *loginctl unlock-session* does, on Plasma and
+GNOME, and with SIGUSR1 for hyprlock and swaylock.
+
+Unlocked through logind, Plasma's lock screen cuts off its own password prompt
+and counts that as a wrong password. After a face unlock the daemon resets the
 failed logins of *pam_faillock*(8), as a correct password does, so face unlocks
 never lock the account.
 
@@ -197,6 +203,41 @@ The bubble is a layer-shell surface that KWin keeps above the lock screen
 (kde_lockscreen_overlay_v1). KWin only allows that for a program whose desktop
 file asks for it, which is
 _io.github.loonixtools.face-unlock-agent.desktop_.
+
+# DESKTOPS
+
+All of them on Wayland. sudo and admin prompts work the same everywhere.
+
+*KDE Plasma 6*
+	Everything. The lock is seen through org.freedesktop.ScreenSaver and
+	logind, and the bubble shows above the lock screen.
+
+*GNOME*
+	The lock is seen through logind, where GNOME sets *LockedHint*. There is
+	no bubble: GNOME has no layer-shell, and a normal window can neither stay
+	on top nor pick its place.
+
+*Hyprland*
+	With hyprlock or swaylock. Hyprland does not set logind's *LockedHint*,
+	so the agent looks for the lock screen among the user's processes once
+	a second. The lock screen covers the bubble, which shows the tick once it
+	is gone. Hyprland only starts the agent's user service when it runs
+	under uwsm. Without uwsm, this line in _~/.config/hypr/hyprland.conf_
+	starts it:
+
+	exec-once = systemctl --user start face-unlock-agent.service
+
+*Niri*
+	With swaylock or hyprlock. niri sets logind's *LockedHint* for any lock
+	screen, but only these two can be unlocked by another program. The
+	bubble works as on Hyprland.
+
+Other lock screens (gtklock, waylock, the ones built into shells) cannot be
+unlocked by another program. There face unlock only does sudo and admin
+prompts.
+
+Hyprland and Niri come without a polkit agent. One has to run for admin
+prompts and for setting up a face, for example hyprpolkitagent.
 
 # SUDO AND ADMIN PROMPTS
 
@@ -263,12 +304,13 @@ _$XDG_RUNTIME_DIR/face-unlock/agent.socket_
 
 # REQUIREMENTS
 
-KDE Plasma 6 on Wayland, a camera, OpenCV 4.5.4 or newer with its DNN module,
-Qt 6, LayerShellQt, KI18n, systemd, polkit and Linux-PAM.
+KDE Plasma 6, GNOME, Hyprland or Niri on Wayland, a camera, OpenCV 4.5.4 or
+newer with its DNN module, Qt 6, LayerShellQt, KI18n, systemd, polkit and
+Linux-PAM.
 
 # SEE ALSO
 
-*loginctl*(1), *pam*(8), *polkit*(8), *systemctl*(1)
+*loginctl*(1), *pam*(8), *polkit*(8), *systemctl*(1), *swaylock*(1)
 
 # AUTHORS
 

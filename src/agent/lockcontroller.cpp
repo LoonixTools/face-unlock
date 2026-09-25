@@ -7,11 +7,7 @@
 #include "userconfig.h"
 
 #include <QDBusConnection>
-#include <QDBusMessage>
-#include <QDBusPendingCallWatcher>
-#include <QDBusPendingReply>
 #include <QJsonObject>
-#include <QProcess>
 
 namespace
 {
@@ -37,14 +33,7 @@ LockController::LockController(BubbleController *bubble, UserConfig *config, QOb
         arm(0);
     });
     connect(&m_input, &InputWatcher::input, this, &LockController::onResume);
-
-    QDBusConnection session = QDBusConnection::sessionBus();
-    session.connect(QStringLiteral("org.freedesktop.ScreenSaver"),
-                    QStringLiteral("/ScreenSaver"),
-                    QStringLiteral("org.freedesktop.ScreenSaver"),
-                    QStringLiteral("ActiveChanged"),
-                    this,
-                    SLOT(onActiveChanged(bool)));
+    connect(&m_lock, &LockWatcher::lockedChanged, this, &LockController::onLockedChanged);
 
     QDBusConnection::systemBus().connect(QStringLiteral("org.freedesktop.login1"),
                                          QStringLiteral("/org/freedesktop/login1"),
@@ -52,28 +41,14 @@ LockController::LockController(BubbleController *bubble, UserConfig *config, QOb
                                          QStringLiteral("PrepareForSleep"),
                                          this,
                                          SLOT(onPrepareForSleep(bool)));
-
-    // Started while the screen is already locked (the agent restarted).
-    const QDBusMessage get = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.ScreenSaver"),
-                                                            QStringLiteral("/ScreenSaver"),
-                                                            QStringLiteral("org.freedesktop.ScreenSaver"),
-                                                            QStringLiteral("GetActive"));
-    auto *watcher = new QDBusPendingCallWatcher(session.asyncCall(get), this);
-    connect(watcher, &QDBusPendingCallWatcher::finished, this, [this, watcher] {
-        watcher->deleteLater();
-        const QDBusPendingReply<bool> reply = *watcher;
-        if (reply.isValid() && reply.value()) {
-            onActiveChanged(true);
-        }
-    });
 }
 
-void LockController::onActiveChanged(bool active)
+void LockController::onLockedChanged(bool locked)
 {
-    if (active == m_locked) {
+    if (locked == m_locked) {
         return;
     }
-    if (!active) {
+    if (!locked) {
         m_locked = false;
         m_armTimer.stop();
         m_input.stop();
@@ -189,7 +164,7 @@ void LockController::onScanFinished(const QJsonObject &result)
         // moment to go, and the bubble stays above the desktop, so the rings
         // and the tick play on over it.
         m_bubble->succeeded();
-        unlock();
+        m_lock.unlock();
         return;
     }
 
@@ -206,31 +181,4 @@ void LockController::onScanFinished(const QJsonObject &result)
         return;
     }
     arm(CalmBeforeRetryMs);
-}
-
-void LockController::unlock()
-{
-    if (!m_locked) {
-        return;
-    }
-    // "auto" is the caller's own session, or for a program outside any
-    // session (this one runs as a user service) the session on the display.
-    const QDBusMessage call = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.login1"),
-                                                             QStringLiteral("/org/freedesktop/login1/session/auto"),
-                                                             QStringLiteral("org.freedesktop.login1.Session"),
-                                                             QStringLiteral("Unlock"));
-    auto *watcher = new QDBusPendingCallWatcher(QDBusConnection::systemBus().asyncCall(call), this);
-    connect(watcher, &QDBusPendingCallWatcher::finished, this, [watcher] {
-        watcher->deleteLater();
-        const QDBusPendingReply<> reply = *watcher;
-        if (reply.isError()) {
-            qWarning("logind would not unlock: %s; trying loginctl", qPrintable(reply.error().message()));
-            const QString id = qEnvironmentVariable("XDG_SESSION_ID");
-            QStringList args{QStringLiteral("unlock-session")};
-            if (!id.isEmpty()) {
-                args << id;
-            }
-            QProcess::startDetached(QStringLiteral("loginctl"), args);
-        }
-    });
 }

@@ -4,22 +4,20 @@
 //
 // When the screen locks, this waits for somebody to come back: a key, the
 // mouse, the lid opening, the machine waking from sleep. Then it scans, and
-// when the face matches it asks logind to unlock the session, which is the
-// same request `loginctl unlock-session` makes and which Plasma's screen
-// locker has always honoured.
+// when the face matches it unlocks the session the way that desktop's lock
+// screen wants it (see LockWatcher).
 //
 // Why not a PAM module in the lock screen, like fingerprints? Plasma runs its
 // fingerprint stack in parallel with the password, but only starts it once per
 // lock, gives up for good the first time it fails, and labels it "scan your
-// fingerprint". Doing it from here means scanning again every time somebody
-// sits back down, no wrong label, and a bubble that knows what is going on.
-// It does not lower the bar either: any program running as this user can
-// already unlock this user's session through logind. Face data and the
-// decision stay with the daemon, which runs as root.
+// fingerprint". GNOME's, hyprlock's and swaylock's only ask once the password
+// is typed. Doing it from here means scanning again every time somebody sits
+// back down, no wrong label, and a bubble that knows what is going on.
 
 #pragma once
 
 #include "inputwatcher.h"
+#include "lockwatcher.h"
 
 #include <QElapsedTimer>
 #include <QObject>
@@ -42,7 +40,7 @@ public:
     }
 
 private Q_SLOTS:
-    void onActiveChanged(bool active);
+    void onLockedChanged(bool locked);
     void onPrepareForSleep(bool sleeping);
 
 private:
@@ -51,7 +49,6 @@ private:
     void onResume();
     void startScan(const QString &why);
     void onScanFinished(const QJsonObject &result);
-    void unlock();
     void warmUp();
 
     BubbleController *m_bubble;
@@ -62,4 +59,5 @@ private:
     QPointer<DaemonRequest> m_scan;
     QTimer m_armTimer;
     InputWatcher m_input;
+    LockWatcher m_lock;
 };

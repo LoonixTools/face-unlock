@@ -13,10 +13,15 @@ Window {
 
     required property var controller
 
+    // One fixed size: the layout needs no more room, and tiling compositors
+    // (Hyprland, Niri) float a window that cannot be resized instead of
+    // stretching it over half the screen.
     width: 520
     height: 680
-    minimumWidth: 460
-    minimumHeight: 620
+    minimumWidth: width
+    maximumWidth: width
+    minimumHeight: height
+    maximumHeight: height
     visible: true
     color: Theme.panel
     title: i18n("Set up Face Unlock")

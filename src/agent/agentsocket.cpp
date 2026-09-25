@@ -51,6 +51,13 @@ QString AgentSocket::path()
     return QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation) + QStringLiteral("/face-unlock/agent.socket");
 }
 
+bool AgentSocket::running()
+{
+    QLocalSocket probe;
+    probe.connectToServer(path());
+    return probe.waitForConnected(500);
+}
+
 bool AgentSocket::listen()
 {
     const QString p = path();

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-24 10:46+0200\n"
+"POT-Creation-Date: 2026-09-25 09:29+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Chinese (simplified)\n"
@@ -16,7 +16,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/face-unlock:50
-msgid "Face unlock's service has to be switched on once for this computer. That needs your password."
+msgid ""
+"Face unlock's service has to be switched on once for this computer. That "
+"needs your password."
 msgstr "人脸解锁服务需要在这台电脑上开启一次。这需要你的密码。"
 
 #: src/face-unlock:57
@@ -25,8 +27,10 @@ msgid "Check it with: systemctl status %s"
 msgstr "用以下命令检查：systemctl status %s"
 
 #: src/face-unlock:67
-msgid "Setting up a face needs the camera picture on screen. Run this inside your Plasma session."
-msgstr "设置人脸需要在屏幕上显示摄像头画面。请在你的 Plasma 会话中运行。"
+msgid ""
+"Setting up a face needs the camera picture on screen. Run this inside your "
+"desktop session."
+msgstr "设置人脸需要在屏幕上显示摄像头画面。请在你的桌面会话中运行。"
 
 #: src/face-unlock:71
 msgid "The setup window is open. Follow it there."
@@ -49,8 +53,8 @@ msgstr "没有添加人脸。"
 msgid "First, set up your face."
 msgstr "请先设置你的人脸。"
 
-#: src/face-unlock:100 src/face-unlock:120 src/lib/menu.sh:434
-#: src/lib/menu.sh:438 src/lib/menu.sh:444 src/lib/menu.sh:446
+#: src/face-unlock:100 src/face-unlock:121 src/lib/menu.sh:446
+#: src/lib/menu.sh:450 src/lib/menu.sh:456 src/lib/menu.sh:458
 msgid "Could not save the setting."
 msgstr "无法保存设置。"
 
@@ -58,137 +62,139 @@ msgstr "无法保存设置。"
 msgid "Could not start the lock screen agent."
 msgstr "无法启动锁屏代理。"
 
-#: src/face-unlock:106
+#: src/face-unlock:107
 msgid "No systemd user session, so the lock screen agent was not started."
 msgstr "没有 systemd 用户会话，因此未启动锁屏代理。"
 
-#: src/face-unlock:113
+#: src/face-unlock:114
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr "人脸解锁已开启。锁定屏幕并看着它来试试。"
 
-#: src/face-unlock:115
+#: src/face-unlock:116
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "它也可以用于 sudo 和管理员授权。见“设置”。"
 
-#: src/face-unlock:130
+#: src/face-unlock:131
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr "人脸解锁已关闭。你的人脸会保留；可在“人脸”中删除。"
 
-#: src/face-unlock:144 src/lib/daemon.sh:109
+#: src/face-unlock:145 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "尚未设置任何人脸。"
 
-#: src/face-unlock:148 src/lib/menu.sh:180 src/lib/menu.sh:594
+#: src/face-unlock:149 src/lib/menu.sh:180 src/lib/menu.sh:608
 msgid "on"
 msgstr "开"
 
-#: src/face-unlock:148 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:595
+#: src/face-unlock:149 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/lib/menu.sh:609
 msgid "off"
 msgstr "关"
 
-#: src/face-unlock:150 src/lib/menu.sh:612
+#: src/face-unlock:151 src/lib/menu.sh:626
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s 个样本，已学习 %s 个"
 
-#: src/face-unlock:156
+#: src/face-unlock:157
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "哪张人脸？用 `%s faces` 查看 ID。"
 
-#: src/face-unlock:160
+#: src/face-unlock:161
 msgid "Deleted."
 msgstr "已删除。"
 
-#: src/face-unlock:171
+#: src/face-unlock:172
 msgid "Usage: face-unlock [command]"
 msgstr "用法：face-unlock [命令]"
 
-#: src/face-unlock:173
+#: src/face-unlock:174
 msgid "Commands:"
 msgstr "命令："
 
-#: src/face-unlock:174
+#: src/face-unlock:175
 msgid "Turn face unlock on"
 msgstr "开启人脸解锁"
 
-#: src/face-unlock:175
+#: src/face-unlock:176
 msgid "Turn it off (faces are kept)"
 msgstr "关闭（保留人脸）"
 
-#: src/face-unlock:176 src/lib/menu.sh:678
+#: src/face-unlock:177 src/lib/menu.sh:692
 msgid "Add a face"
 msgstr "添加人脸"
 
-#: src/face-unlock:177
+#: src/face-unlock:178
 msgid "List the faces"
 msgstr "列出人脸"
 
-#: src/face-unlock:178
+#: src/face-unlock:179
 msgid "Delete a face"
 msgstr "删除人脸"
 
-#: src/face-unlock:179
+#: src/face-unlock:180
 msgid "Look at the camera and see what it sees"
 msgstr "看着摄像头，查看它看到的画面"
 
-#: src/face-unlock:180
+#: src/face-unlock:181
 msgid "Show what is on"
 msgstr "显示已开启的功能"
 
-#: src/face-unlock:181
+#: src/face-unlock:182
 msgid "Show this help"
 msgstr "显示此帮助"
 
-#: src/face-unlock:182
+#: src/face-unlock:183
 msgid "Show the version"
 msgstr "显示版本"
 
-#: src/face-unlock:184
+#: src/face-unlock:185
 msgid "Without a command an interactive menu is shown."
 msgstr "不带命令时显示交互式菜单。"
 
-#: src/face-unlock:203
-msgid "Run this as your own user, not as root. It asks for your password when it needs to."
+#: src/face-unlock:204
+msgid ""
+"Run this as your own user, not as root. It asks for your password when it "
+"needs to."
 msgstr "请以你自己的用户运行，不要用 root。需要时会询问你的密码。"
 
-#: src/face-unlock:221 src/lib/system.sh:89
+#: src/face-unlock:222 src/lib/system.sh:89
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "未知命令：%s"
 
-#: src/lib/common.sh:160
+#: src/lib/common.sh:169
 msgid "never"
 msgstr "从未"
 
-#: src/lib/common.sh:170
+#: src/lib/common.sh:179
 msgid "just now"
 msgstr "刚刚"
 
-#: src/lib/common.sh:172
+#: src/lib/common.sh:181
 msgid "1 minute ago"
 msgstr "1 分钟前"
 
-#: src/lib/common.sh:175
+#: src/lib/common.sh:184
 #, sh-printf-format
 msgid "%d minutes ago"
 msgstr "%d 分钟前"
 
-#: src/lib/common.sh:177
+#: src/lib/common.sh:186
 msgid "1 hour ago"
 msgstr "1 小时前"
 
-#: src/lib/common.sh:180
+#: src/lib/common.sh:189
 #, sh-printf-format
 msgid "%d hours ago"
 msgstr "%d 小时前"
 
-#: src/lib/common.sh:182
+#: src/lib/common.sh:191
 msgid "1 day ago"
 msgstr "1 天前"
 
-#: src/lib/common.sh:185
+#: src/lib/common.sh:194
 #, sh-printf-format
 msgid "%d days ago"
 msgstr "%d 天前"
@@ -218,14 +224,15 @@ msgid "No face in view."
 msgstr "画面中没有人脸。"
 
 #: src/lib/daemon.sh:108
-msgid "Face unlock is paused after too many tries. Unlock once with your password."
+msgid ""
+"Face unlock is paused after too many tries. Unlock once with your password."
 msgstr "尝试次数过多，人脸解锁已暂停。请用密码解锁一次。"
 
 #: src/lib/daemon.sh:110
 msgid "The camera could not be used."
 msgstr "无法使用摄像头。"
 
-#: src/lib/daemon.sh:111 src/lib/menu.sh:259
+#: src/lib/daemon.sh:111 src/lib/menu.sh:262
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "缺少识别模型。请重新安装软件包。"
 
@@ -317,7 +324,9 @@ msgid "Sign of life: %s"
 msgstr "活体迹象：%s"
 
 #: src/lib/daemon.sh:173
-msgid "That was too many tries. Face unlock is paused until you unlock with your password."
+msgid ""
+"That was too many tries. Face unlock is paused until you unlock with your "
+"password."
 msgstr "尝试次数过多。人脸解锁已暂停，直到你用密码解锁。"
 
 #. TRANSLATORS: the letter after "[" is the key for yes. y works too.
@@ -325,11 +334,11 @@ msgstr "尝试次数过多。人脸解锁已暂停，直到你用密码解锁。
 msgid "[y/N]"
 msgstr "[y/N]"
 
-#: src/lib/menu.sh:172 src/lib/menu.sh:497
+#: src/lib/menu.sh:172 src/lib/menu.sh:509
 msgid "ON"
 msgstr "开启"
 
-#: src/lib/menu.sh:174 src/lib/menu.sh:498
+#: src/lib/menu.sh:174 src/lib/menu.sh:510
 msgid "OFF"
 msgstr "关闭"
 
@@ -370,7 +379,7 @@ msgstr "慢"
 msgid "%s seconds"
 msgstr "%s 秒"
 
-#: src/lib/menu.sh:202 src/lib/menu.sh:409
+#: src/lib/menu.sh:202 src/lib/menu.sh:421
 msgid "automatic"
 msgstr "自动"
 
@@ -390,8 +399,8 @@ msgstr "未运行"
 msgid "Turning face unlock on again starts it."
 msgstr "重新开启人脸解锁即可启动它。"
 
-#: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:590
-#: src/lib/menu.sh:679
+#: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:604
+#: src/lib/menu.sh:693
 msgid "Faces"
 msgstr "人脸"
 
@@ -415,167 +424,201 @@ msgstr "摄像头"
 msgid "Lock screen"
 msgstr "锁屏"
 
-#: src/lib/menu.sh:249
+#: src/lib/menu.sh:252
 msgid "sudo"
 msgstr "sudo"
 
-#: src/lib/menu.sh:250 src/lib/menu.sh
+#: src/lib/menu.sh:253 src/lib/menu.sh
 msgid "Admin prompts"
 msgstr "管理员授权"
 
-#: src/lib/menu.sh:251 src/lib/menu.sh
+#: src/lib/menu.sh:254 src/lib/menu.sh
 msgid "Photo check"
 msgstr "照片检测"
 
-#: src/lib/menu.sh:254
+#: src/lib/menu.sh:257
 msgid "Paused"
 msgstr "已暂停"
 
-#: src/lib/menu.sh:254
+#: src/lib/menu.sh:257
 #, sh-printf-format
 msgid "for %d more minutes, or until the password is used"
 msgstr "还有 %d 分钟，或直到使用密码"
 
-#: src/lib/menu.sh:256
+#: src/lib/menu.sh:259
 msgid "Last unlock"
 msgstr "上次解锁"
 
-#: src/lib/menu.sh:300
-msgid "Unlocks the lock screen when it sees your face. Off: only your password works there."
+#: src/lib/menu.sh:265
+msgid "The lock screen agent is not running."
+msgstr "锁屏代理没有运行。"
+
+#: src/lib/menu.sh:308
+msgid ""
+"GNOME does not let other programs show above its windows, so there is no "
+"bubble on GNOME."
+msgstr "GNOME 不允许其他程序显示在它的窗口之上，所以 GNOME 上没有气泡。"
+
+#: src/lib/menu.sh:312
+msgid ""
+"Unlocks the lock screen when it sees your face. Off: only your password "
+"works there."
 msgstr "看到你的脸时解锁锁屏。关闭：锁屏只能用密码。"
 
-#: src/lib/menu.sh:301
-msgid "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up."
+#: src/lib/menu.sh:313
+msgid ""
+"Scans when you press a key or move the mouse on the lock screen, and when "
+"the computer wakes up."
 msgstr "在锁屏上按键或移动鼠标时，以及电脑唤醒时扫描。"
 
-#: src/lib/menu.sh:302
-msgid "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away."
+#: src/lib/menu.sh:314
+msgid ""
+"Scans as soon as the screen locks. Off by default: if you lock it yourself, "
+"it would unlock again right away."
 msgstr "屏幕一锁定就扫描。默认关闭：如果是你自己锁的屏，它会马上又解锁。"
 
-#: src/lib/menu.sh:303
-msgid "sudo takes your face instead of the password. No match: you type the password as usual."
+#: src/lib/menu.sh:315
+msgid ""
+"sudo takes your face instead of the password. No match: you type the "
+"password as usual."
 msgstr "sudo 用你的脸代替密码。不匹配时，照常输入密码。"
 
-#: src/lib/menu.sh:304
-msgid "The password windows of Plasma and apps, for example when you install software. No match: you type the password."
-msgstr "Plasma 和应用的密码窗口，例如安装软件时。不匹配时，输入密码即可。"
+#: src/lib/menu.sh:316
+msgid ""
+"The password windows of your desktop and apps, for example when you install "
+"software. No match: you type the password."
+msgstr "桌面和应用的密码窗口，例如安装软件时。不匹配时，输入密码即可。"
 
-#: src/lib/menu.sh:305
-msgid "You have to blink or turn your head a little. This also stops printed photos."
+#: src/lib/menu.sh:317
+msgid ""
+"You have to blink or turn your head a little. This also stops printed photos."
 msgstr "你需要眨眼或稍微转头。这也能挡住打印的照片。"
 
-#: src/lib/menu.sh:306
+#: src/lib/menu.sh:318
 msgid "No check at all. Only for trying out a camera."
 msgstr "完全不检测。仅用于试用摄像头。"
 
-#: src/lib/menu.sh:307
-msgid "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through."
+#: src/lib/menu.sh:319
+msgid ""
+"Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
+"A matte printed photo can get through."
 msgstr "挡住手机、平板或光面纸上的照片。无需眨眼。哑光纸打印的照片可能会通过。"
 
-#: src/lib/menu.sh:308
-msgid "Fewer wrong matches, but it may not know you with glasses or in bad light."
+#: src/lib/menu.sh:320
+msgid ""
+"Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr "误认更少，但戴眼镜或光线不好时可能认不出你。"
 
-#: src/lib/menu.sh:309
+#: src/lib/menu.sh:321
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "更容易认出你，但也更容易认出和你长得很像的人。"
 
-#: src/lib/menu.sh:310
+#: src/lib/menu.sh:322
 msgid "The default. Right for most people."
 msgstr "默认值。适合大多数人。"
 
-#: src/lib/menu.sh:311
-msgid "Your eyes have to be open and on the screen. So it does not unlock while you look away or sleep."
+#: src/lib/menu.sh:323
+msgid ""
+"Your eyes have to be open and on the screen. So it does not unlock while you "
+"look away or sleep."
 msgstr "你的眼睛必须睁开并看着屏幕。这样你看向别处或睡着时不会解锁。"
 
-#: src/lib/menu.sh:312
-msgid "Automatic takes the first normal camera. After a change, set up your face again. An infrared camera needs its light on (linux-enable-ir-emitter)."
-msgstr "“自动”会使用第一个普通摄像头。更换后请重新设置人脸。红外摄像头需要打开它的补光灯（linux-enable-ir-emitter）。"
+#: src/lib/menu.sh:324
+msgid ""
+"Automatic takes the first normal camera. After a change, set up your face "
+"again. An infrared camera needs its light on (linux-enable-ir-emitter)."
+msgstr ""
+"“自动”会使用第一个普通摄像头。更换后请重新设置人脸。红外摄像头需要打开它的补"
+"光灯（linux-enable-ir-emitter）。"
 
-#: src/lib/menu.sh:313
+#: src/lib/menu.sh:325
 msgid "How long the camera looks for your face before it gives up."
 msgstr "摄像头寻找你的脸多久后放弃。"
 
-#: src/lib/menu.sh:314
-msgid "After a sure match it keeps how you look now. So a new haircut or glasses need no new setup."
+#: src/lib/menu.sh:326
+msgid ""
+"After a sure match it keeps how you look now. So a new haircut or glasses "
+"need no new setup."
 msgstr "确定匹配后，会记住你现在的样子。所以换了发型或戴上眼镜也无需重新设置。"
 
-#: src/lib/menu.sh:315
-msgid "No scan while the laptop is closed, for example at a desk with an external screen."
+#: src/lib/menu.sh:327
+msgid ""
+"No scan while the laptop is closed, for example at a desk with an external "
+"screen."
 msgstr "笔记本合上时不扫描，例如在接了外接显示器的桌前。"
 
-#: src/lib/menu.sh:316
+#: src/lib/menu.sh:328
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr "屏幕顶部的气泡显示摄像头正在做什么。"
 
-#: src/lib/menu.sh:317
+#: src/lib/menu.sh:329
 msgid "A small pill with a lock that opens."
 msgstr "一个带锁的小药丸，锁会打开。"
 
-#: src/lib/menu.sh:318
+#: src/lib/menu.sh:330
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr "一个岛，里面有一张四处张望的脸，然后是圆环和一个对勾。"
 
-#: src/lib/menu.sh:319
+#: src/lib/menu.sh:331
 msgid "How fast the bubble moves."
 msgstr "气泡移动的速度。"
 
-#: src/lib/menu.sh:320
+#: src/lib/menu.sh:332
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr "sudo 或管理员授权扫描你的脸时也显示气泡。"
 
-#: src/lib/menu.sh:405
+#: src/lib/menu.sh:417
 #, sh-printf-format
 msgid "automatic (%s)"
 msgstr "自动（%s）"
 
-#: src/lib/menu.sh:415
+#: src/lib/menu.sh:427
 msgid "(infrared)"
 msgstr "（红外）"
 
-#: src/lib/menu.sh:419
+#: src/lib/menu.sh:431
 msgid "(not connected)"
 msgstr "（未连接）"
 
-#: src/lib/menu.sh:494 src/lib/menu.sh:680
+#: src/lib/menu.sh:506 src/lib/menu.sh:694
 msgid "Settings"
 msgstr "设置"
 
-#: src/lib/menu.sh:495
+#: src/lib/menu.sh:507
 msgid "↑↓ select   ←→ or Space: change   q: back"
 msgstr "↑↓ 选择   ←→ 或空格：更改   q：返回"
 
-#: src/lib/menu.sh:496
+#: src/lib/menu.sh:508
 msgid "for all users, asks for your password"
 msgstr "对所有用户生效，需要你的密码"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:592
+#: src/lib/menu.sh:606
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr "上/下：选择，空格：开/关，r：重命名，d：删除，a：添加，q：返回"
 
-#: src/lib/menu.sh:593
+#: src/lib/menu.sh:607
 msgid "No face is set up yet. Press a to add one."
 msgstr "尚未设置任何人脸。按 a 添加。"
 
-#: src/lib/menu.sh:639
+#: src/lib/menu.sh:653
 msgid "New name:"
 msgstr "新名称："
 
-#: src/lib/menu.sh:646
+#: src/lib/menu.sh:660
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "删除“%s”？"
 
-#: src/lib/menu.sh:677
+#: src/lib/menu.sh:691
 msgid "Turn face unlock on or off"
 msgstr "开启或关闭人脸解锁"
 
-#: src/lib/menu.sh:681
+#: src/lib/menu.sh:695
 msgid "Try it"
 msgstr "试一试"
 
-#: src/lib/menu.sh:682
+#: src/lib/menu.sh:696
 msgid "Quit"
 msgstr "退出"
 
@@ -606,6 +649,12 @@ msgstr "无效的设置：%s=%s"
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "不能用于此服务：%s"
+
+#: src/lib/system.sh:131
+#, sh-printf-format
+msgid ""
+"Hyprland does not start the lock screen agent by itself. Add this line to %s:"
+msgstr "Hyprland 不会自动启动锁屏代理。请把这一行加入 %s："
 
 #: src/lib/menu.sh
 msgid "Unlock with your face"
@@ -775,23 +824,23 @@ msgstr "摄像头正忙于另一次扫描。请稍后重试。"
 msgid "The face could not be added (%1)."
 msgstr "无法添加人脸（%1）。"
 
-#: src/agent/main.cpp:85
-msgid "Face unlock for KDE Plasma"
-msgstr "KDE Plasma 人脸解锁"
+#: src/agent/main.cpp:86
+msgid "Face unlock for the lock screen, sudo and admin prompts"
+msgstr "用于锁屏、sudo 和管理员授权的人脸解锁"
 
-#: src/agent/main.cpp:88
+#: src/agent/main.cpp:89
 msgid "Set up a face."
 msgstr "设置一张人脸。"
 
-#: src/agent/main.cpp:89
+#: src/agent/main.cpp:90
 msgid "What to call the new face."
 msgstr "新人脸的名称。"
 
-#: src/agent/main.cpp:90
+#: src/agent/main.cpp:91
 msgid "Play the bubble's animations once."
 msgstr "播放一次气泡动画。"
 
-#: src/agent/main.cpp:92
+#: src/agent/main.cpp:93
 msgid "Bubble style for the demo: full or minimal."
 msgstr "演示用的气泡样式：full 或 minimal。"
 
@@ -811,54 +860,61 @@ msgstr "尝试次数过多，人脸解锁已暂停。请使用密码。"
 msgid "Face not recognised."
 msgstr "未识别出人脸。"
 
-#: src/agent/qml/Enroll.qml:22
+#: src/agent/qml/Enroll.qml:27
 msgid "Set up Face Unlock"
 msgstr "设置人脸解锁"
 
-#: src/agent/qml/Enroll.qml:105
+#: src/agent/qml/Enroll.qml:110
 msgid "Face Unlock"
 msgstr "人脸解锁"
 
-#: src/agent/qml/Enroll.qml:106
+#: src/agent/qml/Enroll.qml:111
 msgid "Confirm it is you"
 msgstr "确认是你本人"
 
-#: src/agent/qml/Enroll.qml:107
+#: src/agent/qml/Enroll.qml:112
 msgid "You are all set"
 msgstr "一切就绪"
 
-#: src/agent/qml/Enroll.qml:108
+#: src/agent/qml/Enroll.qml:113
 msgid "Setup did not finish"
 msgstr "设置未完成"
 
-#: src/agent/qml/Enroll.qml:121
-msgid "Look at the camera, then move your head slowly in a circle. Your face is turned into numbers on this computer and never stored as a picture."
-msgstr "看着摄像头，然后慢慢转动头部画圈。你的脸会在这台电脑上转换为数字，绝不会以图片形式保存。"
+#: src/agent/qml/Enroll.qml:126
+msgid ""
+"Look at the camera, then move your head slowly in a circle. Your face is "
+"turned into numbers on this computer and never stored as a picture."
+msgstr ""
+"看着摄像头，然后慢慢转动头部画圈。你的脸会在这台电脑上转换为数字，绝不会以图"
+"片形式保存。"
 
-#: src/agent/qml/Enroll.qml:123
-msgid "Lock the screen and look at it to try it out. You can add a second look, with glasses for example, from the menu."
-msgstr "锁定屏幕并看着它来试试。你可以在菜单中添加第二种样貌，比如戴眼镜的样子。"
+#: src/agent/qml/Enroll.qml:128
+msgid ""
+"Lock the screen and look at it to try it out. You can add a second look, "
+"with glasses for example, from the menu."
+msgstr ""
+"锁定屏幕并看着它来试试。你可以在菜单中添加第二种样貌，比如戴眼镜的样子。"
 
-#: src/agent/qml/Enroll.qml:157
+#: src/agent/qml/Enroll.qml:162
 msgid "Name (optional)"
 msgstr "名称（可选）"
 
-#: src/agent/qml/Enroll.qml:172
+#: src/agent/qml/Enroll.qml:177
 msgid "Cancel"
 msgstr "取消"
 
-#: src/agent/qml/Enroll.qml:178
+#: src/agent/qml/Enroll.qml:183
 msgid "Finish now"
 msgstr "立即完成"
 
-#: src/agent/qml/Enroll.qml:183
+#: src/agent/qml/Enroll.qml:188
 msgid "Try again"
 msgstr "重试"
 
-#: src/agent/qml/Enroll.qml:183
+#: src/agent/qml/Enroll.qml:188
 msgid "Get started"
 msgstr "开始"
 
-#: src/agent/qml/Enroll.qml:188
+#: src/agent/qml/Enroll.qml:193
 msgid "Done"
 msgstr "完成"

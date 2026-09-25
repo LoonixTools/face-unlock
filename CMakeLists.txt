@@ -21,7 +21,7 @@ endif()
 
 include(GNUInstallDirs)
 
-option(FU_BUILD_AGENT "Build the Plasma agent (bubble, lock screen, set up window)" ON)
+option(FU_BUILD_AGENT "Build the agent (bubble, lock screen, set up window)" ON)
 option(FU_BUILD_PAM "Build the PAM module" ON)
 option(FU_BUILD_TESTS "Build the tests" ON)
 
@@ -150,7 +150,9 @@ if(FU_BUILD_AGENT)
         src/agent/bubblewindow.cpp
         src/agent/bubblecontroller.cpp
         src/agent/lockcontroller.cpp
+        src/agent/lockwatcher.cpp
         src/agent/inputwatcher.cpp
+        src/agent/wayland.cpp
         src/agent/enrollcontroller.cpp
     )
     target_include_directories(face-unlock-agent PRIVATE src/agent)

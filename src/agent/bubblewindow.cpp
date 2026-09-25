@@ -101,7 +101,8 @@ void BubbleWindow::allowOverLockscreen()
         return;
     }
     if (!m_overlay->isActive()) {
-        if (!warned) {
+        // Only KWin has the protocol. Anywhere else there is nothing to fix.
+        if (!warned && qEnvironmentVariable("XDG_CURRENT_DESKTOP").split(u':').contains(u"KDE")) {
             warned = true;
             qWarning("KWin does not let this program show above the lock screen; is its desktop file installed?");
         }

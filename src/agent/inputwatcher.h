@@ -5,7 +5,8 @@
 // From ext_idle_notifier_v1, like KIdleTime, but with the input notification
 // of version 2. KIdleTime's own honours idle inhibitors: with a video playing
 // or an app keeping the screen on, no key reached it and the lock screen never
-// scanned.
+// scanned. GNOME has no ext_idle_notifier_v1; there it is Mutter's own
+// IdleMonitor on the session bus, which knows nothing of inhibitors either.
 
 #pragma once
 
@@ -15,6 +16,7 @@
 
 class IdleNotifier;
 class IdleNotification;
+class MutterIdle;
 
 class InputWatcher : public QObject
 {
@@ -34,4 +36,5 @@ Q_SIGNALS:
 private:
     std::unique_ptr<IdleNotifier> m_notifier;
     std::unique_ptr<IdleNotification> m_notification;
+    MutterIdle *m_mutter = nullptr;
 };

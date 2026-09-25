@@ -211,7 +211,7 @@ fu_value_label() {
 # fu_ui_status
 # Shared by the `status` subcommand and the menu header.
 fu_ui_status() {
-	local names='' i camera
+	local names='' i camera agent=yes
 
 	fu_config_load
 	fu_status_load
@@ -246,6 +246,9 @@ fu_ui_status() {
 	_fu_row "$(fu_msg "Camera")" "$camera"
 
 	_fu_row "$(fu_msg "Lock screen")" "$(_fu_small_onoff "$( [[ $CFG_ENABLED == yes && $CFG_LOCK == yes ]] && echo yes || echo no)")"
+	if [[ $CFG_ENABLED == yes && $CFG_LOCK == yes ]] && fu_agent_available && ! fu_agent_running; then
+		agent=no
+	fi
 	_fu_row "$(fu_msg "sudo")" "$(_fu_small_onoff "$(fu_pam_enabled sudo && echo yes || echo no)")"
 	_fu_row "$(fu_msg "Admin prompts")" "$(_fu_small_onoff "$(fu_pam_enabled polkit-1 && echo yes || echo no)")"
 	_fu_row "$(fu_msg "Photo check")" "$(fu_value_label Liveness "$CFG_LIVENESS")"
@@ -258,6 +261,10 @@ fu_ui_status() {
 	if [[ $FU_ST_MODELS != true ]]; then
 		printf '\n  %s%s%s\n' "$FU_C_RED" "$(fu_msg "The recognition models are missing. Reinstall the package.")" "$FU_C_RESET"
 	fi
+	if [[ $agent == no ]]; then
+		printf '\n  %s%s%s\n' "$FU_C_YELLOW" "$(fu_msg "The lock screen agent is not running.")" "$FU_C_RESET"
+		fu_agent_autostarts || fu_agent_hint
+	fi
 }
 
 # ---------------------------------------------------------------------------
@@ -269,7 +276,8 @@ fu_ui_status() {
 #          heading, with only the label after it
 #   type   bool, choice (steps through the choices) or camera
 #   needs  a bool setting this one does nothing without; it is dimmed while
-#          that is off
+#          that is off. Layers is no setting: whether the desktop can show
+#          the bubble at all (GNOME cannot).
 FU_SETTINGS=(
 	"group|Lock screen"
 	"user|LockScreen|bool|yes|Unlock with your face"
@@ -287,7 +295,7 @@ FU_SETTINGS=(
 	"sys|Adapt|bool|yes|Learn from every unlock"
 	"sys|SkipLidClosed|bool|yes|Not when the lid is closed"
 	"group|Bubble"
-	"user|Bubble|bool|yes|Show the bubble"
+	"user|Bubble|bool|yes|Show the bubble||Layers"
 	"user|BubbleStyle|choice|full|Style|full,minimal|Bubble"
 	"user|AnimationSpeed|choice|normal|Animation speed|slow,normal,fast|Bubble"
 	"user|BubbleForPrompts|bool|yes|Also for sudo and admin prompts||Bubble"
@@ -296,12 +304,16 @@ FU_SETTINGS=(
 # fu_setting_help <Key> <value>
 # What a setting does, shown under the list for the selected one.
 fu_setting_help() {
+	if [[ $FU_DESKTOP == gnome && $1 =~ ^(Bubble|BubbleStyle|AnimationSpeed|BubbleForPrompts)$ ]]; then
+		fu_msg "GNOME does not let other programs show above its windows, so there is no bubble on GNOME."
+		return
+	fi
 	case "$1:$2" in
 		LockScreen:*)       fu_msg "Unlocks the lock screen when it sees your face. Off: only your password works there." ;;
 		ScanOnWake:*)       fu_msg "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up." ;;
 		ScanOnLock:*)       fu_msg "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away." ;;
 		sudo:*)             fu_msg "sudo takes your face instead of the password. No match: you type the password as usual." ;;
-		polkit-1:*)         fu_msg "The password windows of Plasma and apps, for example when you install software. No match: you type the password." ;;
+		polkit-1:*)         fu_msg "The password windows of your desktop and apps, for example when you install software. No match: you type the password." ;;
 		Liveness:heavy)     fu_msg "You have to blink or turn your head a little. This also stops printed photos." ;;
 		Liveness:off)       fu_msg "No check at all. Only for trying out a camera." ;;
 		Liveness:*)         fu_msg "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through." ;;
@@ -511,6 +523,8 @@ fu_ui_settings() {
 				values[i]="$FU_SETTING_VALUE"
 				current[${keys[i]}]="$FU_SETTING_VALUE"
 			done
+			current[Layers]=yes
+			[[ $FU_DESKTOP == gnome ]] && current[Layers]=no current[Bubble]=no
 			dirty=0
 		fi
 

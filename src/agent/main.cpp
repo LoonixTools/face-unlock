@@ -14,6 +14,7 @@
 #include "enrollcontroller.h"
 #include "lockcontroller.h"
 #include "userconfig.h"
+#include "wayland.h"
 
 #include "buildconfig.h"
 
@@ -82,7 +83,7 @@ int main(int argc, char **argv)
     KLocalizedString::setApplicationDomain(FU_NAME);
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(i18n("Face unlock for KDE Plasma"));
+    parser.setApplicationDescription(i18n("Face unlock for the lock screen, sudo and admin prompts"));
     parser.addHelpOption();
     parser.addVersionOption();
     const QCommandLineOption enrollOpt(QStringLiteral("enroll"), i18n("Set up a face."));
@@ -110,14 +111,28 @@ int main(int argc, char **argv)
         config.overrideStyle(parser.value(styleOpt));
     }
     BubbleController bubble(&config);
-    BubbleWindow window(&engine, &bubble);
+    // The bubble floats above everything as a layer-shell surface. GNOME has
+    // none, and a normal window cannot stay on top or pick its place, so
+    // there it does without.
+    std::unique_ptr<BubbleWindow> window;
+    if (Wayland::hasGlobal("zwlr_layer_shell_v1")) {
+        window = std::make_unique<BubbleWindow>(&engine, &bubble);
+    }
 
     if (parser.isSet(demoOpt)) {
+        if (!window) {
+            qWarning("this desktop has no layer-shell, so there is no bubble to show");
+            return 1;
+        }
         scheduleDemo(&bubble);
         return app.exec();
     }
 
     AgentSocket socket;
+    if (AgentSocket::running()) {
+        qInfo("an agent is already running in this session");
+        return 0;
+    }
     socket.listen();
     QObject::connect(&socket, &AgentSocket::scanEvent, &bubble, &BubbleController::daemonEvent);
 

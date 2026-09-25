@@ -31,6 +31,15 @@ FU_SYSCONFIG="${FU_SYSCONFIG:-/etc/${FU_NAME}/config}"
 FU_UNIT_SOCKET="face-unlockd.socket"
 FU_UNIT_AGENT="face-unlock-agent.service"
 
+# The desktop this runs in: plasma, gnome, hyprland, niri or other.
+case ":${XDG_CURRENT_DESKTOP:-}:" in
+	*:KDE:*)      FU_DESKTOP=plasma ;;
+	*:GNOME:*)    FU_DESKTOP=gnome ;;
+	*:Hyprland:*) FU_DESKTOP=hyprland ;;
+	*:niri:*)     FU_DESKTOP=niri ;;
+	*)            FU_DESKTOP=other ;;
+esac
+
 # ---------------------------------------------------------------------------
 # Translations
 # ---------------------------------------------------------------------------

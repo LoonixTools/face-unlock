@@ -117,6 +117,21 @@ fu_agent_enable() {
 	systemctl --user enable --now "$FU_UNIT_AGENT" > /dev/null 2>&1
 }
 
+# fu_agent_autostarts
+# Whether the agent's service starts with the session. It is wanted by
+# graphical-session.target, which Hyprland only reaches when it runs under
+# uwsm. Plasma, GNOME and niri-session always do.
+fu_agent_autostarts() {
+	[[ $FU_DESKTOP != hyprland ]] || systemctl --user is-active --quiet graphical-session.target
+}
+
+# fu_agent_hint
+fu_agent_hint() {
+	# shellcheck disable=SC2088  # shown to the user, not a path to open
+	fu_note "$(fu_msg "Hyprland does not start the lock screen agent by itself. Add this line to %s:" "~/.config/hypr/hyprland.conf")"
+	fu_say "    exec-once = systemctl --user start $FU_UNIT_AGENT"
+}
+
 fu_agent_disable() {
 	systemctl --user disable --now "$FU_UNIT_AGENT" > /dev/null 2>&1 || true
 }

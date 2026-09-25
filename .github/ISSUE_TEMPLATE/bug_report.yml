@@ -71,7 +71,7 @@ body:
     options:
     - AUR (Arch, CachyOS, EndeavourOS, Manjaro)
     - Fedora package
-    - Debian or Kubuntu package
+    - Debian or Ubuntu package
     - Built from source
     - Other
   validations:
@@ -80,8 +80,8 @@ body:
   id: system
   attributes:
     label: System
-    description: Distribution, desktop and session (Wayland or X11).
-    placeholder: CachyOS, Plasma 6.4, Wayland
+    description: Distribution, desktop and its version, and on Hyprland or Niri the lock screen.
+    placeholder: CachyOS, Hyprland 0.56, hyprlock
   validations:
     required: true
 - type: textarea

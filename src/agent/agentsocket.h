@@ -22,6 +22,10 @@ public:
     explicit AgentSocket(QObject *parent = nullptr);
     bool listen();
 
+    // Whether another agent already listens here. Hyprland without a systemd
+    // session starts the agent from its own config, and that must not make
+    // two of them.
+    static bool running();
     static QString path();
 
 Q_SIGNALS:

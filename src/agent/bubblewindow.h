@@ -11,6 +11,10 @@
 // file lists the interface, which the one installed with this does. The
 // request has to be made for every new surface role, before it is mapped, so
 // it is repeated each time the window is shown again.
+//
+// Other compositors have no such thing. On Hyprland and Niri the lock screen
+// covers the bubble, which shows again with the tick once it is gone. GNOME
+// has no layer-shell at all, so there is no bubble there (see main.cpp).
 
 #pragma once
 

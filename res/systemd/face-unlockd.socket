@@ -1,5 +1,5 @@
 [Unit]
-Description=Face unlock for KDE Plasma (socket)
+Description=Face unlock (socket)
 Documentation=man:face-unlock(1)
 
 [Socket]

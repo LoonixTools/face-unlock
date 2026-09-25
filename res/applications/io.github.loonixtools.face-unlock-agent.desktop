@@ -1,19 +1,19 @@
 [Desktop Entry]
 Type=Application
 Name=Face Unlock
-Name[de]=Plasma-Gesichtsentsperrung
-Name[fr]=Déverrouillage facial Plasma
-Name[es]=Desbloqueo facial de Plasma
-Name[it]=Sblocco con il volto di Plasma
-Name[pt_BR]=Desbloqueio facial do Plasma
-Name[nl]=Plasma-gezichtsontgrendeling
-Name[pl]=Odblokowywanie twarzą w Plasmie
-Name[ru]=Разблокировка по лицу для Plasma
-Name[uk]=Розблокування обличчям для Plasma
-Name[tr]=Plasma yüzle kilit açma
-Name[zh_CN]=Plasma 人脸解锁
-Name[ja]=Plasma 顔認証
-Name[ko]=Plasma 얼굴 잠금 해제
+Name[de]=Gesichtsentsperrung
+Name[fr]=Déverrouillage facial
+Name[es]=Desbloqueo facial
+Name[it]=Sblocco con il volto
+Name[pt_BR]=Desbloqueio facial
+Name[nl]=Gezichtsontgrendeling
+Name[pl]=Odblokowywanie twarzą
+Name[ru]=Разблокировка по лицу
+Name[uk]=Розблокування обличчям
+Name[tr]=Yüzle kilit açma
+Name[zh_CN]=人脸解锁
+Name[ja]=顔認証
+Name[ko]=얼굴 잠금 해제
 Comment=Unlocks the lock screen, sudo and admin prompts with your face
 Comment[de]=Entsperrt Sperrbildschirm, sudo und Admin-Abfragen mit deinem Gesicht
 Comment[fr]=Déverrouille l'écran de verrouillage, sudo et les demandes d'administration avec votre visage
@@ -31,7 +31,6 @@ Comment[ko]=얼굴로 잠금 화면, sudo, 관리자 인증 창의 잠금을 해
 Exec=@LIBEXECDIR@/face-unlock-agent
 Icon=face-unlock
 NoDisplay=true
-OnlyShowIn=KDE;
 # KWin only lets a program show above the lock screen when its desktop file
 # asks for it by name. This is that file.
 X-KDE-Wayland-Interfaces=kde_lockscreen_overlay_v1
