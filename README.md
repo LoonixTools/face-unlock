@@ -79,7 +79,7 @@ desktops, on Wayland:
 
 On Hyprland and Niri, admin prompts and setting up a face need a polkit agent
 (for example hyprpolkitagent). Hyprland without uwsm does not start the lock
-screen part by itself: the menu shows the line to add to `hyprland.conf`.
+screen part by itself: the menu shows what to add to its config.
 
 <details>
 <summary>Coming from plasma-face-unlock?</summary>

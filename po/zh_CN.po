@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-25 08:20+0200\n"
+"POT-Creation-Date: 2026-09-26 19:32+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Chinese (simplified)\n"
@@ -656,11 +656,11 @@ msgstr "无效的设置：%s=%s"
 msgid "Not a service this can be used for: %s"
 msgstr "不能用于此服务：%s"
 
-#: src/lib/system.sh:135
+#: src/lib/system.sh:138 src/lib/system.sh:143
 #, sh-printf-format
 msgid ""
-"Hyprland does not start the lock screen agent by itself. Add this line to %s:"
-msgstr "Hyprland 不会自动启动锁屏代理。请把这一行加入 %s："
+"Hyprland does not start the lock screen agent by itself. Add this to %s:"
+msgstr "Hyprland 不会自动启动锁屏代理。请把以下内容加入 %s："
 
 #: src/lib/menu.sh
 msgid "Unlock with your face"

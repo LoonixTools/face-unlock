@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-25 08:20+0200\n"
+"POT-Creation-Date: 2026-09-26 19:32+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Polish\n"
@@ -703,12 +703,11 @@ msgstr "Nieprawidłowe ustawienie: %s=%s"
 msgid "Not a service this can be used for: %s"
 msgstr "Nie można tego użyć dla tej usługi: %s"
 
-#: src/lib/system.sh:135
+#: src/lib/system.sh:138 src/lib/system.sh:143
 #, sh-printf-format
 msgid ""
-"Hyprland does not start the lock screen agent by itself. Add this line to %s:"
-msgstr ""
-"Hyprland nie uruchamia sam agenta ekranu blokady. Dodaj ten wiersz do %s:"
+"Hyprland does not start the lock screen agent by itself. Add this to %s:"
+msgstr "Hyprland nie uruchamia sam agenta ekranu blokady. Dodaj to do %s:"
 
 #: src/lib/menu.sh
 msgid "Unlock with your face"

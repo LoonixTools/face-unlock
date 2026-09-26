@@ -130,10 +130,19 @@ fu_agent_autostarts() {
 }
 
 # fu_agent_hint
+# What to add to Hyprland's config, in the Lua it has since 0.56 or in the
+# older format.
 fu_agent_hint() {
 	# shellcheck disable=SC2088  # shown to the user, not a path to open
-	fu_note "$(fu_msg "Hyprland does not start the lock screen agent by itself. Add this line to %s:" "~/.config/hypr/hyprland.conf")"
-	fu_say "    exec-once = systemctl --user start $FU_UNIT_AGENT"
+	if [[ -f $FU_XDG_CONFIG/hypr/hyprland.lua ]]; then
+		fu_note "$(fu_msg "Hyprland does not start the lock screen agent by itself. Add this to %s:" "~/.config/hypr/hyprland.lua")"
+		fu_say "    hl.on(\"hyprland.start\", function ()"
+		fu_say "      hl.exec_cmd(\"systemctl --user start $FU_UNIT_AGENT\")"
+		fu_say "    end)"
+	else
+		fu_note "$(fu_msg "Hyprland does not start the lock screen agent by itself. Add this to %s:" "~/.config/hypr/hyprland.conf")"
+		fu_say "    exec-once = systemctl --user start $FU_UNIT_AGENT"
+	fi
 }
 
 fu_agent_disable() {

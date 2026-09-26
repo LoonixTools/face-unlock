@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-25 09:30+0200\n"
+"POT-Creation-Date: 2026-09-26 19:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -655,10 +655,10 @@ msgstr ""
 msgid "Not a service this can be used for: %s"
 msgstr ""
 
-#: src/lib/system.sh:135
+#: src/lib/system.sh:138 src/lib/system.sh:143
 #, sh-printf-format
 msgid ""
-"Hyprland does not start the lock screen agent by itself. Add this line to %s:"
+"Hyprland does not start the lock screen agent by itself. Add this to %s:"
 msgstr ""
 
 #: src/lib/menu.sh
