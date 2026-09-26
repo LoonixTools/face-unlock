@@ -12,13 +12,15 @@ face-unlock - face unlock for Plasma, GNOME, Hyprland and Niri
 
 Look at the screen and it unlocks, the way a phone does. The lock screen, sudo
 in a terminal and the admin password prompts can all take a face instead of a
-password, on KDE Plasma, GNOME, Hyprland and Niri (see *DESKTOPS*). A photo of somebody on a phone or tablet does not get
-in, and with the strict photo check a printed one does not either.
+password, on KDE Plasma, GNOME, Hyprland and Niri (see *DESKTOPS*). A photo of
+somebody on a phone or tablet does not get in, and with the strict photo check
+a printed one does not either.
 
 A bubble at the top of the screen shows what is going on: it drops down when
 the camera starts looking, the face in it looks around, and when it recognises
-somebody two green rings spin and land around a tick. On Plasma it shows above
-the lock screen too. *Animation speed* makes all of it faster or slower.
+somebody two green rings spin and land around a tick. On Plasma and GNOME it
+shows above the lock screen too. *Animation speed* makes all of it faster or
+slower.
 
 Run without a command it shows an interactive menu. Everything it can be told
 is reachable from there; the settings files behind it do not need to be edited
@@ -31,7 +33,8 @@ It is a convenience, not a security upgrade. See *HOW SAFE IS THIS*.
 *enable*
 	Turn face unlock on for this user. Sets up a face first if there is none,
 	starts the lock screen agent, and turns sudo and admin prompts back on if
-	they were on before.
+	they were on before. On GNOME it switches on the extension that draws the
+	bubble.
 
 *disable*
 	Turn it off: the agent stops and sudo and the admin prompts go back to the
@@ -199,23 +202,26 @@ and counts that as a wrong password. After a face unlock the daemon resets the
 failed logins of *pam_faillock*(8), as a correct password does, so face unlocks
 never lock the account.
 
-The bubble is a layer-shell surface that KWin keeps above the lock screen
-(kde_lockscreen_overlay_v1). KWin only allows that for a program whose desktop
-file asks for it, which is
-_io.github.loonixtools.face-unlock-agent.desktop_.
+On Plasma the bubble is a layer-shell surface that KWin keeps above the lock
+screen (kde_lockscreen_overlay_v1). KWin only allows that for a program whose
+desktop file asks for it, which is
+_io.github.loonixtools.face-unlock-agent.desktop_. How it gets there elsewhere
+is under *DESKTOPS*.
 
 # DESKTOPS
 
 All of them on Wayland. sudo and admin prompts work the same everywhere.
 
 *KDE Plasma 6*
-	Everything. The lock is seen through org.freedesktop.ScreenSaver and
-	logind, and the bubble shows above the lock screen.
+	The lock is seen through org.freedesktop.ScreenSaver and logind, and
+	the bubble shows above the lock screen (kde_lockscreen_overlay_v1).
 
 *GNOME*
-	The lock is seen through logind, where GNOME sets *LockedHint*. There is
-	no bubble: GNOME has no layer-shell, and a normal window can neither stay
-	on top nor pick its place.
+	The lock is seen through logind, where GNOME sets *LockedHint*. GNOME
+	lets no program draw above its windows, so a GNOME Shell extension
+	(_face-unlock@loonixtools.github.io_) draws the bubble, from what the
+	agent says on the session bus. *enable* switches it on; GNOME loads an
+	extension that was installed after the login at the next one.
 
 *Hyprland*
 	With hyprlock or swaylock. Hyprland does not set logind's *LockedHint*,
@@ -296,6 +302,9 @@ _/run/face-unlock/socket_
 _$XDG_RUNTIME_DIR/face-unlock/agent.socket_
 	Where the daemon tells the agent about scans it did not start, for the
 	bubble.
+
+_/usr/share/gnome-shell/extensions/face-unlock@loonixtools.github.io/_
+	The GNOME Shell extension that draws the bubble on GNOME.
 
 # ENVIRONMENT
 

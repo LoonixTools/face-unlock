@@ -145,6 +145,46 @@ fu_agent_hint() {
 	fi
 }
 
+# ---------------------------------------------------------------------------
+# The bubble's GNOME Shell extension
+# ---------------------------------------------------------------------------
+# GNOME lets no program draw above its windows; its extensions may. The
+# package brings one, and turning face unlock on switches it on.
+
+FU_GNOME_EXTENSION="face-unlock@loonixtools.github.io"
+
+# fu_gnome_extension_enable
+# gnome-extensions only knows the extensions GNOME found when the session
+# started. One that came with the package later goes straight into the
+# setting, and GNOME loads it at the next login: returns 2 then.
+fu_gnome_extension_enable() {
+	local list new
+	fu_have gsettings || return 1
+	if gnome-extensions info "$FU_GNOME_EXTENSION" > /dev/null 2>&1; then
+		gnome-extensions enable "$FU_GNOME_EXTENSION" > /dev/null 2>&1 && return 0
+	fi
+	list="$(gsettings get org.gnome.shell enabled-extensions 2>/dev/null)" || return 1
+	case "$list" in
+		*"'$FU_GNOME_EXTENSION'"*) return 2 ;;
+		'@as []'|'[]') new="['$FU_GNOME_EXTENSION']" ;;
+		*) new="${list%]}, '$FU_GNOME_EXTENSION']" ;;
+	esac
+	gsettings set org.gnome.shell enabled-extensions "$new" || return 1
+	return 2
+}
+
+fu_gnome_extension_disable() {
+	local list
+	fu_have gsettings || return 0
+	gnome-extensions disable "$FU_GNOME_EXTENSION" > /dev/null 2>&1 && return 0
+	list="$(gsettings get org.gnome.shell enabled-extensions 2>/dev/null)" || return 0
+	list="${list//, \'$FU_GNOME_EXTENSION\'/}"
+	list="${list//\'$FU_GNOME_EXTENSION\', /}"
+	list="${list//\'$FU_GNOME_EXTENSION\'/}"
+	[[ $list == '[]' ]] && list='@as []'
+	gsettings set org.gnome.shell enabled-extensions "$list" > /dev/null 2>&1 || true
+}
+
 fu_agent_disable() {
 	systemctl --user disable --now "$FU_UNIT_AGENT" > /dev/null 2>&1 || true
 }

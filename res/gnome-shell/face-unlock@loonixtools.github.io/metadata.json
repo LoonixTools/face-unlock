@@ -1,0 +1,8 @@
+{
+  "uuid": "face-unlock@loonixtools.github.io",
+  "name": "Face Unlock",
+  "description": "The bubble of face-unlock: shows what the camera is doing, on the lock screen too.",
+  "shell-version": ["45", "46", "47", "48", "49", "50"],
+  "session-modes": ["user", "unlock-dialog"],
+  "url": "https://github.com/LoonixTools/face-unlock"
+}

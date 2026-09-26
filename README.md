@@ -73,9 +73,12 @@ desktops, on Wayland:
 | | Lock screen | sudo and admin prompts | Bubble |
 |---|---|---|---|
 | KDE Plasma 6 | ✅ | ✅ | ✅ above the lock screen too |
-| GNOME | ✅ | ✅ | ❌ GNOME does not allow it |
+| GNOME | ✅ | ✅ | ✅ above the lock screen too |
 | Hyprland | ✅ with hyprlock or swaylock | ✅ | ✅ once the lock screen is gone |
 | Niri | ✅ with swaylock or hyprlock | ✅ | ✅ once the lock screen is gone |
+
+On GNOME a small GNOME extension draws the bubble. Turning face unlock on
+switches it on; right after installing, log out and back in once.
 
 On Hyprland and Niri, admin prompts and setting up a face need a polkit agent
 (for example hyprpolkitagent). Hyprland without uwsm does not start the lock

@@ -10,6 +10,7 @@
 
 #include "agentsocket.h"
 #include "bubblecontroller.h"
+#include "bubbleservice.h"
 #include "bubblewindow.h"
 #include "enrollcontroller.h"
 #include "lockcontroller.h"
@@ -112,8 +113,8 @@ int main(int argc, char **argv)
     }
     BubbleController bubble(&config);
     // The bubble floats above everything as a layer-shell surface. GNOME has
-    // none, and a normal window cannot stay on top or pick its place, so
-    // there it does without.
+    // none, and a normal window cannot stay on top or pick its place: there
+    // face-unlock's GNOME Shell extension draws it, from what this tells it.
     std::unique_ptr<BubbleWindow> window;
     if (Wayland::hasGlobal("zwlr_layer_shell_v1")) {
         window = std::make_unique<BubbleWindow>(&engine, &bubble);
@@ -121,7 +122,7 @@ int main(int argc, char **argv)
 
     if (parser.isSet(demoOpt)) {
         if (!window) {
-            qWarning("this desktop has no layer-shell, so there is no bubble to show");
+            qWarning("this desktop has no layer-shell; on GNOME the extension draws the bubble");
             return 1;
         }
         scheduleDemo(&bubble);
@@ -135,6 +136,10 @@ int main(int argc, char **argv)
     }
     socket.listen();
     QObject::connect(&socket, &AgentSocket::scanEvent, &bubble, &BubbleController::daemonEvent);
+    std::unique_ptr<BubbleService> service;
+    if (!window) {
+        service = std::make_unique<BubbleService>(&bubble);
+    }
 
     LockController lock(&bubble, &config);
     return app.exec();

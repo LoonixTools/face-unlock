@@ -111,6 +111,16 @@ fu_do_enable() {
 	[[ $CFG_SUDO == yes ]] && ! fu_pam_enabled sudo && fu_root pam-enable sudo
 	[[ $CFG_POLKIT == yes ]] && ! fu_pam_enabled polkit-1 && fu_root pam-enable polkit-1
 
+	case "$FU_DESKTOP" in
+		gnome)
+			fu_gnome_extension_enable
+			case $? in
+				1) fu_bad "$(fu_msg "Could not switch on the GNOME extension that shows the bubble.")" ;;
+				2) fu_note "$(fu_msg "Log out and back in once: then GNOME shows the bubble too.")" ;;
+			esac
+			;;
+	esac
+
 	fu_ok "$(fu_msg "Face unlock is on. Lock the screen and look at it to try.")"
 	if [[ $CFG_SUDO != yes && $CFG_POLKIT != yes ]]; then
 		fu_note "$(fu_msg "It can do sudo and admin prompts too. See Settings.")"
@@ -120,6 +130,7 @@ fu_do_enable() {
 fu_do_disable() {
 	fu_config_set Enabled no || { fu_bad "$(fu_msg "Could not save the setting.")"; return 1; }
 	fu_agent_available && fu_agent_disable
+	[[ $FU_DESKTOP == gnome ]] && fu_gnome_extension_disable
 
 	local service
 	for service in "${FU_PAM_SERVICES[@]}"; do

@@ -276,8 +276,7 @@ fu_ui_status() {
 #          heading, with only the label after it
 #   type   bool, choice (steps through the choices) or camera
 #   needs  a bool setting this one does nothing without; it is dimmed while
-#          that is off. Layers is no setting: whether the desktop can show
-#          the bubble at all (GNOME cannot).
+#          that is off
 FU_SETTINGS=(
 	"group|Lock screen"
 	"user|LockScreen|bool|yes|Unlock with your face"
@@ -295,7 +294,7 @@ FU_SETTINGS=(
 	"sys|Adapt|bool|yes|Learn from every unlock"
 	"sys|SkipLidClosed|bool|yes|Not when the lid is closed"
 	"group|Bubble"
-	"user|Bubble|bool|yes|Show the bubble||Layers"
+	"user|Bubble|bool|yes|Show the bubble"
 	"user|BubbleStyle|choice|full|Style|full,minimal|Bubble"
 	"user|AnimationSpeed|choice|normal|Animation speed|slow,normal,fast|Bubble"
 	"user|BubbleForPrompts|bool|yes|Also for sudo and admin prompts||Bubble"
@@ -304,10 +303,12 @@ FU_SETTINGS=(
 # fu_setting_help <Key> <value>
 # What a setting does, shown under the list for the selected one.
 fu_setting_help() {
-	if [[ $FU_DESKTOP == gnome && $1 =~ ^(Bubble|BubbleStyle|AnimationSpeed|BubbleForPrompts)$ ]]; then
-		fu_msg "GNOME does not let other programs show above its windows, so there is no bubble on GNOME."
-		return
-	fi
+	case "$FU_DESKTOP:$1" in
+		gnome:Bubble)
+			fu_msg "On GNOME a small GNOME extension shows the bubble. Turning face unlock on switches it on."
+			return
+			;;
+	esac
 	case "$1:$2" in
 		LockScreen:*)       fu_msg "Unlocks the lock screen when it sees your face. Off: only your password works there." ;;
 		ScanOnWake:*)       fu_msg "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up." ;;
@@ -523,8 +524,6 @@ fu_ui_settings() {
 				values[i]="$FU_SETTING_VALUE"
 				current[${keys[i]}]="$FU_SETTING_VALUE"
 			done
-			current[Layers]=yes
-			[[ $FU_DESKTOP == gnome ]] && current[Layers]=no current[Bubble]=no
 			dirty=0
 		fi
 

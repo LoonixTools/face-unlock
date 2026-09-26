@@ -105,6 +105,7 @@ make install DESTDIR=%{buildroot} PREFIX=%{_prefix} VERSION=%{upstream_version} 
 %{_datadir}/applications/io.github.loonixtools.face-unlock-agent.desktop
 %{_datadir}/polkit-1/actions/io.github.loonixtools.face-unlock.policy
 %{_datadir}/icons/hicolor/scalable/apps/face-unlock.svg
+%{_datadir}/gnome-shell/extensions/face-unlock@loonixtools.github.io/
 %{_mandir}/man1/%{name}.1*
 
 %changelog

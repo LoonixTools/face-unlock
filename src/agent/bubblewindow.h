@@ -12,9 +12,10 @@
 // request has to be made for every new surface role, before it is mapped, so
 // it is repeated each time the window is shown again.
 //
-// Other compositors have no such thing. On Hyprland and Niri the lock screen
-// covers the bubble, which shows again with the tick once it is gone. GNOME
-// has no layer-shell at all, so there is no bubble there (see main.cpp).
+// Other compositors have no such thing: on Hyprland and Niri the lock screen
+// covers the bubble, which shows the tick once it is gone. GNOME has no
+// layer-shell at all; there face-unlock's GNOME Shell extension draws the
+// bubble (BubbleService).
 
 #pragma once
 

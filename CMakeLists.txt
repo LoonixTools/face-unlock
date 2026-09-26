@@ -149,6 +149,7 @@ if(FU_BUILD_AGENT)
         src/agent/agentsocket.cpp
         src/agent/bubblewindow.cpp
         src/agent/bubblecontroller.cpp
+        src/agent/bubbleservice.cpp
         src/agent/lockcontroller.cpp
         src/agent/lockwatcher.cpp
         src/agent/lockers.cpp

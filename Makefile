@@ -23,6 +23,8 @@ MANDIR       ?= $(DATADIR)/man
 APPDIR       ?= $(DATADIR)/applications
 POLKITDIR    ?= $(DATADIR)/polkit-1/actions
 ICONDIR      ?= $(DATADIR)/icons/hicolor/scalable/apps
+GNOMEEXTDIR  ?= $(DATADIR)/gnome-shell/extensions
+GNOMEEXT     := face-unlock@loonixtools.github.io
 
 # Where systemd looks for units, asked of systemd itself for a normal install.
 # A build with a prefix of its own keeps them under that prefix.
@@ -182,6 +184,9 @@ install: build
 		"$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.face-unlock.policy"
 	install -Dm644 res/face-unlock.svg "$(DESTDIR)$(ICONDIR)/face-unlock.svg"
 
+	# the GNOME Shell extension that draws the bubble on GNOME
+	install -Dm644 -t "$(DESTDIR)$(GNOMEEXTDIR)/$(GNOMEEXT)" res/gnome-shell/$(GNOMEEXT)/*
+
 	# translations
 	@for l in $(LINGUAS); do \
 		if [ -f "po/$$l.mo" ]; then \
@@ -207,6 +212,7 @@ uninstall:
 	rm -f  "$(DESTDIR)$(APPDIR)/io.github.loonixtools.face-unlock-agent.desktop"
 	rm -f  "$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.face-unlock.policy"
 	rm -f  "$(DESTDIR)$(ICONDIR)/face-unlock.svg"
+	rm -rf "$(DESTDIR)$(GNOMEEXTDIR)/$(GNOMEEXT)"
 	rm -f  "$(DESTDIR)$(MANDIR)/man1/face-unlock.1"
 	rm -rf "$(DESTDIR)$(DATADIR)/doc/face-unlock"
 	@for l in $(LINGUAS); do rm -f "$(DESTDIR)$(LOCALEDIR)/$$l/LC_MESSAGES/face-unlock.mo"; done
