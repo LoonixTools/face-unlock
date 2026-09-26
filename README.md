@@ -83,8 +83,9 @@ switches it on; right after installing, log out and back in once.
 On Hyprland and Niri the lock screen is a program of your choice, and only it
 can open itself. So face-unlock goes into its password check, as with sudo:
 press Enter on the empty password field to scan. hyprlock and swaylock also
-scan by themselves when you come back. Those lock screens cover the bubble,
-which shows the tick once they are gone.
+scan by themselves when you come back, and so does gtklock after 4.0.0 (the
+first to open from outside). Those lock screens cover the bubble, which shows
+the tick once they are gone. gtklock shows face unlock's messages.
 
 For the bubble on the lock screen, use face-unlock's own: `face-unlock lock`.
 It shows the wallpaper of your desktop (from swaybg, awww, hyprpaper or

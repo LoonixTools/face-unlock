@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
 // The lock screens that are programs of their own and take signals from
-// outside: hyprlock and swaylock open on SIGUSR1.
+// outside: hyprlock, swaylock and gtklock open on SIGUSR1.
 
 #pragma once
 
@@ -19,4 +19,7 @@ QList<pid_t> find(const QByteArray &name = {});
 // that, the signal kills it, and the compositor keeps the screen locked with
 // nobody to open it.
 int signal(int sig, const QByteArray &name = {});
+// Whether one of them handles sig: gtklock only opens on SIGUSR1 since 2025,
+// and none does before it has locked.
+bool ready(int sig);
 }

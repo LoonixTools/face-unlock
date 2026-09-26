@@ -95,6 +95,7 @@ int main(int, char **argv)
     pid_t pid = fakeHyprlock(false, &from);
     check(Lockers::find("hyprlock") == QList<pid_t>{pid}, "finds the lock screen on this display");
     check(Lockers::find("swaylock").isEmpty(), "and only by that name");
+    check(!Lockers::ready(SIGUSR2), "not ready while it does not handle the signal");
     check(Lockers::signal(SIGUSR2, "hyprlock") == 1, "one not ready yet");
     usleep(200 * 1000);
     check(alive(pid), "and it was left alone, alive");
@@ -103,6 +104,7 @@ int main(int, char **argv)
     close(from);
 
     pid = fakeHyprlock(true, &from);
+    check(Lockers::ready(SIGUSR2), "ready once it does");
     check(Lockers::signal(SIGUSR2, "hyprlock") == 0, "a ready one gets it");
     check(next(from) == 's', "and handles it");
     check(alive(pid), "and lives on");

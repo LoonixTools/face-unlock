@@ -59,6 +59,8 @@ private:
     LockScreenController *m_screen;
     bool m_locked = false;
     bool m_stopped = false;
+    // Scan right after locking, once the lock screen can be opened.
+    bool m_lockScanDue = false;
     QElapsedTimer m_lockedFor;
     QPointer<DaemonRequest> m_scan;
     QTimer m_armTimer;

@@ -160,7 +160,13 @@ void LockWatcher::onSessionProperties(const QString &interface, const QVariantMa
 void LockWatcher::pollLockers()
 {
     m_lockerRunning = !Lockers::find().isEmpty();
+    const bool ready = Lockers::ready(SIGUSR1);
+    const bool became = ready && !m_lockerReady;
+    m_lockerReady = ready;
     update();
+    if (became) {
+        Q_EMIT unlockable();
+    }
 }
 
 void LockWatcher::setOwnLock(SessionLock *lock)
@@ -171,7 +177,7 @@ void LockWatcher::setOwnLock(SessionLock *lock)
 
 bool LockWatcher::canUnlock() const
 {
-    return (m_own && m_own->isLocked()) || !m_ownLockers || m_lockerRunning;
+    return (m_own && m_own->isLocked()) || !m_ownLockers || m_lockerReady;
 }
 
 void LockWatcher::update()

@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QString>
 
+#include <algorithm>
 #include <csignal>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -14,7 +15,7 @@ namespace
 {
 bool isLocker(const QByteArray &name)
 {
-    return name == "hyprlock" || name == "swaylock";
+    return name == "hyprlock" || name == "swaylock" || name == "gtklock";
 }
 
 QByteArray readFile(const QString &path)
@@ -33,9 +34,9 @@ pid_t parentOf(pid_t pid)
 
 // The lock screens of this user on this display. Another session of the same
 // user has a display of its own, and its lock screen is left alone. A child
-// of a lock screen (swaylock checks the password in one) is left out: killed
-// by the signal before its parent unlocks, it would take the parent down
-// with it, and the screen would stay locked.
+// of a lock screen (swaylock and gtklock check the password in one) is left
+// out: killed by the signal before its parent unlocks, it would take the
+// parent down with it, and the screen would stay locked.
 QList<pid_t> findAll()
 {
     QList<pid_t> found;
@@ -102,6 +103,14 @@ QList<pid_t> Lockers::find(const QByteArray &name)
         }
     }
     return found;
+}
+
+bool Lockers::ready(int sig)
+{
+    const QList<pid_t> lockers = find();
+    return std::any_of(lockers.cbegin(), lockers.cend(), [sig](pid_t pid) {
+        return catches(pid, sig);
+    });
 }
 
 int Lockers::signal(int sig, const QByteArray &name)

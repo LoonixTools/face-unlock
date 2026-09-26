@@ -201,8 +201,9 @@ does not start a scan with every key.
 
 When the face matches, the agent unlocks the session the way its lock screen
 wants it: through logind, as *loginctl unlock-session* does, on Plasma and
-GNOME, by itself on its own lock screen, and with SIGUSR1 for hyprlock and
-swaylock. Any other lock screen opens itself, through PAM (see *DESKTOPS*).
+GNOME, by itself on its own lock screen, and with SIGUSR1 for hyprlock,
+swaylock and gtklock after 4.0.0. Any other lock screen opens itself, through
+PAM (see *DESKTOPS*).
 
 Unlocked through logind, Plasma's lock screen cuts off its own password prompt
 and counts that as a wrong password. After a face unlock the daemon resets the
@@ -241,10 +242,13 @@ so does the bubble, above the lock screen too.
 	open itself. hyprlock asks PAM the moment it starts; that first time
 	is skipped, so a screen locked on purpose does not open again at once.
 
-	hyprlock and swaylock can also be opened from outside: the agent finds
-	them among the user's processes (niri also sets *LockedHint*), scans
-	when somebody comes back, and opens them with SIGUSR1. Those lock
-	screens cover the bubble, which shows the tick once they are gone.
+	hyprlock, swaylock and gtklock (after 4.0.0) can also be opened from
+	outside: the agent finds them among the user's processes (niri also
+	sets *LockedHint*), scans when somebody comes back, and opens them with
+	SIGUSR1. It only does so once the lock screen handles SIGUSR1: before
+	it has locked, the signal would kill it. Those lock screens cover the
+	bubble, which shows the tick once they are gone. gtklock shows the
+	messages of the PAM module.
 
 	For the bubble on the lock screen there is face-unlock's own: *lock*.
 	It shows the time, a password field (PAM service _face-unlock-lock_

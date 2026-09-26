@@ -7,11 +7,12 @@
 //   GNOME     logind's LockedHint. Unlocked through logind.
 //   Niri      logind's LockedHint, which niri sets for any lock screen.
 //   Hyprland  sets no LockedHint, so the lock screen is looked for among this
-//             user's processes (hyprlock, swaylock) once a second. Only on
-//             compositors where the lock screen is a program of its own
-//             (ext-session-lock).
+//             user's processes (hyprlock, swaylock, gtklock) once a second.
+//             Only on compositors where the lock screen is a program of its
+//             own (ext-session-lock).
 //
-// hyprlock and swaylock do not listen to logind. They unlock on SIGUSR1.
+// hyprlock, swaylock and gtklock do not listen to logind. They unlock on
+// SIGUSR1.
 // face-unlock's own lock screen (SessionLock) is simply told to. Any other
 // lock screen of that kind only opens itself: it gets the face through the
 // PAM module in its own stack (see src/lib/pam.sh), when Enter is pressed.
@@ -41,13 +42,16 @@ public:
         return m_locked;
     }
     // Whether unlock() can open the lock screen that is up: always where
-    // logind unlocks (Plasma, GNOME), only hyprlock and swaylock elsewhere.
+    // logind unlocks (Plasma, GNOME), elsewhere only hyprlock, swaylock and
+    // gtklock, once they take SIGUSR1.
     bool canUnlock() const;
     void unlock();
     void setOwnLock(SessionLock *lock);
 
 Q_SIGNALS:
     void lockedChanged(bool locked);
+    // canUnlock() came true: the lock screen that is up now takes SIGUSR1.
+    void unlockable();
 
 private Q_SLOTS:
     void onScreenSaver(bool active);
@@ -63,6 +67,7 @@ private:
     bool m_screenSaver = false;
     bool m_lockedHint = false;
     bool m_lockerRunning = false;
+    bool m_lockerReady = false;
     bool m_locked = false;
     // The compositor's lock screen is a program of its own.
     bool m_ownLockers = false;

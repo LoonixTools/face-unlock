@@ -42,6 +42,14 @@ LockController::LockController(BubbleController *bubble, UserConfig *config, Ses
     });
     connect(&m_input, &InputWatcher::input, this, &LockController::onResume);
     connect(&m_lock, &LockWatcher::lockedChanged, this, &LockController::onLockedChanged);
+    // A lock screen that is only starting cannot be opened yet: the scan
+    // that was due when it locked follows once it can.
+    connect(&m_lock, &LockWatcher::unlockable, this, [this] {
+        if (m_lockScanDue) {
+            m_lockScanDue = false;
+            startScan(QStringLiteral("lock"));
+        }
+    });
 
     QDBusConnection::systemBus().connect(QStringLiteral("org.freedesktop.login1"),
                                          QStringLiteral("/org/freedesktop/login1"),
@@ -58,6 +66,7 @@ void LockController::onLockedChanged(bool locked)
     }
     if (!locked) {
         m_locked = false;
+        m_lockScanDue = false;
         m_armTimer.stop();
         m_input.stop();
         if (m_scan) {
@@ -90,6 +99,7 @@ void LockController::onLockedChanged(bool locked)
 
     if (m_config->scanOnLock()) {
         QTimer::singleShot(400, this, [this] {
+            m_lockScanDue = m_locked && !m_lock.canUnlock();
             startScan(QStringLiteral("lock"));
         });
     } else {
