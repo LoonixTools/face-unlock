@@ -10,6 +10,7 @@
 #include <QWaylandClientExtensionTemplate>
 #include <QtGui/qguiapplication_platform.h>
 
+#include <algorithm>
 #include <functional>
 
 #include "qwayland-ext-idle-notify-v1.h"
@@ -190,6 +191,9 @@ void InputWatcher::watch(int calmMs)
         }
         return;
     }
+    // Hyprland never says resumed for a timeout of 0. A tenth of a second of
+    // calm first changes nothing anywhere.
+    calmMs = std::max(calmMs, 100);
     // Version 1 has only the notification that inhibitors hold back.
     ::ext_idle_notification_v1 *object = m_notifier->QWaylandClientExtension::version() >= 2
         ? m_notifier->get_input_idle_notification(uint32_t(calmMs), wayland->seat())
