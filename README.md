@@ -74,23 +74,33 @@ desktops, on Wayland:
 |---|---|---|---|
 | KDE Plasma 6 | ✅ | ✅ | ✅ above the lock screen too |
 | GNOME | ✅ | ✅ | ✅ above the lock screen too |
-| Hyprland | ✅ hyprlock, swaylock, gtklock, waylock, or face-unlock's own | ✅ | ✅ on face-unlock's own lock screen too |
-| Niri | ✅ swaylock, hyprlock, gtklock, waylock, or face-unlock's own | ✅ | ✅ on face-unlock's own lock screen too |
+| Hyprland | ✅ hyprlock, swaylock, gtklock, waylock, or face-unlock's own | ✅ | ✅ on face-unlock's own lock screen too, as a line of text in hyprlock |
+| Niri | ✅ swaylock, hyprlock, gtklock, waylock, or face-unlock's own | ✅ | ✅ on face-unlock's own lock screen too, as a line of text in hyprlock |
 
 On GNOME a small GNOME extension draws the bubble. Turning face unlock on
 switches it on; right after installing, log out and back in once.
 
-On Hyprland and Niri the lock screen is a program of your choice, and only it
-can open itself. So face-unlock goes into its password check, as with sudo:
-press Enter on the empty password field to scan. hyprlock and swaylock also
-scan by themselves when you come back, and so does gtklock after 4.0.0 (the
-first to open from outside). Those lock screens cover the bubble, which shows
-the tick once they are gone. gtklock shows face unlock's messages.
+On Hyprland and Niri the lock screen is a program of your choice. When you
+turn face unlock on, a window shows your screen both ways and asks which you
+want: face-unlock's lock screen with your wallpaper, or yours, rebuilt from its
+config. You can change it later under **Settings**.
 
-For the bubble on the lock screen, use face-unlock's own: `face-unlock lock`.
-It shows the wallpaper of your desktop (from swaybg, awww, hyprpaper or
-wpaperd). Under **Settings** you can pick a picture instead, or a folder to take
-one from at random, blurred if you like.
+<p align="center">
+  <img src="res/screenshots/lock-choice.png" alt="The window that asks which lock screen to use: face-unlock's with the bubble on the left, the user's own hyprlock with a line of text at the top on the right" width="560">
+</p>
+
+- **face-unlock's lock screen**, with the bubble, the time and the wallpaper of
+  your desktop (from swaybg, awww, hyprpaper or wpaperd). You lock with
+  `face-unlock lock`, and the menu shows where to put that. Under **Settings**
+  you can pick a picture instead, or a folder to take one from at random,
+  blurred if you like.
+- **Keep your lock screen.** Only it can open itself, so face-unlock goes into
+  its password check, as with sudo: press Enter on the empty password field to
+  scan. hyprlock and swaylock also scan by themselves when you come back, and
+  so does gtklock after 4.0.0 (the first to open from outside). They cover the
+  bubble, but hyprlock shows what face unlock is doing as a line of text at the
+  top (face-unlock adds that line to your `hyprlock.conf`), and gtklock shows
+  its messages. swaylock and waylock have no way to show them.
 
 Admin prompts and setting up a face need a polkit agent there (for example
 hyprpolkitagent). Hyprland without uwsm does not start the part that watches

@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
 // The lock screens that are programs of their own and take signals from
-// outside: hyprlock, swaylock and gtklock open on SIGUSR1.
+// outside: hyprlock, swaylock and gtklock open on SIGUSR1, hyprlock reads
+// its labels again on SIGUSR2.
 
 #pragma once
 

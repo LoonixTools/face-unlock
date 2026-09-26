@@ -15,6 +15,9 @@ Item {
     required property var bubble
     required property bool primary
     required property url wallpaper
+    // Off for the picture in the window that asks which lock screen to use:
+    // nothing to type into, no keys taken.
+    property bool interactive: true
 
     property date now: new Date()
     Timer {
@@ -71,6 +74,7 @@ Item {
     // keys into the password.
     MouseArea {
         anchors.fill: parent
+        enabled: root.interactive
         hoverEnabled: true
         acceptedButtons: Qt.AllButtons
         onPositionChanged: root.lock.activity()
@@ -150,7 +154,8 @@ Item {
                 selectionColor: Theme.accent
                 font.pixelSize: 15
                 clip: true
-                focus: true
+                focus: root.interactive
+                enabled: root.interactive
                 // The dots show how far it is; a blinking bar in the middle
                 // of the empty field only cuts the word in it in two.
                 cursorDelegate: Item {}
@@ -162,7 +167,11 @@ Item {
                     root.lock.activity()
                     event.accepted = false
                 }
-                Component.onCompleted: forceActiveFocus()
+                Component.onCompleted: {
+                    if (root.interactive) {
+                        forceActiveFocus()
+                    }
+                }
             }
             Text {
                 anchors.centerIn: parent

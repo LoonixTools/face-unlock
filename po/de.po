@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-26 19:35+0200\n"
+"POT-Creation-Date: 2026-09-26 19:36+0200\n"
 "PO-Revision-Date: 2026-09-23 22:32+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: German\n"
@@ -59,8 +59,9 @@ msgstr "Es wurde kein Gesicht hinzugefügt."
 msgid "First, set up your face."
 msgstr "Richte zuerst dein Gesicht ein."
 
-#: src/face-unlock:100 src/face-unlock:139 src/lib/menu.sh:500
-#: src/lib/menu.sh:504 src/lib/menu.sh:510 src/lib/menu.sh:512
+#: src/face-unlock:100 src/face-unlock:145 src/lib/menu.sh:517
+#: src/lib/menu.sh:521 src/lib/menu.sh:527 src/lib/menu.sh:529
+#: src/lib/system.sh:290 src/lib/system.sh:296
 msgid "Could not save the setting."
 msgstr "Einstellung konnte nicht gespeichert werden."
 
@@ -84,7 +85,16 @@ msgstr ""
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr "Melde dich einmal ab und wieder an: dann zeigt GNOME die Bubble auch."
 
-#: src/face-unlock:129
+#: src/face-unlock:131
+msgid "Pick your lock screen in the window."
+msgstr "Wähle deinen Sperrbildschirm im Fenster."
+
+#: src/face-unlock:132
+msgid "No lock screen picked. You can do it later under Settings."
+msgstr ""
+"Kein Sperrbildschirm gewählt. Das geht später auch unter Einstellungen."
+
+#: src/face-unlock:135
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -93,102 +103,102 @@ msgstr ""
 "Der Sperrbildschirm (%s) nimmt dein Gesicht auch. Scannt er nicht, wenn du "
 "zurückkommst, drück Enter im leeren Passwortfeld."
 
-#: src/face-unlock:132
+#: src/face-unlock:138
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr ""
 "Die Gesichtsentsperrung ist an. Sperre den Bildschirm und schau ihn an, um "
 "es auszuprobieren."
 
-#: src/face-unlock:134
+#: src/face-unlock:140
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "Sie kann auch sudo und Admin-Abfragen übernehmen. Siehe Einstellungen."
 
-#: src/face-unlock:150
+#: src/face-unlock:156
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "Die Gesichtsentsperrung ist aus. Deine Gesichter bleiben erhalten; löschen "
 "kannst du sie unter Gesichter."
 
-#: src/face-unlock:164 src/lib/daemon.sh:109
+#: src/face-unlock:170 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Es ist noch kein Gesicht eingerichtet."
 
-#: src/face-unlock:168 src/lib/menu.sh:180 src/lib/menu.sh:664
+#: src/face-unlock:174 src/lib/menu.sh:180 src/lib/menu.sh:685
 msgid "on"
 msgstr "an"
 
-#: src/face-unlock:168 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:665
+#: src/face-unlock:174 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/lib/menu.sh:686
 msgid "off"
 msgstr "aus"
 
-#: src/face-unlock:170 src/lib/menu.sh:682
+#: src/face-unlock:176 src/lib/menu.sh:703
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s Aufnahmen, %s dazugelernt"
 
-#: src/face-unlock:176
+#: src/face-unlock:182
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "Welches Gesicht? Die IDs zeigt `%s faces`."
 
-#: src/face-unlock:180
+#: src/face-unlock:186
 msgid "Deleted."
 msgstr "Gelöscht."
 
-#: src/face-unlock:191
+#: src/face-unlock:197
 msgid "Usage: face-unlock [command]"
 msgstr "Aufruf: face-unlock [Befehl]"
 
-#: src/face-unlock:193
+#: src/face-unlock:199
 msgid "Commands:"
 msgstr "Befehle:"
 
-#: src/face-unlock:194
+#: src/face-unlock:200
 msgid "Turn face unlock on"
 msgstr "Gesichtsentsperrung einschalten"
 
-#: src/face-unlock:195
+#: src/face-unlock:201
 msgid "Turn it off (faces are kept)"
 msgstr "Ausschalten (Gesichter bleiben erhalten)"
 
-#: src/face-unlock:196 src/lib/menu.sh:748
+#: src/face-unlock:202 src/lib/menu.sh:769
 msgid "Add a face"
 msgstr "Gesicht hinzufügen"
 
-#: src/face-unlock:197
+#: src/face-unlock:203
 msgid "List the faces"
 msgstr "Gesichter auflisten"
 
-#: src/face-unlock:198
+#: src/face-unlock:204
 msgid "Delete a face"
 msgstr "Ein Gesicht löschen"
 
-#: src/face-unlock:199
+#: src/face-unlock:205
 msgid "Look at the camera and see what it sees"
 msgstr "In die Kamera schauen und sehen, was sie sieht"
 
-#: src/face-unlock:200
+#: src/face-unlock:206
 msgid "Lock the screen"
 msgstr "Bildschirm sperren"
 
-#: src/face-unlock:201
+#: src/face-unlock:207
 msgid "Show what is on"
 msgstr "Anzeigen, was eingeschaltet ist"
 
-#: src/face-unlock:202
+#: src/face-unlock:208
 msgid "Show this help"
 msgstr "Diese Hilfe anzeigen"
 
-#: src/face-unlock:203
+#: src/face-unlock:209
 msgid "Show the version"
 msgstr "Die Version anzeigen"
 
-#: src/face-unlock:205
+#: src/face-unlock:211
 msgid "Without a command an interactive menu is shown."
 msgstr "Ohne Befehl wird ein interaktives Menü angezeigt."
 
-#: src/face-unlock:224
+#: src/face-unlock:230
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -196,42 +206,42 @@ msgstr ""
 "Starte das als dein eigener Benutzer, nicht als root. Wenn nötig, wird nach "
 "deinem Passwort gefragt."
 
-#: src/face-unlock:247 src/lib/system.sh:101
+#: src/face-unlock:253 src/lib/system.sh:101
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Unbekannter Befehl: %s"
 
-#: src/lib/common.sh:171
+#: src/lib/common.sh:173
 msgid "never"
 msgstr "nie"
 
-#: src/lib/common.sh:181
+#: src/lib/common.sh:183
 msgid "just now"
 msgstr "gerade eben"
 
-#: src/lib/common.sh:183
+#: src/lib/common.sh:185
 msgid "1 minute ago"
 msgstr "vor 1 Minute"
 
-#: src/lib/common.sh:186
+#: src/lib/common.sh:188
 #, sh-printf-format
 msgid "%d minutes ago"
 msgstr "vor %d Minuten"
 
-#: src/lib/common.sh:188
+#: src/lib/common.sh:190
 msgid "1 hour ago"
 msgstr "vor 1 Stunde"
 
-#: src/lib/common.sh:191
+#: src/lib/common.sh:193
 #, sh-printf-format
 msgid "%d hours ago"
 msgstr "vor %d Stunden"
 
-#: src/lib/common.sh:193
+#: src/lib/common.sh:195
 msgid "1 day ago"
 msgstr "vor 1 Tag"
 
-#: src/lib/common.sh:196
+#: src/lib/common.sh:198
 #, sh-printf-format
 msgid "%d days ago"
 msgstr "vor %d Tagen"
@@ -271,7 +281,7 @@ msgstr ""
 msgid "The camera could not be used."
 msgstr "Die Kamera konnte nicht benutzt werden."
 
-#: src/lib/daemon.sh:111 src/lib/menu.sh:265
+#: src/lib/daemon.sh:111 src/lib/menu.sh:267
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "Die Erkennungsmodelle fehlen. Installiere das Paket neu."
 
@@ -375,11 +385,11 @@ msgstr ""
 msgid "[y/N]"
 msgstr "[j/N]"
 
-#: src/lib/menu.sh:172 src/lib/menu.sh:566
+#: src/lib/menu.sh:172 src/lib/menu.sh:583
 msgid "ON"
 msgstr "AN"
 
-#: src/lib/menu.sh:174 src/lib/menu.sh:567
+#: src/lib/menu.sh:174 src/lib/menu.sh:584
 msgid "OFF"
 msgstr "AUS"
 
@@ -420,85 +430,93 @@ msgstr "langsam"
 msgid "%s seconds"
 msgstr "%s Sekunden"
 
-#: src/lib/menu.sh:202 src/lib/menu.sh:447
+#: src/lib/menu.sh:202 src/lib/menu.sh:452
 msgid "automatic"
 msgstr "automatisch"
 
-#: src/lib/menu.sh:219
+#: src/lib/menu.sh:203
+msgid "face-unlock's"
+msgstr "face-unlock"
+
+#: src/lib/menu.sh:204
+msgid "yours"
+msgstr "deiner"
+
+#: src/lib/menu.sh:221
 msgid "Face unlock"
 msgstr "Gesichtsentsperrung"
 
-#: src/lib/menu.sh:223
+#: src/lib/menu.sh:225
 msgid "Service"
 msgstr "Dienst"
 
-#: src/lib/menu.sh:223
+#: src/lib/menu.sh:225
 msgid "not running"
 msgstr "läuft nicht"
 
-#: src/lib/menu.sh:225
+#: src/lib/menu.sh:227
 msgid "Turning face unlock on again starts it."
 msgstr "Die Gesichtsentsperrung erneut einzuschalten startet ihn."
 
-#: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:660
-#: src/lib/menu.sh:749
+#: src/lib/menu.sh:238 src/lib/menu.sh:240 src/lib/menu.sh:681
+#: src/lib/menu.sh:770
 msgid "Faces"
 msgstr "Gesichter"
 
-#: src/lib/menu.sh:236
+#: src/lib/menu.sh:238
 msgid "none set up yet"
 msgstr "noch keins eingerichtet"
 
-#: src/lib/menu.sh:238
+#: src/lib/menu.sh:240
 msgid "all turned off"
 msgstr "alle ausgeschaltet"
 
-#: src/lib/menu.sh:244
+#: src/lib/menu.sh:246
 msgid "none found"
 msgstr "keine gefunden"
 
-#: src/lib/menu.sh:246 src/lib/menu.sh
+#: src/lib/menu.sh:248 src/lib/menu.sh
 msgid "Camera"
 msgstr "Kamera"
 
-#: src/lib/menu.sh:248 src/lib/menu.sh
+#: src/lib/menu.sh:250 src/lib/menu.sh
 msgid "Lock screen"
 msgstr "Sperrbildschirm"
 
-#: src/lib/menu.sh:252
+#: src/lib/menu.sh:254
 msgid "sudo"
 msgstr "sudo"
 
-#: src/lib/menu.sh:253 src/lib/menu.sh
+#: src/lib/menu.sh:255 src/lib/menu.sh
 msgid "Admin prompts"
 msgstr "Admin-Abfragen"
 
-#: src/lib/menu.sh:255 src/lib/menu.sh
+#: src/lib/menu.sh:257 src/lib/menu.sh
 msgid "Lock screens"
 msgstr "Sperrbildschirme"
 
-#: src/lib/menu.sh:257 src/lib/menu.sh
+#: src/lib/menu.sh:259 src/lib/menu.sh
 msgid "Photo check"
 msgstr "Foto-Prüfung"
 
-#: src/lib/menu.sh:260
+#: src/lib/menu.sh:262
 msgid "Paused"
 msgstr "Pausiert"
 
-#: src/lib/menu.sh:260
+#: src/lib/menu.sh:262
 #, sh-printf-format
 msgid "for %d more minutes, or until the password is used"
 msgstr "noch %d Minuten, oder bis das Passwort benutzt wird"
 
-#: src/lib/menu.sh:262
+#: src/lib/menu.sh:264
 msgid "Last unlock"
 msgstr "Letzte Entsperrung"
 
-#: src/lib/menu.sh:268
+#: src/lib/menu.sh:270
 msgid "The lock screen agent is not running."
 msgstr "Der Sperrbildschirm-Dienst läuft nicht."
 
-#: src/lib/menu.sh:318
+#: src/lib/menu.sh:322
 msgid ""
 "On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
 "switches it on."
@@ -506,7 +524,7 @@ msgstr ""
 "Unter GNOME zeigt eine kleine GNOME-Erweiterung die Bubble. Beim Einschalten "
 "der Gesichtsentsperrung wird sie mit eingeschaltet."
 
-#: src/lib/menu.sh:322
+#: src/lib/menu.sh:326
 msgid ""
 "Scans when you come back to hyprlock, swaylock or face-unlock's own lock "
 "screen (`face-unlock lock`, with the bubble), and opens them. Other lock "
@@ -516,7 +534,7 @@ msgstr ""
 "unlock zurückkommst (`face-unlock lock`, mit der Bubble), und öffnet sie. "
 "Andere Sperrbildschirme scannen mit Enter."
 
-#: src/lib/menu.sh:327
+#: src/lib/menu.sh:331
 msgid ""
 "Unlocks the lock screen when it sees your face. Off: only your password "
 "works there."
@@ -524,7 +542,7 @@ msgstr ""
 "Entsperrt den Sperrbildschirm, wenn er dein Gesicht sieht. Aus: Dort geht "
 "nur dein Passwort."
 
-#: src/lib/menu.sh:328
+#: src/lib/menu.sh:332
 msgid ""
 "Scans when you press a key or move the mouse on the lock screen, and when "
 "the computer wakes up."
@@ -532,7 +550,7 @@ msgstr ""
 "Scannt, wenn du auf dem Sperrbildschirm eine Taste drückst oder die Maus "
 "bewegst, und wenn der Computer aufwacht."
 
-#: src/lib/menu.sh:329
+#: src/lib/menu.sh:333
 msgid ""
 "Scans as soon as the screen locks. Off by default: if you lock it yourself, "
 "it would unlock again right away."
@@ -540,7 +558,7 @@ msgstr ""
 "Scannt, sobald der Bildschirm gesperrt wird. Normalerweise aus: Sperrst du "
 "selbst, würde er gleich wieder entsperren."
 
-#: src/lib/menu.sh:330
+#: src/lib/menu.sh:334
 msgid ""
 "sudo takes your face instead of the password. No match: you type the "
 "password as usual."
@@ -548,7 +566,17 @@ msgstr ""
 "sudo nimmt dein Gesicht statt des Passworts. Passt es nicht, tippst du wie "
 "gewohnt dein Passwort."
 
-#: src/lib/menu.sh:331
+#: src/lib/menu.sh:335
+msgid ""
+"face-unlock's lock screen shows the bubble, and you lock with `face-unlock "
+"lock`. Or keep yours: hyprlock then shows a line of text at the top. Enter "
+"opens the choice."
+msgstr ""
+"Der Sperrbildschirm von face-unlock zeigt die Bubble, und du sperrst mit "
+"`face-unlock lock`. Oder behalte deinen: hyprlock zeigt dann oben eine "
+"Textzeile. Enter öffnet die Auswahl."
+
+#: src/lib/menu.sh:336
 msgid ""
 "The picture behind face-unlock's own lock screen (`face-unlock lock`). "
 "Empty: the one on your desktop. Or a file, a folder to take one from at "
@@ -558,11 +586,11 @@ msgstr ""
 "Leer: das von deinem Desktop. Oder eine Datei, ein Ordner, aus dem zufällig "
 "eins genommen wird, oder `none`. Enter zum Eintippen."
 
-#: src/lib/menu.sh:332
+#: src/lib/menu.sh:337
 msgid "Blurs the picture behind face-unlock's own lock screen."
 msgstr "Zeichnet das Bild hinter dem Sperrbildschirm von face-unlock weich."
 
-#: src/lib/menu.sh:333
+#: src/lib/menu.sh:338
 #, sh-printf-format
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
@@ -571,7 +599,7 @@ msgstr ""
 "Der Sperrbildschirm nimmt dein Gesicht in seiner Passwortprüfung. Drück "
 "Enter im leeren Feld für einen Scan. Hier gefunden: %s."
 
-#: src/lib/menu.sh:334
+#: src/lib/menu.sh:339
 msgid ""
 "The password windows of your desktop and apps, for example when you install "
 "software. No match: you type the password."
@@ -579,18 +607,18 @@ msgstr ""
 "Die Passwort-Fenster deines Desktops und von Apps, zum Beispiel beim "
 "Installieren. Passt das Gesicht nicht, tippst du dein Passwort."
 
-#: src/lib/menu.sh:335
+#: src/lib/menu.sh:340
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr ""
 "Du musst blinzeln oder den Kopf leicht drehen. Das hält auch ausgedruckte "
 "Fotos auf."
 
-#: src/lib/menu.sh:336
+#: src/lib/menu.sh:341
 msgid "No check at all. Only for trying out a camera."
 msgstr "Keine Prüfung. Nur zum Ausprobieren einer Kamera."
 
-#: src/lib/menu.sh:337
+#: src/lib/menu.sh:342
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
@@ -598,22 +626,22 @@ msgstr ""
 "Hält Fotos auf Handy, Tablet oder Hochglanzpapier auf. Blinzeln ist nicht "
 "nötig. Ein matter Ausdruck kann durchkommen."
 
-#: src/lib/menu.sh:338
+#: src/lib/menu.sh:343
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 "Seltener Verwechslungen, aber mit Brille oder bei schlechtem Licht erkennt "
 "es dich vielleicht nicht."
 
-#: src/lib/menu.sh:339
+#: src/lib/menu.sh:344
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "Erkennt dich leichter, aber auch jemanden, der dir sehr ähnlich sieht."
 
-#: src/lib/menu.sh:340
+#: src/lib/menu.sh:345
 msgid "The default. Right for most people."
 msgstr "Der Standard. Passt für die meisten."
 
-#: src/lib/menu.sh:341
+#: src/lib/menu.sh:346
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
@@ -621,7 +649,7 @@ msgstr ""
 "Deine Augen müssen offen sein und auf den Bildschirm schauen. So entsperrt "
 "es nicht, wenn du wegschaust oder schläfst."
 
-#: src/lib/menu.sh:342
+#: src/lib/menu.sh:347
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
@@ -630,11 +658,11 @@ msgstr ""
 "neu einrichten. Eine Infrarot-Kamera braucht ihr Licht (linux-enable-ir-"
 "emitter)."
 
-#: src/lib/menu.sh:343
+#: src/lib/menu.sh:348
 msgid "How long the camera looks for your face before it gives up."
 msgstr "Wie lange die Kamera nach deinem Gesicht sucht, bevor sie aufgibt."
 
-#: src/lib/menu.sh:344
+#: src/lib/menu.sh:349
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
@@ -642,7 +670,7 @@ msgstr ""
 "Nach einem sicheren Treffer merkt es sich, wie du gerade aussiehst. So musst "
 "du nach neuer Frisur oder Brille nichts neu einrichten."
 
-#: src/lib/menu.sh:345
+#: src/lib/menu.sh:350
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
@@ -650,99 +678,99 @@ msgstr ""
 "Kein Scan bei zugeklapptem Laptop, zum Beispiel am Schreibtisch mit externem "
 "Bildschirm."
 
-#: src/lib/menu.sh:346
+#: src/lib/menu.sh:351
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr "Die Bubble oben am Bildschirm zeigt, was die Kamera gerade macht."
 
-#: src/lib/menu.sh:347
+#: src/lib/menu.sh:352
 msgid "A small pill with a lock that opens."
 msgstr "Eine kleine Pille mit einem Schloss, das aufgeht."
 
-#: src/lib/menu.sh:348
+#: src/lib/menu.sh:353
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr ""
 "Eine Insel mit einem Gesicht, das sich umschaut, danach Ringe und ein Haken."
 
-#: src/lib/menu.sh:349
+#: src/lib/menu.sh:354
 msgid "How fast the bubble moves."
 msgstr "Wie schnell sich die Bubble bewegt."
 
-#: src/lib/menu.sh:350
+#: src/lib/menu.sh:355
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr ""
 "Zeigt die Bubble auch, wenn sudo oder eine Admin-Abfrage dein Gesicht scannt."
 
-#: src/lib/menu.sh:443
+#: src/lib/menu.sh:448
 #, sh-printf-format
 msgid "automatic (%s)"
 msgstr "automatisch (%s)"
 
-#: src/lib/menu.sh:453
+#: src/lib/menu.sh:458
 msgid "(infrared)"
 msgstr "(Infrarot)"
 
-#: src/lib/menu.sh:457
+#: src/lib/menu.sh:462
 msgid "(not connected)"
 msgstr "(nicht angeschlossen)"
 
-#: src/lib/menu.sh:466
+#: src/lib/menu.sh:471
 msgid "same as desktop"
 msgstr "wie Desktop"
 
-#: src/lib/menu.sh:470
+#: src/lib/menu.sh:475
 msgid "none"
 msgstr "keins"
 
-#: src/lib/menu.sh:487
+#: src/lib/menu.sh:504
 msgid "Picture or folder:"
 msgstr "Bild oder Ordner:"
 
-#: src/lib/menu.sh:492
+#: src/lib/menu.sh:509
 #, sh-printf-format
 msgid "Not found: %s"
 msgstr "Nicht gefunden: %s"
 
-#: src/lib/menu.sh:563 src/lib/menu.sh:750
+#: src/lib/menu.sh:580 src/lib/menu.sh:771
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/lib/menu.sh:564
+#: src/lib/menu.sh:581
 msgid "↑↓ select   ←→ or Space: change   q: back"
 msgstr "↑↓ auswählen   ←→ oder Leertaste: ändern   q: zurück"
 
-#: src/lib/menu.sh:565
+#: src/lib/menu.sh:582
 msgid "for all users, asks for your password"
 msgstr "für alle Nutzer, fragt nach deinem Passwort"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:662
+#: src/lib/menu.sh:683
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 "Hoch/Runter: wählen, Leertaste: an/aus, r: umbenennen, d: löschen, a: "
 "hinzufügen, q: zurück"
 
-#: src/lib/menu.sh:663
+#: src/lib/menu.sh:684
 msgid "No face is set up yet. Press a to add one."
 msgstr "Es ist noch kein Gesicht eingerichtet. Drück a, um eins hinzuzufügen."
 
-#: src/lib/menu.sh:709
+#: src/lib/menu.sh:730
 msgid "New name:"
 msgstr "Neuer Name:"
 
-#: src/lib/menu.sh:716
+#: src/lib/menu.sh:737
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "„%s“ löschen?"
 
-#: src/lib/menu.sh:747
+#: src/lib/menu.sh:768
 msgid "Turn face unlock on or off"
 msgstr "Gesichtsentsperrung ein- oder ausschalten"
 
-#: src/lib/menu.sh:751
+#: src/lib/menu.sh:772
 msgid "Try it"
 msgstr "Ausprobieren"
 
-#: src/lib/menu.sh:752
+#: src/lib/menu.sh:773
 msgid "Quit"
 msgstr "Beenden"
 
@@ -791,6 +819,53 @@ msgstr ""
 "Hyprland startet den Sperrbildschirm-Dienst nicht von selbst. Füge das in %s "
 "ein:"
 
+#: src/lib/system.sh:267 src/lib/system.sh:270
+#, sh-printf-format
+msgid "To lock with it, add this to %s, and set %s in %s:"
+msgstr "Um damit zu sperren, trag das in %s ein und setze %s in %s:"
+
+#: src/lib/system.sh:275
+#, sh-printf-format
+msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
+msgstr ""
+"Um damit zu sperren, trag das bei den binds in %s ein und nutze %s in "
+"swayidle:"
+
+#: src/lib/system.sh:279
+#, sh-printf-format
+msgid "To lock with it, run %s where your lock screen is started now."
+msgstr ""
+"Um damit zu sperren, starte %s dort, wo jetzt dein Sperrbildschirm startet."
+
+#: src/lib/system.sh:292
+msgid "You lock with face-unlock's lock screen now."
+msgstr "Du sperrst jetzt mit dem Sperrbildschirm von face-unlock."
+
+#: src/lib/system.sh:299
+msgid ""
+"hyprlock shows what face unlock is doing at the top, from the next time it "
+"locks."
+msgstr ""
+"hyprlock zeigt oben, was face unlock gerade tut, ab dem nächsten Sperren."
+
+#: src/lib/system.sh:300
+#, sh-printf-format
+msgid "Could not add the line to %s."
+msgstr "Konnte die Zeile nicht in %s eintragen."
+
+#: src/lib/system.sh:301
+msgid ""
+"Your lock screen stays as it is. Press Enter on the empty password field to "
+"scan."
+msgstr ""
+"Dein Sperrbildschirm bleibt, wie er ist. Drück Enter im leeren Passwortfeld, "
+"um zu scannen."
+
+#: src/lib/system.sh:302
+#, sh-printf-format
+msgid "hyprlock has no %s, so it cannot show the text."
+msgstr "hyprlock hat keine %s, also kann es den Text nicht zeigen."
+
 #: src/lib/menu.sh
 msgid "Unlock with your face"
 msgstr "Mit dem Gesicht entsperren"
@@ -802,6 +877,10 @@ msgstr "Scannen, wenn du zurückkommst"
 #: src/lib/menu.sh
 msgid "Scan right after locking"
 msgstr "Gleich nach dem Sperren scannen"
+
+#: src/lib/menu.sh
+msgid "Which lock screen"
+msgstr "Welcher Sperrbildschirm"
 
 #: src/lib/menu.sh
 msgid "Wallpaper"
@@ -972,33 +1051,46 @@ msgstr ""
 msgid "The face could not be added (%1)."
 msgstr "Das Gesicht konnte nicht hinzugefügt werden (%1)."
 
+#: src/agent/lockpreview.cpp:349 src/agent/lockpreview.cpp:559
+#: src/agent/locktext.cpp:45
+msgid "Looking for your face…"
+msgstr "Suche dein Gesicht…"
+
 #: src/agent/lockscreencontroller.cpp:172
 msgid "Wrong password"
 msgstr "Falsches Passwort"
 
-#: src/agent/main.cpp:185
+#: src/agent/locktext.cpp:48
+msgid "Face recognized"
+msgstr "Gesicht erkannt"
+
+#: src/agent/main.cpp:244
 msgid "Face unlock for the lock screen, sudo and admin prompts"
 msgstr "Gesichtsentsperrung für Sperrbildschirm, sudo und Admin-Abfragen"
 
-#: src/agent/main.cpp:188
+#: src/agent/main.cpp:247
 msgid "Set up a face."
 msgstr "Ein Gesicht einrichten."
 
-#: src/agent/main.cpp:189
+#: src/agent/main.cpp:248
 msgid "What to call the new face."
 msgstr "Wie das neue Gesicht heißen soll."
 
-#: src/agent/main.cpp:190
+#: src/agent/main.cpp:249
 msgid "Lock the screen."
 msgstr "Den Bildschirm sperren."
 
-#: src/agent/main.cpp:191
+#: src/agent/main.cpp:250
 msgid "Play the bubble's animations once."
 msgstr "Die Animationen der Bubble einmal abspielen."
 
-#: src/agent/main.cpp:193
+#: src/agent/main.cpp:252
 msgid "Bubble style for the demo: full or minimal."
 msgstr "Bubble-Stil für die Demo: full oder minimal."
+
+#: src/agent/main.cpp:253
+msgid "Ask which lock screen to use, and print the answer."
+msgstr "Fragt, welcher Sperrbildschirm genutzt wird, und gibt die Antwort aus."
 
 #: src/pam/pam_face_unlock.c:356
 msgid "Look at the camera to unlock."
@@ -1058,7 +1150,7 @@ msgstr ""
 msgid "Name (optional)"
 msgstr "Name (optional)"
 
-#: src/agent/qml/Enroll.qml:177
+#: src/agent/qml/Enroll.qml:177 src/agent/qml/LockChoice.qml:255
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -1078,14 +1170,66 @@ msgstr "Los geht's"
 msgid "Done"
 msgstr "Fertig"
 
-#: src/agent/qml/LockScreen.qml:171
+#: src/agent/qml/LockChoice.qml:52
+msgid "Choose your lock screen"
+msgstr "Sperrbildschirm wählen"
+
+#: src/agent/qml/LockChoice.qml:198
+msgid "Your lock screen"
+msgstr "Dein Sperrbildschirm"
+
+#: src/agent/qml/LockChoice.qml:209
+msgid ""
+"Your desktop leaves the lock screen to a program of your choice. Pick how "
+"face unlock shows up there. You can change it later under Settings."
+msgstr ""
+"Dein Desktop überlässt den Sperrbildschirm einem Programm deiner Wahl. "
+"Wähle, wie face unlock dort auftaucht. Du kannst das später unter "
+"Einstellungen ändern."
+
+#: src/agent/qml/LockChoice.qml:232
+msgid "face-unlock's lock screen"
+msgstr "Sperrbildschirm von face-unlock"
+
+#: src/agent/qml/LockChoice.qml:233
+msgid ""
+"The bubble at the top, the time and your wallpaper. Your shortcut and idle "
+"lock then run face-unlock lock."
+msgstr ""
+"Die Bubble oben, die Uhrzeit und dein Hintergrundbild. Dein Tastenkürzel und "
+"das Sperren bei Inaktivität rufen dann face-unlock lock auf."
+
+#: src/agent/qml/LockChoice.qml:240
+msgid "Keep your lock screen"
+msgstr "Deinen Sperrbildschirm behalten"
+
+#: src/agent/qml/LockChoice.qml:242
+msgid ""
+"It stays as it is. hyprlock shows a line of text at the top instead of the "
+"bubble. Enter on the empty password field scans."
+msgstr ""
+"Er bleibt, wie er ist. hyprlock zeigt oben eine Textzeile statt der Bubble. "
+"Enter im leeren Passwortfeld scannt."
+
+#: src/agent/qml/LockChoice.qml:243
+msgid ""
+"It stays as it is, without the bubble. Enter on the empty password field "
+"scans."
+msgstr ""
+"Er bleibt, wie er ist, ohne Bubble. Enter im leeren Passwortfeld scannt."
+
+#: src/agent/qml/LockChoice.qml:260
+msgid "Continue"
+msgstr "Weiter"
+
+#: src/agent/qml/LockScreen.qml:180
 msgid "Password"
 msgstr "Passwort"
 
-#: src/agent/qml/LockScreen.qml:185
+#: src/agent/qml/LockScreen.qml:194
 msgid "Look at the camera or type your password"
 msgstr "Schau in die Kamera oder tippe dein Passwort"
 
-#: src/agent/qml/LockScreen.qml:186
+#: src/agent/qml/LockScreen.qml:195
 msgid "Type your password"
 msgstr "Tippe dein Passwort"

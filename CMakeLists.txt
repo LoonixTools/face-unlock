@@ -160,6 +160,8 @@ if(FU_BUILD_AGENT)
         src/agent/sessionlock.cpp
         src/agent/lockscreencontroller.cpp
         src/agent/wallpaper.cpp
+        src/agent/locktext.cpp
+        src/agent/lockpreview.cpp
         src/agent/enrollcontroller.cpp
     )
     target_include_directories(face-unlock-agent PRIVATE src/agent)
@@ -176,7 +178,7 @@ if(FU_BUILD_AGENT)
     # see each other (and the Theme singleton) without importing anything.
     # Under /qt/qml, which the engine searches, or an installed agent finds no
     # types (the build directory only works by its FaceUnlock/qmldir).
-    set(FU_QML_FILES Theme FaceGlyph LockGlyph Checkmark Bubble TickRing Enroll PillButton LockScreen)
+    set(FU_QML_FILES Theme FaceGlyph LockGlyph Checkmark Bubble TickRing Enroll PillButton LockScreen LockChoice LockPreview)
     foreach(f ${FU_QML_FILES})
         set_source_files_properties(src/agent/qml/${f}.qml PROPERTIES QT_RESOURCE_ALIAS ${f}.qml)
     endforeach()
@@ -199,6 +201,8 @@ if(FU_BUILD_AGENT)
             src/agent/qml/Enroll.qml
             src/agent/qml/PillButton.qml
             src/agent/qml/LockScreen.qml
+            src/agent/qml/LockChoice.qml
+            src/agent/qml/LockPreview.qml
     )
 
     target_link_libraries(face-unlock-agent PRIVATE
@@ -241,6 +245,11 @@ if(FU_BUILD_TESTS)
         target_include_directories(test_wallpaper PRIVATE src/agent)
         target_link_libraries(test_wallpaper PRIVATE Qt6::Core)
         add_test(NAME wallpaper COMMAND test_wallpaper)
+
+        add_executable(test_lockpreview tests/test_lockpreview.cpp src/agent/lockpreview.cpp)
+        target_include_directories(test_lockpreview PRIVATE src/agent)
+        target_link_libraries(test_lockpreview PRIVATE Qt6::Gui KF6::I18n)
+        add_test(NAME lockpreview COMMAND test_lockpreview)
 
         add_executable(test_lockers tests/test_lockers.cpp src/agent/lockers.cpp)
         target_include_directories(test_lockers PRIVATE src/agent)

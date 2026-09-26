@@ -247,8 +247,16 @@ so does the bubble, above the lock screen too.
 	sets *LockedHint*), scans when somebody comes back, and opens them with
 	SIGUSR1. It only does so once the lock screen handles SIGUSR1: before
 	it has locked, the signal would kill it. Those lock screens cover the
-	bubble, which shows the tick once they are gone. gtklock shows the
-	messages of the PAM module.
+	bubble. hyprlock shows it as a line of text instead: a label in
+	_~/.config/hypr/hyprlock.conf_ (a *source* line under a face-unlock
+	comment) reads what the agent writes, and SIGUSR2 makes hyprlock read
+	it again. gtklock shows the messages of the PAM module; swaylock and
+	waylock show none.
+
+	*enable* asks once in a window which way to go: face-unlock's lock
+	screen, or the user's own with that line of text. The window shows the
+	screen both ways, the user's own rebuilt from the config of hyprlock or
+	swaylock. *Which lock screen* under *Settings* opens it again.
 
 	For the bubble on the lock screen there is face-unlock's own: *lock*.
 	It shows the time, a password field (PAM service _face-unlock-lock_
@@ -335,6 +343,13 @@ _$XDG_RUNTIME_DIR/face-unlock/agent.socket_
 
 _$XDG_RUNTIME_DIR/face-unlock/locked_
 	There while face-unlock's own lock screen is up.
+
+_$XDG_RUNTIME_DIR/face-unlock/lock-text_
+	What hyprlock shows at the top when the user keeps their own lock
+	screen.
+
+_~/.config/face-unlock/hyprlock.conf_
+	The label for that, which _~/.config/hypr/hyprlock.conf_ sources.
 
 _/usr/share/gnome-shell/extensions/face-unlock@loonixtools.github.io/_
 	The GNOME Shell extension that draws the bubble on GNOME.

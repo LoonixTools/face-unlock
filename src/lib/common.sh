@@ -156,6 +156,8 @@ fu_head() { printf '\n%s%s%s\n\n' "$FU_C_BOLD$FU_C_BLUE" "$*" "$FU_C_RESET"; }
 fu_ok()   { FU_UI_NOTICES+=("$FU_C_GREEN✔$FU_C_RESET $*"); printf '%s✔%s %s\n' "$FU_C_GREEN" "$FU_C_RESET" "$*"; }
 fu_bad()  { FU_UI_NOTICES+=("$FU_C_RED✘$FU_C_RESET $*"); printf '%s✘%s %s\n' "$FU_C_RED" "$FU_C_RESET" "$*" >&2; }
 fu_note() { FU_UI_NOTICES+=("$FU_C_DIM•$FU_C_RESET $*"); printf '%s•%s %s\n' "$FU_C_DIM" "$FU_C_RESET" "$*"; }
+# A line of config to copy, under a note.
+fu_code() { FU_UI_NOTICES+=("    $*"); printf '    %s\n' "$*"; }
 
 fu_have() { command -v "$1" > /dev/null 2>&1; }
 

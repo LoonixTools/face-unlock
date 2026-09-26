@@ -10,6 +10,9 @@
 //                    Niri), else through logind with the desktop's
 //   --demo           play the bubble's animations once, for trying out a
 //                    style (--bubble-style minimal) and for screenshots
+//   --choose-lock-screen
+//                    open the window that asks which lock screen to use
+//                    where it is a program of its own, and print the answer
 
 #include "agentsocket.h"
 #include "bubblecontroller.h"
@@ -17,9 +20,12 @@
 #include "bubblewindow.h"
 #include "enrollcontroller.h"
 #include "lockcontroller.h"
+#include "lockpreview.h"
 #include "lockscreencontroller.h"
+#include "locktext.h"
 #include "sessionlock.h"
 #include "userconfig.h"
+#include "wallpaper.h"
 #include "wayland.h"
 
 #include "buildconfig.h"
@@ -34,8 +40,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlEngine>
+#include <QScreen>
 #include <QTimer>
+#include <QWindow>
 
+#include <cstdio>
 #include <cstring>
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -64,6 +73,56 @@ int runEnroll(QGuiApplication &app, const QString &name)
     });
     app.exec();
     return controller.state() == u"done" ? 0 : code;
+}
+
+// The window of --choose-lock-screen. Prints "own" or "yours" for the menu,
+// which carries it out.
+int runChooseLockScreen(QGuiApplication &app)
+{
+    app.setQuitOnLastWindowClosed(true);
+    UserConfig config;
+
+    // Both choices show this screen as it would look: face-unlock's lock
+    // screen as it is, with a scan going on, and the user's own rebuilt.
+    const QScreen *screen = QGuiApplication::primaryScreen();
+    const QString output = screen ? screen->name() : QString();
+    const QSize size = screen ? screen->size() : QSize(1920, 1080);
+    const QUrl desktop = Wallpaper::pick(Wallpaper::forLock({}), output);
+    const QUrl ownWallpaper = config.lockWallpaper().isEmpty() ? desktop : Wallpaper::pick(Wallpaper::forLock(config.lockWallpaper()), output);
+    const QString locker = LockPreview::locker();
+
+    LockScreenController lock;
+    lock.setBlur(config.lockBlur());
+    BubbleController bubble(&config);
+    bubble.scanStarted();
+    // A scan that goes on: the bubble closes by itself after a while.
+    QTimer rescan;
+    QObject::connect(&rescan, &QTimer::timeout, &bubble, &BubbleController::scanStarted);
+    rescan.start(20000);
+
+    QQmlApplicationEngine engine;
+    KLocalization::setupLocalizedContext(&engine);
+    engine.setInitialProperties({{QStringLiteral("current"), config.lockScreenStyle()},
+                                 {QStringLiteral("locker"), locker},
+                                 {QStringLiteral("widgets"), LockPreview::widgets(locker, size, output, desktop)},
+                                 {QStringLiteral("screenSize"), size},
+                                 {QStringLiteral("ownWallpaper"), ownWallpaper},
+                                 {QStringLiteral("lock"), QVariant::fromValue(&lock)},
+                                 {QStringLiteral("bubble"), QVariant::fromValue(&bubble)}});
+    engine.loadFromModule(QStringLiteral("FaceUnlock"), QStringLiteral("LockChoice"));
+    auto *window = engine.rootObjects().isEmpty() ? nullptr : qobject_cast<QWindow *>(engine.rootObjects().constFirst());
+    if (!window) {
+        return 2;
+    }
+    // Shown only now, at the size its texts need (see LockChoice.qml).
+    window->show();
+    app.exec();
+    const QString answer = window->property("answer").toString();
+    if (answer.isEmpty()) {
+        return 1;
+    }
+    std::printf("%s\n", qPrintable(answer));
+    return 0;
 }
 
 // Where --lock tells the command that ran it that the screen is locked, when
@@ -191,8 +250,13 @@ int main(int argc, char **argv)
     const QCommandLineOption demoOpt(QStringLiteral("demo"), i18n("Play the bubble's animations once."));
     // Not "--style": QGuiApplication takes that one for itself.
     const QCommandLineOption styleOpt(QStringLiteral("bubble-style"), i18n("Bubble style for the demo: full or minimal."), QStringLiteral("style"));
-    parser.addOptions({enrollOpt, nameOpt, lockOpt, demoOpt, styleOpt});
+    const QCommandLineOption chooseOpt(QStringLiteral("choose-lock-screen"), i18n("Ask which lock screen to use, and print the answer."));
+    parser.addOptions({enrollOpt, nameOpt, lockOpt, demoOpt, styleOpt, chooseOpt});
     parser.process(app);
+
+    if (parser.isSet(chooseOpt)) {
+        return runChooseLockScreen(app);
+    }
 
     if (parser.isSet(enrollOpt)) {
         QString name = parser.value(nameOpt);
@@ -264,6 +328,11 @@ int main(int argc, char **argv)
         QObject::connect(lock, &SessionLock::confirmed, &socket, &AgentSocket::confirmLock);
     }
     LockController lock(&bubble, &config, sessionLock.get(), &screen);
+    // hyprlock covers the bubble: it can show it as a line of text instead.
+    std::unique_ptr<LockText> text;
+    if (sessionLock && !lockNow) {
+        text = std::make_unique<LockText>(&bubble, &config);
+    }
 
     if (lockNow) {
         // No agent was running, so this one is only here for the lock. It

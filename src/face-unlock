@@ -125,7 +125,13 @@ fu_do_enable() {
 			esac
 			;;
 	esac
-	if fu_pam_lockers_here && fu_pam_lockers_enabled; then
+	# Where the lock screen is a program of its own: face-unlock's, with the
+	# bubble, or that program with a line of text. Asked once.
+	if fu_own_lock_here && [[ -n ${WAYLAND_DISPLAY:-} && -z $(fu_config_get LockScreenStyle) ]]; then
+		fu_say "  $(fu_msg "Pick your lock screen in the window.")"
+		fu_lock_choose || fu_note "$(fu_msg "No lock screen picked. You can do it later under Settings.")"
+	fi
+	if fu_pam_lockers_here && fu_pam_lockers_enabled && [[ $(fu_config_get LockScreenStyle) != own ]]; then
 		fu_note "$(fu_msg "The lock screen (%s) takes your face too. If it does not scan when you come back, press Enter on the empty password field." "$(fu_pam_lockers_list)")"
 	fi
 

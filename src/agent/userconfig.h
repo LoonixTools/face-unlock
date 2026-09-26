@@ -29,6 +29,14 @@ public:
     {
         return m_lockWallpaper;
     }
+    // Where the lock screen is a program of the user's (Hyprland, Niri):
+    // "own" to lock with face-unlock's, "yours" to keep that program, which
+    // then shows the bubble as a line of text (see LockText). Empty until
+    // the user picked one.
+    QString lockScreenStyle() const
+    {
+        return m_lockScreenStyle;
+    }
     bool lockBlur() const
     {
         return m_lockBlur;
@@ -90,6 +98,7 @@ private:
     QFileSystemWatcher m_watcher;
     bool m_enabled = false;
     QString m_lockWallpaper;
+    QString m_lockScreenStyle;
     bool m_lockBlur = false;
     bool m_lockScreen = true;
     bool m_scanOnWake = true;

@@ -32,6 +32,7 @@ void UserConfig::load()
     m_enabled = kv.boolean(QStringLiteral("Enabled"), false);
     m_lockWallpaper = kv.value(QStringLiteral("LockWallpaper"));
     m_lockBlur = kv.boolean(QStringLiteral("LockBlur"), false);
+    m_lockScreenStyle = kv.value(QStringLiteral("LockScreenStyle"));
     m_lockScreen = kv.boolean(QStringLiteral("LockScreen"), true);
     m_scanOnWake = kv.boolean(QStringLiteral("ScanOnWake"), true);
     m_scanOnLock = kv.boolean(QStringLiteral("ScanOnLock"), false);

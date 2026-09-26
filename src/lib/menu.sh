@@ -200,6 +200,8 @@ fu_value_label() {
 		AnimationSpeed:slow) fu_msg "slow" ;;
 		ScanSeconds:*)      fu_msg "%s seconds" "$2" ;;
 		Camera:auto)        fu_msg "automatic" ;;
+		LockScreenStyle:own) fu_msg "face-unlock's" ;;
+		LockScreenStyle:*)  fu_msg "yours" ;;
 		*)                  printf '%s' "$2" ;;
 	esac
 }
@@ -277,10 +279,11 @@ fu_ui_status() {
 #   scope  user (this user's file), sys (the system file, through sudo),
 #          pam (the service of that name, through sudo), or group for a
 #          heading, with only the label after it
-#   type   bool, choice (steps through the choices), camera, or path (typed
-#          in; empty for the desktop's picture)
-#   needs  a bool setting this one does nothing without; it is dimmed while
-#          that is off
+#   type   bool, choice (steps through the choices), camera, path (typed
+#          in; empty for the desktop's picture), or lockstyle (the window
+#          with the two lock screens, see fu_lock_choose)
+#   needs  a bool setting this one does nothing without, or Key=value; it is
+#          dimmed while that is not so
 #   only   lockers: only where the lock screen is a program of its own with a
 #          PAM file (Hyprland, Niri), see fu_pam_lockers_here; ownlock: only
 #          where face-unlock's own lock screen can be used
@@ -289,8 +292,9 @@ FU_SETTINGS=(
 	"user|LockScreen|bool|yes|Unlock with your face"
 	"user|ScanOnWake|bool|yes|Scan when you come back||LockScreen"
 	"user|ScanOnLock|bool|no|Scan right after locking||LockScreen"
-	"user|LockWallpaper|path||Wallpaper|||ownlock"
-	"user|LockBlur|bool|no|Blur the wallpaper|||ownlock"
+	"user|LockScreenStyle|lockstyle|yours|Which lock screen|||ownlock"
+	"user|LockWallpaper|path||Wallpaper||LockScreenStyle=own|ownlock"
+	"user|LockBlur|bool|no|Blur the wallpaper||LockScreenStyle=own|ownlock"
 	"group|Password prompts"
 	"pam|sudo|bool|no|sudo in a terminal"
 	"pam|polkit-1|bool|no|Admin prompts"
@@ -328,6 +332,7 @@ fu_setting_help() {
 		ScanOnWake:*)       fu_msg "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up." ;;
 		ScanOnLock:*)       fu_msg "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away." ;;
 		sudo:*)             fu_msg "sudo takes your face instead of the password. No match: you type the password as usual." ;;
+		LockScreenStyle:*)  fu_msg "face-unlock's lock screen shows the bubble, and you lock with \`face-unlock lock\`. Or keep yours: hyprlock then shows a line of text at the top. Enter opens the choice." ;;
 		LockWallpaper:*)    fu_msg "The picture behind face-unlock's own lock screen (\`face-unlock lock\`). Empty: the one on your desktop. Or a file, a folder to take one from at random, or \`none\`. Enter to type it." ;;
 		LockBlur:*)         fu_msg "Blurs the picture behind face-unlock's own lock screen." ;;
 		lockscreens:*)      fu_msg "The lock screen takes your face in its password check. Press Enter on the empty field to scan. Found here: %s." "$(fu_pam_lockers_list)" ;;
@@ -483,6 +488,18 @@ _fu_setting_change() {
 		bool)   if fu_is_true "$current"; then next=no; else next=yes; fi ;;
 		choice) next="$(_fu_next_choice "$current" "$options" "$step")" ;;
 		camera) next="$(_fu_next_camera "$current" "$step")" ;;
+		lockstyle)
+			# The window with the pictures where there is a screen for it,
+			# else the other one of the two.
+			if [[ -n ${WAYLAND_DISPLAY:-} ]]; then
+				fu_ui_cooked fu_lock_choose
+			elif [[ $current == own ]]; then
+				fu_lock_style_set yours
+			else
+				fu_lock_style_set own
+			fi
+			return 0
+			;;
 		path)
 			printf '\n  %s ' "$(fu_msg "Picture or folder:")"
 			fu_ui_read_line "$current" || return 0
@@ -612,7 +629,11 @@ fu_ui_settings() {
 				before="${FU_C_BLUE}◂${FU_C_RESET} " after=" ${FU_C_BLUE}▸${FU_C_RESET}"
 			fi
 			dim=''
-			[[ -n ${needs[i]} ]] && ! fu_is_true "${current[${needs[i]}]}" && dim="$FU_C_DIM"
+			case "${needs[i]}" in
+				'') ;;
+				*=*) [[ ${current[${needs[i]%%=*}]} == "${needs[i]#*=}" ]] || dim="$FU_C_DIM" ;;
+				*) fu_is_true "${current[${needs[i]}]}" || dim="$FU_C_DIM" ;;
+			esac
 			pad=$(( width + 2 - widths[i] ))
 			if (( i == selected )); then marker="${FU_C_BLUE}▸${FU_C_RESET} "; else marker='  '; fi
 			printf -v row '  %s%s%s%s%*s%s%s%s' "$marker" "$dim" "${labels[i]}" "$FU_C_RESET" "$pad" '' "$before" "$dim$shown$FU_C_RESET" "$after"
