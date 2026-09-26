@@ -2,6 +2,7 @@
 
 #include "lockwatcher.h"
 
+#include "lockers.h"
 #include "wayland.h"
 
 #include <QDBusConnection>
@@ -10,12 +11,9 @@
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
 #include <QDBusVariant>
-#include <QFile>
 #include <QProcess>
 
-#include <dirent.h>
-#include <signal.h>
-#include <sys/stat.h>
+#include <csignal>
 #include <unistd.h>
 
 namespace
@@ -26,73 +24,6 @@ const QString Properties = QStringLiteral("org.freedesktop.DBus.Properties");
 
 constexpr int PollMs = 1000;
 
-// The lock screens that unlock on SIGUSR1.
-bool isLocker(const QByteArray &name)
-{
-    return name == "hyprlock" || name == "swaylock";
-}
-
-QByteArray readFile(const QString &path)
-{
-    QFile f(path);
-    return f.open(QIODevice::ReadOnly) ? f.readAll() : QByteArray();
-}
-
-pid_t parentOf(pid_t pid)
-{
-    // The fields after the name in brackets, which can hold anything.
-    const QByteArray stat = readFile(QStringLiteral("/proc/%1/stat").arg(pid));
-    const qsizetype close = stat.lastIndexOf(')');
-    return close < 0 ? 0 : pid_t(stat.mid(close + 2).split(' ').value(1).toInt());
-}
-
-// The lock screens of this user on this display. Another session of the same
-// user has a display of its own, and its lock screen is left alone. A child
-// of a lock screen (swaylock checks the password in one) is left out: killed
-// by the signal before its parent unlocks, it would take the parent down
-// with it, and the screen would stay locked.
-QList<pid_t> findLockers()
-{
-    QList<pid_t> found;
-    DIR *proc = ::opendir("/proc");
-    if (!proc) {
-        return found;
-    }
-    QByteArray display = qgetenv("WAYLAND_DISPLAY");
-    if (display.isEmpty()) {
-        display = "wayland-0";
-    }
-    const uid_t me = ::getuid();
-    while (dirent *entry = ::readdir(proc)) {
-        const pid_t pid = pid_t(atoi(entry->d_name));
-        struct stat st;
-        if (pid <= 0 || ::fstatat(::dirfd(proc), entry->d_name, &st, 0) != 0 || st.st_uid != me) {
-            continue;
-        }
-        const QString dir = QStringLiteral("/proc/%1/").arg(pid);
-        if (!isLocker(readFile(dir + QStringLiteral("comm")).trimmed())) {
-            continue;
-        }
-        bool sameDisplay = true;
-        for (const QByteArray &var : readFile(dir + QStringLiteral("environ")).split('\0')) {
-            if (var.startsWith("WAYLAND_DISPLAY=")) {
-                sameDisplay = var.mid(16) == display;
-                break;
-            }
-        }
-        if (sameDisplay) {
-            found.append(pid);
-        }
-    }
-    ::closedir(proc);
-    QList<pid_t> top;
-    for (const pid_t pid : std::as_const(found)) {
-        if (!found.contains(parentOf(pid))) {
-            top.append(pid);
-        }
-    }
-    return top;
-}
 } // namespace
 
 LockWatcher::LockWatcher(QObject *parent)
@@ -226,7 +157,7 @@ void LockWatcher::onSessionProperties(const QString &interface, const QVariantMa
 
 void LockWatcher::pollLockers()
 {
-    m_lockerRunning = !findLockers().isEmpty();
+    m_lockerRunning = !Lockers::find().isEmpty();
     update();
 }
 
@@ -243,9 +174,7 @@ void LockWatcher::unlock()
 {
     // Looked up again rather than taken from the last poll: a second is
     // long enough for a pid to belong to something else.
-    for (const pid_t pid : findLockers()) {
-        ::kill(pid, SIGUSR1);
-    }
+    Lockers::signal(SIGUSR1);
 
     const QDBusMessage call = QDBusMessage::createMethodCall(Login1,
                                                              m_session.isEmpty() ? QStringLiteral("/org/freedesktop/login1/session/auto") : m_session,

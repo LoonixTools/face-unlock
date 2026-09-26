@@ -151,6 +151,7 @@ if(FU_BUILD_AGENT)
         src/agent/bubblecontroller.cpp
         src/agent/lockcontroller.cpp
         src/agent/lockwatcher.cpp
+        src/agent/lockers.cpp
         src/agent/inputwatcher.cpp
         src/agent/wayland.cpp
         src/agent/enrollcontroller.cpp
@@ -219,4 +220,11 @@ if(FU_BUILD_TESTS)
 
     add_executable(test_images tests/test_images.cpp)
     target_link_libraries(test_images PRIVATE fu_core)
+
+    if(FU_BUILD_AGENT)
+        add_executable(test_lockers tests/test_lockers.cpp src/agent/lockers.cpp)
+        target_include_directories(test_lockers PRIVATE src/agent)
+        target_link_libraries(test_lockers PRIVATE Qt6::Core)
+        add_test(NAME lockers COMMAND test_lockers)
+    endif()
 endif()
