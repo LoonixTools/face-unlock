@@ -17,6 +17,22 @@ class UserConfig : public QObject
 public:
     explicit UserConfig(QObject *parent = nullptr);
 
+    // Face unlock turned on at all. The agent's service only runs when it is,
+    // but the own lock screen (--lock) runs either way.
+    bool enabled() const
+    {
+        return m_enabled;
+    }
+    // The picture behind the own lock screen (see Wallpaper): empty for the
+    // desktop's, "none", a file, or a folder to take one from at random.
+    QString lockWallpaper() const
+    {
+        return m_lockWallpaper;
+    }
+    bool lockBlur() const
+    {
+        return m_lockBlur;
+    }
     // Unlock the lock screen by face.
     bool lockScreen() const
     {
@@ -72,6 +88,9 @@ private:
     void load();
 
     QFileSystemWatcher m_watcher;
+    bool m_enabled = false;
+    QString m_lockWallpaper;
+    bool m_lockBlur = false;
     bool m_lockScreen = true;
     bool m_scanOnWake = true;
     bool m_scanOnLock = false;

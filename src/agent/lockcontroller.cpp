@@ -4,6 +4,7 @@
 
 #include "bubblecontroller.h"
 #include "daemonclient.h"
+#include "lockscreencontroller.h"
 #include "userconfig.h"
 
 #include <QDBusConnection>
@@ -23,11 +24,18 @@ constexpr int CalmBeforeRetryMs = 2000;
 constexpr int ScanAfterWakeMs = 1000;
 } // namespace
 
-LockController::LockController(BubbleController *bubble, UserConfig *config, QObject *parent)
+LockController::LockController(BubbleController *bubble, UserConfig *config, SessionLock *lock, LockScreenController *screen, QObject *parent)
     : QObject(parent)
     , m_bubble(bubble)
     , m_config(config)
+    , m_screen(screen)
 {
+    if (lock) {
+        m_lock.setOwnLock(lock);
+    }
+    if (screen) {
+        connect(screen, &LockScreenController::input, &m_input, &InputWatcher::noteInput);
+    }
     m_armTimer.setSingleShot(true);
     connect(&m_armTimer, &QTimer::timeout, this, [this] {
         arm(0);
@@ -68,7 +76,11 @@ void LockController::onLockedChanged(bool locked)
         return;
     }
 
-    if (!m_config->lockScreen()) {
+    const bool face = m_config->enabled() && m_config->lockScreen();
+    if (m_screen) {
+        m_screen->setFaceUnlock(face);
+    }
+    if (!face) {
         return;
     }
     m_locked = true;

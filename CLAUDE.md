@@ -89,4 +89,7 @@ Never test against the real setup: enrolling and the PAM files belong to the use
 - A development daemon needs no root: `face-unlockd --socket $XDG_RUNTIME_DIR/fu/socket
   --state-dir DIR --config FILE --models DIR`. It skips polkit when it does not run as root. Point
   the other parts at it with `FU_SOCKET`.
+- face-unlock's own lock screen checks the password with PAM. `FU_PAM_CONFDIR=DIR` points it at a
+  `face-unlock-lock` file of its own (pam_permit, pam_deny), so no test counts as a wrong password
+  for the real account.
 - `make check` after every change. New strings: `po/update-pot.sh`, then translate them in every `po/*.po`.

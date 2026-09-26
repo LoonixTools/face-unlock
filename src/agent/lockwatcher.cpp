@@ -3,6 +3,7 @@
 #include "lockwatcher.h"
 
 #include "lockers.h"
+#include "sessionlock.h"
 #include "wayland.h"
 
 #include <QDBusConnection>
@@ -162,14 +163,20 @@ void LockWatcher::pollLockers()
     update();
 }
 
+void LockWatcher::setOwnLock(SessionLock *lock)
+{
+    m_own = lock;
+    connect(lock, &SessionLock::lockedChanged, this, &LockWatcher::update);
+}
+
 bool LockWatcher::canUnlock() const
 {
-    return !m_ownLockers || m_lockerRunning;
+    return (m_own && m_own->isLocked()) || !m_ownLockers || m_lockerRunning;
 }
 
 void LockWatcher::update()
 {
-    const bool locked = m_screenSaver || m_lockedHint || m_lockerRunning;
+    const bool locked = m_screenSaver || m_lockedHint || m_lockerRunning || (m_own && m_own->isLocked());
     if (locked != m_locked) {
         m_locked = locked;
         Q_EMIT lockedChanged(locked);
@@ -178,6 +185,10 @@ void LockWatcher::update()
 
 void LockWatcher::unlock()
 {
+    if (m_own && m_own->isLocked()) {
+        m_own->unlock();
+        return;
+    }
     // Looked up again rather than taken from the last poll: a second is
     // long enough for a pid to belong to something else.
     Lockers::signal(SIGUSR1);

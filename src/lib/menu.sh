@@ -277,16 +277,20 @@ fu_ui_status() {
 #   scope  user (this user's file), sys (the system file, through sudo),
 #          pam (the service of that name, through sudo), or group for a
 #          heading, with only the label after it
-#   type   bool, choice (steps through the choices) or camera
+#   type   bool, choice (steps through the choices), camera, or path (typed
+#          in; empty for the desktop's picture)
 #   needs  a bool setting this one does nothing without; it is dimmed while
 #          that is off
 #   only   lockers: only where the lock screen is a program of its own with a
-#          PAM file (Hyprland, Niri), see fu_pam_lockers_here
+#          PAM file (Hyprland, Niri), see fu_pam_lockers_here; ownlock: only
+#          where face-unlock's own lock screen can be used
 FU_SETTINGS=(
 	"group|Lock screen"
 	"user|LockScreen|bool|yes|Unlock with your face"
 	"user|ScanOnWake|bool|yes|Scan when you come back||LockScreen"
 	"user|ScanOnLock|bool|no|Scan right after locking||LockScreen"
+	"user|LockWallpaper|path||Wallpaper|||ownlock"
+	"user|LockBlur|bool|no|Blur the wallpaper|||ownlock"
 	"group|Password prompts"
 	"pam|sudo|bool|no|sudo in a terminal"
 	"pam|polkit-1|bool|no|Admin prompts"
@@ -315,7 +319,7 @@ fu_setting_help() {
 			return
 			;;
 		hyprland:LockScreen|niri:LockScreen)
-			fu_msg "Scans when you come back to hyprlock or swaylock and opens them. Any other lock screen scans when you press Enter on the empty password field."
+			fu_msg "Scans when you come back to hyprlock, swaylock or face-unlock's own lock screen (\`face-unlock lock\`, with the bubble), and opens them. Other lock screens scan on Enter."
 			return
 			;;
 	esac
@@ -324,6 +328,8 @@ fu_setting_help() {
 		ScanOnWake:*)       fu_msg "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up." ;;
 		ScanOnLock:*)       fu_msg "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away." ;;
 		sudo:*)             fu_msg "sudo takes your face instead of the password. No match: you type the password as usual." ;;
+		LockWallpaper:*)    fu_msg "The picture behind face-unlock's own lock screen (\`face-unlock lock\`). Empty: the one on your desktop. Or a file, a folder to take one from at random, or \`none\`. Enter to type it." ;;
+		LockBlur:*)         fu_msg "Blurs the picture behind face-unlock's own lock screen." ;;
 		lockscreens:*)      fu_msg "The lock screen takes your face in its password check. Press Enter on the empty field to scan. Found here: %s." "$(fu_pam_lockers_list)" ;;
 		polkit-1:*)         fu_msg "The password windows of your desktop and apps, for example when you install software. No match: you type the password." ;;
 		Liveness:heavy)     fu_msg "You have to blink or turn your head a little. This also stops printed photos." ;;
@@ -451,6 +457,24 @@ _fu_camera_label() {
 	printf '%s %s' "$value" "$(fu_msg "(not connected)")"
 }
 
+# _fu_path_label <path>
+# A path as it fits in the list: with ~ for home, and cut from the left.
+# Empty is the desktop's picture.
+_fu_path_label() {
+	local path="$1"
+	if [[ -z $path ]]; then
+		fu_msg "same as desktop"
+		return
+	fi
+	if [[ ${path,,} == none ]]; then
+		fu_msg "none"
+		return
+	fi
+	[[ $path == "$HOME"/* ]] && path="~${path#"$HOME"}"
+	(( ${#path} > 36 )) && path="…${path: -35}"
+	printf '%s' "$path"
+}
+
 # _fu_setting_change <scope> <Key> <type> <current> <choices> <step>
 _fu_setting_change() {
 	local scope="$1" key="$2" type="$3" current="$4" options="$5" step="$6" next
@@ -459,6 +483,16 @@ _fu_setting_change() {
 		bool)   if fu_is_true "$current"; then next=no; else next=yes; fi ;;
 		choice) next="$(_fu_next_choice "$current" "$options" "$step")" ;;
 		camera) next="$(_fu_next_camera "$current" "$step")" ;;
+		path)
+			printf '\n  %s ' "$(fu_msg "Picture or folder:")"
+			fu_ui_read_line "$current" || return 0
+			next="$FU_LINE_RESULT"
+			# shellcheck disable=SC2088  # typed by the user, expanded here
+			if [[ -n $next && ${next,,} != none && ! -e ${next/#\~/$HOME} ]]; then
+				fu_bad "$(fu_msg "Not found: %s" "$next")"
+				return 0
+			fi
+			;;
 	esac
 
 	case "$scope" in
@@ -501,6 +535,7 @@ fu_ui_settings() {
 	for spec in "${FU_SETTINGS[@]}"; do
 		IFS='|' read -r scope key type default label choice need only <<< "$spec"
 		[[ $only == lockers ]] && ! fu_pam_lockers_here && continue
+		[[ $only == ownlock && ( $FU_DESKTOP == plasma || $FU_DESKTOP == gnome ) ]] && continue
 		# A heading has its label where the key would be.
 		[[ $scope == group ]] && label="$key" key=''
 		scopes+=("$scope"); keys+=("$key"); types+=("$type"); defaults+=("$default")
@@ -568,6 +603,7 @@ fu_ui_settings() {
 					fi
 					;;
 				camera) shown="$(_fu_camera_label "${values[i]}")" ;;
+				path)   shown="$(_fu_path_label "${values[i]}")" ;;
 				*)      shown="$(fu_value_label "${keys[i]}" "${values[i]}")" ;;
 			esac
 			# Arrows on the selected choice: left and right step through it.

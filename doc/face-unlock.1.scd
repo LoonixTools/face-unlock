@@ -18,9 +18,8 @@ a printed one does not either.
 
 A bubble at the top of the screen shows what is going on: it drops down when
 the camera starts looking, the face in it looks around, and when it recognises
-somebody two green rings spin and land around a tick. On Plasma and GNOME it
-shows above the lock screen too. *Animation speed* makes all of it faster or
-slower.
+somebody two green rings spin and land around a tick. It shows above the lock
+screen too. *Animation speed* makes all of it faster or slower.
 
 Run without a command it shows an interactive menu. Everything it can be told
 is reachable from there; the settings files behind it do not need to be edited
@@ -59,6 +58,12 @@ It is a convenience, not a security upgrade. See *HOW SAFE IS THIS*.
 
 *status*
 	What is on, and when the last unlock was.
+
+*lock*
+	Lock the screen. On Hyprland, Niri and other compositors whose lock
+	screen is a program of its own, with face-unlock's own lock screen,
+	which shows the bubble (see *DESKTOPS*). Elsewhere with the desktop's
+	lock screen. Returns once the screen is locked.
 
 *-h*, *--help*
 	Show a summary of the commands.
@@ -196,8 +201,8 @@ does not start a scan with every key.
 
 When the face matches, the agent unlocks the session the way its lock screen
 wants it: through logind, as *loginctl unlock-session* does, on Plasma and
-GNOME, and with SIGUSR1 for hyprlock and swaylock. Any other lock screen
-opens itself, through PAM (see *DESKTOPS*).
+GNOME, by itself on its own lock screen, and with SIGUSR1 for hyprlock and
+swaylock. Any other lock screen opens itself, through PAM (see *DESKTOPS*).
 
 Unlocked through logind, Plasma's lock screen cuts off its own password prompt
 and counts that as a wrong password. After a face unlock the daemon resets the
@@ -212,7 +217,8 @@ is under *DESKTOPS*.
 
 # DESKTOPS
 
-All of them on Wayland. sudo and admin prompts work the same everywhere.
+All of them on Wayland. sudo and admin prompts work the same everywhere, and
+so does the bubble, above the lock screen too.
 
 *KDE Plasma 6*
 	The lock is seen through org.freedesktop.ScreenSaver and logind, and
@@ -239,6 +245,17 @@ All of them on Wayland. sudo and admin prompts work the same everywhere.
 	them among the user's processes (niri also sets *LockedHint*), scans
 	when somebody comes back, and opens them with SIGUSR1. Those lock
 	screens cover the bubble, which shows the tick once they are gone.
+
+	For the bubble on the lock screen there is face-unlock's own: *lock*.
+	It shows the time, a password field (PAM service _face-unlock-lock_
+	when an administrator wrote one, else the distribution's password-auth,
+	common-auth or login) and the bubble, and a face opens it straight
+	away. Behind it is the picture on the desktop, as swaybg, awww (swww),
+	hyprpaper or wpaperd show it. *Wallpaper* under *Settings* puts another
+	picture there, one at random from a folder, or _none_; *Blur the
+	wallpaper* blurs it. If the agent dies while this screen is locked, the
+	compositor keeps it locked, and the agent takes the lock back when it
+	starts again.
 
 	Hyprland only starts the agent's user service under uwsm. Without it,
 	*enable* and *status* show what to add to its config.
@@ -310,7 +327,10 @@ _/run/face-unlock/socket_
 
 _$XDG_RUNTIME_DIR/face-unlock/agent.socket_
 	Where the daemon tells the agent about scans it did not start, for the
-	bubble.
+	bubble, and where *lock* asks it to lock.
+
+_$XDG_RUNTIME_DIR/face-unlock/locked_
+	There while face-unlock's own lock screen is up.
 
 _/usr/share/gnome-shell/extensions/face-unlock@loonixtools.github.io/_
 	The GNOME Shell extension that draws the bubble on GNOME.

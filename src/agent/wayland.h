@@ -12,4 +12,7 @@ namespace Wayland
 // "zwlr_layer_shell_v1". Asked once, on an event queue of its own, so Qt's
 // own handling of the connection is not disturbed.
 bool hasGlobal(const char *interface);
+
+// Wait until the compositor has handled everything sent so far.
+void sync();
 } // namespace Wayland

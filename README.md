@@ -74,8 +74,8 @@ desktops, on Wayland:
 |---|---|---|---|
 | KDE Plasma 6 | ✅ | ✅ | ✅ above the lock screen too |
 | GNOME | ✅ | ✅ | ✅ above the lock screen too |
-| Hyprland | ✅ hyprlock, swaylock, gtklock or waylock | ✅ | ✅ once the lock screen is gone |
-| Niri | ✅ swaylock, hyprlock, gtklock or waylock | ✅ | ✅ once the lock screen is gone |
+| Hyprland | ✅ hyprlock, swaylock, gtklock, waylock, or face-unlock's own | ✅ | ✅ on face-unlock's own lock screen too |
+| Niri | ✅ swaylock, hyprlock, gtklock, waylock, or face-unlock's own | ✅ | ✅ on face-unlock's own lock screen too |
 
 On GNOME a small GNOME extension draws the bubble. Turning face unlock on
 switches it on; right after installing, log out and back in once.
@@ -86,9 +86,42 @@ press Enter on the empty password field to scan. hyprlock and swaylock also
 scan by themselves when you come back. Those lock screens cover the bubble,
 which shows the tick once they are gone.
 
+For the bubble on the lock screen, use face-unlock's own: `face-unlock lock`.
+It shows the wallpaper of your desktop (from swaybg, awww, hyprpaper or
+wpaperd). Under **Settings** you can pick a picture instead, or a folder to take
+one from at random, blurred if you like.
+
 Admin prompts and setting up a face need a polkit agent there (for example
 hyprpolkitagent). Hyprland without uwsm does not start the part that watches
 the lock screen by itself: the menu shows what to add to its config.
+
+<details>
+<summary>Hyprland and Niri: face-unlock's lock screen on a key</summary>
+
+`~/.config/hypr/hyprland.conf`, and `lock_cmd` in `hypridle.conf`:
+
+```ini
+bind = SUPER, L, exec, face-unlock lock
+```
+
+`~/.config/hypr/hyprland.lua` (Hyprland 0.56 and newer):
+
+```lua
+hl.bind("SUPER + L", hl.dsp.exec_cmd("face-unlock lock"))
+```
+
+`~/.config/niri/config.kdl`, and `face-unlock lock` in swayidle:
+
+```kdl
+binds {
+    Mod+Alt+L { spawn "face-unlock" "lock"; }
+}
+```
+
+`face-unlock lock` returns as soon as the screen is locked, so it also works
+for locking before sleep.
+
+</details>
 
 <details>
 <summary>Coming from plasma-face-unlock?</summary>

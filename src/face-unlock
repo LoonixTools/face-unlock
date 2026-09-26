@@ -197,6 +197,7 @@ fu_do_help() {
 	  faces               $(fu_msg "List the faces")
 	  remove ID           $(fu_msg "Delete a face")
 	  test                $(fu_msg "Look at the camera and see what it sees")
+	  lock                $(fu_msg "Lock the screen")
 	  status              $(fu_msg "Show what is on")
 	  -h, --help          $(fu_msg "Show this help")
 	  -V, --version       $(fu_msg "Show the version")
@@ -236,6 +237,7 @@ main() {
 		remove|delete) fu_do_remove "$@" ;;
 		test|try)      fu_ensure_service && fu_test ;;
 		status)        fu_do_status ;;
+		lock)          exec "$FU_AGENT" --lock ;;
 
 		-h|--help|help) fu_do_help ;;
 		-V|--version)   printf '%s %s\n' "$FU_NAME" "$FU_VERSION" ;;

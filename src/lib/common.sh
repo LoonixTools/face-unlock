@@ -31,7 +31,9 @@ FU_SYSCONFIG="${FU_SYSCONFIG:-/etc/${FU_NAME}/config}"
 FU_UNIT_SOCKET="face-unlockd.socket"
 FU_UNIT_AGENT="face-unlock-agent.service"
 
-# The desktop this runs in: plasma, gnome, hyprland, niri or other.
+# The desktop this runs in: plasma, gnome, hyprland, niri or other. All but
+# the first two have a lock screen that is a program of its own, and there
+# face-unlock's own one (`face-unlock lock`) is on offer.
 case ":${XDG_CURRENT_DESKTOP:-}:" in
 	*:KDE:*)      FU_DESKTOP=plasma ;;
 	*:GNOME:*)    FU_DESKTOP=gnome ;;

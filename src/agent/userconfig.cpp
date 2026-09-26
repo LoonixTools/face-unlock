@@ -29,6 +29,9 @@ QString UserConfig::path()
 void UserConfig::load()
 {
     const KeyValueFile kv = KeyValueFile::load(path());
+    m_enabled = kv.boolean(QStringLiteral("Enabled"), false);
+    m_lockWallpaper = kv.value(QStringLiteral("LockWallpaper"));
+    m_lockBlur = kv.boolean(QStringLiteral("LockBlur"), false);
     m_lockScreen = kv.boolean(QStringLiteral("LockScreen"), true);
     m_scanOnWake = kv.boolean(QStringLiteral("ScanOnWake"), true);
     m_scanOnLock = kv.boolean(QStringLiteral("ScanOnLock"), false);

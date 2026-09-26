@@ -26,13 +26,16 @@
 
 class BubbleController;
 class DaemonRequest;
+class LockScreenController;
+class SessionLock;
 class UserConfig;
 
 class LockController : public QObject
 {
     Q_OBJECT
 public:
-    LockController(BubbleController *bubble, UserConfig *config, QObject *parent = nullptr);
+    // lock and screen are face-unlock's own lock screen, where there is one.
+    LockController(BubbleController *bubble, UserConfig *config, SessionLock *lock, LockScreenController *screen, QObject *parent = nullptr);
 
     bool locked() const
     {
@@ -53,6 +56,7 @@ private:
 
     BubbleController *m_bubble;
     UserConfig *m_config;
+    LockScreenController *m_screen;
     bool m_locked = false;
     bool m_stopped = false;
     QElapsedTimer m_lockedFor;

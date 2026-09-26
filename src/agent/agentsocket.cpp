@@ -26,7 +26,7 @@ AgentSocket::AgentSocket(QObject *parent)
                 continue;
             }
             auto buffer = std::make_shared<QByteArray>();
-            connect(socket, &QLocalSocket::readyRead, this, [this, socket, buffer] {
+            connect(socket, &QLocalSocket::readyRead, this, [this, socket, buffer, cred] {
                 *buffer += socket->readAll();
                 if (buffer->size() > 64 * 1024) {
                     socket->abort();
@@ -36,8 +36,12 @@ AgentSocket::AgentSocket(QObject *parent)
                 while ((nl = buffer->indexOf('\n')) >= 0) {
                     const QJsonObject o = QJsonDocument::fromJson(buffer->left(nl)).object();
                     buffer->remove(0, nl + 1);
-                    if (o.value(u"event").toString() == u"scan") {
+                    const QString what = o.value(u"event").toString();
+                    if (what == u"scan") {
                         Q_EMIT scanEvent(o);
+                    } else if (what == u"lock" && cred.uid == ::getuid()) {
+                        m_waiting.append(socket);
+                        Q_EMIT lockRequested();
                     }
                 }
             });
@@ -56,6 +60,37 @@ bool AgentSocket::running()
     QLocalSocket probe;
     probe.connectToServer(path());
     return probe.waitForConnected(500);
+}
+
+bool AgentSocket::requestLock()
+{
+    QLocalSocket socket;
+    socket.connectToServer(path());
+    if (!socket.waitForConnected(500)) {
+        return false;
+    }
+    socket.write(QJsonDocument(QJsonObject{{QStringLiteral("event"), QStringLiteral("lock")}}).toJson(QJsonDocument::Compact) + '\n');
+    if (!socket.waitForBytesWritten(500)) {
+        return false;
+    }
+    // The answer comes once the compositor has the lock, so that an idle
+    // daemon that locks before sleep does not suspend an unlocked screen.
+    QByteArray answer;
+    while (!answer.contains('\n') && socket.waitForReadyRead(5000)) {
+        answer += socket.readAll();
+    }
+    return QJsonDocument::fromJson(answer.left(answer.indexOf('\n'))).object().value(u"event").toString() == u"locked";
+}
+
+void AgentSocket::confirmLock()
+{
+    for (const QPointer<QLocalSocket> &socket : std::as_const(m_waiting)) {
+        if (socket) {
+            socket->write(QJsonDocument(QJsonObject{{QStringLiteral("event"), QStringLiteral("locked")}}).toJson(QJsonDocument::Compact) + '\n');
+            socket->flush();
+        }
+    }
+    m_waiting.clear();
 }
 
 bool AgentSocket::listen()

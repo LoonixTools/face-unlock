@@ -7,13 +7,16 @@
 // it is idle).
 //
 // Only root and this user may talk here, and all they can do is make the
-// bubble move.
+// bubble move, or (this user) ask for face-unlock's own lock screen.
 
 #pragma once
 
 #include <QJsonObject>
+#include <QList>
 #include <QLocalServer>
+#include <QLocalSocket>
 #include <QObject>
+#include <QPointer>
 
 class AgentSocket : public QObject
 {
@@ -26,11 +29,18 @@ public:
     // session starts the agent from its own config, and that must not make
     // two of them.
     static bool running();
+    // Ask the running agent to lock the screen, and wait until it is. False
+    // when there is no agent or the lock did not come.
+    static bool requestLock();
+    // Tell everybody waiting in requestLock() that the screen is locked.
+    void confirmLock();
     static QString path();
 
 Q_SIGNALS:
     void scanEvent(const QJsonObject &event);
+    void lockRequested();
 
 private:
     QLocalServer m_server;
+    QList<QPointer<QLocalSocket>> m_waiting;
 };

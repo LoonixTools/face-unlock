@@ -12,9 +12,9 @@
 //             (ext-session-lock).
 //
 // hyprlock and swaylock do not listen to logind. They unlock on SIGUSR1.
-// Any other lock screen of that kind only opens itself: it gets the face
-// through the PAM module in its own stack (see src/lib/pam.sh), when Enter is
-// pressed.
+// face-unlock's own lock screen (SessionLock) is simply told to. Any other
+// lock screen of that kind only opens itself: it gets the face through the
+// PAM module in its own stack (see src/lib/pam.sh), when Enter is pressed.
 //
 // None of this lowers the bar: any program running as this user can already
 // ask logind to unlock the session, or send its own lock screen a signal. The
@@ -27,6 +27,8 @@
 #include <QVariantMap>
 
 #include <sys/types.h>
+
+class SessionLock;
 
 class LockWatcher : public QObject
 {
@@ -42,6 +44,7 @@ public:
     // logind unlocks (Plasma, GNOME), only hyprlock and swaylock elsewhere.
     bool canUnlock() const;
     void unlock();
+    void setOwnLock(SessionLock *lock);
 
 Q_SIGNALS:
     void lockedChanged(bool locked);
@@ -63,6 +66,7 @@ private:
     bool m_locked = false;
     // The compositor's lock screen is a program of its own.
     bool m_ownLockers = false;
+    SessionLock *m_own = nullptr;
     QString m_session;
     QTimer m_poll;
 };

@@ -102,9 +102,11 @@ install(TARGETS face-unlock-ctl DESTINATION ${FU_LIBEXECDIR})
 # The PAM module
 # ---------------------------------------------------------------------------
 
+# The PAM module, and the agent's own lock screen, which checks the password.
+find_path(PAM_INCLUDE_DIR security/pam_modules.h REQUIRED)
+find_library(PAM_LIBRARY pam REQUIRED)
+
 if(FU_BUILD_PAM)
-    find_path(PAM_INCLUDE_DIR security/pam_modules.h REQUIRED)
-    find_library(PAM_LIBRARY pam REQUIRED)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(SYSTEMD IMPORTED_TARGET libsystemd)
 
@@ -155,6 +157,9 @@ if(FU_BUILD_AGENT)
         src/agent/lockers.cpp
         src/agent/inputwatcher.cpp
         src/agent/wayland.cpp
+        src/agent/sessionlock.cpp
+        src/agent/lockscreencontroller.cpp
+        src/agent/wallpaper.cpp
         src/agent/enrollcontroller.cpp
     )
     target_include_directories(face-unlock-agent PRIVATE src/agent)
@@ -164,13 +169,14 @@ if(FU_BUILD_AGENT)
 
     qt6_generate_wayland_protocol_client_sources(face-unlock-agent
         FILES ${CMAKE_CURRENT_SOURCE_DIR}/protocols/kde-lockscreen-overlay-v1.xml
-              ${CMAKE_CURRENT_SOURCE_DIR}/protocols/ext-idle-notify-v1.xml)
+              ${CMAKE_CURRENT_SOURCE_DIR}/protocols/ext-idle-notify-v1.xml
+              ${CMAKE_CURRENT_SOURCE_DIR}/protocols/ext-session-lock-v1.xml)
 
     # The QML files sit next to the module's qmldir in the resources, so they
     # see each other (and the Theme singleton) without importing anything.
     # Under /qt/qml, which the engine searches, or an installed agent finds no
     # types (the build directory only works by its FaceUnlock/qmldir).
-    set(FU_QML_FILES Theme FaceGlyph LockGlyph Checkmark Bubble TickRing Enroll PillButton)
+    set(FU_QML_FILES Theme FaceGlyph LockGlyph Checkmark Bubble TickRing Enroll PillButton LockScreen)
     foreach(f ${FU_QML_FILES})
         set_source_files_properties(src/agent/qml/${f}.qml PROPERTIES QT_RESOURCE_ALIAS ${f}.qml)
     endforeach()
@@ -192,6 +198,7 @@ if(FU_BUILD_AGENT)
             src/agent/qml/TickRing.qml
             src/agent/qml/Enroll.qml
             src/agent/qml/PillButton.qml
+            src/agent/qml/LockScreen.qml
     )
 
     target_link_libraries(face-unlock-agent PRIVATE
@@ -200,7 +207,9 @@ if(FU_BUILD_AGENT)
         LayerShellQt::Interface
         KF6::I18n KF6::I18nQml
         fu_common
+        ${PAM_LIBRARY}
     )
+    target_include_directories(face-unlock-agent PRIVATE ${PAM_INCLUDE_DIR})
     install(TARGETS face-unlock-agent DESTINATION ${FU_LIBEXECDIR})
 endif()
 
@@ -223,6 +232,16 @@ if(FU_BUILD_TESTS)
     target_link_libraries(test_images PRIVATE fu_core)
 
     if(FU_BUILD_AGENT)
+        add_executable(test_lockscreen tests/test_lockscreen.cpp src/agent/lockscreencontroller.cpp)
+        target_include_directories(test_lockscreen PRIVATE src/agent ${PAM_INCLUDE_DIR})
+        target_link_libraries(test_lockscreen PRIVATE Qt6::Core KF6::I18n ${PAM_LIBRARY})
+        add_test(NAME lockscreen COMMAND test_lockscreen)
+
+        add_executable(test_wallpaper tests/test_wallpaper.cpp src/agent/wallpaper.cpp)
+        target_include_directories(test_wallpaper PRIVATE src/agent)
+        target_link_libraries(test_wallpaper PRIVATE Qt6::Core)
+        add_test(NAME wallpaper COMMAND test_wallpaper)
+
         add_executable(test_lockers tests/test_lockers.cpp src/agent/lockers.cpp)
         target_include_directories(test_lockers PRIVATE src/agent)
         target_link_libraries(test_lockers PRIVATE Qt6::Core)

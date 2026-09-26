@@ -175,6 +175,9 @@ InputWatcher::~InputWatcher() = default;
 void InputWatcher::watch(int calmMs)
 {
     stop();
+    m_watching = true;
+    m_calmMs = calmMs;
+    m_calm.start();
     auto *wayland = qGuiApp->nativeInterface<QNativeInterface::QWaylandApplication>();
     if (!m_notifier->isActive() || !wayland || !wayland->seat()) {
         if (!m_mutter && QDBusConnection::sessionBus().interface()->isServiceRegistered(MutterService)) {
@@ -205,8 +208,18 @@ void InputWatcher::watch(int calmMs)
     });
 }
 
+void InputWatcher::noteInput()
+{
+    if (m_watching && m_calm.elapsed() >= m_calmMs) {
+        m_watching = false;
+        QMetaObject::invokeMethod(this, &InputWatcher::input, Qt::QueuedConnection);
+    }
+    m_calm.restart();
+}
+
 void InputWatcher::stop()
 {
+    m_watching = false;
     m_notification.reset();
     if (m_mutter) {
         m_mutter->stop();

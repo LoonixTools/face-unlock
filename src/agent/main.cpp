@@ -5,6 +5,9 @@
 //   (no arguments)   stay in the background: unlock the lock screen by face,
 //                    and show the bubble for every scan
 //   --enroll         open the window that sets up a face
+//   --lock           lock the screen: with face-unlock's own lock screen
+//                    where the lock screen is a program of its own (Hyprland,
+//                    Niri), else through logind with the desktop's
 //   --demo           play the bubble's animations once, for trying out a
 //                    style (--bubble-style minimal) and for screenshots
 
@@ -14,6 +17,8 @@
 #include "bubblewindow.h"
 #include "enrollcontroller.h"
 #include "lockcontroller.h"
+#include "lockscreencontroller.h"
+#include "sessionlock.h"
 #include "userconfig.h"
 #include "wayland.h"
 
@@ -23,11 +28,17 @@
 #include <KLocalizedString>
 
 #include <QCommandLineParser>
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QFile>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlEngine>
 #include <QTimer>
 
+#include <cstring>
+#include <sys/socket.h>
+#include <sys/un.h>
 #include <unistd.h>
 
 namespace
@@ -55,6 +66,92 @@ int runEnroll(QGuiApplication &app, const QString &name)
     return controller.state() == u"done" ? 0 : code;
 }
 
+// Where --lock tells the command that ran it that the screen is locked, when
+// it forked to stay behind as the lock screen. -1: it did not.
+int readyFd = -1;
+
+void signalReady(bool ok)
+{
+    if (readyFd >= 0) {
+        if (ok) {
+            [[maybe_unused]] const ssize_t n = write(readyFd, "1", 1);
+        }
+        close(readyFd);
+        readyFd = -1;
+    }
+}
+
+// Whether an agent listens on its socket. Asked before Qt is up, to decide
+// whether to fork.
+bool agentListening()
+{
+    const char *runtime = getenv("XDG_RUNTIME_DIR");
+    if (!runtime) {
+        return false;
+    }
+    sockaddr_un addr{};
+    addr.sun_family = AF_UNIX;
+    const int len = snprintf(addr.sun_path, sizeof(addr.sun_path), "%s/face-unlock/agent.socket", runtime);
+    if (len <= 0 || size_t(len) >= sizeof(addr.sun_path)) {
+        return false;
+    }
+    const int fd = socket(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0);
+    const bool ok = fd >= 0 && connect(fd, reinterpret_cast<sockaddr *>(&addr), sizeof(addr)) == 0;
+    if (fd >= 0) {
+        close(fd);
+    }
+    return ok;
+}
+
+// With no agent running, --lock stays behind as the lock screen until it is
+// unlocked. The command that asked for it returns as soon as the screen is
+// locked, the way swaylock -f does: an idle daemon locking before sleep
+// waits for that, and not a moment longer.
+void forkForLock(int argc, char **argv)
+{
+    bool lock = false;
+    for (int i = 1; i < argc; ++i) {
+        lock = lock || std::strcmp(argv[i], "--lock") == 0;
+    }
+    int fds[2];
+    if (!lock || agentListening() || pipe(fds) != 0) {
+        return;
+    }
+    const pid_t pid = fork();
+    if (pid < 0) {
+        close(fds[0]);
+        close(fds[1]);
+        return;
+    }
+    if (pid > 0) {
+        close(fds[1]);
+        char c = 0;
+        const bool locked = read(fds[0], &c, 1) == 1;
+        _exit(locked ? 0 : 1);
+    }
+    close(fds[0]);
+    setsid();
+    readyFd = fds[1];
+}
+
+// Plasma and GNOME lock with their own lock screen when logind asks them to,
+// as `loginctl lock-session` does.
+int lockThroughLogind()
+{
+    const QString id = qEnvironmentVariable("XDG_SESSION_ID");
+    QDBusMessage call = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.login1"),
+                                                       QStringLiteral("/org/freedesktop/login1"),
+                                                       QStringLiteral("org.freedesktop.login1.Manager"),
+                                                       QStringLiteral("LockSession"));
+    call << (id.isEmpty() ? QStringLiteral("auto") : id);
+    const QDBusMessage reply = QDBusConnection::systemBus().call(call);
+    if (reply.type() == QDBusMessage::ErrorMessage) {
+        qWarning("logind would not lock: %s", qPrintable(reply.errorMessage()));
+        return 1;
+    }
+    return 0;
+}
+
 // The whole life of a bubble, twice: a face that is recognised after a blink,
 // then one that is not.
 void scheduleDemo(BubbleController *bubble)
@@ -77,6 +174,7 @@ void scheduleDemo(BubbleController *bubble)
 
 int main(int argc, char **argv)
 {
+    forkForLock(argc, argv);
     QGuiApplication app(argc, argv);
     app.setApplicationName(QStringLiteral("face-unlock-agent"));
     app.setApplicationVersion(QStringLiteral(FU_VERSION));
@@ -89,10 +187,11 @@ int main(int argc, char **argv)
     parser.addVersionOption();
     const QCommandLineOption enrollOpt(QStringLiteral("enroll"), i18n("Set up a face."));
     const QCommandLineOption nameOpt(QStringLiteral("name"), i18n("What to call the new face."), QStringLiteral("name"));
+    const QCommandLineOption lockOpt(QStringLiteral("lock"), i18n("Lock the screen."));
     const QCommandLineOption demoOpt(QStringLiteral("demo"), i18n("Play the bubble's animations once."));
     // Not "--style": QGuiApplication takes that one for itself.
     const QCommandLineOption styleOpt(QStringLiteral("bubble-style"), i18n("Bubble style for the demo: full or minimal."), QStringLiteral("style"));
-    parser.addOptions({enrollOpt, nameOpt, demoOpt, styleOpt});
+    parser.addOptions({enrollOpt, nameOpt, lockOpt, demoOpt, styleOpt});
     parser.process(app);
 
     if (parser.isSet(enrollOpt)) {
@@ -101,6 +200,13 @@ int main(int argc, char **argv)
             name = qEnvironmentVariable("USER");
         }
         return runEnroll(app, name);
+    }
+
+    const bool lockNow = parser.isSet(lockOpt);
+    if (lockNow && !SessionLock::available()) {
+        const int rc = lockThroughLogind();
+        signalReady(rc == 0);
+        return rc;
     }
 
     app.setQuitOnLastWindowClosed(false);
@@ -131,6 +237,9 @@ int main(int argc, char **argv)
 
     AgentSocket socket;
     if (AgentSocket::running()) {
+        if (lockNow) {
+            return AgentSocket::requestLock() ? 0 : 1;
+        }
         qInfo("an agent is already running in this session");
         return 0;
     }
@@ -141,6 +250,50 @@ int main(int argc, char **argv)
         service = std::make_unique<BubbleService>(&bubble);
     }
 
-    LockController lock(&bubble, &config);
+    LockScreenController screen;
+    std::unique_ptr<SessionLock> sessionLock;
+    if (SessionLock::available()) {
+        sessionLock = std::make_unique<SessionLock>(&engine, &bubble, &screen, &config);
+        SessionLock *lock = sessionLock.get();
+        QObject::connect(&socket, &AgentSocket::lockRequested, lock, [lock, &socket] {
+            lock->lock();
+            if (lock->isConfirmed()) {
+                socket.confirmLock();
+            }
+        });
+        QObject::connect(lock, &SessionLock::confirmed, &socket, &AgentSocket::confirmLock);
+    }
+    LockController lock(&bubble, &config, sessionLock.get(), &screen);
+
+    if (lockNow) {
+        // No agent was running, so this one is only here for the lock. It
+        // goes once the lock is gone and the bubble has finished.
+        QObject::connect(sessionLock.get(), &SessionLock::lockedChanged, &app, [&bubble](bool locked) {
+            if (locked) {
+                return;
+            }
+            if (!bubble.shown()) {
+                QCoreApplication::quit();
+            }
+            QObject::connect(&bubble, &BubbleController::shownChanged, qApp, [&bubble] {
+                if (!bubble.shown()) {
+                    QCoreApplication::quit();
+                }
+            });
+            QTimer::singleShot(5000, qApp, &QCoreApplication::quit);
+        });
+        QObject::connect(sessionLock.get(), &SessionLock::confirmed, &app, [] {
+            signalReady(true);
+        });
+        sessionLock->lock();
+        if (!sessionLock->isLocked()) {
+            signalReady(false);
+            return 1;
+        }
+    } else if (sessionLock && QFile::exists(SessionLock::markerPath())) {
+        // The last agent went away with the screen locked, and the compositor
+        // kept it locked. Take the lock back, so it can be opened again.
+        sessionLock->lock();
+    }
     return app.exec();
 }

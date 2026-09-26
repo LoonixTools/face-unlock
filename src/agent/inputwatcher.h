@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include <QElapsedTimer>
 #include <QObject>
 
 #include <memory>
@@ -29,6 +30,9 @@ public:
     // calmMs. 0: the next input. Replaces what was watched before.
     void watch(int calmMs);
     void stop();
+    // A key or the pointer on face-unlock's own lock screen, which sees them
+    // itself. Counts like input the compositor reports.
+    void noteInput();
 
 Q_SIGNALS:
     void input();
@@ -37,4 +41,7 @@ private:
     std::unique_ptr<IdleNotifier> m_notifier;
     std::unique_ptr<IdleNotification> m_notification;
     MutterIdle *m_mutter = nullptr;
+    bool m_watching = false;
+    int m_calmMs = 0;
+    QElapsedTimer m_calm;
 };
