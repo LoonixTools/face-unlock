@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-26 19:33+0200\n"
+"POT-Creation-Date: 2026-09-26 19:34+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Japanese\n"
@@ -57,8 +57,8 @@ msgstr "顔は追加されませんでした。"
 msgid "First, set up your face."
 msgstr "まず顔を登録してください。"
 
-#: src/face-unlock:100 src/face-unlock:131 src/lib/menu.sh:447
-#: src/lib/menu.sh:451 src/lib/menu.sh:457 src/lib/menu.sh:459
+#: src/face-unlock:100 src/face-unlock:139 src/lib/menu.sh:466
+#: src/lib/menu.sh:470 src/lib/menu.sh:476 src/lib/menu.sh:478
 msgid "Could not save the setting."
 msgstr "設定を保存できませんでした。"
 
@@ -72,103 +72,112 @@ msgstr ""
 "systemd のユーザーセッションがないため、ロック画面エージェントは起動されませ"
 "んでした。"
 
-#: src/face-unlock:118
+#: src/face-unlock:123
 msgid "Could not switch on the GNOME extension that shows the bubble."
 msgstr "バブルを表示する GNOME 拡張機能を有効にできませんでした。"
 
-#: src/face-unlock:119
+#: src/face-unlock:124
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr ""
 "一度ログアウトしてログインし直してください。GNOME でもバブルが表示されます。"
 
-#: src/face-unlock:124
+#: src/face-unlock:129
+#, sh-printf-format
+msgid ""
+"The lock screen (%s) takes your face too. If it does not scan when you come "
+"back, press Enter on the empty password field."
+msgstr ""
+"ロック画面（%s）でも顔が使えます。戻ってきたときにスキャンしない場合は、空の"
+"パスワード欄で Enter を押してください。"
+
+#: src/face-unlock:132
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr "顔認証はオンです。画面をロックして、画面を見て試してください。"
 
-#: src/face-unlock:126
+#: src/face-unlock:134
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "sudo や管理者の認証にも使えます。「設定」を参照してください。"
 
-#: src/face-unlock:142
+#: src/face-unlock:150
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr "顔認証はオフです。顔データは残っています。「顔」から削除できます。"
 
-#: src/face-unlock:156 src/lib/daemon.sh:109
+#: src/face-unlock:164 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "まだ顔が登録されていません。"
 
-#: src/face-unlock:160 src/lib/menu.sh:180 src/lib/menu.sh:607
+#: src/face-unlock:168 src/lib/menu.sh:180 src/lib/menu.sh:628
 msgid "on"
 msgstr "オン"
 
-#: src/face-unlock:160 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:608
+#: src/face-unlock:168 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/lib/menu.sh:629
 msgid "off"
 msgstr "オフ"
 
-#: src/face-unlock:162 src/lib/menu.sh:625
+#: src/face-unlock:170 src/lib/menu.sh:646
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "サンプル %s 件、学習 %s 件"
 
-#: src/face-unlock:168
+#: src/face-unlock:176
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "どの顔ですか？ ID は `%s faces` で確認できます。"
 
-#: src/face-unlock:172
+#: src/face-unlock:180
 msgid "Deleted."
 msgstr "削除しました。"
 
-#: src/face-unlock:183
+#: src/face-unlock:191
 msgid "Usage: face-unlock [command]"
 msgstr "使い方: face-unlock [コマンド]"
 
-#: src/face-unlock:185
+#: src/face-unlock:193
 msgid "Commands:"
 msgstr "コマンド:"
 
-#: src/face-unlock:186
+#: src/face-unlock:194
 msgid "Turn face unlock on"
 msgstr "顔認証をオンにする"
 
-#: src/face-unlock:187
+#: src/face-unlock:195
 msgid "Turn it off (faces are kept)"
 msgstr "オフにする（顔データは残ります）"
 
-#: src/face-unlock:188 src/lib/menu.sh:691
+#: src/face-unlock:196 src/lib/menu.sh:712
 msgid "Add a face"
 msgstr "顔を追加"
 
-#: src/face-unlock:189
+#: src/face-unlock:197
 msgid "List the faces"
 msgstr "顔の一覧"
 
-#: src/face-unlock:190
+#: src/face-unlock:198
 msgid "Delete a face"
 msgstr "顔を削除"
 
-#: src/face-unlock:191
+#: src/face-unlock:199
 msgid "Look at the camera and see what it sees"
 msgstr "カメラを見て、カメラに映るものを確認する"
 
-#: src/face-unlock:192
+#: src/face-unlock:200
 msgid "Show what is on"
 msgstr "オンになっている機能を表示"
 
-#: src/face-unlock:193
+#: src/face-unlock:201
 msgid "Show this help"
 msgstr "このヘルプを表示"
 
-#: src/face-unlock:194
+#: src/face-unlock:202
 msgid "Show the version"
 msgstr "バージョンを表示"
 
-#: src/face-unlock:196
+#: src/face-unlock:204
 msgid "Without a command an interactive menu is shown."
 msgstr "コマンドなしで起動すると、対話式メニューが表示されます。"
 
-#: src/face-unlock:215
+#: src/face-unlock:223
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -176,7 +185,7 @@ msgstr ""
 "root ではなく、自分のユーザーで実行してください。必要なときはパスワードを尋ね"
 "ます。"
 
-#: src/face-unlock:237 src/lib/system.sh:93
+#: src/face-unlock:245 src/lib/system.sh:101
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "不明なコマンド: %s"
@@ -251,7 +260,7 @@ msgstr ""
 msgid "The camera could not be used."
 msgstr "カメラを使用できませんでした。"
 
-#: src/lib/daemon.sh:111 src/lib/menu.sh:262
+#: src/lib/daemon.sh:111 src/lib/menu.sh:265
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "認識モデルがありません。パッケージを再インストールしてください。"
 
@@ -355,11 +364,11 @@ msgstr ""
 msgid "[y/N]"
 msgstr "[y/N]"
 
-#: src/lib/menu.sh:172 src/lib/menu.sh:510
+#: src/lib/menu.sh:172 src/lib/menu.sh:531
 msgid "ON"
 msgstr "オン"
 
-#: src/lib/menu.sh:174 src/lib/menu.sh:511
+#: src/lib/menu.sh:174 src/lib/menu.sh:532
 msgid "OFF"
 msgstr "オフ"
 
@@ -400,7 +409,7 @@ msgstr "遅い"
 msgid "%s seconds"
 msgstr "%s 秒"
 
-#: src/lib/menu.sh:202 src/lib/menu.sh:422
+#: src/lib/menu.sh:202 src/lib/menu.sh:441
 msgid "automatic"
 msgstr "自動"
 
@@ -420,8 +429,8 @@ msgstr "停止中"
 msgid "Turning face unlock on again starts it."
 msgstr "顔認証をもう一度オンにすると起動します。"
 
-#: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:603
-#: src/lib/menu.sh:692
+#: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:624
+#: src/lib/menu.sh:713
 msgid "Faces"
 msgstr "顔"
 
@@ -453,28 +462,32 @@ msgstr "sudo"
 msgid "Admin prompts"
 msgstr "管理者の認証"
 
-#: src/lib/menu.sh:254 src/lib/menu.sh
+#: src/lib/menu.sh:255 src/lib/menu.sh
+msgid "Lock screens"
+msgstr "ロック画面"
+
+#: src/lib/menu.sh:257 src/lib/menu.sh
 msgid "Photo check"
 msgstr "写真チェック"
 
-#: src/lib/menu.sh:257
+#: src/lib/menu.sh:260
 msgid "Paused"
 msgstr "一時停止中"
 
-#: src/lib/menu.sh:257
+#: src/lib/menu.sh:260
 #, sh-printf-format
 msgid "for %d more minutes, or until the password is used"
 msgstr "あと %d 分、またはパスワードが使われるまで"
 
-#: src/lib/menu.sh:259
+#: src/lib/menu.sh:262
 msgid "Last unlock"
 msgstr "最後のロック解除"
 
-#: src/lib/menu.sh:265
+#: src/lib/menu.sh:268
 msgid "The lock screen agent is not running."
 msgstr "ロック画面エージェントが動いていません。"
 
-#: src/lib/menu.sh:308
+#: src/lib/menu.sh:314
 msgid ""
 "On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
 "switches it on."
@@ -482,7 +495,15 @@ msgstr ""
 "GNOME では小さな GNOME 拡張機能がバブルを表示します。顔認証をオンにすると一緒"
 "に有効になります。"
 
-#: src/lib/menu.sh:313
+#: src/lib/menu.sh:318
+msgid ""
+"Scans when you come back to hyprlock or swaylock and opens them. Any other "
+"lock screen scans when you press Enter on the empty password field."
+msgstr ""
+"hyprlock や swaylock に戻ってきたときにスキャンして開きます。それ以外のロック"
+"画面は、空のパスワード欄で Enter を押すとスキャンします。"
+
+#: src/lib/menu.sh:323
 msgid ""
 "Unlocks the lock screen when it sees your face. Off: only your password "
 "works there."
@@ -490,7 +511,7 @@ msgstr ""
 "顔を認識するとロック画面を解除します。オフ: ロック画面ではパスワードだけが使"
 "えます。"
 
-#: src/lib/menu.sh:314
+#: src/lib/menu.sh:324
 msgid ""
 "Scans when you press a key or move the mouse on the lock screen, and when "
 "the computer wakes up."
@@ -498,7 +519,7 @@ msgstr ""
 "ロック画面でキーを押すかマウスを動かしたとき、そしてコンピューターがスリープ"
 "から復帰したときにスキャンします。"
 
-#: src/lib/menu.sh:315
+#: src/lib/menu.sh:325
 msgid ""
 "Scans as soon as the screen locks. Off by default: if you lock it yourself, "
 "it would unlock again right away."
@@ -506,7 +527,7 @@ msgstr ""
 "画面がロックされるとすぐにスキャンします。既定はオフ: 自分でロックすると、す"
 "ぐに解除されてしまうためです。"
 
-#: src/lib/menu.sh:316
+#: src/lib/menu.sh:326
 msgid ""
 "sudo takes your face instead of the password. No match: you type the "
 "password as usual."
@@ -514,7 +535,16 @@ msgstr ""
 "sudo でパスワードの代わりに顔を使います。一致しなければ、いつも通りパスワード"
 "を入力します。"
 
-#: src/lib/menu.sh:317
+#: src/lib/menu.sh:327
+#, sh-printf-format
+msgid ""
+"The lock screen takes your face in its password check. Press Enter on the "
+"empty field to scan. Found here: %s."
+msgstr ""
+"ロック画面のパスワード確認で顔が使えます。空の欄で Enter を押すとスキャンしま"
+"す。見つかったもの: %s。"
+
+#: src/lib/menu.sh:328
 msgid ""
 "The password windows of your desktop and apps, for example when you install "
 "software. No match: you type the password."
@@ -522,16 +552,16 @@ msgstr ""
 "デスクトップやアプリのパスワード画面です（ソフトウェアのインストール時な"
 "ど）。一致しなければパスワードを入力します。"
 
-#: src/lib/menu.sh:318
+#: src/lib/menu.sh:329
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr "まばたきするか、少し顔を動かす必要があります。印刷した写真も防げます。"
 
-#: src/lib/menu.sh:319
+#: src/lib/menu.sh:330
 msgid "No check at all. Only for trying out a camera."
 msgstr "チェックしません。カメラを試すときだけ使ってください。"
 
-#: src/lib/menu.sh:320
+#: src/lib/menu.sh:331
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
@@ -539,22 +569,22 @@ msgstr ""
 "スマホ、タブレット、光沢紙に映った写真を防ぎます。まばたきは不要です。つや消"
 "しの印刷写真は通ることがあります。"
 
-#: src/lib/menu.sh:321
+#: src/lib/menu.sh:332
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 "誤認識は減りますが、眼鏡をかけているときや暗いときに認識されないことがありま"
 "す。"
 
-#: src/lib/menu.sh:322
+#: src/lib/menu.sh:333
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "認識されやすくなりますが、あなたによく似た人も認識されやすくなります。"
 
-#: src/lib/menu.sh:323
+#: src/lib/menu.sh:334
 msgid "The default. Right for most people."
 msgstr "既定値です。ほとんどの人に適しています。"
 
-#: src/lib/menu.sh:324
+#: src/lib/menu.sh:335
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
@@ -562,7 +592,7 @@ msgstr ""
 "目を開けて画面を見ている必要があります。よそ見や居眠りの間にロック解除されま"
 "せん。"
 
-#: src/lib/menu.sh:325
+#: src/lib/menu.sh:336
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
@@ -570,11 +600,11 @@ msgstr ""
 "「自動」は最初の通常のカメラを使います。変更したら顔を登録し直してください。"
 "赤外線カメラはライトをオンにする必要があります（linux-enable-ir-emitter）。"
 
-#: src/lib/menu.sh:326
+#: src/lib/menu.sh:337
 msgid "How long the camera looks for your face before it gives up."
 msgstr "カメラが顔を探してからあきらめるまでの時間です。"
 
-#: src/lib/menu.sh:327
+#: src/lib/menu.sh:338
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
@@ -582,7 +612,7 @@ msgstr ""
 "確実に一致したとき、今の見た目を覚えます。髪型を変えたり眼鏡をかけたりして"
 "も、登録し直す必要はありません。"
 
-#: src/lib/menu.sh:328
+#: src/lib/menu.sh:339
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
@@ -590,79 +620,79 @@ msgstr ""
 "ノートパソコンを閉じているときはスキャンしません。外部モニターにつないで机で"
 "使う場合などです。"
 
-#: src/lib/menu.sh:329
+#: src/lib/menu.sh:340
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr "画面上部のバブルに、カメラの状態が表示されます。"
 
-#: src/lib/menu.sh:330
+#: src/lib/menu.sh:341
 msgid "A small pill with a lock that opens."
 msgstr "鍵が開く小さなピルです。"
 
-#: src/lib/menu.sh:331
+#: src/lib/menu.sh:342
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr "あたりを見回す顔のアイランド。そのあとリングとチェックマークが出ます。"
 
-#: src/lib/menu.sh:332
+#: src/lib/menu.sh:343
 msgid "How fast the bubble moves."
 msgstr "バブルが動く速さです。"
 
-#: src/lib/menu.sh:333
+#: src/lib/menu.sh:344
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr "sudo や管理者の認証で顔をスキャンするときにもバブルを表示します。"
 
-#: src/lib/menu.sh:418
+#: src/lib/menu.sh:437
 #, sh-printf-format
 msgid "automatic (%s)"
 msgstr "自動（%s）"
 
-#: src/lib/menu.sh:428
+#: src/lib/menu.sh:447
 msgid "(infrared)"
 msgstr "（赤外線）"
 
-#: src/lib/menu.sh:432
+#: src/lib/menu.sh:451
 msgid "(not connected)"
 msgstr "（未接続）"
 
-#: src/lib/menu.sh:507 src/lib/menu.sh:693
+#: src/lib/menu.sh:528 src/lib/menu.sh:714
 msgid "Settings"
 msgstr "設定"
 
-#: src/lib/menu.sh:508
+#: src/lib/menu.sh:529
 msgid "↑↓ select   ←→ or Space: change   q: back"
 msgstr "↑↓ 選択   ←→ またはスペース: 変更   q: 戻る"
 
-#: src/lib/menu.sh:509
+#: src/lib/menu.sh:530
 msgid "for all users, asks for your password"
 msgstr "全ユーザー共通、パスワードが必要"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:605
+#: src/lib/menu.sh:626
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 "上/下: 選択、スペース: オン/オフ、r: 名前を変更、d: 削除、a: 追加、q: 戻る"
 
-#: src/lib/menu.sh:606
+#: src/lib/menu.sh:627
 msgid "No face is set up yet. Press a to add one."
 msgstr "まだ顔が登録されていません。a を押して追加してください。"
 
-#: src/lib/menu.sh:652
+#: src/lib/menu.sh:673
 msgid "New name:"
 msgstr "新しい名前:"
 
-#: src/lib/menu.sh:659
+#: src/lib/menu.sh:680
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "「%s」を削除しますか？"
 
-#: src/lib/menu.sh:690
+#: src/lib/menu.sh:711
 msgid "Turn face unlock on or off"
 msgstr "顔認証のオン/オフ"
 
-#: src/lib/menu.sh:694
+#: src/lib/menu.sh:715
 msgid "Try it"
 msgstr "試す"
 
-#: src/lib/menu.sh:695
+#: src/lib/menu.sh:716
 msgid "Quit"
 msgstr "終了"
 
@@ -672,12 +702,12 @@ msgid ""
 "password."
 msgstr "plasma-face-unlock から顔と設定を引き継ぎます。パスワードが必要です。"
 
-#: src/lib/pam.sh:132
+#: src/lib/pam.sh:191
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
 msgstr "PAM モジュールが %s にインストールされていません。"
 
-#: src/lib/pam.sh:140
+#: src/lib/pam.sh:199
 #, sh-printf-format
 msgid "There is no PAM configuration for %s on this system."
 msgstr "このシステムには %s の PAM 設定がありません。"
@@ -696,12 +726,12 @@ msgstr "このコマンドは root で実行する必要があります。"
 msgid "Not a valid setting: %s=%s"
 msgstr "無効な設定です: %s=%s"
 
-#: src/lib/system.sh:76
+#: src/lib/system.sh:81
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "このサービスには使えません: %s"
 
-#: src/lib/system.sh:138 src/lib/system.sh:143
+#: src/lib/system.sh:146 src/lib/system.sh:151
 #, sh-printf-format
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this to %s:"
@@ -897,21 +927,21 @@ msgstr "バブルのアニメーションを一度再生します。"
 msgid "Bubble style for the demo: full or minimal."
 msgstr "デモのバブルスタイル: full または minimal。"
 
-#: src/pam/pam_face_unlock.c:311
+#: src/pam/pam_face_unlock.c:356
 msgid "Look at the camera to unlock."
 msgstr "カメラを見てロックを解除してください。"
 
-#: src/pam/pam_face_unlock.c:314
+#: src/pam/pam_face_unlock.c:359
 msgid "Blink, or turn your head a little."
 msgstr "まばたきするか、少し顔を動かしてください。"
 
-#: src/pam/pam_face_unlock.c:330
+#: src/pam/pam_face_unlock.c:375
 msgid "Face unlock is paused after too many tries. Use your password."
 msgstr ""
 "試行回数が多すぎるため、顔認証を一時停止しています。パスワードを使ってくださ"
 "い。"
 
-#: src/pam/pam_face_unlock.c:334
+#: src/pam/pam_face_unlock.c:379
 msgid "Face not recognised."
 msgstr "顔を認識できませんでした。"
 

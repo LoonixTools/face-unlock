@@ -9,8 +9,8 @@
 # the root side a command of one's own.
 #
 #   --root set <Key> <Value>     one line of /etc/face-unlock/config
-#   --root pam-enable <service>  sudo or polkit-1, see pam.sh
-#   --root pam-disable <service>
+#   --root pam-enable <service>  sudo, polkit-1, a lock screen, or lockscreens
+#   --root pam-disable <service>  for all lock screens installed; see pam.sh
 #   --root socket-enable         start the daemon's socket, and at boot
 #   --root socket-disable
 #   --root migrate               move over from plasma-face-unlock, see migrate.sh
@@ -69,16 +69,24 @@ fu_root_verb() {
 			chmod 0644 "$FU_SYSCONFIG"
 			;;
 		pam-enable|pam-disable)
-			local service="${1:-}" known=0 s
-			for s in "${FU_PAM_SERVICES[@]}"; do
+			local service="${1:-}" known=0 s rc=0
+			local -a services=("$service")
+			for s in "${FU_PAM_SERVICES[@]}" "${FU_PAM_LOCKERS[@]}"; do
 				[[ $s == "$service" ]] && known=1
 			done
-			(( known )) || { fu_bad "$(fu_msg "Not a service this can be used for: %s" "$service")"; return 1; }
-			if [[ $verb == pam-enable ]]; then
-				fu_pam_enable "$service"
-			else
-				fu_pam_disable "$service"
+			if [[ $service == lockscreens ]]; then
+				known=1
+				mapfile -t services < <(fu_pam_lockers)
 			fi
+			(( known )) || { fu_bad "$(fu_msg "Not a service this can be used for: %s" "$service")"; return 1; }
+			for s in "${services[@]}"; do
+				if [[ $verb == pam-enable ]]; then
+					fu_pam_enable "$s" || rc=1
+				else
+					fu_pam_disable "$s" || rc=1
+				fi
+			done
+			return $rc
 			;;
 		socket-enable)
 			systemctl enable --now "$FU_UNIT_SOCKET" > /dev/null 2>&1

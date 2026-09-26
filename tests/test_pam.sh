@@ -124,6 +124,38 @@ check "vendor polkit-1: turning it off removes our file" '[[ ! -e $tmp/etc/polki
 check "an unknown service is refused" '! fu_pam_enable nosuchservice 2>/dev/null'
 
 # ---------------------------------------------------------------------------
+# Lock screens (Hyprland, Niri): hyprlock in /etc as Arch ships it, swaylock
+# only as the distribution's copy.
+# ---------------------------------------------------------------------------
+
+printf '%s\n' '#%PAM-1.0' '' 'auth        include     login' > "$tmp/etc/hyprlock"
+cp "$tmp/etc/hyprlock" "$tmp/original"
+printf '%s\n' 'auth include login' > "$tmp/vendor/swaylock"
+
+check "the lock screens installed are found" '[[ $(fu_pam_lockers | paste -sd ,) == hyprlock,swaylock ]]'
+check "and named for people" '[[ $(fu_pam_lockers_list) == "hyprlock, swaylock" ]]'
+check "not on to begin with" '! fu_pam_lockers_enabled'
+FU_DESKTOP=hyprland
+check "Hyprland wants them" 'fu_pam_lockers_here'
+FU_DESKTOP=gnome
+check "GNOME does not: its agent opens its own" '! fu_pam_lockers_here'
+
+while IFS= read -r locker; do
+	fu_pam_enable "$locker"
+done < <(fu_pam_lockers)
+check "all on" 'fu_pam_lockers_enabled'
+check "hyprlock: the face first, marked as a lock screen" '[[ "$(first_auth "$tmp/etc/hyprlock")" == *"pam_face_unlock.so lockscreen" ]]'
+check "swaylock: a small file of our own, marked too" 'grep -qF "$FU_PAM_WRAPPER_MARK" "$tmp/etc/swaylock" && [[ "$(first_auth "$tmp/etc/swaylock")" == *"pam_face_unlock.so lockscreen" ]]'
+check "sudo is no lock screen" '[[ "$(fu_pam_line sudo)" != *lockscreen* ]]'
+
+fu_pam_disable hyprlock
+fu_pam_disable swaylock
+check "hyprlock: off again gives back the same file" 'cmp -s "$tmp/etc/hyprlock" "$tmp/original"'
+check "swaylock: off again removes our file" '[[ ! -e $tmp/etc/swaylock ]]'
+check "all off" '! fu_pam_lockers_enabled'
+rm -f "$tmp/etc/hyprlock" "$tmp/vendor/swaylock"
+
+# ---------------------------------------------------------------------------
 # Moving over from plasma-face-unlock
 # ---------------------------------------------------------------------------
 

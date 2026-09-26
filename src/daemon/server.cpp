@@ -468,7 +468,7 @@ void Server::handleVerify(Client *client, const QJsonObject &request)
     }
 
     QString purpose = request.value(u"purpose").toString();
-    static const QStringList purposes = {QStringLiteral("unlock"), QStringLiteral("sudo"), QStringLiteral("polkit"), QStringLiteral("test")};
+    static const QStringList purposes = {QStringLiteral("unlock"), QStringLiteral("sudo"), QStringLiteral("polkit"), QStringLiteral("lockscreen"), QStringLiteral("test")};
     if (!purposes.contains(purpose)) {
         purpose = QStringLiteral("other");
     }
@@ -578,6 +578,15 @@ void Server::onJobDone()
             state.lockedUntil = 0;
             state.lastUnlock = now;
             state.lastPurpose = scan->purpose();
+
+            // A lock screen that asks for the face through PAM only asks
+            // again after a password, so Enter on the empty field is how a
+            // scan starts there, and pam_faillock counts it as a wrong
+            // password. The face was right: taken back, as a correct
+            // password would.
+            if (geteuid() == 0 && scan->purpose() == u"lockscreen") {
+                System::resetFailedLogins(scan->uid());
+            }
 
             // Learn from a confident match, the way Face ID keeps up with a
             // beard growing in. Only well clear of the threshold, so the

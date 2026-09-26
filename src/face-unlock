@@ -110,6 +110,11 @@ fu_do_enable() {
 	# What was on the last time face unlock was on.
 	[[ $CFG_SUDO == yes ]] && ! fu_pam_enabled sudo && fu_root pam-enable sudo
 	[[ $CFG_POLKIT == yes ]] && ! fu_pam_enabled polkit-1 && fu_root pam-enable polkit-1
+	# The lock screens of Hyprland, Niri and the like only open themselves:
+	# the face goes into their password check. On unless turned off.
+	if fu_pam_lockers_here && [[ $CFG_LOCKERS == yes ]] && ! fu_pam_lockers_enabled; then
+		fu_root pam-enable lockscreens
+	fi
 
 	case "$FU_DESKTOP" in
 		gnome)
@@ -120,6 +125,9 @@ fu_do_enable() {
 			esac
 			;;
 	esac
+	if fu_pam_lockers_here && fu_pam_lockers_enabled; then
+		fu_note "$(fu_msg "The lock screen (%s) takes your face too. If it does not scan when you come back, press Enter on the empty password field." "$(fu_pam_lockers_list)")"
+	fi
 
 	fu_ok "$(fu_msg "Face unlock is on. Lock the screen and look at it to try.")"
 	if [[ $CFG_SUDO != yes && $CFG_POLKIT != yes ]]; then
@@ -133,7 +141,7 @@ fu_do_disable() {
 	[[ $FU_DESKTOP == gnome ]] && fu_gnome_extension_disable
 
 	local service
-	for service in "${FU_PAM_SERVICES[@]}"; do
+	for service in "${FU_PAM_SERVICES[@]}" "${FU_PAM_LOCKERS[@]}"; do
 		if fu_pam_enabled "$service"; then
 			fu_root pam-disable "$service" || true
 		fi

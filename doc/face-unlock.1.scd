@@ -33,8 +33,9 @@ It is a convenience, not a security upgrade. See *HOW SAFE IS THIS*.
 *enable*
 	Turn face unlock on for this user. Sets up a face first if there is none,
 	starts the lock screen agent, and turns sudo and admin prompts back on if
-	they were on before. On GNOME it switches on the extension that draws the
-	bubble.
+	they were on before. On Hyprland and Niri it also puts the face into the
+	lock screen's password check (*Lock screens*), unless that was turned
+	off. On GNOME it switches on the extension that draws the bubble.
 
 *disable*
 	Turn it off: the agent stops and sudo and the admin prompts go back to the
@@ -195,7 +196,8 @@ does not start a scan with every key.
 
 When the face matches, the agent unlocks the session the way its lock screen
 wants it: through logind, as *loginctl unlock-session* does, on Plasma and
-GNOME, and with SIGUSR1 for hyprlock and swaylock.
+GNOME, and with SIGUSR1 for hyprlock and swaylock. Any other lock screen
+opens itself, through PAM (see *DESKTOPS*).
 
 Unlocked through logind, Plasma's lock screen cuts off its own password prompt
 and counts that as a wrong password. After a face unlock the daemon resets the
@@ -223,35 +225,42 @@ All of them on Wayland. sudo and admin prompts work the same everywhere.
 	agent says on the session bus. *enable* switches it on; GNOME loads an
 	extension that was installed after the login at the next one.
 
-*Hyprland*
-	With hyprlock or swaylock. Hyprland does not set logind's *LockedHint*,
-	so the agent looks for the lock screen among the user's processes once
-	a second. The lock screen covers the bubble, which shows the tick once it
-	is gone. Hyprland only starts the agent's user service when it runs
-	under uwsm. Without uwsm, this line in _~/.config/hypr/hyprland.conf_
-	starts it:
+*Hyprland*, *Niri* and other compositors with ext-session-lock
+	The lock screen is a program of the user's choice, and nothing but it
+	can open it. So the face goes into its password check, the way it goes
+	into sudo's: *Lock screens* under *Settings* puts the PAM module in
+	front of the stacks of hyprlock, swaylock, gtklock and waylock, where
+	installed (see *SUDO, ADMIN PROMPTS AND LOCK SCREENS*). Enter on the
+	empty password field starts a scan, and a match lets the lock screen
+	open itself. hyprlock asks PAM the moment it starts; that first time
+	is skipped, so a screen locked on purpose does not open again at once.
 
-	exec-once = systemctl --user start face-unlock-agent.service
+	hyprlock and swaylock can also be opened from outside: the agent finds
+	them among the user's processes (niri also sets *LockedHint*), scans
+	when somebody comes back, and opens them with SIGUSR1. Those lock
+	screens cover the bubble, which shows the tick once they are gone.
 
-*Niri*
-	With swaylock or hyprlock. niri sets logind's *LockedHint* for any lock
-	screen, but only these two can be unlocked by another program. The
-	bubble works as on Hyprland.
-
-Other lock screens (gtklock, waylock, the ones built into shells) cannot be
-unlocked by another program. There face unlock only does sudo and admin
-prompts.
+	Hyprland only starts the agent's user service under uwsm. Without it,
+	*enable* and *status* show what to add to its config.
 
 Hyprland and Niri come without a polkit agent. One has to run for admin
 prompts and for setting up a face, for example hyprpolkitagent.
 
-# SUDO AND ADMIN PROMPTS
+# SUDO, ADMIN PROMPTS AND LOCK SCREENS
 
 Turned on under *Settings*, one line goes in front of the service's PAM stack:
 
 ```
 -auth  sufficient  /usr/lib/security/pam_face_unlock.so
 ```
+
+For a lock screen (hyprlock, swaylock, gtklock, waylock) it ends in
+*lockscreen*. The scan then counts as a lock screen's, and a lock screen less
+than two seconds old gets none. Enter on the empty password field counts as a
+wrong password for *pam_faillock*(8) before the face is tried; a match takes
+that back, as a correct password does. A lock screen that checks the password
+with *login* or *system-auth* directly is left alone: those also let people
+log in.
 
 A match lets the person in; anything else falls through to the password as if
 the line were not there. The dash makes PAM skip it quietly if the module ever

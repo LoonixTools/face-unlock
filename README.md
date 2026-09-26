@@ -74,15 +74,21 @@ desktops, on Wayland:
 |---|---|---|---|
 | KDE Plasma 6 | ✅ | ✅ | ✅ above the lock screen too |
 | GNOME | ✅ | ✅ | ✅ above the lock screen too |
-| Hyprland | ✅ with hyprlock or swaylock | ✅ | ✅ once the lock screen is gone |
-| Niri | ✅ with swaylock or hyprlock | ✅ | ✅ once the lock screen is gone |
+| Hyprland | ✅ hyprlock, swaylock, gtklock or waylock | ✅ | ✅ once the lock screen is gone |
+| Niri | ✅ swaylock, hyprlock, gtklock or waylock | ✅ | ✅ once the lock screen is gone |
 
 On GNOME a small GNOME extension draws the bubble. Turning face unlock on
 switches it on; right after installing, log out and back in once.
 
-On Hyprland and Niri, admin prompts and setting up a face need a polkit agent
-(for example hyprpolkitagent). Hyprland without uwsm does not start the lock
-screen part by itself: the menu shows what to add to its config.
+On Hyprland and Niri the lock screen is a program of your choice, and only it
+can open itself. So face-unlock goes into its password check, as with sudo:
+press Enter on the empty password field to scan. hyprlock and swaylock also
+scan by themselves when you come back. Those lock screens cover the bubble,
+which shows the tick once they are gone.
+
+Admin prompts and setting up a face need a polkit agent there (for example
+hyprpolkitagent). Hyprland without uwsm does not start the part that watches
+the lock screen by itself: the menu shows what to add to its config.
 
 <details>
 <summary>Coming from plasma-face-unlock?</summary>

@@ -130,7 +130,9 @@ void LockController::warmUp()
 
 void LockController::startScan(const QString &why)
 {
-    if (!m_locked || m_scan || m_stopped) {
+    // A lock screen this cannot open (gtklock, waylock, a shell's own) asks
+    // for the face itself, through PAM, when Enter is pressed.
+    if (!m_locked || m_scan || m_stopped || !m_lock.canUnlock()) {
         return;
     }
     qInfo("scanning (%s)", qPrintable(why));

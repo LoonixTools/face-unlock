@@ -251,6 +251,9 @@ fu_ui_status() {
 	fi
 	_fu_row "$(fu_msg "sudo")" "$(_fu_small_onoff "$(fu_pam_enabled sudo && echo yes || echo no)")"
 	_fu_row "$(fu_msg "Admin prompts")" "$(_fu_small_onoff "$(fu_pam_enabled polkit-1 && echo yes || echo no)")"
+	if fu_pam_lockers_here; then
+		_fu_row "$(fu_msg "Lock screens")" "$(_fu_small_onoff "$(fu_pam_lockers_enabled && echo yes || echo no)") ${FU_C_DIM}($(fu_pam_lockers_list))${FU_C_RESET}"
+	fi
 	_fu_row "$(fu_msg "Photo check")" "$(fu_value_label Liveness "$CFG_LIVENESS")"
 
 	if (( FU_ST_LOCKOUT > 0 )); then
@@ -270,13 +273,15 @@ fu_ui_status() {
 # ---------------------------------------------------------------------------
 # Settings
 # ---------------------------------------------------------------------------
-# Format: scope|Key|type|default|label-msgid|choices|needs
+# Format: scope|Key|type|default|label-msgid|choices|needs|only
 #   scope  user (this user's file), sys (the system file, through sudo),
 #          pam (the service of that name, through sudo), or group for a
 #          heading, with only the label after it
 #   type   bool, choice (steps through the choices) or camera
 #   needs  a bool setting this one does nothing without; it is dimmed while
 #          that is off
+#   only   lockers: only where the lock screen is a program of its own with a
+#          PAM file (Hyprland, Niri), see fu_pam_lockers_here
 FU_SETTINGS=(
 	"group|Lock screen"
 	"user|LockScreen|bool|yes|Unlock with your face"
@@ -285,6 +290,7 @@ FU_SETTINGS=(
 	"group|Password prompts"
 	"pam|sudo|bool|no|sudo in a terminal"
 	"pam|polkit-1|bool|no|Admin prompts"
+	"pam|lockscreens|bool|yes|Lock screens|||lockers"
 	"group|Recognition"
 	"sys|Liveness|choice|light|Photo check|off,light,heavy"
 	"sys|Strictness|choice|normal|How closely the face has to match|relaxed,normal,strict"
@@ -308,12 +314,17 @@ fu_setting_help() {
 			fu_msg "On GNOME a small GNOME extension shows the bubble. Turning face unlock on switches it on."
 			return
 			;;
+		hyprland:LockScreen|niri:LockScreen)
+			fu_msg "Scans when you come back to hyprlock or swaylock and opens them. Any other lock screen scans when you press Enter on the empty password field."
+			return
+			;;
 	esac
 	case "$1:$2" in
 		LockScreen:*)       fu_msg "Unlocks the lock screen when it sees your face. Off: only your password works there." ;;
 		ScanOnWake:*)       fu_msg "Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up." ;;
 		ScanOnLock:*)       fu_msg "Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away." ;;
 		sudo:*)             fu_msg "sudo takes your face instead of the password. No match: you type the password as usual." ;;
+		lockscreens:*)      fu_msg "The lock screen takes your face in its password check. Press Enter on the empty field to scan. Found here: %s." "$(fu_pam_lockers_list)" ;;
 		polkit-1:*)         fu_msg "The password windows of your desktop and apps, for example when you install software. No match: you type the password." ;;
 		Liveness:heavy)     fu_msg "You have to blink or turn your head a little. This also stops printed photos." ;;
 		Liveness:off)       fu_msg "No check at all. Only for trying out a camera." ;;
@@ -378,7 +389,15 @@ _fu_setting_value() {
 	case "$1" in
 		user) _fu_kv_lookup "$FU_CONFIG" "$2" "$3"; FU_SETTING_VALUE="$FU_KV_VALUE" ;;
 		sys)  _fu_kv_lookup "$FU_SYSCONFIG" "$2" "$3"; FU_SETTING_VALUE="$FU_KV_VALUE" ;;
-		pam)  if fu_pam_enabled "$2"; then FU_SETTING_VALUE=yes; else FU_SETTING_VALUE=no; fi ;;
+		pam)
+			if [[ $2 == lockscreens ]]; then
+				if fu_pam_lockers_enabled; then FU_SETTING_VALUE=yes; else FU_SETTING_VALUE=no; fi
+			elif fu_pam_enabled "$2"; then
+				FU_SETTING_VALUE=yes
+			else
+				FU_SETTING_VALUE=no
+			fi
+			;;
 	esac
 }
 
@@ -461,8 +480,9 @@ _fu_setting_change() {
 			# Remembered, so that turning face unlock off and on again brings
 			# it back.
 			case "$key" in
-				sudo)     fu_config_set Sudo "$next" ;;
-				polkit-1) fu_config_set Polkit "$next" ;;
+				sudo)        fu_config_set Sudo "$next" ;;
+				polkit-1)    fu_config_set Polkit "$next" ;;
+				lockscreens) fu_config_set LockScreens "$next" ;;
 			esac
 			;;
 	esac
@@ -474,12 +494,13 @@ _fu_setting_change() {
 # resolved before the loop.
 fu_ui_settings() {
 	local -a scopes=() keys=() types=() defaults=() labels=() widths=() choices=() needs=() values=() rows=()
-	local spec scope key type default label choice need locale i j frame row pad dirty=1 cursor=0 shown
+	local spec scope key type default label choice need only locale i j frame row pad dirty=1 cursor=0 shown
 	local width=0 wrap cols
 
 	locale="$(fu_ui_locale)"
 	for spec in "${FU_SETTINGS[@]}"; do
-		IFS='|' read -r scope key type default label choice need <<< "$spec"
+		IFS='|' read -r scope key type default label choice need only <<< "$spec"
+		[[ $only == lockers ]] && ! fu_pam_lockers_here && continue
 		# A heading has its label where the key would be.
 		[[ $scope == group ]] && label="$key" key=''
 		scopes+=("$scope"); keys+=("$key"); types+=("$type"); defaults+=("$default")

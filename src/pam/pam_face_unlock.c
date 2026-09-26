@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// pam_face_unlock: face unlock for sudo and for admin prompts.
+// pam_face_unlock: face unlock for sudo, admin prompts and lock screens.
 //
 // All the vision is in the daemon. This asks it to scan for the user and
 // turns the answer into a PAM result, and it is meant to sit first in a stack
@@ -18,6 +18,8 @@
 // Options:
 //   purpose=sudo|polkit|other  what the bubble says (default: from the
 //                              service name)
+//   lockscreen                 in a lock screen's stack (hyprlock, swaylock,
+//                              gtklock...): see is_lock_starting()
 //   socket=PATH                the daemon's socket (for development)
 //   timeout=SECONDS            give up waiting for the daemon after this
 //   debug                      log to the auth log what happened
@@ -57,6 +59,7 @@ struct options {
     const char *socket;
     const char *purpose;
     int timeout;
+    bool lockscreen;
     bool debug;
 };
 
@@ -65,6 +68,7 @@ static void parse_options(struct options *o, int argc, const char **argv)
     o->socket = FU_SOCKET;
     o->purpose = NULL;
     o->timeout = 25;
+    o->lockscreen = false;
     o->debug = false;
     for (int i = 0; i < argc; ++i) {
         if (strncmp(argv[i], "socket=", 7) == 0) {
@@ -76,6 +80,8 @@ static void parse_options(struct options *o, int argc, const char **argv)
             if (o->timeout < 3 || o->timeout > 120) {
                 o->timeout = 25;
             }
+        } else if (strcmp(argv[i], "lockscreen") == 0) {
+            o->lockscreen = true;
         } else if (strcmp(argv[i], "debug") == 0) {
             o->debug = true;
         }
@@ -92,6 +98,36 @@ static long long now_ms(void)
 static bool nonempty(const char *s)
 {
     return s && *s;
+}
+
+// hyprlock asks PAM the moment it starts, before anybody pressed a key.
+// Scanning then would open the screen again for whoever just locked it on
+// purpose while still sitting in front of it. So a lock screen that is less
+// than two seconds old gets no scan; pressing Enter asks again, and the agent
+// scans when somebody comes back.
+static bool is_lock_starting(void)
+{
+    FILE *stat = fopen("/proc/self/stat", "r");
+    FILE *uptime = fopen("/proc/uptime", "r");
+    unsigned long long started = 0;
+    double up = 0;
+    bool ok = stat && uptime && fscanf(uptime, "%lf", &up) == 1;
+    if (ok) {
+        // After the name in brackets, which can hold anything, the start
+        // time is the 20th field.
+        char line[1024];
+        ok = fgets(line, sizeof(line), stat) != NULL;
+        const char *p = ok ? strrchr(line, ')') : NULL;
+        ok = p && sscanf(p + 2, "%*c %*d %*d %*d %*d %*d %*u %*u %*u %*u %*u %*u %*u %*d %*d %*d %*d %*d %*d %llu", &started) == 1;
+    }
+    if (stat) {
+        fclose(stat);
+    }
+    if (uptime) {
+        fclose(uptime);
+    }
+    const long ticks = sysconf(_SC_CLK_TCK);
+    return ok && ticks > 0 && up - (double)started / (double)ticks < 2.0;
 }
 
 // Whoever types this is not whoever sits in front of the camera.
@@ -239,6 +275,9 @@ __attribute__((visibility("default"))) PAM_EXTERN int pam_sm_authenticate(pam_ha
     const void *service = NULL;
     pam_get_item(pamh, PAM_SERVICE, &service);
     const char *purpose = o.purpose;
+    if (!purpose && o.lockscreen) {
+        purpose = "lockscreen";
+    }
     if (!purpose) {
         purpose = !service                                ? "other"
             : strncmp(service, "sudo", 4) == 0            ? "sudo"
@@ -246,6 +285,12 @@ __attribute__((visibility("default"))) PAM_EXTERN int pam_sm_authenticate(pam_ha
                                                           : "other";
     }
 
+    if (o.lockscreen && is_lock_starting()) {
+        if (o.debug) {
+            pam_syslog(pamh, LOG_DEBUG, "the lock screen has only just started, not scanning for %s", user);
+        }
+        return PAM_IGNORE;
+    }
     if (is_remote(pamh)) {
         if (o.debug) {
             pam_syslog(pamh, LOG_DEBUG, "remote session, not scanning for %s", user);

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-26 19:33+0200\n"
+"POT-Creation-Date: 2026-09-26 19:34+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Turkish\n"
@@ -57,8 +57,8 @@ msgstr "Hiç yüz eklenmedi."
 msgid "First, set up your face."
 msgstr "Önce yüzünüzü kurun."
 
-#: src/face-unlock:100 src/face-unlock:131 src/lib/menu.sh:447
-#: src/lib/menu.sh:451 src/lib/menu.sh:457 src/lib/menu.sh:459
+#: src/face-unlock:100 src/face-unlock:139 src/lib/menu.sh:466
+#: src/lib/menu.sh:470 src/lib/menu.sh:476 src/lib/menu.sh:478
 msgid "Could not save the setting."
 msgstr "Ayar kaydedilemedi."
 
@@ -71,105 +71,114 @@ msgid "No systemd user session, so the lock screen agent was not started."
 msgstr ""
 "systemd kullanıcı oturumu yok, bu yüzden kilit ekranı aracısı başlatılmadı."
 
-#: src/face-unlock:118
+#: src/face-unlock:123
 msgid "Could not switch on the GNOME extension that shows the bubble."
 msgstr "Baloncuğu gösteren GNOME uzantısı açılamadı."
 
-#: src/face-unlock:119
+#: src/face-unlock:124
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr ""
 "Bir kez oturumu kapatıp yeniden açın: o zaman GNOME de baloncuğu gösterir."
 
-#: src/face-unlock:124
+#: src/face-unlock:129
+#, sh-printf-format
+msgid ""
+"The lock screen (%s) takes your face too. If it does not scan when you come "
+"back, press Enter on the empty password field."
+msgstr ""
+"Kilit ekranı (%s) da yüzünüzü kabul eder. Döndüğünüzde taramazsa boş parola "
+"alanında Enter'a basın."
+
+#: src/face-unlock:132
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr "Yüzle kilit açma açık. Denemek için ekranı kilitleyin ve ona bakın."
 
-#: src/face-unlock:126
+#: src/face-unlock:134
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "sudo ve yönetici istemlerinde de çalışabilir. Ayarlar'a bakın."
 
-#: src/face-unlock:142
+#: src/face-unlock:150
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "Yüzle kilit açma kapalı. Yüzleriniz saklanıyor; Yüzler bölümünden "
 "silebilirsiniz."
 
-#: src/face-unlock:156 src/lib/daemon.sh:109
+#: src/face-unlock:164 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Henüz hiç yüz kurulmadı."
 
-#: src/face-unlock:160 src/lib/menu.sh:180 src/lib/menu.sh:607
+#: src/face-unlock:168 src/lib/menu.sh:180 src/lib/menu.sh:628
 msgid "on"
 msgstr "açık"
 
-#: src/face-unlock:160 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:608
+#: src/face-unlock:168 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/lib/menu.sh:629
 msgid "off"
 msgstr "kapalı"
 
-#: src/face-unlock:162 src/lib/menu.sh:625
+#: src/face-unlock:170 src/lib/menu.sh:646
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s örnek, %s öğrenilen"
 
-#: src/face-unlock:168
+#: src/face-unlock:176
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "Hangi yüz? Kimlikler için `%s faces` komutuna bakın."
 
-#: src/face-unlock:172
+#: src/face-unlock:180
 msgid "Deleted."
 msgstr "Silindi."
 
-#: src/face-unlock:183
+#: src/face-unlock:191
 msgid "Usage: face-unlock [command]"
 msgstr "Kullanım: face-unlock [komut]"
 
-#: src/face-unlock:185
+#: src/face-unlock:193
 msgid "Commands:"
 msgstr "Komutlar:"
 
-#: src/face-unlock:186
+#: src/face-unlock:194
 msgid "Turn face unlock on"
 msgstr "Yüzle kilit açmayı aç"
 
-#: src/face-unlock:187
+#: src/face-unlock:195
 msgid "Turn it off (faces are kept)"
 msgstr "Kapat (yüzler saklanır)"
 
-#: src/face-unlock:188 src/lib/menu.sh:691
+#: src/face-unlock:196 src/lib/menu.sh:712
 msgid "Add a face"
 msgstr "Yüz ekle"
 
-#: src/face-unlock:189
+#: src/face-unlock:197
 msgid "List the faces"
 msgstr "Yüzleri listele"
 
-#: src/face-unlock:190
+#: src/face-unlock:198
 msgid "Delete a face"
 msgstr "Bir yüzü sil"
 
-#: src/face-unlock:191
+#: src/face-unlock:199
 msgid "Look at the camera and see what it sees"
 msgstr "Kameraya bak ve onun ne gördüğünü gör"
 
-#: src/face-unlock:192
+#: src/face-unlock:200
 msgid "Show what is on"
 msgstr "Neyin açık olduğunu göster"
 
-#: src/face-unlock:193
+#: src/face-unlock:201
 msgid "Show this help"
 msgstr "Bu yardımı göster"
 
-#: src/face-unlock:194
+#: src/face-unlock:202
 msgid "Show the version"
 msgstr "Sürümü göster"
 
-#: src/face-unlock:196
+#: src/face-unlock:204
 msgid "Without a command an interactive menu is shown."
 msgstr "Komut verilmezse etkileşimli bir menü gösterilir."
 
-#: src/face-unlock:215
+#: src/face-unlock:223
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -177,7 +186,7 @@ msgstr ""
 "Bunu root olarak değil, kendi kullanıcınızla çalıştırın. Gerektiğinde "
 "parolanızı sorar."
 
-#: src/face-unlock:237 src/lib/system.sh:93
+#: src/face-unlock:245 src/lib/system.sh:101
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Bilinmeyen komut: %s"
@@ -252,7 +261,7 @@ msgstr ""
 msgid "The camera could not be used."
 msgstr "Kamera kullanılamadı."
 
-#: src/lib/daemon.sh:111 src/lib/menu.sh:262
+#: src/lib/daemon.sh:111 src/lib/menu.sh:265
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "Tanıma modelleri eksik. Paketi yeniden kurun."
 
@@ -356,11 +365,11 @@ msgstr ""
 msgid "[y/N]"
 msgstr "[e/H]"
 
-#: src/lib/menu.sh:172 src/lib/menu.sh:510
+#: src/lib/menu.sh:172 src/lib/menu.sh:531
 msgid "ON"
 msgstr "AÇIK"
 
-#: src/lib/menu.sh:174 src/lib/menu.sh:511
+#: src/lib/menu.sh:174 src/lib/menu.sh:532
 msgid "OFF"
 msgstr "KAPALI"
 
@@ -401,7 +410,7 @@ msgstr "yavaş"
 msgid "%s seconds"
 msgstr "%s saniye"
 
-#: src/lib/menu.sh:202 src/lib/menu.sh:422
+#: src/lib/menu.sh:202 src/lib/menu.sh:441
 msgid "automatic"
 msgstr "otomatik"
 
@@ -421,8 +430,8 @@ msgstr "çalışmıyor"
 msgid "Turning face unlock on again starts it."
 msgstr "Yüzle kilit açmayı yeniden açmak onu başlatır."
 
-#: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:603
-#: src/lib/menu.sh:692
+#: src/lib/menu.sh:236 src/lib/menu.sh:238 src/lib/menu.sh:624
+#: src/lib/menu.sh:713
 msgid "Faces"
 msgstr "Yüzler"
 
@@ -454,28 +463,32 @@ msgstr "sudo"
 msgid "Admin prompts"
 msgstr "Yönetici istemleri"
 
-#: src/lib/menu.sh:254 src/lib/menu.sh
+#: src/lib/menu.sh:255 src/lib/menu.sh
+msgid "Lock screens"
+msgstr "Kilit ekranları"
+
+#: src/lib/menu.sh:257 src/lib/menu.sh
 msgid "Photo check"
 msgstr "Fotoğraf denetimi"
 
-#: src/lib/menu.sh:257
+#: src/lib/menu.sh:260
 msgid "Paused"
 msgstr "Duraklatıldı"
 
-#: src/lib/menu.sh:257
+#: src/lib/menu.sh:260
 #, sh-printf-format
 msgid "for %d more minutes, or until the password is used"
 msgstr "%d dakika daha ya da parola kullanılana kadar"
 
-#: src/lib/menu.sh:259
+#: src/lib/menu.sh:262
 msgid "Last unlock"
 msgstr "Son kilit açma"
 
-#: src/lib/menu.sh:265
+#: src/lib/menu.sh:268
 msgid "The lock screen agent is not running."
 msgstr "Kilit ekranı aracısı çalışmıyor."
 
-#: src/lib/menu.sh:308
+#: src/lib/menu.sh:314
 msgid ""
 "On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
 "switches it on."
@@ -483,7 +496,15 @@ msgstr ""
 "GNOME'da baloncuğu küçük bir GNOME uzantısı gösterir. Yüzle kilit açmayı "
 "açınca o da açılır."
 
-#: src/lib/menu.sh:313
+#: src/lib/menu.sh:318
+msgid ""
+"Scans when you come back to hyprlock or swaylock and opens them. Any other "
+"lock screen scans when you press Enter on the empty password field."
+msgstr ""
+"hyprlock'a ya da swaylock'a döndüğünüzde tarar ve onları açar. Diğer kilit "
+"ekranları boş parola alanında Enter'a bastığınızda tarar."
+
+#: src/lib/menu.sh:323
 msgid ""
 "Unlocks the lock screen when it sees your face. Off: only your password "
 "works there."
@@ -491,7 +512,7 @@ msgstr ""
 "Yüzünüzü görünce kilit ekranını açar. Kapalı: orada yalnızca parolanız "
 "çalışır."
 
-#: src/lib/menu.sh:314
+#: src/lib/menu.sh:324
 msgid ""
 "Scans when you press a key or move the mouse on the lock screen, and when "
 "the computer wakes up."
@@ -499,7 +520,7 @@ msgstr ""
 "Kilit ekranında bir tuşa bastığınızda ya da fareyi oynattığınızda ve "
 "bilgisayar uyandığında tarar."
 
-#: src/lib/menu.sh:315
+#: src/lib/menu.sh:325
 msgid ""
 "Scans as soon as the screen locks. Off by default: if you lock it yourself, "
 "it would unlock again right away."
@@ -507,7 +528,7 @@ msgstr ""
 "Ekran kilitlenir kilitlenmez tarar. Varsayılan olarak kapalı: kendiniz "
 "kilitlerseniz hemen yeniden açılırdı."
 
-#: src/lib/menu.sh:316
+#: src/lib/menu.sh:326
 msgid ""
 "sudo takes your face instead of the password. No match: you type the "
 "password as usual."
@@ -515,7 +536,16 @@ msgstr ""
 "sudo parola yerine yüzünüzü kullanır. Eşleşmezse parolayı her zamanki gibi "
 "yazarsınız."
 
-#: src/lib/menu.sh:317
+#: src/lib/menu.sh:327
+#, sh-printf-format
+msgid ""
+"The lock screen takes your face in its password check. Press Enter on the "
+"empty field to scan. Found here: %s."
+msgstr ""
+"Kilit ekranı parola denetiminde yüzünüzü kabul eder. Taramak için boş alanda "
+"Enter'a basın. Burada bulunanlar: %s."
+
+#: src/lib/menu.sh:328
 msgid ""
 "The password windows of your desktop and apps, for example when you install "
 "software. No match: you type the password."
@@ -523,18 +553,18 @@ msgstr ""
 "Masaüstünüzün ve uygulamaların parola pencereleri, örneğin yazılım kurarken. "
 "Eşleşmezse parolayı yazarsınız."
 
-#: src/lib/menu.sh:318
+#: src/lib/menu.sh:329
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr ""
 "Göz kırpmanız ya da başınızı biraz çevirmeniz gerekir. Bu, basılı "
 "fotoğrafları da durdurur."
 
-#: src/lib/menu.sh:319
+#: src/lib/menu.sh:330
 msgid "No check at all. Only for trying out a camera."
 msgstr "Hiç denetim yok. Yalnızca bir kamerayı denemek için."
 
-#: src/lib/menu.sh:320
+#: src/lib/menu.sh:331
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
@@ -542,21 +572,21 @@ msgstr ""
 "Telefon, tablet ya da parlak kâğıttaki fotoğrafları durdurur. Göz kırpmanız "
 "gerekmez. Mat basılı bir fotoğraf geçebilir."
 
-#: src/lib/menu.sh:321
+#: src/lib/menu.sh:332
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 "Daha az yanlış eşleşme, ama gözlükle ya da kötü ışıkta sizi tanımayabilir."
 
-#: src/lib/menu.sh:322
+#: src/lib/menu.sh:333
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "Sizi daha kolay tanır, ama size çok benzeyen birini de."
 
-#: src/lib/menu.sh:323
+#: src/lib/menu.sh:334
 msgid "The default. Right for most people."
 msgstr "Varsayılan. Çoğu kişi için uygun."
 
-#: src/lib/menu.sh:324
+#: src/lib/menu.sh:335
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
@@ -564,7 +594,7 @@ msgstr ""
 "Gözleriniz açık ve ekrana dönük olmalı. Böylece başka yere bakarken ya da "
 "uyurken kilit açılmaz."
 
-#: src/lib/menu.sh:325
+#: src/lib/menu.sh:336
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
@@ -573,11 +603,11 @@ msgstr ""
 "kurun. Kızılötesi kameranın ışığının açık olması gerekir (linux-enable-ir-"
 "emitter)."
 
-#: src/lib/menu.sh:326
+#: src/lib/menu.sh:337
 msgid "How long the camera looks for your face before it gives up."
 msgstr "Kameranın vazgeçmeden önce yüzünüzü ne kadar aradığı."
 
-#: src/lib/menu.sh:327
+#: src/lib/menu.sh:338
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
@@ -585,88 +615,88 @@ msgstr ""
 "Kesin bir eşleşmeden sonra şu anki görünüşünüzü hatırlar. Böylece yeni saç "
 "kesimi ya da gözlük yeniden kurulum gerektirmez."
 
-#: src/lib/menu.sh:328
+#: src/lib/menu.sh:339
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
 msgstr "Dizüstü kapalıyken tarama yok, örneğin harici ekranlı bir masada."
 
-#: src/lib/menu.sh:329
+#: src/lib/menu.sh:340
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr "Ekranın üstündeki baloncuk kameranın ne yaptığını gösterir."
 
-#: src/lib/menu.sh:330
+#: src/lib/menu.sh:341
 msgid "A small pill with a lock that opens."
 msgstr "Açılan bir kilidi olan küçük bir hap."
 
-#: src/lib/menu.sh:331
+#: src/lib/menu.sh:342
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr ""
 "Etrafına bakan bir yüzü olan bir ada, ardından halkalar ve bir onay işareti."
 
-#: src/lib/menu.sh:332
+#: src/lib/menu.sh:343
 msgid "How fast the bubble moves."
 msgstr "Baloncuğun ne kadar hızlı hareket ettiği."
 
-#: src/lib/menu.sh:333
+#: src/lib/menu.sh:344
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr ""
 "sudo ya da bir yönetici istemi yüzünüzü taradığında da baloncuğu gösterir."
 
-#: src/lib/menu.sh:418
+#: src/lib/menu.sh:437
 #, sh-printf-format
 msgid "automatic (%s)"
 msgstr "otomatik (%s)"
 
-#: src/lib/menu.sh:428
+#: src/lib/menu.sh:447
 msgid "(infrared)"
 msgstr "(kızılötesi)"
 
-#: src/lib/menu.sh:432
+#: src/lib/menu.sh:451
 msgid "(not connected)"
 msgstr "(bağlı değil)"
 
-#: src/lib/menu.sh:507 src/lib/menu.sh:693
+#: src/lib/menu.sh:528 src/lib/menu.sh:714
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: src/lib/menu.sh:508
+#: src/lib/menu.sh:529
 msgid "↑↓ select   ←→ or Space: change   q: back"
 msgstr "↑↓ seç   ←→ ya da Boşluk: değiştir   q: geri"
 
-#: src/lib/menu.sh:509
+#: src/lib/menu.sh:530
 msgid "for all users, asks for your password"
 msgstr "tüm kullanıcılar için, parolanızı sorar"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:605
+#: src/lib/menu.sh:626
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 "Yukarı/Aşağı: seç, Boşluk: aç/kapat, r: yeniden adlandır, d: sil, a: ekle, "
 "q: geri"
 
-#: src/lib/menu.sh:606
+#: src/lib/menu.sh:627
 msgid "No face is set up yet. Press a to add one."
 msgstr "Henüz hiç yüz kurulmadı. Eklemek için a tuşuna basın."
 
-#: src/lib/menu.sh:652
+#: src/lib/menu.sh:673
 msgid "New name:"
 msgstr "Yeni ad:"
 
-#: src/lib/menu.sh:659
+#: src/lib/menu.sh:680
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "\"%s\" silinsin mi?"
 
-#: src/lib/menu.sh:690
+#: src/lib/menu.sh:711
 msgid "Turn face unlock on or off"
 msgstr "Yüzle kilit açmayı aç ya da kapat"
 
-#: src/lib/menu.sh:694
+#: src/lib/menu.sh:715
 msgid "Try it"
 msgstr "Dene"
 
-#: src/lib/menu.sh:695
+#: src/lib/menu.sh:716
 msgid "Quit"
 msgstr "Çık"
 
@@ -678,12 +708,12 @@ msgstr ""
 "Yüzleriniz ve ayarlarınız plasma-face-unlock'tan aktarılıyor. Bunun için "
 "parolanız gerekiyor."
 
-#: src/lib/pam.sh:132
+#: src/lib/pam.sh:191
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
 msgstr "PAM modülü şu konumda kurulu değil: %s"
 
-#: src/lib/pam.sh:140
+#: src/lib/pam.sh:199
 #, sh-printf-format
 msgid "There is no PAM configuration for %s on this system."
 msgstr "Bu sistemde %s için PAM yapılandırması yok."
@@ -701,12 +731,12 @@ msgstr "Bu komut root olarak çalışmalı."
 msgid "Not a valid setting: %s=%s"
 msgstr "Geçerli bir ayar değil: %s=%s"
 
-#: src/lib/system.sh:76
+#: src/lib/system.sh:81
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "Bunun için kullanılamaz: %s"
 
-#: src/lib/system.sh:138 src/lib/system.sh:143
+#: src/lib/system.sh:146 src/lib/system.sh:151
 #, sh-printf-format
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this to %s:"
@@ -902,20 +932,20 @@ msgstr "Baloncuğun animasyonlarını bir kez oynat."
 msgid "Bubble style for the demo: full or minimal."
 msgstr "Demo için baloncuk stili: full ya da minimal."
 
-#: src/pam/pam_face_unlock.c:311
+#: src/pam/pam_face_unlock.c:356
 msgid "Look at the camera to unlock."
 msgstr "Kilidi açmak için kameraya bakın."
 
-#: src/pam/pam_face_unlock.c:314
+#: src/pam/pam_face_unlock.c:359
 msgid "Blink, or turn your head a little."
 msgstr "Göz kırpın ya da başınızı biraz çevirin."
 
-#: src/pam/pam_face_unlock.c:330
+#: src/pam/pam_face_unlock.c:375
 msgid "Face unlock is paused after too many tries. Use your password."
 msgstr ""
 "Çok fazla denemeden sonra yüzle kilit açma duraklatıldı. Parolanızı kullanın."
 
-#: src/pam/pam_face_unlock.c:334
+#: src/pam/pam_face_unlock.c:379
 msgid "Face not recognised."
 msgstr "Yüz tanınmadı."
 

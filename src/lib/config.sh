@@ -126,6 +126,7 @@ fu_config_load() {
 	_fu_kv_lookup "$FU_CONFIG" LockScreen yes;      CFG_LOCK=no;     fu_is_true "$FU_KV_VALUE" && CFG_LOCK=yes
 	_fu_kv_lookup "$FU_CONFIG" Sudo no;             CFG_SUDO=no;     fu_is_true "$FU_KV_VALUE" && CFG_SUDO=yes
 	_fu_kv_lookup "$FU_CONFIG" Polkit no;           CFG_POLKIT=no;   fu_is_true "$FU_KV_VALUE" && CFG_POLKIT=yes
+	_fu_kv_lookup "$FU_CONFIG" LockScreens yes;     CFG_LOCKERS=no;  fu_is_true "$FU_KV_VALUE" && CFG_LOCKERS=yes
 
 	_fu_kv_lookup "$FU_SYSCONFIG" Liveness light;   CFG_LIVENESS="$FU_KV_VALUE"
 	_fu_kv_lookup "$FU_SYSCONFIG" Camera auto;      CFG_CAMERA="$FU_KV_VALUE"

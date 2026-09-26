@@ -54,7 +54,8 @@ LockWatcher::LockWatcher(QObject *parent)
 
     findSession();
 
-    if (Wayland::hasGlobal("ext_session_lock_manager_v1")) {
+    m_ownLockers = Wayland::hasGlobal("ext_session_lock_manager_v1");
+    if (m_ownLockers) {
         connect(&m_poll, &QTimer::timeout, this, &LockWatcher::pollLockers);
         m_poll.start(PollMs);
         // Not from here: nobody is connected yet to hear about a lock screen
@@ -159,6 +160,11 @@ void LockWatcher::pollLockers()
 {
     m_lockerRunning = !Lockers::find().isEmpty();
     update();
+}
+
+bool LockWatcher::canUnlock() const
+{
+    return !m_ownLockers || m_lockerRunning;
 }
 
 void LockWatcher::update()
