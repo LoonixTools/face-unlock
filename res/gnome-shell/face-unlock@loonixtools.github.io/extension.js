@@ -6,7 +6,8 @@
 // lock screen. An extension runs inside GNOME Shell and may. This one draws
 // the bubble the agent draws everywhere else, with the same shapes and the
 // same timing: a port of src/agent/qml (Bubble, FaceGlyph, LockGlyph,
-// Checkmark). What to show comes from the agent over the session bus.
+// CameraGlyph, Checkmark). What to show comes from the agent over the session
+// bus.
 
 import Clutter from 'gi://Clutter';
 import Gio from 'gi://Gio';
@@ -246,6 +247,68 @@ class LockGlyph {
     }
 }
 
+// CameraGlyph.qml: a video camera with a line through it, for a camera
+// another program has.
+class CameraGlyph {
+    constructor() {
+        this._start = null;
+        this.pace = 1;
+    }
+
+    setShown(shown, at) {
+        this._start = shown ? at : null;
+    }
+
+    _strike(at) {
+        if (this._start === null)
+            return 0;
+        const p = (at - this._start - 120 * this.pace) / (320 * this.pace);
+        return Ease.outCubic(Math.max(0, Math.min(1, p)));
+    }
+
+    busy(at) {
+        return this._start !== null && at - this._start < 440 * this.pace;
+    }
+
+    draw(cr, x, y, size, color, at) {
+        const u = size / 100;
+        const strike = this._strike(at);
+        cr.save();
+        cr.translate(x, y);
+        rgba(cr, color);
+        roundedRect(cr, 4 * u, 24 * u, 62 * u, 52 * u, 12 * u);
+        cr.fill();
+
+        cr.setLineWidth(6 * u);
+        cr.setLineJoin(1 /* round */);
+        cr.moveTo(72 * u, 42 * u);
+        cr.lineTo(94 * u, 29 * u);
+        cr.lineTo(94 * u, 71 * u);
+        cr.lineTo(72 * u, 58 * u);
+        cr.closePath();
+        cr.fillPreserve();
+        cr.stroke();
+
+        // The line, with a gap round it so it reads on the filled camera.
+        if (strike > 0.01) {
+            const line = () => {
+                cr.moveTo(12 * u, 10 * u);
+                cr.lineTo((12 + 76 * strike) * u, (10 + 80 * strike) * u);
+            };
+            cr.setLineCap(1 /* round */);
+            rgba(cr, Theme.panel);
+            cr.setLineWidth(24 * u);
+            line();
+            cr.stroke();
+            rgba(cr, color);
+            cr.setLineWidth(9 * u);
+            line();
+            cr.stroke();
+        }
+        cr.restore();
+    }
+}
+
 // FaceGlyph.qml: brackets round a face that looks around, then the rings and
 // a tick, or a red shake of the head.
 class FaceGlyph {
@@ -265,6 +328,9 @@ class FaceGlyph {
         this._lockOpacity = new Tween(0);
         this._lockScale = new Tween(0.7);
         this._lock = new LockGlyph();
+        this._cameraOpacity = new Tween(0);
+        this._cameraScale = new Tween(0.7);
+        this._camera = new CameraGlyph();
         this._successStart = null;
         this._shakeStart = null;
         this._settle = 0;
@@ -304,9 +370,13 @@ class FaceGlyph {
         this._smile.set(mode === 'failure' ? 0 : 1, 220 * pace, Ease.outQuad, at);
         this._bracket.set(mode === 'tracking' ? 0.9 : 1, 260 * pace, OUT_BACK, at);
         this._bracketColor.set(this._colorFor(mode), 220 * pace, Ease.linear, at);
-        this._shown.set(mode === 'lockout' ? 0 : 1, 180 * pace, Ease.linear, at);
+        this._shown.set(mode === 'lockout' || mode === 'busy' ? 0 : 1, 180 * pace, Ease.linear, at);
         this._lockOpacity.set(mode === 'lockout' ? 1 : 0, 200 * pace, Ease.linear, at);
         this._lockScale.set(mode === 'lockout' ? 1 : 0.7, 260 * pace, OUT_BACK, at);
+        this._cameraOpacity.set(mode === 'busy' ? 1 : 0, 200 * pace, Ease.linear, at);
+        this._cameraScale.set(mode === 'busy' ? 1 : 0.7, 260 * pace, OUT_BACK, at);
+        this._camera.pace = pace;
+        this._camera.setShown(mode === 'busy', at);
 
         this._successStart = null;
         if (this._settle) {
@@ -344,6 +414,7 @@ class FaceGlyph {
         return this._looking() || this._lookAmount.busy(at) || this._smile.busy(at) ||
             this._bracket.busy(at) || this._bracketColor.busy(at) || this._shown.busy(at) ||
             this._lockOpacity.busy(at) || this._lockScale.busy(at) ||
+            this._cameraOpacity.busy(at) || this._cameraScale.busy(at) || this._camera.busy(at) ||
             (this._successStart !== null && at - this._successStart < 900 * this.pace) ||
             sequence(FaceGlyph.SHAKE, this._shakeStart, at, this.pace)[1];
     }
@@ -482,6 +553,12 @@ class FaceGlyph {
         const lockSize = size * 0.42;
         layer(cr, this._lockOpacity.get(at), this._lockScale.get(at), c, c, () => {
             this._lock.draw(cr, c - lockSize / 2, c - lockSize / 2, lockSize, this.color, at);
+        });
+
+        // A camera with a line through it, while another program has it
+        const cameraSize = size * 0.5;
+        layer(cr, this._cameraOpacity.get(at), this._cameraScale.get(at), c, c, () => {
+            this._camera.draw(cr, c - cameraSize / 2, c - cameraSize / 2, cameraSize, this.color, at);
         });
 
         cr.restore();
@@ -842,8 +919,8 @@ class Bubble {
         layout.set_alignment(Pango.Alignment.CENTER);
         layout.set_text(this.message, -1);
         const [, logical] = layout.get_pixel_extents();
-        const failed = this._shownPhase === 'failure' || this._shownPhase === 'lockout';
-        rgba(cr, failed ? Theme.textDetail : Theme.textSecondary, opacity);
+        const detail = ['failure', 'lockout', 'busy'].includes(this._shownPhase);
+        rgba(cr, detail ? Theme.textDetail : Theme.textSecondary, opacity);
         cr.moveTo(ox + 16, oy + Theme.openHeight - 20 - logical.height);
         PangoCairo.show_layout(cr, layout);
     }

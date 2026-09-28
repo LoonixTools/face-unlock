@@ -479,12 +479,26 @@ void Server::handleVerify(Client *client, const QJsonObject &request)
         return;
     }
 
-    auto *job = new ScanJob(&m_vision, uid, s, faces, purpose, request.value(u"verbose").toBool());
     // The lock screen's agent draws its own scans. Everybody else's it has
     // to be told about.
     if (purpose != u"unlock") {
         m_agentLink = new AgentLink(uid, this);
     }
+
+    // Another program has the camera, a video call most likely. No scan
+    // starts: the bubble shows a camera with a line through it, and the
+    // password is asked for at once.
+    if (Camera::inUse(s.camera)) {
+        qInfo("scan for %s (%s): the camera is in use", qPrintable(System::nameOf(uid)), qPrintable(purpose));
+        broadcast(uid, {{QStringLiteral("event"), QStringLiteral("scan")},
+                        {QStringLiteral("state"), QStringLiteral("failure")},
+                        {QStringLiteral("reason"), QStringLiteral("camera-busy")},
+                        {QStringLiteral("purpose"), purpose}});
+        fail(client, QStringLiteral("camera-busy"));
+        return;
+    }
+
+    auto *job = new ScanJob(&m_vision, uid, s, faces, purpose, request.value(u"verbose").toBool());
     broadcast(uid, {{QStringLiteral("event"), QStringLiteral("scan")}, {QStringLiteral("state"), QStringLiteral("start")}, {QStringLiteral("purpose"), purpose}});
     startJob(job, client);
 }

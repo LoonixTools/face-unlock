@@ -47,7 +47,7 @@ QString LockText::text(const QString &phase, const QString &message)
     if (phase == u"success") {
         return i18n("Face recognized");
     }
-    // failure and lockout say why; hidden says nothing.
+    // failure, lockout and busy say why; hidden says nothing.
     return phase == u"hidden" ? QString() : message;
 }
 

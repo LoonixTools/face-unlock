@@ -55,6 +55,10 @@ public:
     // What "auto" means on this machine: the first colour camera, else the
     // first camera at all.
     static QString autoPath();
+    // Whether another program streams from the camera right now, a video
+    // call for example. Asked without starting it, so the light stays off.
+    // Never true for a video file or pictures.
+    static bool inUse(const QString &spec);
 
 private:
     bool openImages(const QString &dir, QString *error);

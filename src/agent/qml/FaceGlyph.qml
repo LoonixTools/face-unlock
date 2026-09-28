@@ -11,6 +11,8 @@
 //   success   the rings (below), then a tick in the one that is left
 //   failure   it turns red and shakes its head, as on iOS
 //   lockout   a lock instead of a face
+//   busy      a camera with a line through it: another program has the
+//             camera
 //
 // The rings are Face ID's in the Dynamic Island: the face gives way to two
 // crossed rings that tumble in 3D with a soft glow, slow down, and land flat
@@ -352,8 +354,8 @@ Item {
             id: face
             anchors.fill: parent
             preferredRendererType: Shape.CurveRenderer
-            // Gives way to the rings, and to the lock.
-            property real shown: root.mode === "lockout" ? 0 : 1
+            // Gives way to the rings, the lock and the camera.
+            property real shown: root.mode === "lockout" || root.mode === "busy" ? 0 : 1
             Behavior on shown { NumberAnimation { duration: 180 * root.pace } }
             opacity: shown * (1 - root.faceGone)
             scale: 1 - 0.2 * root.faceGone
@@ -415,6 +417,19 @@ Item {
             color: root.color
             opacity: root.mode === "lockout" ? 1 : 0
             scale: root.mode === "lockout" ? 1 : 0.7
+            Behavior on opacity { NumberAnimation { duration: 200 * root.pace } }
+            Behavior on scale { NumberAnimation { duration: 260 * root.pace; easing.type: Easing.OutBack } }
+        }
+
+        CameraGlyph {
+            anchors.centerIn: parent
+            width: parent.width * 0.5
+            height: width
+            pace: root.pace
+            color: root.color
+            shown: root.mode === "busy"
+            opacity: shown ? 1 : 0
+            scale: shown ? 1 : 0.7
             Behavior on opacity { NumberAnimation { duration: 200 * root.pace } }
             Behavior on scale { NumberAnimation { duration: 260 * root.pace; easing.type: Easing.OutBack } }
         }

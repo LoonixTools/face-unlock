@@ -212,7 +212,7 @@ Item {
                     horizontalAlignment: Text.AlignHCenter
                     elide: Text.ElideRight
                     text: root.bubble ? root.bubble.message : ""
-                    color: root.shownPhase === "failure" || root.shownPhase === "lockout" ? Theme.textDetail : Theme.textSecondary
+                    color: root.shownPhase === "failure" || root.shownPhase === "lockout" || root.shownPhase === "busy" ? Theme.textDetail : Theme.textSecondary
                     font.pixelSize: 13
                     font.weight: Font.Medium
                     opacity: full.hasMessage ? 1 : 0

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-26 20:28+0200\n"
+"POT-Creation-Date: 2026-09-28 14:32+0200\n"
 "PO-Revision-Date: 2026-09-23 22:32+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: German\n"
@@ -59,9 +59,9 @@ msgstr "Es wurde kein Gesicht hinzugefügt."
 msgid "First, set up your face."
 msgstr "Richte zuerst dein Gesicht ein."
 
-#: src/face-unlock:100 src/face-unlock:145 src/lib/menu.sh:527
+#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:527
 #: src/lib/menu.sh:531 src/lib/menu.sh:537 src/lib/menu.sh:539
-#: src/lib/system.sh:399 src/lib/system.sh:405
+#: src/lib/system.sh:409 src/lib/system.sh:415
 msgid "Could not save the setting."
 msgstr "Einstellung konnte nicht gespeichert werden."
 
@@ -85,16 +85,16 @@ msgstr ""
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr "Melde dich einmal ab und wieder an: dann zeigt GNOME die Bubble auch."
 
-#: src/face-unlock:131
+#: src/face-unlock:135
 msgid "Pick your lock screen in the window."
 msgstr "Wähle deinen Sperrbildschirm im Fenster."
 
-#: src/face-unlock:132
+#: src/face-unlock:136
 msgid "No lock screen picked. You can do it later under Settings."
 msgstr ""
 "Kein Sperrbildschirm gewählt. Das geht später auch unter Einstellungen."
 
-#: src/face-unlock:135
+#: src/face-unlock:140
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -103,102 +103,102 @@ msgstr ""
 "Der Sperrbildschirm (%s) nimmt dein Gesicht auch. Scannt er nicht, wenn du "
 "zurückkommst, drück Enter im leeren Passwortfeld."
 
-#: src/face-unlock:138
+#: src/face-unlock:143
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr ""
 "Die Gesichtsentsperrung ist an. Sperre den Bildschirm und schau ihn an, um "
 "es auszuprobieren."
 
-#: src/face-unlock:140
+#: src/face-unlock:145
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "Sie kann auch sudo und Admin-Abfragen übernehmen. Siehe Einstellungen."
 
-#: src/face-unlock:156
+#: src/face-unlock:161
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "Die Gesichtsentsperrung ist aus. Deine Gesichter bleiben erhalten; löschen "
 "kannst du sie unter Gesichter."
 
-#: src/face-unlock:170 src/lib/daemon.sh:109
+#: src/face-unlock:175 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Es ist noch kein Gesicht eingerichtet."
 
-#: src/face-unlock:174 src/lib/menu.sh:180 src/lib/menu.sh:695
+#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:701
 msgid "on"
 msgstr "an"
 
-#: src/face-unlock:174 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:696
+#: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/lib/menu.sh:702
 msgid "off"
 msgstr "aus"
 
-#: src/face-unlock:176 src/lib/menu.sh:713
+#: src/face-unlock:181 src/lib/menu.sh:719
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s Aufnahmen, %s dazugelernt"
 
-#: src/face-unlock:182
+#: src/face-unlock:187
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "Welches Gesicht? Die IDs zeigt `%s faces`."
 
-#: src/face-unlock:186
+#: src/face-unlock:191
 msgid "Deleted."
 msgstr "Gelöscht."
 
-#: src/face-unlock:197
+#: src/face-unlock:202
 msgid "Usage: face-unlock [command]"
 msgstr "Aufruf: face-unlock [Befehl]"
 
-#: src/face-unlock:199
+#: src/face-unlock:204
 msgid "Commands:"
 msgstr "Befehle:"
 
-#: src/face-unlock:200
+#: src/face-unlock:205
 msgid "Turn face unlock on"
 msgstr "Gesichtsentsperrung einschalten"
 
-#: src/face-unlock:201
+#: src/face-unlock:206
 msgid "Turn it off (faces are kept)"
 msgstr "Ausschalten (Gesichter bleiben erhalten)"
 
-#: src/face-unlock:202 src/lib/menu.sh:779
+#: src/face-unlock:207 src/lib/menu.sh:787
 msgid "Add a face"
 msgstr "Gesicht hinzufügen"
 
-#: src/face-unlock:203
+#: src/face-unlock:208
 msgid "List the faces"
 msgstr "Gesichter auflisten"
 
-#: src/face-unlock:204
+#: src/face-unlock:209
 msgid "Delete a face"
 msgstr "Ein Gesicht löschen"
 
-#: src/face-unlock:205
+#: src/face-unlock:210
 msgid "Look at the camera and see what it sees"
 msgstr "In die Kamera schauen und sehen, was sie sieht"
 
-#: src/face-unlock:206
+#: src/face-unlock:211
 msgid "Lock the screen"
 msgstr "Bildschirm sperren"
 
-#: src/face-unlock:207
+#: src/face-unlock:212
 msgid "Show what is on"
 msgstr "Anzeigen, was eingeschaltet ist"
 
-#: src/face-unlock:208
+#: src/face-unlock:213
 msgid "Show this help"
 msgstr "Diese Hilfe anzeigen"
 
-#: src/face-unlock:209
+#: src/face-unlock:214
 msgid "Show the version"
 msgstr "Die Version anzeigen"
 
-#: src/face-unlock:211
+#: src/face-unlock:216
 msgid "Without a command an interactive menu is shown."
 msgstr "Ohne Befehl wird ein interaktives Menü angezeigt."
 
-#: src/face-unlock:230
+#: src/face-unlock:235
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -206,7 +206,7 @@ msgstr ""
 "Starte das als dein eigener Benutzer, nicht als root. Wenn nötig, wird nach "
 "deinem Passwort gefragt."
 
-#: src/face-unlock:253 src/lib/system.sh:105
+#: src/face-unlock:258 src/lib/system.sh:105
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Unbekannter Befehl: %s"
@@ -281,104 +281,108 @@ msgstr ""
 msgid "The camera could not be used."
 msgstr "Die Kamera konnte nicht benutzt werden."
 
-#: src/lib/daemon.sh:111 src/lib/menu.sh:273
+#: src/lib/daemon.sh:111
+msgid "Another app is using the camera."
+msgstr "Eine andere App benutzt gerade die Kamera."
+
+#: src/lib/daemon.sh:112 src/lib/menu.sh:273
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "Die Erkennungsmodelle fehlen. Installiere das Paket neu."
 
-#: src/lib/daemon.sh:112
+#: src/lib/daemon.sh:113
 msgid "The lid is closed."
 msgstr "Der Deckel ist zu."
 
-#: src/lib/daemon.sh:113
+#: src/lib/daemon.sh:114
 msgid "The camera is busy with another scan."
 msgstr "Die Kamera ist gerade mit einem anderen Scan beschäftigt."
 
-#: src/lib/daemon.sh:114
+#: src/lib/daemon.sh:115
 msgid "The face unlock service is not running."
 msgstr "Der Dienst für die Gesichtsentsperrung läuft nicht."
 
-#: src/lib/daemon.sh:116
+#: src/lib/daemon.sh:117
 msgid "Not allowed."
 msgstr "Nicht erlaubt."
 
-#: src/lib/daemon.sh:120
+#: src/lib/daemon.sh:121
 msgid "No password window? Start a polkit agent, for example hyprpolkitagent."
 msgstr ""
 "Kein Passwortfenster? Starte einen polkit-Agenten, zum Beispiel "
 "hyprpolkitagent."
 
-#: src/lib/daemon.sh:123
+#: src/lib/daemon.sh:124
 #, sh-printf-format
 msgid "Something went wrong (%s)."
 msgstr "Etwas ist schiefgelaufen (%s)."
 
-#: src/lib/daemon.sh:134
+#: src/lib/daemon.sh:135
 msgid "Look at the camera. Blink once, or turn your head a little."
 msgstr "Schau in die Kamera. Blinzle einmal oder dreh den Kopf ein wenig."
 
-#: src/lib/daemon.sh:144
+#: src/lib/daemon.sh:145
 msgid "Face found."
 msgstr "Gesicht gefunden."
 
-#: src/lib/daemon.sh:148
+#: src/lib/daemon.sh:149
 msgid "Recognised. Now blink once, or turn your head a little."
 msgstr "Erkannt. Jetzt einmal blinzeln oder den Kopf ein wenig drehen."
 
-#: src/lib/daemon.sh:149
+#: src/lib/daemon.sh:150
 msgid "Look at the screen."
 msgstr "Schau auf den Bildschirm."
 
-#: src/lib/daemon.sh:150
+#: src/lib/daemon.sh:151
 msgid "Move closer to the camera."
 msgstr "Geh näher an die Kamera."
 
-#: src/lib/daemon.sh:151
+#: src/lib/daemon.sh:152
 msgid "It is too dark to see your face."
 msgstr "Es ist zu dunkel, um dein Gesicht zu sehen."
 
-#: src/lib/daemon.sh:160
+#: src/lib/daemon.sh:161
 msgid "match"
 msgstr "Treffer"
 
-#: src/lib/daemon.sh:160
+#: src/lib/daemon.sh:161
 msgid "turn"
 msgstr "Drehung"
 
-#: src/lib/daemon.sh:161
+#: src/lib/daemon.sh:162
 msgid "eyes"
 msgstr "Augen"
 
-#: src/lib/daemon.sh:162
+#: src/lib/daemon.sh:163
 msgid "depth"
 msgstr "Tiefe"
 
-#: src/lib/daemon.sh:162 src/lib/daemon.sh:171
+#: src/lib/daemon.sh:163 src/lib/daemon.sh:172
 msgid "blink"
 msgstr "Blinzeln"
 
-#: src/lib/daemon.sh:163
+#: src/lib/daemon.sh:164
 msgid "glare"
 msgstr "Spiegelung"
 
-#: src/lib/daemon.sh:163
+#: src/lib/daemon.sh:164
 msgid "edge"
 msgstr "Rand"
 
-#: src/lib/daemon.sh:172
+#: src/lib/daemon.sh:173
 msgid "head turn"
 msgstr "Kopfdrehung"
 
-#: src/lib/daemon.sh:174
+#: src/lib/daemon.sh:175
 #, sh-printf-format
 msgid "Recognised as %s (match %s) in %s ms."
 msgstr "Erkannt als %s (Treffer %s) in %s ms."
 
-#: src/lib/daemon.sh:175
+#: src/lib/daemon.sh:176
 #, sh-printf-format
 msgid "Sign of life: %s"
 msgstr "Lebenszeichen: %s"
 
-#: src/lib/daemon.sh:180
+#: src/lib/daemon.sh:181
 msgid ""
 "That was too many tries. Face unlock is paused until you unlock with your "
 "password."
@@ -452,7 +456,9 @@ msgstr "deiner"
 msgid ""
 "No polkit agent is running, so no password window can open. Adding a face "
 "and the admin prompts need one."
-msgstr "Kein polkit-Agent läuft, darum kann sich kein Passwortfenster öffnen. Gesicht hinzufügen und Admin-Abfragen brauchen einen."
+msgstr ""
+"Kein polkit-Agent läuft, darum kann sich kein Passwortfenster öffnen. "
+"Gesicht hinzufügen und Admin-Abfragen brauchen einen."
 
 #: src/lib/menu.sh:226
 msgid "Face unlock"
@@ -470,8 +476,8 @@ msgstr "läuft nicht"
 msgid "Turning face unlock on again starts it."
 msgstr "Die Gesichtsentsperrung erneut einzuschalten startet ihn."
 
-#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:691
-#: src/lib/menu.sh:780
+#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:697
+#: src/lib/menu.sh:788
 msgid "Faces"
 msgstr "Gesichter"
 
@@ -742,7 +748,7 @@ msgstr "Bild oder Ordner:"
 msgid "Not found: %s"
 msgstr "Nicht gefunden: %s"
 
-#: src/lib/menu.sh:590 src/lib/menu.sh:781
+#: src/lib/menu.sh:590 src/lib/menu.sh:789
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -755,38 +761,38 @@ msgid "for all users, asks for your password"
 msgstr "für alle Nutzer, fragt nach deinem Passwort"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:693
+#: src/lib/menu.sh:699
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 "Hoch/Runter: wählen, Leertaste: an/aus, r: umbenennen, d: löschen, a: "
 "hinzufügen, q: zurück"
 
-#: src/lib/menu.sh:694
+#: src/lib/menu.sh:700
 msgid "No face is set up yet. Press a to add one."
 msgstr "Es ist noch kein Gesicht eingerichtet. Drück a, um eins hinzuzufügen."
 
-#: src/lib/menu.sh:740
+#: src/lib/menu.sh:748
 msgid "New name:"
 msgstr "Neuer Name:"
 
-#: src/lib/menu.sh:747
+#: src/lib/menu.sh:755
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "„%s“ löschen?"
 
-#: src/lib/menu.sh:778
+#: src/lib/menu.sh:786
 msgid "Turn face unlock on or off"
 msgstr "Gesichtsentsperrung ein- oder ausschalten"
 
-#: src/lib/menu.sh:782
+#: src/lib/menu.sh:790
 msgid "Try it"
 msgstr "Ausprobieren"
 
-#: src/lib/menu.sh:784
+#: src/lib/menu.sh:792
 msgid "Install a polkit agent"
 msgstr "polkit-Agent installieren"
 
-#: src/lib/menu.sh:786
+#: src/lib/menu.sh:794
 msgid "Quit"
 msgstr "Beenden"
 
@@ -838,7 +844,8 @@ msgstr ""
 #: src/lib/system.sh:156
 #, sh-printf-format
 msgid "Hyprland does not start the polkit agent by itself. Add this to %s:"
-msgstr "Hyprland startet den polkit-Agenten nicht von selbst. Füge das in %s ein:"
+msgstr ""
+"Hyprland startet den polkit-Agenten nicht von selbst. Füge das in %s ein:"
 
 #: src/lib/system.sh:214
 msgid "No package manager found to install a polkit agent with."
@@ -855,47 +862,48 @@ msgstr "Der polkit-Agent konnte nicht installiert werden."
 #: src/lib/system.sh:257
 #, sh-printf-format
 msgid "The polkit agent did not start. See: systemctl --user status %s"
-msgstr "Der polkit-Agent ist nicht gestartet. Siehe: systemctl --user status %s"
+msgstr ""
+"Der polkit-Agent ist nicht gestartet. Siehe: systemctl --user status %s"
 
 #: src/lib/system.sh:261
 msgid "The polkit agent is running. Password windows open now."
 msgstr "Der polkit-Agent läuft. Passwortfenster öffnen sich jetzt."
 
-#: src/lib/system.sh:376 src/lib/system.sh:379
+#: src/lib/system.sh:386 src/lib/system.sh:389
 #, sh-printf-format
 msgid "To lock with it, add this to %s, and set %s in %s:"
 msgstr "Um damit zu sperren, trag das in %s ein und setze %s in %s:"
 
-#: src/lib/system.sh:384
+#: src/lib/system.sh:394
 #, sh-printf-format
 msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
 msgstr ""
 "Um damit zu sperren, trag das bei den binds in %s ein und nutze %s in "
 "swayidle:"
 
-#: src/lib/system.sh:388
+#: src/lib/system.sh:398
 #, sh-printf-format
 msgid "To lock with it, run %s where your lock screen is started now."
 msgstr ""
 "Um damit zu sperren, starte %s dort, wo jetzt dein Sperrbildschirm startet."
 
-#: src/lib/system.sh:401
+#: src/lib/system.sh:411
 msgid "You lock with face-unlock's lock screen now."
 msgstr "Du sperrst jetzt mit dem Sperrbildschirm von face-unlock."
 
-#: src/lib/system.sh:408
+#: src/lib/system.sh:418
 msgid ""
 "hyprlock shows what face unlock is doing at the top, from the next time it "
 "locks."
 msgstr ""
 "hyprlock zeigt oben, was face unlock gerade tut, ab dem nächsten Sperren."
 
-#: src/lib/system.sh:409
+#: src/lib/system.sh:419
 #, sh-printf-format
 msgid "Could not add the line to %s."
 msgstr "Konnte die Zeile nicht in %s eintragen."
 
-#: src/lib/system.sh:410
+#: src/lib/system.sh:420
 msgid ""
 "Your lock screen stays as it is. Press Enter on the empty password field to "
 "scan."
@@ -903,7 +911,7 @@ msgstr ""
 "Dein Sperrbildschirm bleibt, wie er ist. Drück Enter im leeren Passwortfeld, "
 "um zu scannen."
 
-#: src/lib/system.sh:411
+#: src/lib/system.sh:421
 #, sh-printf-format
 msgid "hyprlock has no %s, so it cannot show the text."
 msgstr "hyprlock hat keine %s, also kann es den Text nicht zeigen."
@@ -1000,19 +1008,23 @@ msgstr "Näher kommen"
 msgid "Too dark"
 msgstr "Zu dunkel"
 
-#: src/agent/bubblecontroller.cpp:124
+#: src/agent/bubblecontroller.cpp:127
+msgid "Camera in use"
+msgstr "Kamera belegt"
+
+#: src/agent/bubblecontroller.cpp:136
 msgid "Use your password"
 msgstr "Nutze dein Passwort"
 
-#: src/agent/bubblecontroller.cpp:130
+#: src/agent/bubblecontroller.cpp:142
 msgid "Not recognized"
 msgstr "Nicht erkannt"
 
-#: src/agent/bubblecontroller.cpp:132
+#: src/agent/bubblecontroller.cpp:144
 msgid "Try again and blink"
 msgstr "Nochmal, und blinzeln"
 
-#: src/agent/bubblecontroller.cpp:134
+#: src/agent/bubblecontroller.cpp:146
 msgid "Camera unavailable"
 msgstr "Kamera nicht verfügbar"
 
@@ -1106,31 +1118,31 @@ msgstr "Falsches Passwort"
 msgid "Face recognized"
 msgstr "Gesicht erkannt"
 
-#: src/agent/main.cpp:244
+#: src/agent/main.cpp:250
 msgid "Face unlock for the lock screen, sudo and admin prompts"
 msgstr "Gesichtsentsperrung für Sperrbildschirm, sudo und Admin-Abfragen"
 
-#: src/agent/main.cpp:247
+#: src/agent/main.cpp:253
 msgid "Set up a face."
 msgstr "Ein Gesicht einrichten."
 
-#: src/agent/main.cpp:248
+#: src/agent/main.cpp:254
 msgid "What to call the new face."
 msgstr "Wie das neue Gesicht heißen soll."
 
-#: src/agent/main.cpp:249
+#: src/agent/main.cpp:255
 msgid "Lock the screen."
 msgstr "Den Bildschirm sperren."
 
-#: src/agent/main.cpp:250
+#: src/agent/main.cpp:256
 msgid "Play the bubble's animations once."
 msgstr "Die Animationen der Bubble einmal abspielen."
 
-#: src/agent/main.cpp:252
+#: src/agent/main.cpp:258
 msgid "Bubble style for the demo: full or minimal."
 msgstr "Bubble-Stil für die Demo: full oder minimal."
 
-#: src/agent/main.cpp:253
+#: src/agent/main.cpp:259
 msgid "Ask which lock screen to use, and print the answer."
 msgstr "Fragt, welcher Sperrbildschirm genutzt wird, und gibt die Antwort aus."
 
@@ -1275,3 +1287,26 @@ msgstr "Schau in die Kamera oder tippe dein Passwort"
 #: src/agent/qml/LockScreen.qml:195
 msgid "Type your password"
 msgstr "Tippe dein Passwort"
+
+#~ msgid ""
+#~ "sudo in an SSH session takes your face too, if you sit at this computer. "
+#~ "Off by default: the person at the camera may not be the one typing."
+#~ msgstr ""
+#~ "sudo in einer SSH-Sitzung nimmt auch dein Gesicht, wenn du an diesem "
+#~ "Computer sitzt. Normalerweise aus: Wer vor der Kamera sitzt, muss nicht "
+#~ "der sein, der tippt."
+
+#~ msgid ""
+#~ "When another app uses the camera, for example in a video call, no bubble "
+#~ "shows and you type your password as usual. Off: the bubble shows a camera "
+#~ "with a line through it."
+#~ msgstr ""
+#~ "Benutzt eine andere App die Kamera, zum Beispiel in einem Videoanruf, "
+#~ "kommt keine Bubble und du tippst wie gewohnt dein Passwort. Aus: Die "
+#~ "Bubble zeigt eine durchgestrichene Kamera."
+
+#~ msgid "In SSH sessions"
+#~ msgstr "In SSH-Sitzungen"
+
+#~ msgid "Quiet while the camera is in use"
+#~ msgstr "Keine Bubble bei belegter Kamera"

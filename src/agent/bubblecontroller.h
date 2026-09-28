@@ -17,7 +17,8 @@ class UserConfig;
 class BubbleController : public QObject
 {
     Q_OBJECT
-    // hidden, scanning, success, failure, lockout
+    // hidden, scanning, success, failure, lockout, busy (another program has
+    // the camera)
     Q_PROPERTY(QString phase READ phase NOTIFY phaseChanged)
     // A short line under the face in the full style: a hint while
     // scanning, the reason after a failure.

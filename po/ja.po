@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-26 20:28+0200\n"
+"POT-Creation-Date: 2026-09-28 14:32+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Japanese\n"
@@ -57,9 +57,9 @@ msgstr "顔は追加されませんでした。"
 msgid "First, set up your face."
 msgstr "まず顔を登録してください。"
 
-#: src/face-unlock:100 src/face-unlock:145 src/lib/menu.sh:527
+#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:527
 #: src/lib/menu.sh:531 src/lib/menu.sh:537 src/lib/menu.sh:539
-#: src/lib/system.sh:399 src/lib/system.sh:405
+#: src/lib/system.sh:409 src/lib/system.sh:415
 msgid "Could not save the setting."
 msgstr "設定を保存できませんでした。"
 
@@ -82,15 +82,15 @@ msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr ""
 "一度ログアウトしてログインし直してください。GNOME でもバブルが表示されます。"
 
-#: src/face-unlock:131
+#: src/face-unlock:135
 msgid "Pick your lock screen in the window."
 msgstr "ウィンドウでロック画面を選んでください。"
 
-#: src/face-unlock:132
+#: src/face-unlock:136
 msgid "No lock screen picked. You can do it later under Settings."
 msgstr "ロック画面が選ばれていません。あとで設定から選べます。"
 
-#: src/face-unlock:135
+#: src/face-unlock:140
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -99,98 +99,98 @@ msgstr ""
 "ロック画面（%s）でも顔が使えます。戻ってきたときにスキャンしない場合は、空の"
 "パスワード欄で Enter を押してください。"
 
-#: src/face-unlock:138
+#: src/face-unlock:143
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr "顔認証はオンです。画面をロックして、画面を見て試してください。"
 
-#: src/face-unlock:140
+#: src/face-unlock:145
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "sudo や管理者の認証にも使えます。「設定」を参照してください。"
 
-#: src/face-unlock:156
+#: src/face-unlock:161
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr "顔認証はオフです。顔データは残っています。「顔」から削除できます。"
 
-#: src/face-unlock:170 src/lib/daemon.sh:109
+#: src/face-unlock:175 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "まだ顔が登録されていません。"
 
-#: src/face-unlock:174 src/lib/menu.sh:180 src/lib/menu.sh:695
+#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:701
 msgid "on"
 msgstr "オン"
 
-#: src/face-unlock:174 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:696
+#: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/lib/menu.sh:702
 msgid "off"
 msgstr "オフ"
 
-#: src/face-unlock:176 src/lib/menu.sh:713
+#: src/face-unlock:181 src/lib/menu.sh:719
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "サンプル %s 件、学習 %s 件"
 
-#: src/face-unlock:182
+#: src/face-unlock:187
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "どの顔ですか？ ID は `%s faces` で確認できます。"
 
-#: src/face-unlock:186
+#: src/face-unlock:191
 msgid "Deleted."
 msgstr "削除しました。"
 
-#: src/face-unlock:197
+#: src/face-unlock:202
 msgid "Usage: face-unlock [command]"
 msgstr "使い方: face-unlock [コマンド]"
 
-#: src/face-unlock:199
+#: src/face-unlock:204
 msgid "Commands:"
 msgstr "コマンド:"
 
-#: src/face-unlock:200
+#: src/face-unlock:205
 msgid "Turn face unlock on"
 msgstr "顔認証をオンにする"
 
-#: src/face-unlock:201
+#: src/face-unlock:206
 msgid "Turn it off (faces are kept)"
 msgstr "オフにする（顔データは残ります）"
 
-#: src/face-unlock:202 src/lib/menu.sh:779
+#: src/face-unlock:207 src/lib/menu.sh:787
 msgid "Add a face"
 msgstr "顔を追加"
 
-#: src/face-unlock:203
+#: src/face-unlock:208
 msgid "List the faces"
 msgstr "顔の一覧"
 
-#: src/face-unlock:204
+#: src/face-unlock:209
 msgid "Delete a face"
 msgstr "顔を削除"
 
-#: src/face-unlock:205
+#: src/face-unlock:210
 msgid "Look at the camera and see what it sees"
 msgstr "カメラを見て、カメラに映るものを確認する"
 
-#: src/face-unlock:206
+#: src/face-unlock:211
 msgid "Lock the screen"
 msgstr "画面をロック"
 
-#: src/face-unlock:207
+#: src/face-unlock:212
 msgid "Show what is on"
 msgstr "オンになっている機能を表示"
 
-#: src/face-unlock:208
+#: src/face-unlock:213
 msgid "Show this help"
 msgstr "このヘルプを表示"
 
-#: src/face-unlock:209
+#: src/face-unlock:214
 msgid "Show the version"
 msgstr "バージョンを表示"
 
-#: src/face-unlock:211
+#: src/face-unlock:216
 msgid "Without a command an interactive menu is shown."
 msgstr "コマンドなしで起動すると、対話式メニューが表示されます。"
 
-#: src/face-unlock:230
+#: src/face-unlock:235
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -198,7 +198,7 @@ msgstr ""
 "root ではなく、自分のユーザーで実行してください。必要なときはパスワードを尋ね"
 "ます。"
 
-#: src/face-unlock:253 src/lib/system.sh:105
+#: src/face-unlock:258 src/lib/system.sh:105
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "不明なコマンド: %s"
@@ -273,104 +273,108 @@ msgstr ""
 msgid "The camera could not be used."
 msgstr "カメラを使用できませんでした。"
 
-#: src/lib/daemon.sh:111 src/lib/menu.sh:273
+#: src/lib/daemon.sh:111
+msgid "Another app is using the camera."
+msgstr "別のアプリがカメラを使用しています。"
+
+#: src/lib/daemon.sh:112 src/lib/menu.sh:273
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "認識モデルがありません。パッケージを再インストールしてください。"
 
-#: src/lib/daemon.sh:112
+#: src/lib/daemon.sh:113
 msgid "The lid is closed."
 msgstr "ノートパソコンの蓋が閉じています。"
 
-#: src/lib/daemon.sh:113
+#: src/lib/daemon.sh:114
 msgid "The camera is busy with another scan."
 msgstr "カメラは別のスキャン中です。"
 
-#: src/lib/daemon.sh:114
+#: src/lib/daemon.sh:115
 msgid "The face unlock service is not running."
 msgstr "顔認証サービスが動作していません。"
 
-#: src/lib/daemon.sh:116
+#: src/lib/daemon.sh:117
 msgid "Not allowed."
 msgstr "許可されていません。"
 
-#: src/lib/daemon.sh:120
+#: src/lib/daemon.sh:121
 msgid "No password window? Start a polkit agent, for example hyprpolkitagent."
 msgstr ""
 "パスワードの画面が出ませんか？ polkit エージェント（例: hyprpolkitagent）を起"
 "動してください。"
 
-#: src/lib/daemon.sh:123
+#: src/lib/daemon.sh:124
 #, sh-printf-format
 msgid "Something went wrong (%s)."
 msgstr "問題が発生しました（%s）。"
 
-#: src/lib/daemon.sh:134
+#: src/lib/daemon.sh:135
 msgid "Look at the camera. Blink once, or turn your head a little."
 msgstr "カメラを見てください。一度まばたきするか、少し顔を動かしてください。"
 
-#: src/lib/daemon.sh:144
+#: src/lib/daemon.sh:145
 msgid "Face found."
 msgstr "顔が見つかりました。"
 
-#: src/lib/daemon.sh:148
+#: src/lib/daemon.sh:149
 msgid "Recognised. Now blink once, or turn your head a little."
 msgstr "認識しました。一度まばたきするか、少し顔を動かしてください。"
 
-#: src/lib/daemon.sh:149
+#: src/lib/daemon.sh:150
 msgid "Look at the screen."
 msgstr "画面を見てください。"
 
-#: src/lib/daemon.sh:150
+#: src/lib/daemon.sh:151
 msgid "Move closer to the camera."
 msgstr "カメラに近づいてください。"
 
-#: src/lib/daemon.sh:151
+#: src/lib/daemon.sh:152
 msgid "It is too dark to see your face."
 msgstr "暗すぎて顔が見えません。"
 
-#: src/lib/daemon.sh:160
+#: src/lib/daemon.sh:161
 msgid "match"
 msgstr "一致度"
 
-#: src/lib/daemon.sh:160
+#: src/lib/daemon.sh:161
 msgid "turn"
 msgstr "回転"
 
-#: src/lib/daemon.sh:161
+#: src/lib/daemon.sh:162
 msgid "eyes"
 msgstr "目"
 
-#: src/lib/daemon.sh:162
+#: src/lib/daemon.sh:163
 msgid "depth"
 msgstr "奥行き"
 
-#: src/lib/daemon.sh:162 src/lib/daemon.sh:171
+#: src/lib/daemon.sh:163 src/lib/daemon.sh:172
 msgid "blink"
 msgstr "まばたき"
 
-#: src/lib/daemon.sh:163
+#: src/lib/daemon.sh:164
 msgid "glare"
 msgstr "反射"
 
-#: src/lib/daemon.sh:163
+#: src/lib/daemon.sh:164
 msgid "edge"
 msgstr "縁"
 
-#: src/lib/daemon.sh:172
+#: src/lib/daemon.sh:173
 msgid "head turn"
 msgstr "顔の向き"
 
-#: src/lib/daemon.sh:174
+#: src/lib/daemon.sh:175
 #, sh-printf-format
 msgid "Recognised as %s (match %s) in %s ms."
 msgstr "%s として認識しました（一致度 %s、%s ミリ秒）。"
 
-#: src/lib/daemon.sh:175
+#: src/lib/daemon.sh:176
 #, sh-printf-format
 msgid "Sign of life: %s"
 msgstr "生体反応: %s"
 
-#: src/lib/daemon.sh:180
+#: src/lib/daemon.sh:181
 msgid ""
 "That was too many tries. Face unlock is paused until you unlock with your "
 "password."
@@ -444,7 +448,9 @@ msgstr "今のもの"
 msgid ""
 "No polkit agent is running, so no password window can open. Adding a face "
 "and the admin prompts need one."
-msgstr "polkit エージェントが動いていないため、パスワードの画面を開けません。顔の追加と管理者の認証にはエージェントが必要です。"
+msgstr ""
+"polkit エージェントが動いていないため、パスワードの画面を開けません。顔の追加"
+"と管理者の認証にはエージェントが必要です。"
 
 #: src/lib/menu.sh:226
 msgid "Face unlock"
@@ -462,8 +468,8 @@ msgstr "停止中"
 msgid "Turning face unlock on again starts it."
 msgstr "顔認証をもう一度オンにすると起動します。"
 
-#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:691
-#: src/lib/menu.sh:780
+#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:697
+#: src/lib/menu.sh:788
 msgid "Faces"
 msgstr "顔"
 
@@ -728,7 +734,7 @@ msgstr "画像またはフォルダー:"
 msgid "Not found: %s"
 msgstr "見つかりません: %s"
 
-#: src/lib/menu.sh:590 src/lib/menu.sh:781
+#: src/lib/menu.sh:590 src/lib/menu.sh:789
 msgid "Settings"
 msgstr "設定"
 
@@ -741,37 +747,37 @@ msgid "for all users, asks for your password"
 msgstr "全ユーザー共通、パスワードが必要"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:693
+#: src/lib/menu.sh:699
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 "上/下: 選択、スペース: オン/オフ、r: 名前を変更、d: 削除、a: 追加、q: 戻る"
 
-#: src/lib/menu.sh:694
+#: src/lib/menu.sh:700
 msgid "No face is set up yet. Press a to add one."
 msgstr "まだ顔が登録されていません。a を押して追加してください。"
 
-#: src/lib/menu.sh:740
+#: src/lib/menu.sh:748
 msgid "New name:"
 msgstr "新しい名前:"
 
-#: src/lib/menu.sh:747
+#: src/lib/menu.sh:755
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "「%s」を削除しますか？"
 
-#: src/lib/menu.sh:778
+#: src/lib/menu.sh:786
 msgid "Turn face unlock on or off"
 msgstr "顔認証のオン/オフ"
 
-#: src/lib/menu.sh:782
+#: src/lib/menu.sh:790
 msgid "Try it"
 msgstr "試す"
 
-#: src/lib/menu.sh:784
+#: src/lib/menu.sh:792
 msgid "Install a polkit agent"
 msgstr "polkit エージェントをインストール"
 
-#: src/lib/menu.sh:786
+#: src/lib/menu.sh:794
 msgid "Quit"
 msgstr "終了"
 
@@ -821,11 +827,15 @@ msgstr ""
 #: src/lib/system.sh:156
 #, sh-printf-format
 msgid "Hyprland does not start the polkit agent by itself. Add this to %s:"
-msgstr "Hyprland は polkit エージェントを自動では起動しません。%s に次を追加してください:"
+msgstr ""
+"Hyprland は polkit エージェントを自動では起動しません。%s に次を追加してくだ"
+"さい:"
 
 #: src/lib/system.sh:214
 msgid "No package manager found to install a polkit agent with."
-msgstr "polkit エージェントをインストールするためのパッケージマネージャーが見つかりません。"
+msgstr ""
+"polkit エージェントをインストールするためのパッケージマネージャーが見つかりま"
+"せん。"
 
 #: src/lib/system.sh:238
 msgid "Installing a polkit agent. That needs your password."
@@ -838,54 +848,55 @@ msgstr "polkit エージェントをインストールできませんでした�
 #: src/lib/system.sh:257
 #, sh-printf-format
 msgid "The polkit agent did not start. See: systemctl --user status %s"
-msgstr "polkit エージェントが起動しませんでした。確認: systemctl --user status %s"
+msgstr ""
+"polkit エージェントが起動しませんでした。確認: systemctl --user status %s"
 
 #: src/lib/system.sh:261
 msgid "The polkit agent is running. Password windows open now."
 msgstr "polkit エージェントが動いています。これでパスワードの画面が開きます。"
 
-#: src/lib/system.sh:376 src/lib/system.sh:379
+#: src/lib/system.sh:386 src/lib/system.sh:389
 #, sh-printf-format
 msgid "To lock with it, add this to %s, and set %s in %s:"
 msgstr "これでロックするには、%s にこれを追加し、%s を %s に書いてください:"
 
-#: src/lib/system.sh:384
+#: src/lib/system.sh:394
 #, sh-printf-format
 msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
 msgstr ""
 "これでロックするには、%s の binds にこれを追加し、swayidle で %s を使ってくだ"
 "さい:"
 
-#: src/lib/system.sh:388
+#: src/lib/system.sh:398
 #, sh-printf-format
 msgid "To lock with it, run %s where your lock screen is started now."
 msgstr ""
 "これでロックするには、今ロック画面を起動している場所で %s を実行してくださ"
 "い。"
 
-#: src/lib/system.sh:401
+#: src/lib/system.sh:411
 msgid "You lock with face-unlock's lock screen now."
 msgstr "これから face-unlock のロック画面でロックします。"
 
-#: src/lib/system.sh:408
+#: src/lib/system.sh:418
 msgid ""
 "hyprlock shows what face unlock is doing at the top, from the next time it "
 "locks."
 msgstr "次回のロックから、hyprlock が上部に face unlock の状態を表示します。"
 
-#: src/lib/system.sh:409
+#: src/lib/system.sh:419
 #, sh-printf-format
 msgid "Could not add the line to %s."
 msgstr "%s に行を追加できませんでした。"
 
-#: src/lib/system.sh:410
+#: src/lib/system.sh:420
 msgid ""
 "Your lock screen stays as it is. Press Enter on the empty password field to "
 "scan."
 msgstr ""
 "ロック画面はそのままです。空のパスワード欄で Enter を押すとスキャンします。"
 
-#: src/lib/system.sh:411
+#: src/lib/system.sh:421
 #, sh-printf-format
 msgid "hyprlock has no %s, so it cannot show the text."
 msgstr "hyprlock に %s がないため、テキストを表示できません。"
@@ -982,19 +993,23 @@ msgstr "近づいてください"
 msgid "Too dark"
 msgstr "暗すぎます"
 
-#: src/agent/bubblecontroller.cpp:124
+#: src/agent/bubblecontroller.cpp:127
+msgid "Camera in use"
+msgstr "カメラ使用中"
+
+#: src/agent/bubblecontroller.cpp:136
 msgid "Use your password"
 msgstr "パスワードを使用"
 
-#: src/agent/bubblecontroller.cpp:130
+#: src/agent/bubblecontroller.cpp:142
 msgid "Not recognized"
 msgstr "認識できません"
 
-#: src/agent/bubblecontroller.cpp:132
+#: src/agent/bubblecontroller.cpp:144
 msgid "Try again and blink"
 msgstr "まばたきしてもう一度"
 
-#: src/agent/bubblecontroller.cpp:134
+#: src/agent/bubblecontroller.cpp:146
 msgid "Camera unavailable"
 msgstr "カメラを使用できません"
 
@@ -1083,31 +1098,31 @@ msgstr "パスワードが違います"
 msgid "Face recognized"
 msgstr "顔を認識しました"
 
-#: src/agent/main.cpp:244
+#: src/agent/main.cpp:250
 msgid "Face unlock for the lock screen, sudo and admin prompts"
 msgstr "ロック画面、sudo、管理者の認証のための顔認証"
 
-#: src/agent/main.cpp:247
+#: src/agent/main.cpp:253
 msgid "Set up a face."
 msgstr "顔を登録します。"
 
-#: src/agent/main.cpp:248
+#: src/agent/main.cpp:254
 msgid "What to call the new face."
 msgstr "新しい顔の名前。"
 
-#: src/agent/main.cpp:249
+#: src/agent/main.cpp:255
 msgid "Lock the screen."
 msgstr "画面をロックします。"
 
-#: src/agent/main.cpp:250
+#: src/agent/main.cpp:256
 msgid "Play the bubble's animations once."
 msgstr "バブルのアニメーションを一度再生します。"
 
-#: src/agent/main.cpp:252
+#: src/agent/main.cpp:258
 msgid "Bubble style for the demo: full or minimal."
 msgstr "デモのバブルスタイル: full または minimal。"
 
-#: src/agent/main.cpp:253
+#: src/agent/main.cpp:259
 msgid "Ask which lock screen to use, and print the answer."
 msgstr "使うロック画面を尋ね、答えを出力します。"
 
@@ -1252,3 +1267,25 @@ msgstr "カメラを見るか、パスワードを入力してください"
 #: src/agent/qml/LockScreen.qml:195
 msgid "Type your password"
 msgstr "パスワードを入力してください"
+
+#~ msgid ""
+#~ "sudo in an SSH session takes your face too, if you sit at this computer. "
+#~ "Off by default: the person at the camera may not be the one typing."
+#~ msgstr ""
+#~ "このコンピューターの前にいれば、SSH セッションの sudo でも顔を使います。既"
+#~ "定はオフ: カメラの前の人が入力している人とは限らないためです。"
+
+#~ msgid ""
+#~ "When another app uses the camera, for example in a video call, no bubble "
+#~ "shows and you type your password as usual. Off: the bubble shows a camera "
+#~ "with a line through it."
+#~ msgstr ""
+#~ "ビデオ通話などで別のアプリがカメラを使っているときは、バブルを表示せず、い"
+#~ "つも通りパスワードを入力します。オフ: バブルに斜線の入ったカメラを表示しま"
+#~ "す。"
+
+#~ msgid "In SSH sessions"
+#~ msgstr "SSH セッションでも"
+
+#~ msgid "Quiet while the camera is in use"
+#~ msgstr "カメラ使用中は表示しない"

@@ -214,7 +214,7 @@ int lockThroughLogind()
 }
 
 // The whole life of a bubble, twice: a face that is recognised after a blink,
-// then one that is not.
+// then one that is not. Last, a camera another program has.
 void scheduleDemo(BubbleController *bubble)
 {
     const QList<std::pair<int, std::function<void()>>> steps = {
@@ -225,7 +225,8 @@ void scheduleDemo(BubbleController *bubble)
         {5600, [bubble] { bubble->scanStarted(); }},
         {6200, [bubble] { bubble->faceFound(); }},
         {7800, [bubble] { bubble->failed(QStringLiteral("mismatch")); }},
-        {11000, [] { QCoreApplication::quit(); }},
+        {11000, [bubble] { bubble->failed(QStringLiteral("camera-busy")); }},
+        {14000, [] { QCoreApplication::quit(); }},
     };
     for (const auto &[at, what] : steps) {
         QTimer::singleShot(at, bubble, what);

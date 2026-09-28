@@ -318,6 +318,10 @@ easier. A face set up with one camera should be set up again for another.
 
 A laptop with its lid shut is not scanned (*Not when the lid is closed*).
 
+A camera that another app uses, in a video call for example, is not scanned
+either. The password is asked for at once, and the bubble shows a camera with
+a line through it.
+
 # FILES
 
 _~/.config/face-unlock/config_

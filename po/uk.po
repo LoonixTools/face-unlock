@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-26 20:28+0200\n"
+"POT-Creation-Date: 2026-09-28 14:32+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Ukrainian\n"
@@ -59,9 +59,9 @@ msgstr "Обличчя не додано."
 msgid "First, set up your face."
 msgstr "Спершу налаштуйте своє обличчя."
 
-#: src/face-unlock:100 src/face-unlock:145 src/lib/menu.sh:527
+#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:527
 #: src/lib/menu.sh:531 src/lib/menu.sh:537 src/lib/menu.sh:539
-#: src/lib/system.sh:399 src/lib/system.sh:405
+#: src/lib/system.sh:409 src/lib/system.sh:415
 msgid "Could not save the setting."
 msgstr "Не вдалося зберегти налаштування."
 
@@ -83,15 +83,15 @@ msgstr "Не вдалося увімкнути розширення GNOME, як�
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr "Вийдіть і увійдіть знову один раз: тоді GNOME теж покаже бульбашку."
 
-#: src/face-unlock:131
+#: src/face-unlock:135
 msgid "Pick your lock screen in the window."
 msgstr "Виберіть екран блокування у вікні."
 
-#: src/face-unlock:132
+#: src/face-unlock:136
 msgid "No lock screen picked. You can do it later under Settings."
 msgstr "Екран блокування не вибрано. Це можна зробити пізніше в Налаштуваннях."
 
-#: src/face-unlock:135
+#: src/face-unlock:140
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -100,103 +100,103 @@ msgstr ""
 "Екран блокування (%s) теж приймає ваше обличчя. Якщо він не сканує, коли ви "
 "повертаєтеся, натисніть Enter у порожньому полі пароля."
 
-#: src/face-unlock:138
+#: src/face-unlock:143
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr ""
 "Розблокування обличчям увімкнено. Заблокуйте екран і подивіться на нього, "
 "щоб спробувати."
 
-#: src/face-unlock:140
+#: src/face-unlock:145
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr ""
 "Воно працює і для sudo, і для запитів адміністратора. Див. Налаштування."
 
-#: src/face-unlock:156
+#: src/face-unlock:161
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "Розблокування обличчям вимкнено. Ваші обличчя збережено; видалити їх можна в "
 "розділі Обличчя."
 
-#: src/face-unlock:170 src/lib/daemon.sh:109
+#: src/face-unlock:175 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Ще не налаштовано жодного обличчя."
 
-#: src/face-unlock:174 src/lib/menu.sh:180 src/lib/menu.sh:695
+#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:701
 msgid "on"
 msgstr "увімк."
 
-#: src/face-unlock:174 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:696
+#: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/lib/menu.sh:702
 msgid "off"
 msgstr "вимк."
 
-#: src/face-unlock:176 src/lib/menu.sh:713
+#: src/face-unlock:181 src/lib/menu.sh:719
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "зразків: %s, вивчено: %s"
 
-#: src/face-unlock:182
+#: src/face-unlock:187
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "Яке обличчя? Номери показує `%s faces`."
 
-#: src/face-unlock:186
+#: src/face-unlock:191
 msgid "Deleted."
 msgstr "Видалено."
 
-#: src/face-unlock:197
+#: src/face-unlock:202
 msgid "Usage: face-unlock [command]"
 msgstr "Використання: face-unlock [команда]"
 
-#: src/face-unlock:199
+#: src/face-unlock:204
 msgid "Commands:"
 msgstr "Команди:"
 
-#: src/face-unlock:200
+#: src/face-unlock:205
 msgid "Turn face unlock on"
 msgstr "Увімкнути розблокування обличчям"
 
-#: src/face-unlock:201
+#: src/face-unlock:206
 msgid "Turn it off (faces are kept)"
 msgstr "Вимкнути його (обличчя зберігаються)"
 
-#: src/face-unlock:202 src/lib/menu.sh:779
+#: src/face-unlock:207 src/lib/menu.sh:787
 msgid "Add a face"
 msgstr "Додати обличчя"
 
-#: src/face-unlock:203
+#: src/face-unlock:208
 msgid "List the faces"
 msgstr "Показати список облич"
 
-#: src/face-unlock:204
+#: src/face-unlock:209
 msgid "Delete a face"
 msgstr "Видалити обличчя"
 
-#: src/face-unlock:205
+#: src/face-unlock:210
 msgid "Look at the camera and see what it sees"
 msgstr "Подивитися в камеру і побачити, що вона бачить"
 
-#: src/face-unlock:206
+#: src/face-unlock:211
 msgid "Lock the screen"
 msgstr "Заблокувати екран"
 
-#: src/face-unlock:207
+#: src/face-unlock:212
 msgid "Show what is on"
 msgstr "Показати, що увімкнено"
 
-#: src/face-unlock:208
+#: src/face-unlock:213
 msgid "Show this help"
 msgstr "Показати цю довідку"
 
-#: src/face-unlock:209
+#: src/face-unlock:214
 msgid "Show the version"
 msgstr "Показати версію"
 
-#: src/face-unlock:211
+#: src/face-unlock:216
 msgid "Without a command an interactive menu is shown."
 msgstr "Без команди відкривається інтерактивне меню."
 
-#: src/face-unlock:230
+#: src/face-unlock:235
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -204,7 +204,7 @@ msgstr ""
 "Запускайте це від свого користувача, не від root. Пароль буде запитано, коли "
 "він знадобиться."
 
-#: src/face-unlock:253 src/lib/system.sh:105
+#: src/face-unlock:258 src/lib/system.sh:105
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Невідома команда: %s"
@@ -279,103 +279,107 @@ msgstr ""
 msgid "The camera could not be used."
 msgstr "Не вдалося використати камеру."
 
-#: src/lib/daemon.sh:111 src/lib/menu.sh:273
+#: src/lib/daemon.sh:111
+msgid "Another app is using the camera."
+msgstr "Камеру використовує інша програма."
+
+#: src/lib/daemon.sh:112 src/lib/menu.sh:273
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "Немає моделей розпізнавання. Перевстановіть пакунок."
 
-#: src/lib/daemon.sh:112
+#: src/lib/daemon.sh:113
 msgid "The lid is closed."
 msgstr "Кришку закрито."
 
-#: src/lib/daemon.sh:113
+#: src/lib/daemon.sh:114
 msgid "The camera is busy with another scan."
 msgstr "Камера зайнята іншим скануванням."
 
-#: src/lib/daemon.sh:114
+#: src/lib/daemon.sh:115
 msgid "The face unlock service is not running."
 msgstr "Служба розблокування обличчям не запущена."
 
-#: src/lib/daemon.sh:116
+#: src/lib/daemon.sh:117
 msgid "Not allowed."
 msgstr "Немає доступу."
 
-#: src/lib/daemon.sh:120
+#: src/lib/daemon.sh:121
 msgid "No password window? Start a polkit agent, for example hyprpolkitagent."
 msgstr ""
 "Немає вікна для пароля? Запустіть агент polkit, наприклад hyprpolkitagent."
 
-#: src/lib/daemon.sh:123
+#: src/lib/daemon.sh:124
 #, sh-printf-format
 msgid "Something went wrong (%s)."
 msgstr "Щось пішло не так (%s)."
 
-#: src/lib/daemon.sh:134
+#: src/lib/daemon.sh:135
 msgid "Look at the camera. Blink once, or turn your head a little."
 msgstr "Подивіться в камеру. Кліпніть один раз або трохи поверніть голову."
 
-#: src/lib/daemon.sh:144
+#: src/lib/daemon.sh:145
 msgid "Face found."
 msgstr "Обличчя знайдено."
 
-#: src/lib/daemon.sh:148
+#: src/lib/daemon.sh:149
 msgid "Recognised. Now blink once, or turn your head a little."
 msgstr "Розпізнано. Тепер кліпніть один раз або трохи поверніть голову."
 
-#: src/lib/daemon.sh:149
+#: src/lib/daemon.sh:150
 msgid "Look at the screen."
 msgstr "Подивіться на екран."
 
-#: src/lib/daemon.sh:150
+#: src/lib/daemon.sh:151
 msgid "Move closer to the camera."
 msgstr "Підсуньтеся ближче до камери."
 
-#: src/lib/daemon.sh:151
+#: src/lib/daemon.sh:152
 msgid "It is too dark to see your face."
 msgstr "Надто темно, щоб побачити ваше обличчя."
 
-#: src/lib/daemon.sh:160
+#: src/lib/daemon.sh:161
 msgid "match"
 msgstr "схожість"
 
-#: src/lib/daemon.sh:160
+#: src/lib/daemon.sh:161
 msgid "turn"
 msgstr "поворот"
 
-#: src/lib/daemon.sh:161
+#: src/lib/daemon.sh:162
 msgid "eyes"
 msgstr "очі"
 
-#: src/lib/daemon.sh:162
+#: src/lib/daemon.sh:163
 msgid "depth"
 msgstr "глибина"
 
-#: src/lib/daemon.sh:162 src/lib/daemon.sh:171
+#: src/lib/daemon.sh:163 src/lib/daemon.sh:172
 msgid "blink"
 msgstr "кліпання"
 
-#: src/lib/daemon.sh:163
+#: src/lib/daemon.sh:164
 msgid "glare"
 msgstr "відблиск"
 
-#: src/lib/daemon.sh:163
+#: src/lib/daemon.sh:164
 msgid "edge"
 msgstr "край"
 
-#: src/lib/daemon.sh:172
+#: src/lib/daemon.sh:173
 msgid "head turn"
 msgstr "поворот голови"
 
-#: src/lib/daemon.sh:174
+#: src/lib/daemon.sh:175
 #, sh-printf-format
 msgid "Recognised as %s (match %s) in %s ms."
 msgstr "Розпізнано як %s (схожість %s) за %s мс."
 
-#: src/lib/daemon.sh:175
+#: src/lib/daemon.sh:176
 #, sh-printf-format
 msgid "Sign of life: %s"
 msgstr "Ознака життя: %s"
 
-#: src/lib/daemon.sh:180
+#: src/lib/daemon.sh:181
 msgid ""
 "That was too many tries. Face unlock is paused until you unlock with your "
 "password."
@@ -449,7 +453,9 @@ msgstr "ваш"
 msgid ""
 "No polkit agent is running, so no password window can open. Adding a face "
 "and the admin prompts need one."
-msgstr "Агент polkit не запущено, тому вікно для пароля не може відкритися. Він потрібен, щоб додати обличчя, і для запитів адміністратора."
+msgstr ""
+"Агент polkit не запущено, тому вікно для пароля не може відкритися. Він "
+"потрібен, щоб додати обличчя, і для запитів адміністратора."
 
 #: src/lib/menu.sh:226
 msgid "Face unlock"
@@ -467,8 +473,8 @@ msgstr "не запущена"
 msgid "Turning face unlock on again starts it."
 msgstr "Повторне ввімкнення розблокування обличчям запустить її."
 
-#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:691
-#: src/lib/menu.sh:780
+#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:697
+#: src/lib/menu.sh:788
 msgid "Faces"
 msgstr "Обличчя"
 
@@ -738,7 +744,7 @@ msgstr "Зображення або тека:"
 msgid "Not found: %s"
 msgstr "Не знайдено: %s"
 
-#: src/lib/menu.sh:590 src/lib/menu.sh:781
+#: src/lib/menu.sh:590 src/lib/menu.sh:789
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -751,38 +757,38 @@ msgid "for all users, asks for your password"
 msgstr "для всіх користувачів, запитує пароль"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:693
+#: src/lib/menu.sh:699
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 "Вгору/Вниз: вибір, Пробіл: увімк./вимк., r: перейменувати, d: видалити, a: "
 "додати, q: назад"
 
-#: src/lib/menu.sh:694
+#: src/lib/menu.sh:700
 msgid "No face is set up yet. Press a to add one."
 msgstr "Ще не налаштовано жодного обличчя. Натисніть a, щоб додати."
 
-#: src/lib/menu.sh:740
+#: src/lib/menu.sh:748
 msgid "New name:"
 msgstr "Нова назва:"
 
-#: src/lib/menu.sh:747
+#: src/lib/menu.sh:755
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "Видалити «%s»?"
 
-#: src/lib/menu.sh:778
+#: src/lib/menu.sh:786
 msgid "Turn face unlock on or off"
 msgstr "Увімкнути або вимкнути розблокування обличчям"
 
-#: src/lib/menu.sh:782
+#: src/lib/menu.sh:790
 msgid "Try it"
 msgstr "Спробувати"
 
-#: src/lib/menu.sh:784
+#: src/lib/menu.sh:792
 msgid "Install a polkit agent"
 msgstr "Встановити агент polkit"
 
-#: src/lib/menu.sh:786
+#: src/lib/menu.sh:794
 msgid "Quit"
 msgstr "Вийти"
 
@@ -854,40 +860,40 @@ msgstr "Агент polkit не запустився. Дивіться: systemctl
 msgid "The polkit agent is running. Password windows open now."
 msgstr "Агент polkit запущено. Тепер вікна для пароля відкриваються."
 
-#: src/lib/system.sh:376 src/lib/system.sh:379
+#: src/lib/system.sh:386 src/lib/system.sh:389
 #, sh-printf-format
 msgid "To lock with it, add this to %s, and set %s in %s:"
 msgstr "Щоб блокувати ним, додайте це до %s і вкажіть %s у %s:"
 
-#: src/lib/system.sh:384
+#: src/lib/system.sh:394
 #, sh-printf-format
 msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
 msgstr ""
 "Щоб блокувати ним, додайте це до binds у %s і використовуйте %s у swayidle:"
 
-#: src/lib/system.sh:388
+#: src/lib/system.sh:398
 #, sh-printf-format
 msgid "To lock with it, run %s where your lock screen is started now."
 msgstr ""
 "Щоб блокувати ним, запускайте %s там, де зараз запускається ваш екран "
 "блокування."
 
-#: src/lib/system.sh:401
+#: src/lib/system.sh:411
 msgid "You lock with face-unlock's lock screen now."
 msgstr "Тепер ви блокуєте екраном блокування face-unlock."
 
-#: src/lib/system.sh:408
+#: src/lib/system.sh:418
 msgid ""
 "hyprlock shows what face unlock is doing at the top, from the next time it "
 "locks."
 msgstr "hyprlock покаже вгорі, що робить face unlock, з наступного блокування."
 
-#: src/lib/system.sh:409
+#: src/lib/system.sh:419
 #, sh-printf-format
 msgid "Could not add the line to %s."
 msgstr "Не вдалося додати рядок до %s."
 
-#: src/lib/system.sh:410
+#: src/lib/system.sh:420
 msgid ""
 "Your lock screen stays as it is. Press Enter on the empty password field to "
 "scan."
@@ -895,7 +901,7 @@ msgstr ""
 "Ваш екран блокування залишається як є. Натисніть Enter у порожньому полі "
 "пароля, щоб сканувати."
 
-#: src/lib/system.sh:411
+#: src/lib/system.sh:421
 #, sh-printf-format
 msgid "hyprlock has no %s, so it cannot show the text."
 msgstr "У hyprlock немає %s, тому він не може показати текст."
@@ -992,19 +998,23 @@ msgstr "Підсуньтеся ближче"
 msgid "Too dark"
 msgstr "Надто темно"
 
-#: src/agent/bubblecontroller.cpp:124
+#: src/agent/bubblecontroller.cpp:127
+msgid "Camera in use"
+msgstr "Камера зайнята"
+
+#: src/agent/bubblecontroller.cpp:136
 msgid "Use your password"
 msgstr "Введіть пароль"
 
-#: src/agent/bubblecontroller.cpp:130
+#: src/agent/bubblecontroller.cpp:142
 msgid "Not recognized"
 msgstr "Не розпізнано"
 
-#: src/agent/bubblecontroller.cpp:132
+#: src/agent/bubblecontroller.cpp:144
 msgid "Try again and blink"
 msgstr "Ще раз, і кліпніть"
 
-#: src/agent/bubblecontroller.cpp:134
+#: src/agent/bubblecontroller.cpp:146
 msgid "Camera unavailable"
 msgstr "Камера недоступна"
 
@@ -1095,32 +1105,32 @@ msgstr "Неправильний пароль"
 msgid "Face recognized"
 msgstr "Обличчя розпізнано"
 
-#: src/agent/main.cpp:244
+#: src/agent/main.cpp:250
 msgid "Face unlock for the lock screen, sudo and admin prompts"
 msgstr ""
 "Розблокування обличчям для екрана блокування, sudo і запитів адміністратора"
 
-#: src/agent/main.cpp:247
+#: src/agent/main.cpp:253
 msgid "Set up a face."
 msgstr "Налаштувати обличчя."
 
-#: src/agent/main.cpp:248
+#: src/agent/main.cpp:254
 msgid "What to call the new face."
 msgstr "Як назвати нове обличчя."
 
-#: src/agent/main.cpp:249
+#: src/agent/main.cpp:255
 msgid "Lock the screen."
 msgstr "Заблокувати екран."
 
-#: src/agent/main.cpp:250
+#: src/agent/main.cpp:256
 msgid "Play the bubble's animations once."
 msgstr "Один раз програти анімації бульбашки."
 
-#: src/agent/main.cpp:252
+#: src/agent/main.cpp:258
 msgid "Bubble style for the demo: full or minimal."
 msgstr "Стиль бульбашки для демо: full або minimal."
 
-#: src/agent/main.cpp:253
+#: src/agent/main.cpp:259
 msgid "Ask which lock screen to use, and print the answer."
 msgstr "Питає, який екран блокування використовувати, і виводить відповідь."
 
@@ -1266,3 +1276,26 @@ msgstr "Подивіться в камеру або введіть пароль"
 #: src/agent/qml/LockScreen.qml:195
 msgid "Type your password"
 msgstr "Введіть пароль"
+
+#~ msgid ""
+#~ "sudo in an SSH session takes your face too, if you sit at this computer. "
+#~ "Off by default: the person at the camera may not be the one typing."
+#~ msgstr ""
+#~ "sudo в сеансі SSH теж приймає ваше обличчя, якщо ви сидите за цим "
+#~ "комп'ютером. Типово вимк.: людина перед камерою може бути не тією, хто "
+#~ "друкує."
+
+#~ msgid ""
+#~ "When another app uses the camera, for example in a video call, no bubble "
+#~ "shows and you type your password as usual. Off: the bubble shows a camera "
+#~ "with a line through it."
+#~ msgstr ""
+#~ "Коли камеру використовує інша програма, наприклад під час відеодзвінка, "
+#~ "бульбашка не з'являється, і ви вводите пароль як зазвичай. Вимк.: "
+#~ "бульбашка показує перекреслену камеру."
+
+#~ msgid "In SSH sessions"
+#~ msgstr "У сеансах SSH"
+
+#~ msgid "Quiet while the camera is in use"
+#~ msgstr "Не показувати, коли камера зайнята"

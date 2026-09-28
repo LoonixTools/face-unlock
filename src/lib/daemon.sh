@@ -108,6 +108,7 @@ fu_reason_text() {
 		lockout)      fu_msg "Face unlock is paused after too many tries. Unlock once with your password." ;;
 		not-enrolled) fu_msg "No face is set up yet." ;;
 		camera)       fu_msg "The camera could not be used." ;;
+		camera-busy)  fu_msg "Another app is using the camera." ;;
 		models)       fu_msg "The recognition models are missing. Reinstall the package." ;;
 		lid-closed)   fu_msg "The lid is closed." ;;
 		busy)         fu_msg "The camera is busy with another scan." ;;

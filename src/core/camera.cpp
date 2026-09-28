@@ -15,6 +15,7 @@
 #include <unistd.h>
 
 #include <algorithm>
+#include <cerrno>
 #include <thread>
 
 using namespace std::chrono;
@@ -105,6 +106,24 @@ bool probe(const QString &path, CameraInfo *info)
     }
     return ok;
 }
+
+// A program that streams holds the camera's buffers. Asking for none is how
+// V4L2 lets a program check without taking them: the driver says EBUSY when
+// they belong to somebody else.
+bool busy(const QString &path)
+{
+    const int fd = ::open(QFile::encodeName(path).constData(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
+    if (fd < 0) {
+        return errno == EBUSY;
+    }
+    v4l2_requestbuffers req{};
+    req.count = 0;
+    req.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+    req.memory = V4L2_MEMORY_MMAP;
+    const bool result = ::ioctl(fd, VIDIOC_REQBUFS, &req) != 0 && errno == EBUSY;
+    ::close(fd);
+    return result;
+}
 } // namespace
 
 Camera::Camera() = default;
@@ -142,6 +161,15 @@ QString Camera::autoPath()
     return cameras.isEmpty() ? QString() : cameras.first().path;
 }
 
+bool Camera::inUse(const QString &spec)
+{
+    if (spec.startsWith(u"file:") || spec.startsWith(u"images:")) {
+        return false;
+    }
+    const QString path = spec.isEmpty() || spec == u"auto" ? autoPath() : spec;
+    return !path.isEmpty() && busy(path);
+}
+
 bool Camera::open(const QString &spec, QString *error)
 {
     close();
@@ -176,6 +204,10 @@ bool Camera::open(const QString &spec, QString *error)
     CameraInfo info;
     if (!probe(path, &info)) {
         *error = QStringLiteral("%1 is not a camera").arg(path);
+        return false;
+    }
+    if (busy(path)) {
+        *error = QStringLiteral("%1 is in use by another program").arg(path);
         return false;
     }
 

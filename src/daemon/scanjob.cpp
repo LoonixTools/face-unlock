@@ -74,7 +74,10 @@ void ScanJob::run()
     Camera camera;
     QString error;
     if (!camera.open(m_settings.camera, &error)) {
-        finish(false, QStringLiteral("camera"), {{QStringLiteral("message"), error}});
+        // The daemon checks for a busy camera before it starts a scan, but a
+        // video call can take it in between.
+        const QString reason = Camera::inUse(m_settings.camera) ? QStringLiteral("camera-busy") : QStringLiteral("camera");
+        finish(false, reason, {{QStringLiteral("message"), error}});
         return;
     }
     Q_EMIT event({{QStringLiteral("event"), QStringLiteral("started")}, {QStringLiteral("camera"), camera.description()}});
