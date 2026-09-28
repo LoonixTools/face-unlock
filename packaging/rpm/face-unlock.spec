@@ -1,6 +1,6 @@
 # Built with `packaging/build-rpm.sh`, which passes the version in rather than
 # editing this file: the Makefile is where the version is written down.
-%global upstream_version %{?_version}%{!?_version:2.0.1}
+%global upstream_version %{?_version}%{!?_version:2.0.0}
 
 Name:           face-unlock
 Version:        %{upstream_version}

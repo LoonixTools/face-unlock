@@ -9,7 +9,7 @@
 # Overridable so a packager can pass the version it is actually building
 # (`make VERSION=$pkgver`). The literal below is the fallback for builds
 # straight from a checkout, and is what a release tag has to carry.
-VERSION      ?= 2.0.1
+VERSION      ?= 2.0.0
 
 PREFIX       ?= /usr
 DESTDIR      ?=

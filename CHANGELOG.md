@@ -2,12 +2,6 @@
 
 What each release brings, newest first. The [GitHub releases](https://github.com/LoonixTools/face-unlock/releases) add every commit that went into it.
 
-## v2.0.1
-
-_2026-09-28_
-
-A small patch. Pressing Enter after a number in the menu no longer turns off **Unlock with your face** or your first face.
-
 ## v2.0.0
 
 _2026-09-26_

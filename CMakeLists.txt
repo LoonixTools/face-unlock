@@ -6,7 +6,7 @@
 # installed by the Makefile, which is where the paths come from.
 
 cmake_minimum_required(VERSION 3.22)
-project(face-unlock VERSION 2.0.1 LANGUAGES C CXX)
+project(face-unlock VERSION 2.0.0 LANGUAGES C CXX)
 
 set(FU_VERSION "${PROJECT_VERSION}" CACHE STRING "Version reported by every binary")
 
