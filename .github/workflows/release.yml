@@ -127,9 +127,47 @@ jobs:
             dist/rpm-signer.asc
           if-no-files-found: error
 
+  tarball:
+    name: Arch Linux tarball
+    runs-on: ubuntu-latest
+    # Built on Arch itself, because the agent only fits the Qt it was built
+    # against. OpenCV is linked in, so no opencv here.
+    container: archlinux:latest
+    steps:
+      - name: Install the build tools
+        run: |
+          pacman -Syu --noconfirm --needed git base-devel cmake pkgconf curl zstd \
+            qt6-base qt6-declarative qt6-wayland layer-shell-qt ki18n \
+            pam systemd-libs gettext scdoc
+
+      - uses: actions/checkout@v7
+
+      - name: Check the tag against the Makefile
+        run: packaging/check-version.sh "${{ github.ref_name }}"
+
+      - run: packaging/build-opencv.sh
+
+      - run: packaging/build-tarball.sh
+
+      - name: Install it and run it
+        run: |
+          tar -xf dist/*.tar.zst --strip-components=1 -C /
+          for f in /usr/lib/face-unlock/* /usr/lib/security/pam_face_unlock.so; do
+            if ldd "$f" | grep 'not found'; then echo "$f is missing a library"; exit 1; fi
+          done
+          /usr/lib/face-unlock/face-unlockd --version
+          useradd -m tester
+          runuser -u tester -- face-unlock --version
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: tarball
+          path: dist/*.tar.zst
+          if-no-files-found: error
+
   publish:
     name: Release and repositories
-    needs: [deb, rpm]
+    needs: [deb, rpm, tarball]
     if: startsWith(github.ref, 'refs/tags/v') || inputs.dry_run
     runs-on: ubuntu-latest
     steps:
@@ -152,9 +190,9 @@ jobs:
           gh release create "${{ github.ref_name }}" \
             --title "$(.github/release-notes.sh --title "${{ github.ref_name }}")" \
             --notes-file notes.md \
-            incoming/*.deb incoming/*.rpm \
+            incoming/*.deb incoming/*.rpm incoming/*.tar.zst \
           || gh release upload "${{ github.ref_name }}" \
-            incoming/*.deb incoming/*.rpm --clobber
+            incoming/*.deb incoming/*.rpm incoming/*.tar.zst --clobber
 
       - name: Install the repository tools
         run: |
