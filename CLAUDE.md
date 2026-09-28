@@ -78,6 +78,12 @@ when you press Enter." The list of commits follows on its own.
 - To change an old release: edit its entry, commit, then
   `gh release edit <tag> --title <tag> --notes "$(.github/release-notes.sh <tag>)"`.
 
+## README
+
+- New UI (a window, a screen, a menu, a setting, a notification) gets a screenshot in the README,
+  next to the text about it. Like for releases: a real screenshot of it running, in English.
+- When a screen changes, take its screenshot again. The README never shows an old one.
+
 ## Testing
 
 Never test against the real setup: enrolling and the PAM files belong to the user's machine.
