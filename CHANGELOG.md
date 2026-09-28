@@ -2,6 +2,19 @@
 
 What each release brings, newest first. The [GitHub releases](https://github.com/LoonixTools/face-unlock/releases) add every commit that went into it.
 
+## v2.1.0
+
+_2026-09-28_
+
+Welcome to face-unlock `v2.1.0`! It now gets out of the way during video calls: when another app uses the camera, you type your password right away. sudo and admin prompts take your face from the start.
+
+### Highlights
+
+- A crossed-out camera when another app uses it
+- A setting to stay quiet while the camera is in use
+- sudo and admin prompts are on by default
+- A setting for sudo over SSH, off by default
+
 ## v2.0.0
 
 _2026-09-26_

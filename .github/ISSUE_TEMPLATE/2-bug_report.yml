@@ -61,7 +61,7 @@ body:
   attributes:
     label: Version
     description: The output of `face-unlock --version`.
-    placeholder: face-unlock 2.0.0
+    placeholder: face-unlock 2.1.0
   validations:
     required: true
 - type: dropdown
