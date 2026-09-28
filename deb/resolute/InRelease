@@ -4,39 +4,39 @@ Hash: SHA512
 Architectures: amd64
 Codename: resolute
 Components: main
-Date: Sat, 26 Sep 2026 19:23:45 +0000
+Date: Mon, 28 Sep 2026 07:08:44 +0000
 Label: face-unlock
 Origin: face-unlock
 Suite: resolute
 MD5Sum:
- 507c4a917a2a59f4a3de46a5868e0afe             7056 Packages
- d94d5ef584ed46c0630cca69b0daa817             1715 Packages.gz
- b99f2902d26e0cb45704318a4be7a3f8              150 Release
+ fe7b869a03bdf65e71e13e698e444dc6             9523 Packages
+ 73a02c53281e21b531e2fad64ea20898             1847 Packages.gz
+ b10fe92d9417d349a9da3b316abedd2d              150 Release
 SHA1:
- 3312aa79db0abde3eaa3734b5d848f6ca53cdb22             7056 Packages
- 1d8da1035c3ffc33261815a704fd134bc1be3342             1715 Packages.gz
- 06bd4b08ca6793ed7f4ec98a007205129b92dc50              150 Release
+ d9d6b00622993cade00dfd1a114233b24e59739a             9523 Packages
+ 5563b4cc11950f237f2fe81355a486c6ca68d47b             1847 Packages.gz
+ eaf0921d2ed76d5914302060b8d2ec48af0973f0              150 Release
 SHA256:
- 2ece6ed66e0697643e3415f3642e6e6706615ab94fc396afa36eef679c46ecc0             7056 Packages
- e16f6bd2ae3440b00299d4c6be524de9fe43e5df3cb26da028f310dc8f4b2308             1715 Packages.gz
- 4ac609c02f48a1d351ff89d652739e2420382e68cd5eaa4b958ab4f678a17f0d              150 Release
+ b32331671fe20a969e32a39d2a12d8a9c0ed8f291b52f11adabe93be34a90994             9523 Packages
+ acef2c2a8375fc586282e8821396d5fd2bb12f1a8b213439f72b690a67093cec             1847 Packages.gz
+ d29886e71e49dec1ca680be19bae58d216450057f57fcd5a3ee378269e05abdd              150 Release
 SHA512:
- f2e1c8322825a7ae24014caecc8669ea56871682d6d854962a97cce41d9d6e27f9657129982194ab1f627ade0b4f7ca4219692063bb9834fa85b2f7c332c70bd             7056 Packages
- 00178c9efcb3c8da626ce8e6d3948e26738a5c1425e219c257d4413dc3a597bc712a477811993f8efc26478347db8f4168c72bc7fd5e6783f3e30e735b9c5630             1715 Packages.gz
- fe03960bd67d8b5166ea70d95a4bd10d67e6838c204991ee51eb4b18412529764f2b59f114363976a1d8f23d7a2bc6b67a019109d4feff739241aff8d02f0916              150 Release
+ 6e3a19159ba24610acf57053dd8e3d4fa91247b7a42e770a3345bf4dff2892bcf731e0cb973f0680b91e24b00ad8d78490fa2ad064e483b040eab525b8d3f24c             9523 Packages
+ 4739cf1200dfa8f2997597175300604dbc83ca5e9678d29cd507fce9dbb061154f14ecd033fb3170ef8004d95b09541f1f686d80b7ff579d9ff1decda90e66ef             1847 Packages.gz
+ 8de12100375046c947af60b413fac9b2cb84c12d54aa2294848de784d861b85c2bb413ac69e82cc46d2ad6b3b696cbf110bf7e68b6e458ab6ba4a145762b83d4              150 Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmq4G8EACgkQ+H9udOBW
-tAi60Q//RF1B4gW40+ZNnH0i+XprTZqJAIKU1A7U3mpSIvwyToda5SOVjj6cFy4M
-PEEGLXesvFGziJrW7pYvxbrYXV8KcamBM9aCq9IeuXFfZ0xPS1tqKmqi75y+ZqQe
-TuZ9zh6Sg2SFtPS2D6cbKDh04QQaZyXXpOphXseRMQuCZ2CW2v5h6h6Q07oEMtVF
-S/tpNywsy5itwwjmKcXAb0bRR50Ncd1T6qeHcAjSchQKyG6PdiwX36Lx54Oai0D3
-vKJSlHUgrRH64QIU9+6vRhu6DimgMqRlOiOl+0A+xq5Ws+u/RQZqaCzeQHGhTXaa
-HavlD2JBed4TsS8cGmXhnimpEZgFqChlpYOehJ49lbPYHp+qYupGp5njDbMdJq6n
-8r9Bt/idgLKGdzSRpzvKdSEga2wc3soaQKCzflaUeVnxP+NOtUU57+cKO6Tbc4Td
-6Lqa4Q2HtJbn9kEf8/bUbfg4YxA8I6ZNISZPnd7aXndhWymHH8Wt63+xwybeg9fb
-7/nKqvprFIZoKtc7DPHVgJJbfQ0mKeA/epREpevyc9w2Mrj2VfCfLm9LmTjI30Vj
-MU7LbpDGQ3pY18XhSXpSJVWZ4OJRuFINZDBg05TkIGf6TkcvkE26cwA2C2I/2k6a
-/KP9ybvTGCkq+qGHwd+Uz+8rZAcrZ0HTZj5YQk6arsB7oYtPQl0=
-=hjVK
+iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmq6EnwACgkQ+H9udOBW
+tAiTgg//XMXAH3+hFs+7B40JhpbRQmWvSDRtuAgBzl1RSDzkFPiK6M778F/8qR9n
+F4XogeokNz1wkplCR5uS4TFOQEUSfgGNLDMFa/jFINr0A8vQOYhe9VevcKa6cpUi
+6hlhN48hK7dvLBLBkzhXgkRONrMQ5hwqFlkoQuVgvgbFwaurVetLodJEfJke7AF0
+d9pE8V/YveXdyEPSB9NAFdUUiHigFigqpmF2c33rVrvaCKmK30G46i9RuvdlWSCb
+D3blfj6t6hi2oIeUybEK8dqiV4pW0ePRFGUPEoDC182UuSm1WCRAO9lCLQdnSGAZ
+GaUVXu5hJeFGm6CIV5GeKdSTRgfpDckpHrMlJgRlRGBeximzEk0PjGyQRfbwIdfv
+CmN+tQ72mSzgn7BtTgruVaJNWGsRoEjrG9tvqhK1K81Z6WmVVY4wLW4SOFNg6q0l
+O48PmE1L9laPKEzDy5fq/iM92fDrblyOBSbXC+uKBZK0x1ASAqJnWfUeatq/SQVx
+b0ucRTHAMGdU6Guz3Yd+44tqE8/UAt8b4EE3/o8iLC6r9w2sVOauum9qJ8ifwKIs
+S/ZxjijE8uPEAh4Yg08HPAezRZ04YzATwBBoAGm+QrWCIZGKbYbrllTT6Ordw6Tt
+eQCdKBFknqTEfcuBPq3sLWhCpR52q2C8/DRdXqKKWZklTkm34jo=
+=SIc+
 -----END PGP SIGNATURE-----
