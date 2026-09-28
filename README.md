@@ -27,11 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="res/screenshots/bubble.png" alt="The bubble above the Plasma lock screen: looking, recognised, not recognised, and a crossed-out camera while another app uses the camera" width="900">
-</p>
-
-<p align="center">
-  <img src="res/screenshots/pill.png" alt="The small pill style of the bubble above the Plasma lock screen: looking, recognised, not recognised, and a crossed-out camera while another app uses the camera" width="900">
+  <img src="res/screenshots/bubble.png" alt="The bubble above the Plasma lock screen: looking, recognised, not recognised" width="720">
 </p>
 
 ## Install
@@ -113,6 +109,19 @@ Press **1** and look at the camera. Then lock the screen and look at it.
 
 <p align="center">
   <img src="res/screenshots/settings.png" alt="The settings in Konsole, grouped into lock screen, password prompts, recognition and bubble, with the photo check explained at the bottom" width="680">
+</p>
+
+</details>
+
+<details>
+<summary>All bubble states</summary>
+
+<p align="center">
+  <img src="res/screenshots/bubble-states.png" alt="The bubble above the Plasma lock screen: looking, recognised, not recognised, and a crossed-out camera while another app uses the camera" width="900">
+</p>
+
+<p align="center">
+  <img src="res/screenshots/pill.png" alt="The small pill style of the bubble: the same four states" width="900">
 </p>
 
 </details>
