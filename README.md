@@ -30,6 +30,10 @@
   <img src="res/screenshots/bubble.png" alt="The bubble above the Plasma lock screen: looking, recognised, not recognised, and a crossed-out camera while another app uses the camera" width="900">
 </p>
 
+<p align="center">
+  <img src="res/screenshots/pill.png" alt="The small pill style of the bubble above the Plasma lock screen: looking, recognised, not recognised, and a crossed-out camera while another app uses the camera" width="900">
+</p>
+
 ## Install
 
 <details>
