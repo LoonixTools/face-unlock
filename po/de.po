@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-28 14:36+0200\n"
+"POT-Creation-Date: 2026-09-28 14:38+0200\n"
 "PO-Revision-Date: 2026-09-23 22:32+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: German\n"
@@ -59,7 +59,7 @@ msgstr "Es wurde kein Gesicht hinzugefügt."
 msgid "First, set up your face."
 msgstr "Richte zuerst dein Gesicht ein."
 
-#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:531
+#: src/face-unlock:100 src/face-unlock:154 src/lib/menu.sh:531
 #: src/lib/menu.sh:535 src/lib/menu.sh:541 src/lib/menu.sh:543
 #: src/lib/system.sh:410 src/lib/system.sh:416
 msgid "Could not save the setting."
@@ -75,26 +75,26 @@ msgstr ""
 "Keine systemd-Benutzersitzung, daher wurde der Sperrbildschirm-Dienst nicht "
 "gestartet."
 
-#: src/face-unlock:123
+#: src/face-unlock:127
 msgid "Could not switch on the GNOME extension that shows the bubble."
 msgstr ""
 "Die GNOME-Erweiterung, die die Bubble zeigt, konnte nicht eingeschaltet "
 "werden."
 
-#: src/face-unlock:124
+#: src/face-unlock:128
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr "Melde dich einmal ab und wieder an: dann zeigt GNOME die Bubble auch."
 
-#: src/face-unlock:135
+#: src/face-unlock:139
 msgid "Pick your lock screen in the window."
 msgstr "Wähle deinen Sperrbildschirm im Fenster."
 
-#: src/face-unlock:136
+#: src/face-unlock:140
 msgid "No lock screen picked. You can do it later under Settings."
 msgstr ""
 "Kein Sperrbildschirm gewählt. Das geht später auch unter Einstellungen."
 
-#: src/face-unlock:140
+#: src/face-unlock:144
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -103,102 +103,102 @@ msgstr ""
 "Der Sperrbildschirm (%s) nimmt dein Gesicht auch. Scannt er nicht, wenn du "
 "zurückkommst, drück Enter im leeren Passwortfeld."
 
-#: src/face-unlock:143
+#: src/face-unlock:147
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr ""
 "Die Gesichtsentsperrung ist an. Sperre den Bildschirm und schau ihn an, um "
 "es auszuprobieren."
 
-#: src/face-unlock:145
+#: src/face-unlock:149
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "Sie kann auch sudo und Admin-Abfragen übernehmen. Siehe Einstellungen."
 
-#: src/face-unlock:161
+#: src/face-unlock:165
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "Die Gesichtsentsperrung ist aus. Deine Gesichter bleiben erhalten; löschen "
 "kannst du sie unter Gesichter."
 
-#: src/face-unlock:175 src/lib/daemon.sh:109
+#: src/face-unlock:179 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Es ist noch kein Gesicht eingerichtet."
 
-#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:705
+#: src/face-unlock:183 src/lib/menu.sh:180 src/lib/menu.sh:705
 msgid "on"
 msgstr "an"
 
-#: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/face-unlock:183 src/lib/menu.sh:182 src/lib/menu.sh:192
 #: src/lib/menu.sh:706
 msgid "off"
 msgstr "aus"
 
-#: src/face-unlock:181 src/lib/menu.sh:723
+#: src/face-unlock:185 src/lib/menu.sh:723
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s Aufnahmen, %s dazugelernt"
 
-#: src/face-unlock:187
+#: src/face-unlock:191
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "Welches Gesicht? Die IDs zeigt `%s faces`."
 
-#: src/face-unlock:191
+#: src/face-unlock:195
 msgid "Deleted."
 msgstr "Gelöscht."
 
-#: src/face-unlock:202
+#: src/face-unlock:206
 msgid "Usage: face-unlock [command]"
 msgstr "Aufruf: face-unlock [Befehl]"
 
-#: src/face-unlock:204
+#: src/face-unlock:208
 msgid "Commands:"
 msgstr "Befehle:"
 
-#: src/face-unlock:205
+#: src/face-unlock:209
 msgid "Turn face unlock on"
 msgstr "Gesichtsentsperrung einschalten"
 
-#: src/face-unlock:206
+#: src/face-unlock:210
 msgid "Turn it off (faces are kept)"
 msgstr "Ausschalten (Gesichter bleiben erhalten)"
 
-#: src/face-unlock:207 src/lib/menu.sh:791
+#: src/face-unlock:211 src/lib/menu.sh:791
 msgid "Add a face"
 msgstr "Gesicht hinzufügen"
 
-#: src/face-unlock:208
+#: src/face-unlock:212
 msgid "List the faces"
 msgstr "Gesichter auflisten"
 
-#: src/face-unlock:209
+#: src/face-unlock:213
 msgid "Delete a face"
 msgstr "Ein Gesicht löschen"
 
-#: src/face-unlock:210
+#: src/face-unlock:214
 msgid "Look at the camera and see what it sees"
 msgstr "In die Kamera schauen und sehen, was sie sieht"
 
-#: src/face-unlock:211
+#: src/face-unlock:215
 msgid "Lock the screen"
 msgstr "Bildschirm sperren"
 
-#: src/face-unlock:212
+#: src/face-unlock:216
 msgid "Show what is on"
 msgstr "Anzeigen, was eingeschaltet ist"
 
-#: src/face-unlock:213
+#: src/face-unlock:217
 msgid "Show this help"
 msgstr "Diese Hilfe anzeigen"
 
-#: src/face-unlock:214
+#: src/face-unlock:218
 msgid "Show the version"
 msgstr "Die Version anzeigen"
 
-#: src/face-unlock:216
+#: src/face-unlock:220
 msgid "Without a command an interactive menu is shown."
 msgstr "Ohne Befehl wird ein interaktives Menü angezeigt."
 
-#: src/face-unlock:235
+#: src/face-unlock:239
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -206,7 +206,7 @@ msgstr ""
 "Starte das als dein eigener Benutzer, nicht als root. Wenn nötig, wird nach "
 "deinem Passwort gefragt."
 
-#: src/face-unlock:258 src/lib/system.sh:106
+#: src/face-unlock:262 src/lib/system.sh:106
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Unbekannter Befehl: %s"
@@ -823,12 +823,12 @@ msgstr ""
 "Deine Gesichter und Einstellungen werden von plasma-face-unlock übernommen. "
 "Dafür ist dein Passwort nötig."
 
-#: src/lib/pam.sh:191
+#: src/lib/pam.sh:197
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
 msgstr "Das PAM-Modul ist nicht unter %s installiert."
 
-#: src/lib/pam.sh:199
+#: src/lib/pam.sh:205
 #, sh-printf-format
 msgid "There is no PAM configuration for %s on this system."
 msgstr "Auf diesem System gibt es keine PAM-Konfiguration für %s."

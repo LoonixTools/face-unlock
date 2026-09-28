@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-28 14:36+0200\n"
+"POT-Creation-Date: 2026-09-28 14:38+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Chinese (simplified)\n"
@@ -53,7 +53,7 @@ msgstr "没有添加人脸。"
 msgid "First, set up your face."
 msgstr "请先设置你的人脸。"
 
-#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:531
+#: src/face-unlock:100 src/face-unlock:154 src/lib/menu.sh:531
 #: src/lib/menu.sh:535 src/lib/menu.sh:541 src/lib/menu.sh:543
 #: src/lib/system.sh:410 src/lib/system.sh:416
 msgid "Could not save the setting."
@@ -67,23 +67,23 @@ msgstr "无法启动锁屏代理。"
 msgid "No systemd user session, so the lock screen agent was not started."
 msgstr "没有 systemd 用户会话，因此未启动锁屏代理。"
 
-#: src/face-unlock:123
+#: src/face-unlock:127
 msgid "Could not switch on the GNOME extension that shows the bubble."
 msgstr "无法启用显示气泡的 GNOME 扩展。"
 
-#: src/face-unlock:124
+#: src/face-unlock:128
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr "请注销并重新登录一次：之后 GNOME 也会显示气泡。"
 
-#: src/face-unlock:135
+#: src/face-unlock:139
 msgid "Pick your lock screen in the window."
 msgstr "请在窗口中选择锁屏。"
 
-#: src/face-unlock:136
+#: src/face-unlock:140
 msgid "No lock screen picked. You can do it later under Settings."
 msgstr "未选择锁屏。之后可以在设置中选择。"
 
-#: src/face-unlock:140
+#: src/face-unlock:144
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -91,104 +91,104 @@ msgid ""
 msgstr ""
 "锁屏（%s）也接受你的人脸。如果你回来时它没有扫描，请在空的密码框中按 Enter。"
 
-#: src/face-unlock:143
+#: src/face-unlock:147
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr "人脸解锁已开启。锁定屏幕并看着它来试试。"
 
-#: src/face-unlock:145
+#: src/face-unlock:149
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "它也可以用于 sudo 和管理员授权。见“设置”。"
 
-#: src/face-unlock:161
+#: src/face-unlock:165
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr "人脸解锁已关闭。你的人脸会保留；可在“人脸”中删除。"
 
-#: src/face-unlock:175 src/lib/daemon.sh:109
+#: src/face-unlock:179 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "尚未设置任何人脸。"
 
-#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:705
+#: src/face-unlock:183 src/lib/menu.sh:180 src/lib/menu.sh:705
 msgid "on"
 msgstr "开"
 
-#: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/face-unlock:183 src/lib/menu.sh:182 src/lib/menu.sh:192
 #: src/lib/menu.sh:706
 msgid "off"
 msgstr "关"
 
-#: src/face-unlock:181 src/lib/menu.sh:723
+#: src/face-unlock:185 src/lib/menu.sh:723
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s 个样本，已学习 %s 个"
 
-#: src/face-unlock:187
+#: src/face-unlock:191
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "哪张人脸？用 `%s faces` 查看 ID。"
 
-#: src/face-unlock:191
+#: src/face-unlock:195
 msgid "Deleted."
 msgstr "已删除。"
 
-#: src/face-unlock:202
+#: src/face-unlock:206
 msgid "Usage: face-unlock [command]"
 msgstr "用法：face-unlock [命令]"
 
-#: src/face-unlock:204
+#: src/face-unlock:208
 msgid "Commands:"
 msgstr "命令："
 
-#: src/face-unlock:205
+#: src/face-unlock:209
 msgid "Turn face unlock on"
 msgstr "开启人脸解锁"
 
-#: src/face-unlock:206
+#: src/face-unlock:210
 msgid "Turn it off (faces are kept)"
 msgstr "关闭（保留人脸）"
 
-#: src/face-unlock:207 src/lib/menu.sh:791
+#: src/face-unlock:211 src/lib/menu.sh:791
 msgid "Add a face"
 msgstr "添加人脸"
 
-#: src/face-unlock:208
+#: src/face-unlock:212
 msgid "List the faces"
 msgstr "列出人脸"
 
-#: src/face-unlock:209
+#: src/face-unlock:213
 msgid "Delete a face"
 msgstr "删除人脸"
 
-#: src/face-unlock:210
+#: src/face-unlock:214
 msgid "Look at the camera and see what it sees"
 msgstr "看着摄像头，查看它看到的画面"
 
-#: src/face-unlock:211
+#: src/face-unlock:215
 msgid "Lock the screen"
 msgstr "锁定屏幕"
 
-#: src/face-unlock:212
+#: src/face-unlock:216
 msgid "Show what is on"
 msgstr "显示已开启的功能"
 
-#: src/face-unlock:213
+#: src/face-unlock:217
 msgid "Show this help"
 msgstr "显示此帮助"
 
-#: src/face-unlock:214
+#: src/face-unlock:218
 msgid "Show the version"
 msgstr "显示版本"
 
-#: src/face-unlock:216
+#: src/face-unlock:220
 msgid "Without a command an interactive menu is shown."
 msgstr "不带命令时显示交互式菜单。"
 
-#: src/face-unlock:235
+#: src/face-unlock:239
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
 msgstr "请以你自己的用户运行，不要用 root。需要时会询问你的密码。"
 
-#: src/face-unlock:258 src/lib/system.sh:106
+#: src/face-unlock:262 src/lib/system.sh:106
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "未知命令：%s"
@@ -762,12 +762,12 @@ msgid ""
 "password."
 msgstr "正在从 plasma-face-unlock 迁移你的人脸和设置。这需要你的密码。"
 
-#: src/lib/pam.sh:191
+#: src/lib/pam.sh:197
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
 msgstr "PAM 模块未安装在 %s。"
 
-#: src/lib/pam.sh:199
+#: src/lib/pam.sh:205
 #, sh-printf-format
 msgid "There is no PAM configuration for %s on this system."
 msgstr "此系统上没有 %s 的 PAM 配置。"

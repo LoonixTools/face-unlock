@@ -107,9 +107,13 @@ fu_do_enable() {
 		fu_note "$(fu_msg "No systemd user session, so the lock screen agent was not started.")"
 	fi
 
-	# What was on the last time face unlock was on.
-	[[ $CFG_SUDO == yes ]] && ! fu_pam_enabled sudo && fu_root pam-enable sudo
-	[[ $CFG_POLKIT == yes ]] && ! fu_pam_enabled polkit-1 && fu_root pam-enable polkit-1
+	# sudo and admin prompts: on unless turned off in the settings.
+	if [[ $CFG_SUDO == yes ]] && fu_pam_available sudo && ! fu_pam_enabled sudo; then
+		fu_root pam-enable sudo
+	fi
+	if [[ $CFG_POLKIT == yes ]] && fu_pam_available polkit-1 && ! fu_pam_enabled polkit-1; then
+		fu_root pam-enable polkit-1
+	fi
 	# The lock screens of Hyprland, Niri and the like only open themselves:
 	# the face goes into their password check. On unless turned off.
 	if fu_pam_lockers_here && [[ $CFG_LOCKERS == yes ]] && ! fu_pam_lockers_enabled; then

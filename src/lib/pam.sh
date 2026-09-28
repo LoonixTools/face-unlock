@@ -114,6 +114,12 @@ fu_pam_lockers_enabled() {
 	(( found ))
 }
 
+# fu_pam_available <service>
+# Whether the service has a PAM file here at all.
+fu_pam_available() {
+	[[ -f $(fu_pam_etc "$1") ]] || fu_pam_vendor "$1" > /dev/null
+}
+
 # fu_pam_enabled <service>
 fu_pam_enabled() {
 	local file

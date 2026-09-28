@@ -112,6 +112,7 @@ done
 
 # Only the distribution's copy, in /usr/lib/pam.d.
 printf '%s\n' "$arch_polkit" > "$tmp/vendor/polkit-1"
+check "vendor polkit-1: counts as there" 'fu_pam_available polkit-1'
 fu_pam_enable polkit-1
 check "vendor polkit-1: a small file of our own in /etc" '[[ -f $tmp/etc/polkit-1 ]] && grep -qF "$FU_PAM_WRAPPER_MARK" "$tmp/etc/polkit-1"'
 check "vendor polkit-1: it includes the distribution's file" 'grep -qE "^auth[[:space:]]+include[[:space:]]+$tmp/vendor/polkit-1\$" "$tmp/etc/polkit-1"'
@@ -120,7 +121,8 @@ check "vendor polkit-1: the distribution's file is left alone" '[[ "$(cat "$tmp/
 fu_pam_disable polkit-1
 check "vendor polkit-1: turning it off removes our file" '[[ ! -e $tmp/etc/polkit-1 ]]'
 
-# No configuration at all.
+# No configuration at all. Turning face unlock on skips such a service.
+check "an unknown service is not there" '! fu_pam_available nosuchservice'
 check "an unknown service is refused" '! fu_pam_enable nosuchservice 2>/dev/null'
 
 # ---------------------------------------------------------------------------

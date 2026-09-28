@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-28 14:36+0200\n"
+"POT-Creation-Date: 2026-09-28 14:38+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Russian\n"
@@ -59,7 +59,7 @@ msgstr "Лицо не добавлено."
 msgid "First, set up your face."
 msgstr "Сначала настройте своё лицо."
 
-#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:531
+#: src/face-unlock:100 src/face-unlock:154 src/lib/menu.sh:531
 #: src/lib/menu.sh:535 src/lib/menu.sh:541 src/lib/menu.sh:543
 #: src/lib/system.sh:410 src/lib/system.sh:416
 msgid "Could not save the setting."
@@ -75,23 +75,23 @@ msgstr ""
 "Нет пользовательского сеанса systemd, поэтому агент экрана блокировки не "
 "запущен."
 
-#: src/face-unlock:123
+#: src/face-unlock:127
 msgid "Could not switch on the GNOME extension that shows the bubble."
 msgstr "Не удалось включить расширение GNOME, которое показывает пузырь."
 
-#: src/face-unlock:124
+#: src/face-unlock:128
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr "Выйдите и войдите снова один раз: тогда GNOME тоже покажет пузырь."
 
-#: src/face-unlock:135
+#: src/face-unlock:139
 msgid "Pick your lock screen in the window."
 msgstr "Выберите экран блокировки в окне."
 
-#: src/face-unlock:136
+#: src/face-unlock:140
 msgid "No lock screen picked. You can do it later under Settings."
 msgstr "Экран блокировки не выбран. Это можно сделать позже в Настройках."
 
-#: src/face-unlock:140
+#: src/face-unlock:144
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -100,102 +100,102 @@ msgstr ""
 "Экран блокировки (%s) тоже принимает ваше лицо. Если он не сканирует, когда "
 "вы возвращаетесь, нажмите Enter в пустом поле пароля."
 
-#: src/face-unlock:143
+#: src/face-unlock:147
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr ""
 "Разблокировка по лицу включена. Заблокируйте экран и посмотрите на него, "
 "чтобы попробовать."
 
-#: src/face-unlock:145
+#: src/face-unlock:149
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "Она работает и для sudo, и для запросов администратора. См. Настройки."
 
-#: src/face-unlock:161
+#: src/face-unlock:165
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "Разблокировка по лицу выключена. Ваши лица сохранены; удалить их можно в "
 "разделе Лица."
 
-#: src/face-unlock:175 src/lib/daemon.sh:109
+#: src/face-unlock:179 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Ещё не настроено ни одного лица."
 
-#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:705
+#: src/face-unlock:183 src/lib/menu.sh:180 src/lib/menu.sh:705
 msgid "on"
 msgstr "вкл."
 
-#: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/face-unlock:183 src/lib/menu.sh:182 src/lib/menu.sh:192
 #: src/lib/menu.sh:706
 msgid "off"
 msgstr "выкл."
 
-#: src/face-unlock:181 src/lib/menu.sh:723
+#: src/face-unlock:185 src/lib/menu.sh:723
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "образцов: %s, выучено: %s"
 
-#: src/face-unlock:187
+#: src/face-unlock:191
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "Какое лицо? Номера показывает `%s faces`."
 
-#: src/face-unlock:191
+#: src/face-unlock:195
 msgid "Deleted."
 msgstr "Удалено."
 
-#: src/face-unlock:202
+#: src/face-unlock:206
 msgid "Usage: face-unlock [command]"
 msgstr "Использование: face-unlock [команда]"
 
-#: src/face-unlock:204
+#: src/face-unlock:208
 msgid "Commands:"
 msgstr "Команды:"
 
-#: src/face-unlock:205
+#: src/face-unlock:209
 msgid "Turn face unlock on"
 msgstr "Включить разблокировку по лицу"
 
-#: src/face-unlock:206
+#: src/face-unlock:210
 msgid "Turn it off (faces are kept)"
 msgstr "Выключить её (лица сохраняются)"
 
-#: src/face-unlock:207 src/lib/menu.sh:791
+#: src/face-unlock:211 src/lib/menu.sh:791
 msgid "Add a face"
 msgstr "Добавить лицо"
 
-#: src/face-unlock:208
+#: src/face-unlock:212
 msgid "List the faces"
 msgstr "Показать список лиц"
 
-#: src/face-unlock:209
+#: src/face-unlock:213
 msgid "Delete a face"
 msgstr "Удалить лицо"
 
-#: src/face-unlock:210
+#: src/face-unlock:214
 msgid "Look at the camera and see what it sees"
 msgstr "Посмотреть в камеру и увидеть, что она видит"
 
-#: src/face-unlock:211
+#: src/face-unlock:215
 msgid "Lock the screen"
 msgstr "Заблокировать экран"
 
-#: src/face-unlock:212
+#: src/face-unlock:216
 msgid "Show what is on"
 msgstr "Показать, что включено"
 
-#: src/face-unlock:213
+#: src/face-unlock:217
 msgid "Show this help"
 msgstr "Показать эту справку"
 
-#: src/face-unlock:214
+#: src/face-unlock:218
 msgid "Show the version"
 msgstr "Показать версию"
 
-#: src/face-unlock:216
+#: src/face-unlock:220
 msgid "Without a command an interactive menu is shown."
 msgstr "Без команды открывается интерактивное меню."
 
-#: src/face-unlock:235
+#: src/face-unlock:239
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -203,7 +203,7 @@ msgstr ""
 "Запускайте это от своего пользователя, не от root. Пароль будет запрошен, "
 "когда он понадобится."
 
-#: src/face-unlock:258 src/lib/system.sh:106
+#: src/face-unlock:262 src/lib/system.sh:106
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Неизвестная команда: %s"
@@ -818,12 +818,12 @@ msgstr ""
 "Переносим ваши лица и настройки из plasma-face-unlock. Для этого нужен ваш "
 "пароль."
 
-#: src/lib/pam.sh:191
+#: src/lib/pam.sh:197
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
 msgstr "Модуль PAM не установлен в %s."
 
-#: src/lib/pam.sh:199
+#: src/lib/pam.sh:205
 #, sh-printf-format
 msgid "There is no PAM configuration for %s on this system."
 msgstr "В этой системе нет настройки PAM для %s."

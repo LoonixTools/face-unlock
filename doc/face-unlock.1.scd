@@ -31,10 +31,11 @@ It is a convenience, not a security upgrade. See *HOW SAFE IS THIS*.
 
 *enable*
 	Turn face unlock on for this user. Sets up a face first if there is none,
-	starts the lock screen agent, and turns sudo and admin prompts back on if
-	they were on before. On Hyprland and Niri it also puts the face into the
-	lock screen's password check (*Lock screens*), unless that was turned
-	off. On GNOME it switches on the extension that draws the bubble.
+	starts the lock screen agent, and turns on sudo and admin prompts, unless
+	they were turned off under *Settings*. On Hyprland and Niri it also puts
+	the face into the lock screen's password check (*Lock screens*), unless
+	that was turned off. On GNOME it switches on the extension that draws
+	the bubble.
 
 *disable*
 	Turn it off: the agent stops and sudo and the admin prompts go back to the

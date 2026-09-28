@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-28 14:36+0200\n"
+"POT-Creation-Date: 2026-09-28 14:38+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Dutch\n"
@@ -58,7 +58,7 @@ msgstr "Er is geen gezicht toegevoegd."
 msgid "First, set up your face."
 msgstr "Stel eerst je gezicht in."
 
-#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:531
+#: src/face-unlock:100 src/face-unlock:154 src/lib/menu.sh:531
 #: src/lib/menu.sh:535 src/lib/menu.sh:541 src/lib/menu.sh:543
 #: src/lib/system.sh:410 src/lib/system.sh:416
 msgid "Could not save the setting."
@@ -74,23 +74,23 @@ msgstr ""
 "Geen systemd-gebruikerssessie, dus de agent voor het vergrendelscherm is "
 "niet gestart."
 
-#: src/face-unlock:123
+#: src/face-unlock:127
 msgid "Could not switch on the GNOME extension that shows the bubble."
 msgstr "Kon de GNOME-extensie die de bubbel toont niet inschakelen."
 
-#: src/face-unlock:124
+#: src/face-unlock:128
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr "Meld je één keer af en weer aan: dan toont GNOME de bubbel ook."
 
-#: src/face-unlock:135
+#: src/face-unlock:139
 msgid "Pick your lock screen in the window."
 msgstr "Kies je vergrendelscherm in het venster."
 
-#: src/face-unlock:136
+#: src/face-unlock:140
 msgid "No lock screen picked. You can do it later under Settings."
 msgstr "Geen vergrendelscherm gekozen. Dat kan later ook onder Instellingen."
 
-#: src/face-unlock:140
+#: src/face-unlock:144
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -99,102 +99,102 @@ msgstr ""
 "Het vergrendelscherm (%s) neemt je gezicht ook. Scant het niet als je "
 "terugkomt, druk dan op Enter in het lege wachtwoordveld."
 
-#: src/face-unlock:143
+#: src/face-unlock:147
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr ""
 "Gezichtsontgrendeling staat aan. Vergrendel het scherm en kijk ernaar om het "
 "te proberen."
 
-#: src/face-unlock:145
+#: src/face-unlock:149
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr "Het werkt ook voor sudo en beheerdersvragen. Zie Instellingen."
 
-#: src/face-unlock:161
+#: src/face-unlock:165
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "Gezichtsontgrendeling staat uit. Je gezichten blijven bewaard; verwijder ze "
 "onder Gezichten."
 
-#: src/face-unlock:175 src/lib/daemon.sh:109
+#: src/face-unlock:179 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Er is nog geen gezicht ingesteld."
 
-#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:705
+#: src/face-unlock:183 src/lib/menu.sh:180 src/lib/menu.sh:705
 msgid "on"
 msgstr "aan"
 
-#: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/face-unlock:183 src/lib/menu.sh:182 src/lib/menu.sh:192
 #: src/lib/menu.sh:706
 msgid "off"
 msgstr "uit"
 
-#: src/face-unlock:181 src/lib/menu.sh:723
+#: src/face-unlock:185 src/lib/menu.sh:723
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s opnames, %s bijgeleerd"
 
-#: src/face-unlock:187
+#: src/face-unlock:191
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "Welk gezicht? Zie `%s faces` voor de ID's."
 
-#: src/face-unlock:191
+#: src/face-unlock:195
 msgid "Deleted."
 msgstr "Verwijderd."
 
-#: src/face-unlock:202
+#: src/face-unlock:206
 msgid "Usage: face-unlock [command]"
 msgstr "Gebruik: face-unlock [opdracht]"
 
-#: src/face-unlock:204
+#: src/face-unlock:208
 msgid "Commands:"
 msgstr "Opdrachten:"
 
-#: src/face-unlock:205
+#: src/face-unlock:209
 msgid "Turn face unlock on"
 msgstr "Gezichtsontgrendeling aanzetten"
 
-#: src/face-unlock:206
+#: src/face-unlock:210
 msgid "Turn it off (faces are kept)"
 msgstr "Uitzetten (gezichten blijven bewaard)"
 
-#: src/face-unlock:207 src/lib/menu.sh:791
+#: src/face-unlock:211 src/lib/menu.sh:791
 msgid "Add a face"
 msgstr "Een gezicht toevoegen"
 
-#: src/face-unlock:208
+#: src/face-unlock:212
 msgid "List the faces"
 msgstr "De gezichten tonen"
 
-#: src/face-unlock:209
+#: src/face-unlock:213
 msgid "Delete a face"
 msgstr "Een gezicht verwijderen"
 
-#: src/face-unlock:210
+#: src/face-unlock:214
 msgid "Look at the camera and see what it sees"
 msgstr "In de camera kijken en zien wat hij ziet"
 
-#: src/face-unlock:211
+#: src/face-unlock:215
 msgid "Lock the screen"
 msgstr "Scherm vergrendelen"
 
-#: src/face-unlock:212
+#: src/face-unlock:216
 msgid "Show what is on"
 msgstr "Tonen wat er aan staat"
 
-#: src/face-unlock:213
+#: src/face-unlock:217
 msgid "Show this help"
 msgstr "Deze hulp tonen"
 
-#: src/face-unlock:214
+#: src/face-unlock:218
 msgid "Show the version"
 msgstr "De versie tonen"
 
-#: src/face-unlock:216
+#: src/face-unlock:220
 msgid "Without a command an interactive menu is shown."
 msgstr "Zonder opdracht verschijnt een interactief menu."
 
-#: src/face-unlock:235
+#: src/face-unlock:239
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -202,7 +202,7 @@ msgstr ""
 "Voer dit uit als je eigen gebruiker, niet als root. Het vraagt om je "
 "wachtwoord als dat nodig is."
 
-#: src/face-unlock:258 src/lib/system.sh:106
+#: src/face-unlock:262 src/lib/system.sh:106
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Onbekende opdracht: %s"
@@ -815,12 +815,12 @@ msgstr ""
 "Je gezichten en instellingen worden overgenomen van plasma-face-unlock. "
 "Daarvoor is je wachtwoord nodig."
 
-#: src/lib/pam.sh:191
+#: src/lib/pam.sh:197
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
 msgstr "De PAM-module is niet geïnstalleerd in %s."
 
-#: src/lib/pam.sh:199
+#: src/lib/pam.sh:205
 #, sh-printf-format
 msgid "There is no PAM configuration for %s on this system."
 msgstr "Er is op dit systeem geen PAM-configuratie voor %s."

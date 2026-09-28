@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-28 14:36+0200\n"
+"POT-Creation-Date: 2026-09-28 14:38+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Spanish\n"
@@ -58,7 +58,7 @@ msgstr "No se añadió ninguna cara."
 msgid "First, set up your face."
 msgstr "Primero, configura tu cara."
 
-#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:531
+#: src/face-unlock:100 src/face-unlock:154 src/lib/menu.sh:531
 #: src/lib/menu.sh:535 src/lib/menu.sh:541 src/lib/menu.sh:543
 #: src/lib/system.sh:410 src/lib/system.sh:416
 msgid "Could not save the setting."
@@ -74,26 +74,26 @@ msgstr ""
 "No hay sesión de usuario de systemd, así que no se inició el agente de la "
 "pantalla de bloqueo."
 
-#: src/face-unlock:123
+#: src/face-unlock:127
 msgid "Could not switch on the GNOME extension that shows the bubble."
 msgstr "No se pudo activar la extensión de GNOME que muestra la burbuja."
 
-#: src/face-unlock:124
+#: src/face-unlock:128
 msgid "Log out and back in once: then GNOME shows the bubble too."
 msgstr ""
 "Cierra la sesión y vuelve a entrar una vez: entonces GNOME también muestra "
 "la burbuja."
 
-#: src/face-unlock:135
+#: src/face-unlock:139
 msgid "Pick your lock screen in the window."
 msgstr "Elige tu pantalla de bloqueo en la ventana."
 
-#: src/face-unlock:136
+#: src/face-unlock:140
 msgid "No lock screen picked. You can do it later under Settings."
 msgstr ""
 "No se eligió ninguna pantalla de bloqueo. Puedes hacerlo luego en Ajustes."
 
-#: src/face-unlock:140
+#: src/face-unlock:144
 #, sh-printf-format
 msgid ""
 "The lock screen (%s) takes your face too. If it does not scan when you come "
@@ -102,104 +102,104 @@ msgstr ""
 "La pantalla de bloqueo (%s) también acepta tu cara. Si no escanea cuando "
 "vuelves, pulsa Intro en el campo de contraseña vacío."
 
-#: src/face-unlock:143
+#: src/face-unlock:147
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr ""
 "El desbloqueo facial está activado. Bloquea la pantalla y mírala para "
 "probarlo."
 
-#: src/face-unlock:145
+#: src/face-unlock:149
 msgid "It can do sudo and admin prompts too. See Settings."
 msgstr ""
 "También funciona con sudo y las solicitudes de administrador. Consulta "
 "Ajustes."
 
-#: src/face-unlock:161
+#: src/face-unlock:165
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "El desbloqueo facial está desactivado. Tus caras se conservan; bórralas en "
 "Caras."
 
-#: src/face-unlock:175 src/lib/daemon.sh:109
+#: src/face-unlock:179 src/lib/daemon.sh:109
 msgid "No face is set up yet."
 msgstr "Todavía no hay ninguna cara configurada."
 
-#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:705
+#: src/face-unlock:183 src/lib/menu.sh:180 src/lib/menu.sh:705
 msgid "on"
 msgstr "activado"
 
-#: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
+#: src/face-unlock:183 src/lib/menu.sh:182 src/lib/menu.sh:192
 #: src/lib/menu.sh:706
 msgid "off"
 msgstr "desactivado"
 
-#: src/face-unlock:181 src/lib/menu.sh:723
+#: src/face-unlock:185 src/lib/menu.sh:723
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s muestras, %s aprendidas"
 
-#: src/face-unlock:187
+#: src/face-unlock:191
 #, sh-printf-format
 msgid "Which face? See `%s faces` for the ids."
 msgstr "¿Qué cara? Consulta `%s faces` para ver los ID."
 
-#: src/face-unlock:191
+#: src/face-unlock:195
 msgid "Deleted."
 msgstr "Borrado."
 
-#: src/face-unlock:202
+#: src/face-unlock:206
 msgid "Usage: face-unlock [command]"
 msgstr "Uso: face-unlock [comando]"
 
-#: src/face-unlock:204
+#: src/face-unlock:208
 msgid "Commands:"
 msgstr "Comandos:"
 
-#: src/face-unlock:205
+#: src/face-unlock:209
 msgid "Turn face unlock on"
 msgstr "Activar el desbloqueo facial"
 
-#: src/face-unlock:206
+#: src/face-unlock:210
 msgid "Turn it off (faces are kept)"
 msgstr "Desactivarlo (las caras se conservan)"
 
-#: src/face-unlock:207 src/lib/menu.sh:791
+#: src/face-unlock:211 src/lib/menu.sh:791
 msgid "Add a face"
 msgstr "Añadir una cara"
 
-#: src/face-unlock:208
+#: src/face-unlock:212
 msgid "List the faces"
 msgstr "Listar las caras"
 
-#: src/face-unlock:209
+#: src/face-unlock:213
 msgid "Delete a face"
 msgstr "Borrar una cara"
 
-#: src/face-unlock:210
+#: src/face-unlock:214
 msgid "Look at the camera and see what it sees"
 msgstr "Mirar a la cámara y ver lo que ve"
 
-#: src/face-unlock:211
+#: src/face-unlock:215
 msgid "Lock the screen"
 msgstr "Bloquear la pantalla"
 
-#: src/face-unlock:212
+#: src/face-unlock:216
 msgid "Show what is on"
 msgstr "Mostrar qué está activado"
 
-#: src/face-unlock:213
+#: src/face-unlock:217
 msgid "Show this help"
 msgstr "Mostrar esta ayuda"
 
-#: src/face-unlock:214
+#: src/face-unlock:218
 msgid "Show the version"
 msgstr "Mostrar la versión"
 
-#: src/face-unlock:216
+#: src/face-unlock:220
 msgid "Without a command an interactive menu is shown."
 msgstr "Sin comando se muestra un menú interactivo."
 
-#: src/face-unlock:235
+#: src/face-unlock:239
 msgid ""
 "Run this as your own user, not as root. It asks for your password when it "
 "needs to."
@@ -207,7 +207,7 @@ msgstr ""
 "Ejecuta esto con tu propio usuario, no como root. Pide tu contraseña cuando "
 "la necesita."
 
-#: src/face-unlock:258 src/lib/system.sh:106
+#: src/face-unlock:262 src/lib/system.sh:106
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Comando desconocido: %s"
@@ -830,12 +830,12 @@ msgstr ""
 "Pasando tus caras y ajustes desde plasma-face-unlock. Para eso hace falta tu "
 "contraseña."
 
-#: src/lib/pam.sh:191
+#: src/lib/pam.sh:197
 #, sh-printf-format
 msgid "The PAM module is not installed at %s."
 msgstr "El módulo PAM no está instalado en %s."
 
-#: src/lib/pam.sh:199
+#: src/lib/pam.sh:205
 #, sh-printf-format
 msgid "There is no PAM configuration for %s on this system."
 msgstr "No hay configuración PAM para %s en este sistema."
