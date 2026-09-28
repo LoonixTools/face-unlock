@@ -8,6 +8,11 @@ _2026-09-28_
 
 Welcome to face-unlock `v2.1.0`! It now gets out of the way during video calls: when another app uses the camera, you type your password right away. sudo and admin prompts take your face from the start.
 
+<p align="center">
+  <img height="320" alt="The bubble over the lock screen with a crossed-out camera and the words Camera in use" src="https://raw.githubusercontent.com/LoonixTools/face-unlock/70ea1437eee61f10ca1f509faa6534f9b6b6a6f5/res/screenshots/camera-busy.png">
+  <img height="320" alt="The settings in Konsole with the new rows In SSH sessions and Quiet while the camera is in use" src="https://raw.githubusercontent.com/LoonixTools/face-unlock/v2.1.0/res/screenshots/settings.png">
+</p>
+
 ### Highlights
 
 - A crossed-out camera when another app uses it
