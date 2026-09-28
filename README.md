@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <img src="res/screenshots/bubble.png" alt="The bubble above the Plasma lock screen: looking, recognised, not recognised" width="720">
+  <img src="res/screenshots/bubble.png" alt="The bubble above the Plasma lock screen: looking, recognised, not recognised, and a crossed-out camera while another app uses the camera" width="900">
 </p>
 
 ## Install
