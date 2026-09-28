@@ -21,6 +21,13 @@ version="${1:-$(make -s -C "$here" version)}"
 opencv="${OPENCV_PREFIX:-$here/build/opencv-static}"
 name="face-unlock-$version-arch-$(uname -m)"
 
+# The flags Arch builds its own packages with: hardening, and full RELRO.
+if [[ -f /etc/makepkg.conf ]]; then
+	# shellcheck source=/dev/null
+	source /etc/makepkg.conf
+	export CFLAGS CXXFLAGS LDFLAGS
+fi
+
 for tool in msgfmt scdoc cmake readelf zstd; do
 	command -v "$tool" > /dev/null || { echo "$0: $tool is not installed" >&2; exit 1; }
 done

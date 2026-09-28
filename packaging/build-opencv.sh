@@ -25,8 +25,15 @@ prefix="${1:-$here/build/opencv-static}"
 version=4.14.0
 sha256=ee8fb9b30eb60850431b4656447080e3737b56e45719c92b67f245950609f86e
 
-# A change to this script is a different build.
-stamp="$(sha256sum "${BASH_SOURCE[0]}" | cut -d' ' -f1)"
+# The flags Arch builds its own packages with: hardening, and full RELRO.
+if [[ -f /etc/makepkg.conf ]]; then
+	# shellcheck source=/dev/null
+	source /etc/makepkg.conf
+	export CFLAGS CXXFLAGS LDFLAGS
+fi
+
+# A change to this script or to the flags is a different build.
+stamp="$({ cat "${BASH_SOURCE[0]}"; echo "${CFLAGS:-} ${CXXFLAGS:-} ${LDFLAGS:-}"; } | sha256sum | cut -d' ' -f1)"
 if [[ -f $prefix/.stamp && $(<"$prefix/.stamp") == "$stamp" ]]; then
 	echo "$prefix already has this OpenCV"
 	exit 0
