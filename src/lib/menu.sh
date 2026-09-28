@@ -322,6 +322,7 @@ FU_SETTINGS=(
 	"user|BubbleStyle|choice|full|Style|full,minimal|Bubble"
 	"user|AnimationSpeed|choice|normal|Animation speed|slow,normal,fast|Bubble"
 	"user|BubbleForPrompts|bool|yes|Also for sudo and admin prompts||Bubble"
+	"user|QuietWhenCameraBusy|bool|no|Quiet while the camera is in use||Bubble"
 )
 
 # fu_setting_help <Key> <value>
@@ -363,6 +364,7 @@ fu_setting_help() {
 		BubbleStyle:*)      fu_msg "An island with a face that looks around, then rings and a tick." ;;
 		AnimationSpeed:*)   fu_msg "How fast the bubble moves." ;;
 		BubbleForPrompts:*) fu_msg "Shows the bubble when sudo or an admin prompt scans your face, too." ;;
+		QuietWhenCameraBusy:*) fu_msg "When another app uses the camera, for example in a video call, no bubble shows and you type your password as usual. Off: the bubble shows a camera with a line through it." ;;
 	esac
 }
 

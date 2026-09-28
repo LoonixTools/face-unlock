@@ -39,6 +39,7 @@ void UserConfig::load()
     m_bubble = kv.boolean(QStringLiteral("Bubble"), true);
     m_bubbleStyle = kv.value(QStringLiteral("BubbleStyle"), QStringLiteral("full")) == u"minimal" ? QStringLiteral("minimal") : QStringLiteral("full");
     m_bubbleForPrompts = kv.boolean(QStringLiteral("BubbleForPrompts"), true);
+    m_quietWhenCameraBusy = kv.boolean(QStringLiteral("QuietWhenCameraBusy"), false);
     const QString speed = kv.value(QStringLiteral("AnimationSpeed"), QStringLiteral("normal"));
     // The durations in the code are brisk, like on a phone. On a big screen
     // they read better a little longer, so normal stretches them.

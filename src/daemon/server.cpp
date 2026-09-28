@@ -486,8 +486,8 @@ void Server::handleVerify(Client *client, const QJsonObject &request)
     }
 
     // Another program has the camera, a video call most likely. No scan
-    // starts: the bubble shows a camera with a line through it, and the
-    // password is asked for at once.
+    // starts: the bubble shows a camera with a line through it, or nothing
+    // if the user wants it quiet, and the password is asked for at once.
     if (Camera::inUse(s.camera)) {
         qInfo("scan for %s (%s): the camera is in use", qPrintable(System::nameOf(uid)), qPrintable(purpose));
         broadcast(uid, {{QStringLiteral("event"), QStringLiteral("scan")},

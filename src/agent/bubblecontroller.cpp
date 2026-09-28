@@ -120,7 +120,7 @@ void BubbleController::failed(const QString &reason, qint64 lockout)
     if (reason == u"camera-busy") {
         // A video call, most likely. The daemon starts no scan then, so this
         // may come with nothing on screen yet.
-        if (!enabled()) {
+        if (!enabled() || m_config->quietWhenCameraBusy()) {
             dismiss();
             return;
         }

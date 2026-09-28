@@ -320,7 +320,8 @@ A laptop with its lid shut is not scanned (*Not when the lid is closed*).
 
 A camera that another app uses, in a video call for example, is not scanned
 either. The password is asked for at once, and the bubble shows a camera with
-a line through it.
+a line through it. *Quiet while the camera is in use* leaves out the bubble
+too.
 
 # FILES
 

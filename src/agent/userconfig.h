@@ -79,6 +79,12 @@ public:
     {
         return m_bubbleForPrompts;
     }
+    // No bubble at all while another program has the camera (a video call).
+    // Off: the bubble shows a camera with a line through it.
+    bool quietWhenCameraBusy() const
+    {
+        return m_quietWhenCameraBusy;
+    }
     // How long the bubble's animations take, as a multiple of the durations
     // in the code: the animation speed setting (fast 1, normal 1.3,
     // slow 2).
@@ -106,6 +112,7 @@ private:
     bool m_bubble = true;
     QString m_bubbleStyle = QStringLiteral("full");
     bool m_bubbleForPrompts = true;
+    bool m_quietWhenCameraBusy = false;
     qreal m_pace = 1.3;
     QString m_styleOverride;
 };
