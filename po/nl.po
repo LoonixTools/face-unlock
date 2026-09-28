@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-28 14:34+0200\n"
+"POT-Creation-Date: 2026-09-28 14:36+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Dutch\n"
@@ -58,9 +58,9 @@ msgstr "Er is geen gezicht toegevoegd."
 msgid "First, set up your face."
 msgstr "Stel eerst je gezicht in."
 
-#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:529
-#: src/lib/menu.sh:533 src/lib/menu.sh:539 src/lib/menu.sh:541
-#: src/lib/system.sh:409 src/lib/system.sh:415
+#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:531
+#: src/lib/menu.sh:535 src/lib/menu.sh:541 src/lib/menu.sh:543
+#: src/lib/system.sh:410 src/lib/system.sh:416
 msgid "Could not save the setting."
 msgstr "Kon de instelling niet opslaan."
 
@@ -119,16 +119,16 @@ msgstr ""
 msgid "No face is set up yet."
 msgstr "Er is nog geen gezicht ingesteld."
 
-#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:703
+#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:705
 msgid "on"
 msgstr "aan"
 
 #: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:704
+#: src/lib/menu.sh:706
 msgid "off"
 msgstr "uit"
 
-#: src/face-unlock:181 src/lib/menu.sh:721
+#: src/face-unlock:181 src/lib/menu.sh:723
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "%s opnames, %s bijgeleerd"
@@ -158,7 +158,7 @@ msgstr "Gezichtsontgrendeling aanzetten"
 msgid "Turn it off (faces are kept)"
 msgstr "Uitzetten (gezichten blijven bewaard)"
 
-#: src/face-unlock:207 src/lib/menu.sh:789
+#: src/face-unlock:207 src/lib/menu.sh:791
 msgid "Add a face"
 msgstr "Een gezicht toevoegen"
 
@@ -202,7 +202,7 @@ msgstr ""
 "Voer dit uit als je eigen gebruiker, niet als root. Het vraagt om je "
 "wachtwoord als dat nodig is."
 
-#: src/face-unlock:258 src/lib/system.sh:105
+#: src/face-unlock:258 src/lib/system.sh:106
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "Onbekende opdracht: %s"
@@ -390,11 +390,11 @@ msgstr ""
 msgid "[y/N]"
 msgstr "[j/N]"
 
-#: src/lib/menu.sh:172 src/lib/menu.sh:595
+#: src/lib/menu.sh:172 src/lib/menu.sh:597
 msgid "ON"
 msgstr "AAN"
 
-#: src/lib/menu.sh:174 src/lib/menu.sh:596
+#: src/lib/menu.sh:174 src/lib/menu.sh:598
 msgid "OFF"
 msgstr "UIT"
 
@@ -435,7 +435,7 @@ msgstr "langzaam"
 msgid "%s seconds"
 msgstr "%s seconden"
 
-#: src/lib/menu.sh:202 src/lib/menu.sh:464
+#: src/lib/menu.sh:202 src/lib/menu.sh:466
 msgid "automatic"
 msgstr "automatisch"
 
@@ -471,8 +471,8 @@ msgstr "draait niet"
 msgid "Turning face unlock on again starts it."
 msgstr "Gezichtsontgrendeling opnieuw aanzetten start hem."
 
-#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:699
-#: src/lib/menu.sh:790
+#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:701
+#: src/lib/menu.sh:792
 msgid "Faces"
 msgstr "Gezichten"
 
@@ -529,7 +529,7 @@ msgstr "Laatste ontgrendeling"
 msgid "The lock screen agent is not running."
 msgstr "De agent voor het vergrendelscherm draait niet."
 
-#: src/lib/menu.sh:333
+#: src/lib/menu.sh:334
 msgid ""
 "On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
 "switches it on."
@@ -537,7 +537,7 @@ msgstr ""
 "Op GNOME toont een kleine GNOME-extensie de bubbel. Als je "
 "gezichtsontgrendeling inschakelt, gaat die ook aan."
 
-#: src/lib/menu.sh:337
+#: src/lib/menu.sh:338
 msgid ""
 "Scans when you come back to hyprlock, swaylock or face-unlock's own lock "
 "screen (`face-unlock lock`, with the bubble), and opens them. Other lock "
@@ -547,7 +547,7 @@ msgstr ""
 "van face-unlock (`face-unlock lock`, met de bubbel) en opent ze. Andere "
 "vergrendelschermen scannen met Enter."
 
-#: src/lib/menu.sh:342
+#: src/lib/menu.sh:343
 msgid ""
 "Unlocks the lock screen when it sees your face. Off: only your password "
 "works there."
@@ -555,7 +555,7 @@ msgstr ""
 "Ontgrendelt het vergrendelscherm als het je gezicht ziet. Uit: daar werkt "
 "alleen je wachtwoord."
 
-#: src/lib/menu.sh:343
+#: src/lib/menu.sh:344
 msgid ""
 "Scans when you press a key or move the mouse on the lock screen, and when "
 "the computer wakes up."
@@ -563,7 +563,7 @@ msgstr ""
 "Scant als je op het vergrendelscherm een toets indrukt of de muis beweegt, "
 "en als de computer ontwaakt."
 
-#: src/lib/menu.sh:344
+#: src/lib/menu.sh:345
 msgid ""
 "Scans as soon as the screen locks. Off by default: if you lock it yourself, "
 "it would unlock again right away."
@@ -571,7 +571,7 @@ msgstr ""
 "Scant zodra het scherm vergrendelt. Standaard uit: vergrendel je zelf, dan "
 "zou het meteen weer ontgrendelen."
 
-#: src/lib/menu.sh:345
+#: src/lib/menu.sh:346
 msgid ""
 "sudo takes your face instead of the password. No match: you type the "
 "password as usual."
@@ -579,7 +579,7 @@ msgstr ""
 "sudo neemt je gezicht in plaats van het wachtwoord. Geen match: je typt "
 "zoals gewoonlijk je wachtwoord."
 
-#: src/lib/menu.sh:346
+#: src/lib/menu.sh:347
 msgid ""
 "face-unlock's lock screen shows the bubble, and you lock with `face-unlock "
 "lock`. Or keep yours: hyprlock then shows a line of text at the top. Enter "
@@ -589,7 +589,7 @@ msgstr ""
 "`face-unlock lock`. Of houd de jouwe: hyprlock toont dan bovenaan een regel "
 "tekst. Enter opent de keuze."
 
-#: src/lib/menu.sh:347
+#: src/lib/menu.sh:348
 msgid ""
 "The picture behind face-unlock's own lock screen (`face-unlock lock`). "
 "Empty: the one on your desktop. Or a file, a folder to take one from at "
@@ -599,11 +599,11 @@ msgstr ""
 "lock`). Leeg: die van je bureaublad. Of een bestand, een map waaruit er "
 "willekeurig een wordt gekozen, of `none`. Enter om te typen."
 
-#: src/lib/menu.sh:348
+#: src/lib/menu.sh:349
 msgid "Blurs the picture behind face-unlock's own lock screen."
 msgstr "Vervaagt de afbeelding achter het vergrendelscherm van face-unlock."
 
-#: src/lib/menu.sh:349
+#: src/lib/menu.sh:350
 #, sh-printf-format
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
@@ -612,7 +612,7 @@ msgstr ""
 "Het vergrendelscherm neemt je gezicht in zijn wachtwoordcontrole. Druk op "
 "Enter in het lege veld om te scannen. Hier gevonden: %s."
 
-#: src/lib/menu.sh:350
+#: src/lib/menu.sh:351
 msgid ""
 "The password windows of your desktop and apps, for example when you install "
 "software. No match: you type the password."
@@ -620,18 +620,26 @@ msgstr ""
 "De wachtwoordvensters van je bureaublad en apps, bijvoorbeeld bij het "
 "installeren van software. Geen match: je typt je wachtwoord."
 
-#: src/lib/menu.sh:351
+#: src/lib/menu.sh:352
+msgid ""
+"sudo in an SSH session takes your face too, if you sit at this computer. Off "
+"by default: the person at the camera may not be the one typing."
+msgstr ""
+"sudo in een SSH-sessie neemt ook je gezicht, als je aan deze computer zit. "
+"Standaard uit: wie voor de camera zit, is misschien niet wie typt."
+
+#: src/lib/menu.sh:353
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr ""
 "Je moet knipperen of je hoofd een beetje draaien. Dat houdt ook geprinte "
 "foto's tegen."
 
-#: src/lib/menu.sh:352
+#: src/lib/menu.sh:354
 msgid "No check at all. Only for trying out a camera."
 msgstr "Helemaal geen controle. Alleen om een camera uit te proberen."
 
-#: src/lib/menu.sh:353
+#: src/lib/menu.sh:355
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
@@ -639,22 +647,22 @@ msgstr ""
 "Houdt foto's op een telefoon, tablet of glanzend papier tegen. Knipperen is "
 "niet nodig. Een matte geprinte foto kan erdoor komen."
 
-#: src/lib/menu.sh:354
+#: src/lib/menu.sh:356
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 "Minder verwisselingen, maar met een bril of bij slecht licht herkent het je "
 "misschien niet."
 
-#: src/lib/menu.sh:355
+#: src/lib/menu.sh:357
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "Herkent je makkelijker, maar ook iemand die veel op je lijkt."
 
-#: src/lib/menu.sh:356
+#: src/lib/menu.sh:358
 msgid "The default. Right for most people."
 msgstr "De standaard. Goed voor de meeste mensen."
 
-#: src/lib/menu.sh:357
+#: src/lib/menu.sh:359
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
@@ -662,7 +670,7 @@ msgstr ""
 "Je ogen moeten open zijn en naar het scherm kijken. Zo ontgrendelt het niet "
 "als je wegkijkt of slaapt."
 
-#: src/lib/menu.sh:358
+#: src/lib/menu.sh:360
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
@@ -671,11 +679,11 @@ msgstr ""
 "opnieuw in. Een infraroodcamera heeft zijn lampje nodig (linux-enable-ir-"
 "emitter)."
 
-#: src/lib/menu.sh:359
+#: src/lib/menu.sh:361
 msgid "How long the camera looks for your face before it gives up."
 msgstr "Hoe lang de camera naar je gezicht zoekt voordat hij opgeeft."
 
-#: src/lib/menu.sh:360
+#: src/lib/menu.sh:362
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
@@ -683,7 +691,7 @@ msgstr ""
 "Na een zekere match onthoudt het hoe je er nu uitziet. Een nieuw kapsel of "
 "een bril vraagt dus niet om opnieuw instellen."
 
-#: src/lib/menu.sh:361
+#: src/lib/menu.sh:363
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
@@ -691,27 +699,27 @@ msgstr ""
 "Geen scan als de laptop dicht is, bijvoorbeeld aan een bureau met een extern "
 "scherm."
 
-#: src/lib/menu.sh:362
+#: src/lib/menu.sh:364
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr "De bubbel boven aan het scherm laat zien wat de camera doet."
 
-#: src/lib/menu.sh:363
+#: src/lib/menu.sh:365
 msgid "A small pill with a lock that opens."
 msgstr "Een kleine pil met een slot dat opengaat."
 
-#: src/lib/menu.sh:364
+#: src/lib/menu.sh:366
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr "Een eiland met een gezicht dat rondkijkt, daarna ringen en een vinkje."
 
-#: src/lib/menu.sh:365
+#: src/lib/menu.sh:367
 msgid "How fast the bubble moves."
 msgstr "Hoe snel de bubbel beweegt."
 
-#: src/lib/menu.sh:366
+#: src/lib/menu.sh:368
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr "Toont de bubbel ook als sudo of een beheerdersvraag je gezicht scant."
 
-#: src/lib/menu.sh:367
+#: src/lib/menu.sh:369
 msgid ""
 "When another app uses the camera, for example in a video call, no bubble "
 "shows and you type your password as usual. Off: the bubble shows a camera "
@@ -721,81 +729,81 @@ msgstr ""
 "verschijnt er geen bubbel en typ je zoals gewoonlijk je wachtwoord. Uit: de "
 "bubbel toont een doorgestreepte camera."
 
-#: src/lib/menu.sh:460
+#: src/lib/menu.sh:462
 #, sh-printf-format
 msgid "automatic (%s)"
 msgstr "automatisch (%s)"
 
-#: src/lib/menu.sh:470
+#: src/lib/menu.sh:472
 msgid "(infrared)"
 msgstr "(infrarood)"
 
-#: src/lib/menu.sh:474
+#: src/lib/menu.sh:476
 msgid "(not connected)"
 msgstr "(niet aangesloten)"
 
-#: src/lib/menu.sh:483
+#: src/lib/menu.sh:485
 msgid "same as desktop"
 msgstr "zoals bureaublad"
 
-#: src/lib/menu.sh:487
+#: src/lib/menu.sh:489
 msgid "none"
 msgstr "geen"
 
-#: src/lib/menu.sh:516
+#: src/lib/menu.sh:518
 msgid "Picture or folder:"
 msgstr "Afbeelding of map:"
 
-#: src/lib/menu.sh:521
+#: src/lib/menu.sh:523
 #, sh-printf-format
 msgid "Not found: %s"
 msgstr "Niet gevonden: %s"
 
-#: src/lib/menu.sh:592 src/lib/menu.sh:791
+#: src/lib/menu.sh:594 src/lib/menu.sh:793
 msgid "Settings"
 msgstr "Instellingen"
 
-#: src/lib/menu.sh:593
+#: src/lib/menu.sh:595
 msgid "↑↓ select   ←→ or Space: change   q: back"
 msgstr "↑↓ kiezen   ←→ of Spatie: wijzigen   q: terug"
 
-#: src/lib/menu.sh:594
+#: src/lib/menu.sh:596
 msgid "for all users, asks for your password"
 msgstr "voor alle gebruikers, vraagt om je wachtwoord"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:701
+#: src/lib/menu.sh:703
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 "Omhoog/Omlaag: kiezen, Spatie: aan/uit, r: hernoemen, d: verwijderen, a: "
 "toevoegen, q: terug"
 
-#: src/lib/menu.sh:702
+#: src/lib/menu.sh:704
 msgid "No face is set up yet. Press a to add one."
 msgstr "Er is nog geen gezicht ingesteld. Druk op a om er een toe te voegen."
 
-#: src/lib/menu.sh:750
+#: src/lib/menu.sh:752
 msgid "New name:"
 msgstr "Nieuwe naam:"
 
-#: src/lib/menu.sh:757
+#: src/lib/menu.sh:759
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "“%s” verwijderen?"
 
-#: src/lib/menu.sh:788
+#: src/lib/menu.sh:790
 msgid "Turn face unlock on or off"
 msgstr "Gezichtsontgrendeling aan- of uitzetten"
 
-#: src/lib/menu.sh:792
+#: src/lib/menu.sh:794
 msgid "Try it"
 msgstr "Uitproberen"
 
-#: src/lib/menu.sh:794
+#: src/lib/menu.sh:796
 msgid "Install a polkit agent"
 msgstr "Een polkit-agent installeren"
 
-#: src/lib/menu.sh:796
+#: src/lib/menu.sh:798
 msgid "Quit"
 msgstr "Afsluiten"
 
@@ -817,27 +825,27 @@ msgstr "De PAM-module is niet geïnstalleerd in %s."
 msgid "There is no PAM configuration for %s on this system."
 msgstr "Er is op dit systeem geen PAM-configuratie voor %s."
 
-#: src/lib/system.sh:49
+#: src/lib/system.sh:50
 msgid "This needs root, and neither sudo, run0 nor doas is installed."
 msgstr ""
 "Dit heeft root nodig, maar sudo, run0 en doas zijn geen van alle "
 "geïnstalleerd."
 
-#: src/lib/system.sh:58
+#: src/lib/system.sh:59
 msgid "This command has to run as root."
 msgstr "Deze opdracht moet als root draaien."
 
-#: src/lib/system.sh:66
+#: src/lib/system.sh:67
 #, sh-printf-format
 msgid "Not a valid setting: %s=%s"
 msgstr "Geen geldige instelling: %s=%s"
 
-#: src/lib/system.sh:82
+#: src/lib/system.sh:83
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "Hier kan het niet voor worden gebruikt: %s"
 
-#: src/lib/system.sh:154
+#: src/lib/system.sh:155
 #, sh-printf-format
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this to %s:"
@@ -845,55 +853,55 @@ msgstr ""
 "Hyprland start de agent voor het vergrendelscherm niet zelf. Voeg dit toe "
 "aan %s:"
 
-#: src/lib/system.sh:156
+#: src/lib/system.sh:157
 #, sh-printf-format
 msgid "Hyprland does not start the polkit agent by itself. Add this to %s:"
 msgstr "Hyprland start de polkit-agent niet zelf. Voeg dit toe aan %s:"
 
-#: src/lib/system.sh:214
+#: src/lib/system.sh:215
 msgid "No package manager found to install a polkit agent with."
 msgstr "Geen pakketbeheerder gevonden om een polkit-agent mee te installeren."
 
-#: src/lib/system.sh:238
+#: src/lib/system.sh:239
 msgid "Installing a polkit agent. That needs your password."
 msgstr "Een polkit-agent wordt geïnstalleerd. Daarvoor is je wachtwoord nodig."
 
-#: src/lib/system.sh:239 src/lib/system.sh:241
+#: src/lib/system.sh:240 src/lib/system.sh:242
 msgid "Could not install a polkit agent."
 msgstr "Kon geen polkit-agent installeren."
 
-#: src/lib/system.sh:257
+#: src/lib/system.sh:258
 #, sh-printf-format
 msgid "The polkit agent did not start. See: systemctl --user status %s"
 msgstr "De polkit-agent is niet gestart. Zie: systemctl --user status %s"
 
-#: src/lib/system.sh:261
+#: src/lib/system.sh:262
 msgid "The polkit agent is running. Password windows open now."
 msgstr "De polkit-agent draait. Wachtwoordvensters openen nu."
 
-#: src/lib/system.sh:386 src/lib/system.sh:389
+#: src/lib/system.sh:387 src/lib/system.sh:390
 #, sh-printf-format
 msgid "To lock with it, add this to %s, and set %s in %s:"
 msgstr "Om ermee te vergrendelen, voeg dit toe aan %s en zet %s in %s:"
 
-#: src/lib/system.sh:394
+#: src/lib/system.sh:395
 #, sh-printf-format
 msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
 msgstr ""
 "Om ermee te vergrendelen, voeg dit toe aan de binds in %s en gebruik %s in "
 "swayidle:"
 
-#: src/lib/system.sh:398
+#: src/lib/system.sh:399
 #, sh-printf-format
 msgid "To lock with it, run %s where your lock screen is started now."
 msgstr ""
 "Om ermee te vergrendelen, start %s waar je vergrendelscherm nu wordt gestart."
 
-#: src/lib/system.sh:411
+#: src/lib/system.sh:412
 msgid "You lock with face-unlock's lock screen now."
 msgstr "Je vergrendelt nu met het vergrendelscherm van face-unlock."
 
-#: src/lib/system.sh:418
+#: src/lib/system.sh:419
 msgid ""
 "hyprlock shows what face unlock is doing at the top, from the next time it "
 "locks."
@@ -901,12 +909,12 @@ msgstr ""
 "hyprlock toont bovenaan wat face unlock doet, vanaf de volgende keer "
 "vergrendelen."
 
-#: src/lib/system.sh:419
+#: src/lib/system.sh:420
 #, sh-printf-format
 msgid "Could not add the line to %s."
 msgstr "Kon de regel niet aan %s toevoegen."
 
-#: src/lib/system.sh:420
+#: src/lib/system.sh:421
 msgid ""
 "Your lock screen stays as it is. Press Enter on the empty password field to "
 "scan."
@@ -914,7 +922,7 @@ msgstr ""
 "Je vergrendelscherm blijft zoals het is. Druk op Enter in het lege "
 "wachtwoordveld om te scannen."
 
-#: src/lib/system.sh:421
+#: src/lib/system.sh:422
 #, sh-printf-format
 msgid "hyprlock has no %s, so it cannot show the text."
 msgstr "hyprlock heeft geen %s, dus het kan de tekst niet tonen."
@@ -950,6 +958,10 @@ msgstr "Wachtwoordvragen"
 #: src/lib/menu.sh
 msgid "sudo in a terminal"
 msgstr "sudo in een terminal"
+
+#: src/lib/menu.sh
+msgid "In SSH sessions"
+msgstr "In SSH-sessies"
 
 #: src/lib/menu.sh
 msgid "Recognition"
@@ -1152,21 +1164,21 @@ msgstr "Bubbelstijl voor de demo: full of minimal."
 msgid "Ask which lock screen to use, and print the answer."
 msgstr "Vraagt welk vergrendelscherm te gebruiken en print het antwoord."
 
-#: src/pam/pam_face_unlock.c:356
+#: src/pam/pam_face_unlock.c:353
 msgid "Look at the camera to unlock."
 msgstr "Kijk in de camera om te ontgrendelen."
 
-#: src/pam/pam_face_unlock.c:359
+#: src/pam/pam_face_unlock.c:356
 msgid "Blink, or turn your head a little."
 msgstr "Knipper, of draai je hoofd een beetje."
 
-#: src/pam/pam_face_unlock.c:375
+#: src/pam/pam_face_unlock.c:372
 msgid "Face unlock is paused after too many tries. Use your password."
 msgstr ""
 "Gezichtsontgrendeling is gepauzeerd na te veel pogingen. Gebruik je "
 "wachtwoord."
 
-#: src/pam/pam_face_unlock.c:379
+#: src/pam/pam_face_unlock.c:376
 msgid "Face not recognised."
 msgstr "Gezicht niet herkend."
 
@@ -1294,13 +1306,3 @@ msgstr "Kijk naar de camera of typ je wachtwoord"
 #: src/agent/qml/LockScreen.qml:195
 msgid "Type your password"
 msgstr "Typ je wachtwoord"
-
-#~ msgid ""
-#~ "sudo in an SSH session takes your face too, if you sit at this computer. "
-#~ "Off by default: the person at the camera may not be the one typing."
-#~ msgstr ""
-#~ "sudo in een SSH-sessie neemt ook je gezicht, als je aan deze computer "
-#~ "zit. Standaard uit: wie voor de camera zit, is misschien niet wie typt."
-
-#~ msgid "In SSH sessions"
-#~ msgstr "In SSH-sessies"

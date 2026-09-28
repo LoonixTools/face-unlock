@@ -44,6 +44,10 @@ struct Settings {
     int lockoutMinutes = 15;
     // A laptop with the lid shut has its camera looking at the keyboard.
     bool skipLidClosed = true;
+    // sudo and admin prompts in an SSH session. Off by default: whoever sits
+    // in front of the camera need not be whoever types. On, that person still
+    // has to be at the machine (see the PAM module).
+    bool sshSessions = false;
     // Take in a little of each confident unlock, so a new haircut or a pair
     // of glasses does not need a new setup. Face ID does the same.
     bool adapt = true;

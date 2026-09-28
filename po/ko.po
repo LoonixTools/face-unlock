@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-09-28 14:34+0200\n"
+"POT-Creation-Date: 2026-09-28 14:36+0200\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Korean\n"
@@ -57,9 +57,9 @@ msgstr "얼굴이 추가되지 않았습니다."
 msgid "First, set up your face."
 msgstr "먼저 얼굴을 등록하세요."
 
-#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:529
-#: src/lib/menu.sh:533 src/lib/menu.sh:539 src/lib/menu.sh:541
-#: src/lib/system.sh:409 src/lib/system.sh:415
+#: src/face-unlock:100 src/face-unlock:150 src/lib/menu.sh:531
+#: src/lib/menu.sh:535 src/lib/menu.sh:541 src/lib/menu.sh:543
+#: src/lib/system.sh:410 src/lib/system.sh:416
 msgid "Could not save the setting."
 msgstr "설정을 저장하지 못했습니다."
 
@@ -116,16 +116,16 @@ msgstr ""
 msgid "No face is set up yet."
 msgstr "아직 등록된 얼굴이 없습니다."
 
-#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:703
+#: src/face-unlock:179 src/lib/menu.sh:180 src/lib/menu.sh:705
 msgid "on"
 msgstr "켜짐"
 
 #: src/face-unlock:179 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:704
+#: src/lib/menu.sh:706
 msgid "off"
 msgstr "꺼짐"
 
-#: src/face-unlock:181 src/lib/menu.sh:721
+#: src/face-unlock:181 src/lib/menu.sh:723
 #, sh-printf-format
 msgid "%s samples, %s learned"
 msgstr "샘플 %s개, 학습 %s개"
@@ -155,7 +155,7 @@ msgstr "얼굴 잠금 해제 켜기"
 msgid "Turn it off (faces are kept)"
 msgstr "끄기 (얼굴 데이터는 유지)"
 
-#: src/face-unlock:207 src/lib/menu.sh:789
+#: src/face-unlock:207 src/lib/menu.sh:791
 msgid "Add a face"
 msgstr "얼굴 추가"
 
@@ -197,7 +197,7 @@ msgid ""
 "needs to."
 msgstr "root가 아닌 본인 사용자로 실행하세요. 필요하면 비밀번호를 묻습니다."
 
-#: src/face-unlock:258 src/lib/system.sh:105
+#: src/face-unlock:258 src/lib/system.sh:106
 #, sh-printf-format
 msgid "Unknown command: %s"
 msgstr "알 수 없는 명령: %s"
@@ -386,11 +386,11 @@ msgstr ""
 msgid "[y/N]"
 msgstr "[y/N]"
 
-#: src/lib/menu.sh:172 src/lib/menu.sh:595
+#: src/lib/menu.sh:172 src/lib/menu.sh:597
 msgid "ON"
 msgstr "켜짐"
 
-#: src/lib/menu.sh:174 src/lib/menu.sh:596
+#: src/lib/menu.sh:174 src/lib/menu.sh:598
 msgid "OFF"
 msgstr "꺼짐"
 
@@ -431,7 +431,7 @@ msgstr "느리게"
 msgid "%s seconds"
 msgstr "%s초"
 
-#: src/lib/menu.sh:202 src/lib/menu.sh:464
+#: src/lib/menu.sh:202 src/lib/menu.sh:466
 msgid "automatic"
 msgstr "자동"
 
@@ -467,8 +467,8 @@ msgstr "실행 중 아님"
 msgid "Turning face unlock on again starts it."
 msgstr "얼굴 잠금 해제를 다시 켜면 시작됩니다."
 
-#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:699
-#: src/lib/menu.sh:790
+#: src/lib/menu.sh:244 src/lib/menu.sh:246 src/lib/menu.sh:701
+#: src/lib/menu.sh:792
 msgid "Faces"
 msgstr "얼굴"
 
@@ -525,7 +525,7 @@ msgstr "마지막 잠금 해제"
 msgid "The lock screen agent is not running."
 msgstr "잠금 화면 에이전트가 실행 중이 아닙니다."
 
-#: src/lib/menu.sh:333
+#: src/lib/menu.sh:334
 msgid ""
 "On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
 "switches it on."
@@ -533,7 +533,7 @@ msgstr ""
 "GNOME에서는 작은 GNOME 확장이 버블을 보여 줍니다. 얼굴 잠금 해제를 켜면 함께 "
 "켜집니다."
 
-#: src/lib/menu.sh:337
+#: src/lib/menu.sh:338
 msgid ""
 "Scans when you come back to hyprlock, swaylock or face-unlock's own lock "
 "screen (`face-unlock lock`, with the bubble), and opens them. Other lock "
@@ -542,14 +542,14 @@ msgstr ""
 "hyprlock, swaylock 또는 face-unlock 자체 잠금 화면(`face-unlock lock`, 버블 "
 "포함)으로 돌아오면 스캔해서 엽니다. 다른 잠금 화면은 Enter로 스캔합니다."
 
-#: src/lib/menu.sh:342
+#: src/lib/menu.sh:343
 msgid ""
 "Unlocks the lock screen when it sees your face. Off: only your password "
 "works there."
 msgstr ""
 "얼굴을 보면 잠금 화면을 해제합니다. 꺼짐: 잠금 화면에서는 비밀번호만 됩니다."
 
-#: src/lib/menu.sh:343
+#: src/lib/menu.sh:344
 msgid ""
 "Scans when you press a key or move the mouse on the lock screen, and when "
 "the computer wakes up."
@@ -557,7 +557,7 @@ msgstr ""
 "잠금 화면에서 키를 누르거나 마우스를 움직일 때, 그리고 컴퓨터가 깨어날 때 스"
 "캔합니다."
 
-#: src/lib/menu.sh:344
+#: src/lib/menu.sh:345
 msgid ""
 "Scans as soon as the screen locks. Off by default: if you lock it yourself, "
 "it would unlock again right away."
@@ -565,7 +565,7 @@ msgstr ""
 "화면이 잠기자마자 스캔합니다. 기본값은 꺼짐: 직접 잠그면 곧바로 다시 풀려 버"
 "리기 때문입니다."
 
-#: src/lib/menu.sh:345
+#: src/lib/menu.sh:346
 msgid ""
 "sudo takes your face instead of the password. No match: you type the "
 "password as usual."
@@ -573,7 +573,7 @@ msgstr ""
 "sudo가 비밀번호 대신 얼굴을 사용합니다. 일치하지 않으면 평소처럼 비밀번호를 "
 "입력합니다."
 
-#: src/lib/menu.sh:346
+#: src/lib/menu.sh:347
 msgid ""
 "face-unlock's lock screen shows the bubble, and you lock with `face-unlock "
 "lock`. Or keep yours: hyprlock then shows a line of text at the top. Enter "
@@ -583,7 +583,7 @@ msgstr ""
 "금 잠금 화면을 그대로 쓸 수도 있습니다: 그러면 hyprlock이 위쪽에 한 줄의 글"
 "을 보여 줍니다. Enter로 선택 창을 엽니다."
 
-#: src/lib/menu.sh:347
+#: src/lib/menu.sh:348
 msgid ""
 "The picture behind face-unlock's own lock screen (`face-unlock lock`). "
 "Empty: the one on your desktop. Or a file, a folder to take one from at "
@@ -592,11 +592,11 @@ msgstr ""
 "face-unlock 잠금 화면(`face-unlock lock`)의 배경 그림. 비워 두면 바탕 화면의 "
 "그림. 또는 파일, 무작위로 고를 폴더, `none`. Enter로 입력."
 
-#: src/lib/menu.sh:348
+#: src/lib/menu.sh:349
 msgid "Blurs the picture behind face-unlock's own lock screen."
 msgstr "face-unlock 잠금 화면의 배경 그림을 흐리게 합니다."
 
-#: src/lib/menu.sh:349
+#: src/lib/menu.sh:350
 #, sh-printf-format
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
@@ -605,7 +605,7 @@ msgstr ""
 "잠금 화면의 비밀번호 확인에서 얼굴을 받습니다. 빈 칸에서 Enter를 누르면 스캔"
 "합니다. 찾은 것: %s."
 
-#: src/lib/menu.sh:350
+#: src/lib/menu.sh:351
 msgid ""
 "The password windows of your desktop and apps, for example when you install "
 "software. No match: you type the password."
@@ -613,16 +613,24 @@ msgstr ""
 "데스크톱과 앱의 비밀번호 창입니다. 예를 들어 소프트웨어를 설치할 때입니다. 일"
 "치하지 않으면 비밀번호를 입력합니다."
 
-#: src/lib/menu.sh:351
+#: src/lib/menu.sh:352
+msgid ""
+"sudo in an SSH session takes your face too, if you sit at this computer. Off "
+"by default: the person at the camera may not be the one typing."
+msgstr ""
+"이 컴퓨터 앞에 앉아 있으면 SSH 세션의 sudo도 얼굴을 사용합니다. 기본값은 꺼"
+"짐: 카메라 앞의 사람이 입력하는 사람이 아닐 수 있기 때문입니다."
+
+#: src/lib/menu.sh:353
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr "눈을 깜빡이거나 고개를 살짝 돌려야 합니다. 인쇄한 사진도 막아 줍니다."
 
-#: src/lib/menu.sh:352
+#: src/lib/menu.sh:354
 msgid "No check at all. Only for trying out a camera."
 msgstr "검사하지 않습니다. 카메라를 시험할 때만 쓰세요."
 
-#: src/lib/menu.sh:353
+#: src/lib/menu.sh:355
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
@@ -630,22 +638,22 @@ msgstr ""
 "휴대폰, 태블릿, 광택지에 있는 사진을 막습니다. 눈을 깜빡일 필요는 없습니다. "
 "무광 인쇄 사진은 통과할 수 있습니다."
 
-#: src/lib/menu.sh:354
+#: src/lib/menu.sh:356
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 "잘못 일치하는 경우가 줄지만, 안경을 쓰거나 조명이 나쁘면 알아보지 못할 수 있"
 "습니다."
 
-#: src/lib/menu.sh:355
+#: src/lib/menu.sh:357
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "더 쉽게 알아보지만, 당신과 많이 닮은 사람도 알아볼 수 있습니다."
 
-#: src/lib/menu.sh:356
+#: src/lib/menu.sh:358
 msgid "The default. Right for most people."
 msgstr "기본값입니다. 대부분의 사람에게 알맞습니다."
 
-#: src/lib/menu.sh:357
+#: src/lib/menu.sh:359
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
@@ -653,7 +661,7 @@ msgstr ""
 "눈을 뜨고 화면을 보고 있어야 합니다. 그래서 다른 곳을 보거나 자는 동안에는 풀"
 "리지 않습니다."
 
-#: src/lib/menu.sh:358
+#: src/lib/menu.sh:360
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
@@ -661,11 +669,11 @@ msgstr ""
 "자동은 첫 번째 일반 카메라를 사용합니다. 바꾼 뒤에는 얼굴을 다시 등록하세요. "
 "적외선 카메라는 조명을 켜야 합니다 (linux-enable-ir-emitter)."
 
-#: src/lib/menu.sh:359
+#: src/lib/menu.sh:361
 msgid "How long the camera looks for your face before it gives up."
 msgstr "카메라가 포기하기 전까지 얼굴을 찾는 시간입니다."
 
-#: src/lib/menu.sh:360
+#: src/lib/menu.sh:362
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
@@ -673,7 +681,7 @@ msgstr ""
 "확실히 일치하면 지금 모습을 기억합니다. 그래서 머리 모양이 바뀌거나 안경을 써"
 "도 다시 등록할 필요가 없습니다."
 
-#: src/lib/menu.sh:361
+#: src/lib/menu.sh:363
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
@@ -681,27 +689,27 @@ msgstr ""
 "노트북을 덮었을 때는 스캔하지 않습니다. 예를 들어 외부 모니터를 연결해 책상에"
 "서 쓸 때입니다."
 
-#: src/lib/menu.sh:362
+#: src/lib/menu.sh:364
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr "화면 위쪽의 버블이 카메라가 하는 일을 보여 줍니다."
 
-#: src/lib/menu.sh:363
+#: src/lib/menu.sh:365
 msgid "A small pill with a lock that opens."
 msgstr "자물쇠가 열리는 작은 알약입니다."
 
-#: src/lib/menu.sh:364
+#: src/lib/menu.sh:366
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr "주위를 둘러보는 얼굴이 있는 아일랜드, 그다음 링과 체크 표시입니다."
 
-#: src/lib/menu.sh:365
+#: src/lib/menu.sh:367
 msgid "How fast the bubble moves."
 msgstr "버블이 움직이는 속도입니다."
 
-#: src/lib/menu.sh:366
+#: src/lib/menu.sh:368
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr "sudo나 관리자 인증 창이 얼굴을 스캔할 때도 버블을 보여 줍니다."
 
-#: src/lib/menu.sh:367
+#: src/lib/menu.sh:369
 msgid ""
 "When another app uses the camera, for example in a video call, no bubble "
 "shows and you type your password as usual. Off: the bubble shows a camera "
@@ -710,80 +718,80 @@ msgstr ""
 "화상 통화 등으로 다른 앱이 카메라를 사용하면 버블이 나타나지 않고 평소처럼 비"
 "밀번호를 입력합니다. 꺼짐: 버블에 줄이 그어진 카메라가 표시됩니다."
 
-#: src/lib/menu.sh:460
+#: src/lib/menu.sh:462
 #, sh-printf-format
 msgid "automatic (%s)"
 msgstr "자동 (%s)"
 
-#: src/lib/menu.sh:470
+#: src/lib/menu.sh:472
 msgid "(infrared)"
 msgstr "(적외선)"
 
-#: src/lib/menu.sh:474
+#: src/lib/menu.sh:476
 msgid "(not connected)"
 msgstr "(연결 안 됨)"
 
-#: src/lib/menu.sh:483
+#: src/lib/menu.sh:485
 msgid "same as desktop"
 msgstr "바탕 화면과 같음"
 
-#: src/lib/menu.sh:487
+#: src/lib/menu.sh:489
 msgid "none"
 msgstr "없음"
 
-#: src/lib/menu.sh:516
+#: src/lib/menu.sh:518
 msgid "Picture or folder:"
 msgstr "그림 또는 폴더:"
 
-#: src/lib/menu.sh:521
+#: src/lib/menu.sh:523
 #, sh-printf-format
 msgid "Not found: %s"
 msgstr "찾을 수 없음: %s"
 
-#: src/lib/menu.sh:592 src/lib/menu.sh:791
+#: src/lib/menu.sh:594 src/lib/menu.sh:793
 msgid "Settings"
 msgstr "설정"
 
-#: src/lib/menu.sh:593
+#: src/lib/menu.sh:595
 msgid "↑↓ select   ←→ or Space: change   q: back"
 msgstr "↑↓ 선택   ←→ 또는 스페이스: 변경   q: 뒤로"
 
-#: src/lib/menu.sh:594
+#: src/lib/menu.sh:596
 msgid "for all users, asks for your password"
 msgstr "모든 사용자에게 적용, 비밀번호 필요"
 
 #. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:701
+#: src/lib/menu.sh:703
 msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
 msgstr ""
 "위/아래: 선택, 스페이스: 켜기/끄기, r: 이름 바꾸기, d: 삭제, a: 추가, q: 뒤로"
 
-#: src/lib/menu.sh:702
+#: src/lib/menu.sh:704
 msgid "No face is set up yet. Press a to add one."
 msgstr "아직 등록된 얼굴이 없습니다. a를 눌러 추가하세요."
 
-#: src/lib/menu.sh:750
+#: src/lib/menu.sh:752
 msgid "New name:"
 msgstr "새 이름:"
 
-#: src/lib/menu.sh:757
+#: src/lib/menu.sh:759
 #, sh-printf-format
 msgid "Delete \"%s\"?"
 msgstr "\"%s\" 항목을 삭제할까요?"
 
-#: src/lib/menu.sh:788
+#: src/lib/menu.sh:790
 msgid "Turn face unlock on or off"
 msgstr "얼굴 잠금 해제 켜기/끄기"
 
-#: src/lib/menu.sh:792
+#: src/lib/menu.sh:794
 msgid "Try it"
 msgstr "사용해 보기"
 
-#: src/lib/menu.sh:794
+#: src/lib/menu.sh:796
 msgid "Install a polkit agent"
 msgstr "polkit 에이전트 설치"
 
-#: src/lib/menu.sh:796
+#: src/lib/menu.sh:798
 msgid "Quit"
 msgstr "끝내기"
 
@@ -804,26 +812,26 @@ msgstr "PAM 모듈이 다음 위치에 설치되어 있지 않습니다: %s"
 msgid "There is no PAM configuration for %s on this system."
 msgstr "이 시스템에는 %s용 PAM 설정이 없습니다."
 
-#: src/lib/system.sh:49
+#: src/lib/system.sh:50
 msgid "This needs root, and neither sudo, run0 nor doas is installed."
 msgstr ""
 "root 권한이 필요하지만 sudo, run0, doas 중 아무것도 설치되어 있지 않습니다."
 
-#: src/lib/system.sh:58
+#: src/lib/system.sh:59
 msgid "This command has to run as root."
 msgstr "이 명령은 root로 실행해야 합니다."
 
-#: src/lib/system.sh:66
+#: src/lib/system.sh:67
 #, sh-printf-format
 msgid "Not a valid setting: %s=%s"
 msgstr "올바르지 않은 설정: %s=%s"
 
-#: src/lib/system.sh:82
+#: src/lib/system.sh:83
 #, sh-printf-format
 msgid "Not a service this can be used for: %s"
 msgstr "이 서비스에는 사용할 수 없습니다: %s"
 
-#: src/lib/system.sh:154
+#: src/lib/system.sh:155
 #, sh-printf-format
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this to %s:"
@@ -831,75 +839,75 @@ msgstr ""
 "Hyprland는 잠금 화면 에이전트를 스스로 시작하지 않습니다. %s에 다음을 추가하"
 "세요:"
 
-#: src/lib/system.sh:156
+#: src/lib/system.sh:157
 #, sh-printf-format
 msgid "Hyprland does not start the polkit agent by itself. Add this to %s:"
 msgstr ""
 "Hyprland는 polkit 에이전트를 스스로 시작하지 않습니다. %s에 다음을 추가하세"
 "요:"
 
-#: src/lib/system.sh:214
+#: src/lib/system.sh:215
 msgid "No package manager found to install a polkit agent with."
 msgstr "polkit 에이전트를 설치할 패키지 관리자를 찾지 못했습니다."
 
-#: src/lib/system.sh:238
+#: src/lib/system.sh:239
 msgid "Installing a polkit agent. That needs your password."
 msgstr "polkit 에이전트를 설치합니다. 비밀번호가 필요합니다."
 
-#: src/lib/system.sh:239 src/lib/system.sh:241
+#: src/lib/system.sh:240 src/lib/system.sh:242
 msgid "Could not install a polkit agent."
 msgstr "polkit 에이전트를 설치하지 못했습니다."
 
-#: src/lib/system.sh:257
+#: src/lib/system.sh:258
 #, sh-printf-format
 msgid "The polkit agent did not start. See: systemctl --user status %s"
 msgstr ""
 "polkit 에이전트가 시작되지 않았습니다. 확인: systemctl --user status %s"
 
-#: src/lib/system.sh:261
+#: src/lib/system.sh:262
 msgid "The polkit agent is running. Password windows open now."
 msgstr "polkit 에이전트가 실행 중입니다. 이제 비밀번호 창이 열립니다."
 
-#: src/lib/system.sh:386 src/lib/system.sh:389
+#: src/lib/system.sh:387 src/lib/system.sh:390
 #, sh-printf-format
 msgid "To lock with it, add this to %s, and set %s in %s:"
 msgstr "이것으로 잠그려면 %s에 이것을 추가하고, %s을(를) %s에 설정하세요:"
 
-#: src/lib/system.sh:394
+#: src/lib/system.sh:395
 #, sh-printf-format
 msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
 msgstr ""
 "이것으로 잠그려면 %s의 binds에 이것을 추가하고, swayidle에서 %s을(를) 쓰세요:"
 
-#: src/lib/system.sh:398
+#: src/lib/system.sh:399
 #, sh-printf-format
 msgid "To lock with it, run %s where your lock screen is started now."
 msgstr ""
 "이것으로 잠그려면 지금 잠금 화면을 시작하는 곳에서 %s을(를) 실행하세요."
 
-#: src/lib/system.sh:411
+#: src/lib/system.sh:412
 msgid "You lock with face-unlock's lock screen now."
 msgstr "이제 face-unlock 잠금 화면으로 잠급니다."
 
-#: src/lib/system.sh:418
+#: src/lib/system.sh:419
 msgid ""
 "hyprlock shows what face unlock is doing at the top, from the next time it "
 "locks."
 msgstr "다음 잠금부터 hyprlock이 위쪽에 face unlock이 하는 일을 보여 줍니다."
 
-#: src/lib/system.sh:419
+#: src/lib/system.sh:420
 #, sh-printf-format
 msgid "Could not add the line to %s."
 msgstr "%s에 줄을 추가할 수 없습니다."
 
-#: src/lib/system.sh:420
+#: src/lib/system.sh:421
 msgid ""
 "Your lock screen stays as it is. Press Enter on the empty password field to "
 "scan."
 msgstr ""
 "잠금 화면은 그대로입니다. 빈 비밀번호 칸에서 Enter를 누르면 스캔합니다."
 
-#: src/lib/system.sh:421
+#: src/lib/system.sh:422
 #, sh-printf-format
 msgid "hyprlock has no %s, so it cannot show the text."
 msgstr "hyprlock에 %s이(가) 없어 글을 보여 줄 수 없습니다."
@@ -935,6 +943,10 @@ msgstr "비밀번호 입력 창"
 #: src/lib/menu.sh
 msgid "sudo in a terminal"
 msgstr "터미널의 sudo"
+
+#: src/lib/menu.sh
+msgid "In SSH sessions"
+msgstr "SSH 세션에서도"
 
 #: src/lib/menu.sh
 msgid "Recognition"
@@ -1134,20 +1146,20 @@ msgstr "데모용 버블 스타일: full 또는 minimal."
 msgid "Ask which lock screen to use, and print the answer."
 msgstr "사용할 잠금 화면을 묻고 답을 출력합니다."
 
-#: src/pam/pam_face_unlock.c:356
+#: src/pam/pam_face_unlock.c:353
 msgid "Look at the camera to unlock."
 msgstr "잠금을 해제하려면 카메라를 보세요."
 
-#: src/pam/pam_face_unlock.c:359
+#: src/pam/pam_face_unlock.c:356
 msgid "Blink, or turn your head a little."
 msgstr "눈을 깜빡이거나 고개를 살짝 돌리세요."
 
-#: src/pam/pam_face_unlock.c:375
+#: src/pam/pam_face_unlock.c:372
 msgid "Face unlock is paused after too many tries. Use your password."
 msgstr ""
 "시도가 너무 많아 얼굴 잠금 해제가 일시 중지되었습니다. 비밀번호를 사용하세요."
 
-#: src/pam/pam_face_unlock.c:379
+#: src/pam/pam_face_unlock.c:376
 msgid "Face not recognised."
 msgstr "얼굴을 인식하지 못했습니다."
 
@@ -1273,13 +1285,3 @@ msgstr "카메라를 보거나 비밀번호를 입력하세요"
 #: src/agent/qml/LockScreen.qml:195
 msgid "Type your password"
 msgstr "비밀번호를 입력하세요"
-
-#~ msgid ""
-#~ "sudo in an SSH session takes your face too, if you sit at this computer. "
-#~ "Off by default: the person at the camera may not be the one typing."
-#~ msgstr ""
-#~ "이 컴퓨터 앞에 앉아 있으면 SSH 세션의 sudo도 얼굴을 사용합니다. 기본값은 "
-#~ "꺼짐: 카메라 앞의 사람이 입력하는 사람이 아닐 수 있기 때문입니다."
-
-#~ msgid "In SSH sessions"
-#~ msgstr "SSH 세션에서도"

@@ -28,6 +28,7 @@ declare -A FU_SYS_VALID=(
 	[ScanSeconds]='^([2-9]|1[0-5])$'
 	[Adapt]='^(yes|no)$'
 	[SkipLidClosed]='^(yes|no)$'
+	[SshSessions]='^(yes|no)$'
 	[MaxFailures]='^([1-9]|1[0-9]|20)$'
 	[LockoutMinutes]='^[1-9][0-9]{0,3}$'
 )

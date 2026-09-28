@@ -50,6 +50,7 @@ Settings Settings::load(const QString &path)
     s.maxFailures = kv.integer(QStringLiteral("MaxFailures"), s.maxFailures, 1, 20);
     s.lockoutMinutes = kv.integer(QStringLiteral("LockoutMinutes"), s.lockoutMinutes, 1, 24 * 60);
     s.skipLidClosed = kv.boolean(QStringLiteral("SkipLidClosed"), s.skipLidClosed);
+    s.sshSessions = kv.boolean(QStringLiteral("SshSessions"), s.sshSessions);
     s.adapt = kv.boolean(QStringLiteral("Adapt"), s.adapt);
     return s;
 }

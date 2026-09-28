@@ -309,6 +309,7 @@ FU_SETTINGS=(
 	"pam|sudo|bool|no|sudo in a terminal"
 	"pam|polkit-1|bool|no|Admin prompts"
 	"pam|lockscreens|bool|yes|Lock screens|||lockers"
+	"sys|SshSessions|bool|no|In SSH sessions"
 	"group|Recognition"
 	"sys|Liveness|choice|light|Photo check|off,light,heavy"
 	"sys|Strictness|choice|normal|How closely the face has to match|relaxed,normal,strict"
@@ -348,6 +349,7 @@ fu_setting_help() {
 		LockBlur:*)         fu_msg "Blurs the picture behind face-unlock's own lock screen." ;;
 		lockscreens:*)      fu_msg "The lock screen takes your face in its password check. Press Enter on the empty field to scan. Found here: %s." "$(fu_pam_lockers_list)" ;;
 		polkit-1:*)         fu_msg "The password windows of your desktop and apps, for example when you install software. No match: you type the password." ;;
+		SshSessions:*)      fu_msg "sudo in an SSH session takes your face too, if you sit at this computer. Off by default: the person at the camera may not be the one typing." ;;
 		Liveness:heavy)     fu_msg "You have to blink or turn your head a little. This also stops printed photos." ;;
 		Liveness:off)       fu_msg "No check at all. Only for trying out a camera." ;;
 		Liveness:*)         fu_msg "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through." ;;

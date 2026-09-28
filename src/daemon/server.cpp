@@ -7,9 +7,10 @@
 //   hello                       version
 //   status [user]               faces, lockout, camera, settings
 //   cameras                     every camera and which one is in use
-//   verify user purpose [verbose]
+//   verify user purpose [verbose] [remote]
 //                               scan for that user. Events: started, face,
-//                               hint, frame (verbose only), result
+//                               hint, frame (verbose only), result. remote:
+//                               the PAM module asks for an SSH session
 //   enroll [name]               set up a face for the caller. Asks polkit
 //                               first. Events: authorizing, authorized,
 //                               started, frame, pose, hint, captured, result.
@@ -434,12 +435,17 @@ void Server::handleVerify(Client *client, const QJsonObject &request)
     if (!targetUser(client, request, &uid)) {
         return;
     }
+    const Settings s = settings();
+    // Whoever sits in front of the camera need not be whoever types.
+    if (request.value(u"remote").toBool() && !s.sshSessions) {
+        fail(client, QStringLiteral("remote"));
+        return;
+    }
     if (m_job) {
         fail(client, QStringLiteral("busy"));
         return;
     }
 
-    const Settings s = settings();
     const qint64 now = QDateTime::currentSecsSinceEpoch();
     const UserState state = UserState::load(m_options.stateDir, uid);
     if (const qint64 left = state.lockoutLeft(now)) {

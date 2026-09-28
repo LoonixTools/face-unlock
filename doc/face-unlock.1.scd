@@ -165,8 +165,8 @@ The other guards:
   face needs the password (polkit, *auth_self_keep*). A face cannot answer
   that question even with admin prompts on: the daemon refuses to scan while
   it is being asked;
-- sudo and admin prompts are refused over SSH and for anybody without an
-  active session at the machine;
+- sudo and admin prompts are refused over SSH, unless *In SSH sessions* is
+  on, and always for anybody without an active session at the machine;
 - the lock screen is unlocked through logind, the same way
   *loginctl unlock-session* does it. That does not lower the bar: any program
   running as the user could already do that. For sudo and admin prompts the
@@ -331,7 +331,7 @@ _~/.config/face-unlock/config_
 
 _/etc/face-unlock/config_
 	The system settings: camera, photo check, strictness, attention, scan
-	length. Written by the menu through sudo.
+	length, SSH sessions. Written by the menu through sudo.
 
 _/var/lib/face-unlock/users/<uid>.json_
 	The face data: numbers, no pictures. Root only.

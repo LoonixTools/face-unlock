@@ -10,10 +10,11 @@
 // It refuses to be useful in exactly the places where a camera is the wrong
 // witness:
 //   - a remote login (SSH, a remote host in PAM_RHOST). Whoever is in front
-//     of the camera is not the person typing.
+//     of the camera need not be the person typing. The daemon refuses it
+//     unless SshSessions is on in the system settings.
 //   - a user who is not sitting at the machine right now, with an active
-//     session on a seat.
-// In both cases it returns PAM_IGNORE without touching the camera.
+//     session on a seat. Then it returns PAM_IGNORE without touching the
+//     camera.
 //
 // Options:
 //   purpose=sudo|polkit|other  what the bubble says (default: from the
@@ -291,12 +292,7 @@ __attribute__((visibility("default"))) PAM_EXTERN int pam_sm_authenticate(pam_ha
         }
         return PAM_IGNORE;
     }
-    if (is_remote(pamh)) {
-        if (o.debug) {
-            pam_syslog(pamh, LOG_DEBUG, "remote session, not scanning for %s", user);
-        }
-        return PAM_IGNORE;
-    }
+    const bool remote = is_remote(pamh);
     if (!is_at_seat(user)) {
         if (o.debug) {
             pam_syslog(pamh, LOG_DEBUG, "%s is not at the machine, not scanning", user);
@@ -310,7 +306,8 @@ __attribute__((visibility("default"))) PAM_EXTERN int pam_sm_authenticate(pam_ha
     }
 
     char request[512];
-    const int len = snprintf(request, sizeof(request), "{\"cmd\":\"verify\",\"user\":\"%s\",\"purpose\":\"%s\"}\n", user, purpose);
+    const int len = snprintf(request, sizeof(request), "{\"cmd\":\"verify\",\"user\":\"%s\",\"purpose\":\"%s\",\"remote\":%s}\n", user, purpose,
+                             remote ? "true" : "false");
     if (len <= 0 || (size_t)len >= sizeof(request) || strpbrk(user, "\"\\") || write(fd, request, (size_t)len) != len) {
         close(fd);
         return PAM_IGNORE;
@@ -380,8 +377,9 @@ __attribute__((visibility("default"))) PAM_EXTERN int pam_sm_authenticate(pam_ha
                 } else if (strcmp(value, "no-face") == 0 || strcmp(value, "attention") == 0 || strcmp(value, "quality") == 0) {
                     rc = PAM_AUTH_ERR;
                 } else {
-                    // Not set up, no camera, lid shut, busy: face unlock is
-                    // simply not available right now.
+                    // Not set up, no camera, the camera in a video call,
+                    // lid shut, busy, SSH: face unlock is simply not
+                    // available right now.
                     rc = PAM_AUTHINFO_UNAVAIL;
                     if (o.debug) {
                         pam_syslog(pamh, LOG_DEBUG, "face unlock unavailable for %s: %s", user, value);

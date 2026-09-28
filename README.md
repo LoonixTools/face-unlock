@@ -124,8 +124,8 @@ it cannot always differentiate your face from a good fake. But the tool does eve
 But a video of you on a big matte screen could get in.
 
 After five failed attempts, face unlock pauses for 15 minutes. Your face is kept as
-numbers, not pictures, and only root can read them. sudo over SSH always asks
-for the password.
+numbers, not pictures, and only root can read them. sudo over SSH asks for the
+password, unless you turn that on.
 
 ## More
 
