@@ -4,39 +4,39 @@ Hash: SHA512
 Architectures: amd64
 Codename: trixie
 Components: main
-Date: Mon, 28 Sep 2026 07:08:42 +0000
+Date: Mon, 28 Sep 2026 12:56:57 +0000
 Label: face-unlock
 Origin: face-unlock
 Suite: trixie
 MD5Sum:
- 48920d01234979925b1af1f0709a315b             9533 Packages
- d65ee7d1cfd76ec72f6f33369c865043             1846 Packages.gz
- d788e329930ecfecc6b83be61196f703              146 Release
+ 7ff0634720fc6a3cc2815e5db25d6766            12023 Packages
+ c1b1748d9563ee605df83223d44a4408             1975 Packages.gz
+ 06fc0c759ee2996c978036e3f52075c4              146 Release
 SHA1:
- cc1eb89387b8c478e0723eeea0b44305aa565587             9533 Packages
- 5483548e87620554249bb692025a9e86d59fc70a             1846 Packages.gz
- 65a28a3608fdd3443c8ba34a037b847b852d99c4              146 Release
+ eb1da720b238f37cfadc99f25d87fa85632fda10            12023 Packages
+ 1669ea646c9550cc7e55cff8f30a61cefed8ca87             1975 Packages.gz
+ a670484e11af0e45adae7b83fa29b7ecabebbc3e              146 Release
 SHA256:
- 003b21874765b72f815a571e16017775cc6a325a9dea272431e739e5764133f2             9533 Packages
- fa3053f3f12c0feaebb09b42e4452543b3b1b667aca2c90ea74db7ceb9b46774             1846 Packages.gz
- 81b367efa6b391837fcc111bf8181a98c7625883892e22d4516a3856a2b66a1b              146 Release
+ 5f11f2c3fdc17dcb9fb0af8d7ac5acd79508d1d0aed8f04b846a77442d8c0b01            12023 Packages
+ 506ed56345060a411ed6fb723a8a984a5c33c2a772fa12a66808ca4267a68bca             1975 Packages.gz
+ ebafab4aaff6b881b567af4254b6c39fb9bb6ed6098234af52befb2298757f35              146 Release
 SHA512:
- 8efed48848355c877cbe97a7a2f561eb5b55b9a632472b4528d8ed46735d983f1656a8999f146674f76794c246b671ff5b3f8bed5b41530c2321c39550dfc0ff             9533 Packages
- 9ae621b9352225ac8bc1a2a56a4c6294b5d14b57866ad0b51d6efde0b3bfed7443c897440a5609abf022a19bb72290a78f629a85a499fa014ad116531edf485d             1846 Packages.gz
- a0a3e47f752535dcff47de7bd3af06d42e628f61f346f8e69eaa8db0b725d555b0bd2be2b277f65423887a4439589f66390627ab1c9af9c8f2116a66059432a6              146 Release
+ b6a607bc987ab766bc4b3cf1d27438c3460bff4a8957c5116cc6497c624a7fbdbb2877da4a8b7301ca1b872ab4c22f747b9c924fda6e71665f4469b57454d5f0            12023 Packages
+ 8e8741dcf99080a506ea7df1cd57aed04c666eb6c1765d2a6c520a2ac033ad4f705a44767f10503bead8954759ef82180350dc8e78d2fb916180e8b0c4f5b337             1975 Packages.gz
+ 7d8cd9a7e78e6f5d0eb6ef086a6391aee133ac9511d1ac35bb0e81f4448337888adf2f39fd2f9584d30b6e549c279b3ad621f342562ede2714148c309c8456b8              146 Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmq6EnoACgkQ+H9udOBW
-tAi+5Q//YXXkC1sONBgTwTj7sJyGO33GpkhG8g6Wsz/g2/8ALy4PsdLqmO5/t5US
-AxO2pP48sp06VGkfIfWv7CYK/eR32IykffMJY4dyQ00/pkSPKURxgZJJ1Kh8I8JW
-5RbDndxcUR45snGI1NGKFk+0o58IIlvDOMfGmK+2sUE4DJBHZFa5WOV6kqYNmJKr
-1YCzoOTGdpWe74Bvs/rA4eKzZ9+yCzF0v/GUDWtgJugajPZaeuJsOtc8vGQNeyr/
-buL3tPlmtD5CscCWaAcNaLe5ClwGVCdPmv9sFHPyPTy4BtjW+0FVpB6lQ40sktoJ
-co5LMmibPYCLnvyJJwOT7Cz/MiJvH3Xpg+CgLgL6VUv4Vj8xfBbcQVOo+ALzm6wk
-k2I1DrqEJSefshO+Q+tcGP69NqNwIjhftL7GidajSflUdkKqdtuPFQVcZnVi95Hr
-e4zAT68gNeMzzJpY2myuSF/Fj6FDJaX1KPkQg+VpIm0/VktDdkSbg7AossLN8V5v
-iFZ972kdi25UrrE83IhCkryJXO1bIoHrkvR2ZViORzFJp65O3Ejcoe+pJ2/gkR6h
-wwI7BXItT1DPgLDeq5oBWIx0IvBgufCq8ZFXPasbTThf9l/nfRZNnnkz5rcF5wgf
-m7laaDWdU/Ys6crfSvz/DXo25MR5SLGJhLCr+gv1joFB3Ndi0H8=
-=N7qk
+iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmq6ZBkACgkQ+H9udOBW
+tAj1xQ/+Ivqf0+u7Dr0nW2OYbCaR2UkYAmjgUVUp9eNPWKy1Rbkf3IS0xRvjiTdP
+xexfV6nxg8U0SPeYSbU27pcX/ZukhEiQ82vzvig6KmSShOIWe6dMdvF1Kj+nb/Ed
+mCYRKe0Ly4fOIP3pbfujToED2ZN6NCEEnMtx5h20s99WB05aZq4VenoTAUTSt8OB
+TpmG4xupj/hBxxyFljwXlrQE9zGmo0qLxFxB6mhxRIQ5XGUu/X49SoRsRrjspTBi
+7fb0wIulybaSxf8jJfgqFrFKhlrze06dW5AA5z8XLcmmaHorLnzN2+BuPZDWG02Z
+4nXgwC6KfQ7AJzBkAMdOE7+gz10a1YDCBgR8zSCHU6ipaC2h5Dx+r7UPcUBM9oRi
+l/YlW3rPXHSKA1oGpA/qmejn59kdOOWZaU4Su816/A8YY2MOt6JXdZvYG75bSF19
+cnx1f+YC+dRp9Sbu8A1RRFmF2cF0A7fuGNwZ0j1mmihl7UL8VhzrahLadeIXBvhC
+inEmoUi8Fe/hz3G1kp2EpiLVzTLl8k3YqNKaeDzq/eDSARIfA36tkiBI00Mxy3Gb
+b9ADtknjUyjFStf4AAdetCfwaZ40mE5oDXhoFiMmg/qOeej1oVtR2/9dLoz92ahd
+CR66MgIiOqjXXLqoUwZ8Sg+UaxDetGiJwPzKBKWzbYNNWLsIW1g=
+=9xfS
 -----END PGP SIGNATURE-----
