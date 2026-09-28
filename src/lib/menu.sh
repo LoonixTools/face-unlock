@@ -668,6 +668,12 @@ fu_ui_settings() {
 			up|k)   cursor=$(( (cursor - 1 + count) % count )) ;;
 			down|j) cursor=$(( (cursor + 1) % count )) ;;
 			space|enter|right|l|left|h)
+				# Enter only opens what has a window or a line to type in. On
+				# the rest it is mostly the tail of "4⏎", typed as into a
+				# prompt, and would switch the first setting off.
+				if [[ $key == enter && ${types[selected]} != lockstyle && ${types[selected]} != path ]]; then
+					continue
+				fi
 				local step=1
 				[[ $key == left || $key == h ]] && step=-1
 				_fu_setting_change "${scopes[selected]}" "${keys[selected]}" "${types[selected]}" "${values[selected]}" "${choices[selected]}" "$step"
@@ -727,7 +733,9 @@ fu_ui_faces() {
 		case "$key" in
 			up|k)   (( count )) && cursor=$(( (cursor - 1 + count) % count )) ;;
 			down|j) (( count )) && cursor=$(( (cursor + 1) % count )) ;;
-			space|enter)
+			# Not Enter: after "3⏎", typed as into a prompt, it would switch
+			# the first face off.
+			space)
 				(( count )) || continue
 				if [[ ${FU_FACE_ON[cursor]} == true ]]; then
 					fu_ctl disable "${FU_FACE_IDS[cursor]}" > /dev/null
