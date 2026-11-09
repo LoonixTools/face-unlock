@@ -6,12 +6,15 @@
 #include <QDBusConnectionInterface>
 #include <QDBusMessage>
 #include <QDBusPendingCallWatcher>
+#include <QDBusPendingReply>
+#include <QDBusVariant>
 #include <QGuiApplication>
 #include <QWaylandClientExtensionTemplate>
 #include <QtGui/qguiapplication_platform.h>
 
 #include <algorithm>
 #include <functional>
+#include <optional>
 
 #include "qwayland-ext-idle-notify-v1.h"
 
@@ -63,10 +66,16 @@ namespace
 {
 const QString MutterService = QStringLiteral("org.gnome.Mutter.IdleMonitor");
 const QString MutterPath = QStringLiteral("/org/gnome/Mutter/IdleMonitor/Core");
+const QString UPower = QStringLiteral("org.freedesktop.UPower");
+constexpr int UPowerTimeoutMs = 1000;
 } // namespace
 
 // GNOME's way: a watch that fires once nothing was touched for the calm,
 // then one that fires at the next input. Each fires once and is gone.
+//
+// Mutter also counts the charger going in or out as activity. Nobody came
+// back then, so that does not count here. It does this because of UPower's
+// own signal, so by the time the watch fires UPower has the new value.
 class MutterIdle : public QObject
 {
     Q_OBJECT
@@ -87,7 +96,7 @@ public:
         stop();
         const int generation = m_generation;
         if (calmMs <= 0) {
-            addWatch(QStringLiteral("AddUserActiveWatch"), {}, generation, &m_active);
+            watchActive(generation);
             return;
         }
         // Already calm for that long (the scan itself took a while): the
@@ -97,7 +106,7 @@ public:
                 return;
             }
             if (reply.arguments().value(0).toULongLong() >= quint64(calmMs)) {
-                addWatch(QStringLiteral("AddUserActiveWatch"), {}, generation, &m_active);
+                watchActive(generation);
             } else {
                 addWatch(QStringLiteral("AddIdleWatch"), {QVariant::fromValue(quint64(calmMs))}, generation, &m_idle);
             }
@@ -118,14 +127,51 @@ private Q_SLOTS:
         if (id != 0 && id == m_idle) {
             remove(m_idle);
             m_idle = 0;
-            addWatch(QStringLiteral("AddUserActiveWatch"), {}, m_generation, &m_active);
+            watchActive(m_generation);
         } else if (id != 0 && id == m_active) {
             m_active = 0;
-            m_input();
+            const int generation = m_generation;
+            readOnBattery([this, generation](std::optional<bool> onBattery) {
+                if (generation != m_generation) {
+                    return;
+                }
+                if (onBattery && m_onBattery && *onBattery != *m_onBattery) {
+                    watchActive(generation);
+                } else {
+                    m_input();
+                }
+            });
         }
     }
 
 private:
+    void watchActive(int generation)
+    {
+        readOnBattery([this, generation](std::optional<bool> onBattery) {
+            if (generation == m_generation) {
+                m_onBattery = onBattery;
+            }
+        });
+        addWatch(QStringLiteral("AddUserActiveWatch"), {}, generation, &m_active);
+    }
+
+    // Nothing when there is no UPower. Then all activity counts as input.
+    void readOnBattery(std::function<void(std::optional<bool>)> done)
+    {
+        QDBusMessage msg = QDBusMessage::createMethodCall(UPower,
+                                                          QStringLiteral("/org/freedesktop/UPower"),
+                                                          QStringLiteral("org.freedesktop.DBus.Properties"),
+                                                          QStringLiteral("Get"));
+        msg << UPower << QStringLiteral("OnBattery");
+        msg.setAutoStartService(false);
+        auto *watcher = new QDBusPendingCallWatcher(QDBusConnection::systemBus().asyncCall(msg, UPowerTimeoutMs), this);
+        connect(watcher, &QDBusPendingCallWatcher::finished, this, [watcher, done] {
+            watcher->deleteLater();
+            const QDBusPendingReply<QDBusVariant> reply = *watcher;
+            done(reply.isValid() ? std::optional(reply.value().variant().toBool()) : std::nullopt);
+        });
+    }
+
     template<typename Done>
     void call(const QString &method, const QVariantList &args, Done done)
     {
@@ -162,6 +208,7 @@ private:
     int m_generation = 0;
     uint m_idle = 0;
     uint m_active = 0;
+    std::optional<bool> m_onBattery;
 };
 
 InputWatcher::InputWatcher(QObject *parent)
