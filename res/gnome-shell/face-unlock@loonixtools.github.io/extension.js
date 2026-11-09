@@ -9,6 +9,7 @@
 // CameraGlyph, Checkmark). What to show comes from the agent over the session
 // bus.
 
+import Cairo from 'cairo';
 import Clutter from 'gi://Clutter';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
@@ -182,6 +183,81 @@ function layer(cr, opacity, scale, cx, cy, draw) {
     cr.paintWithAlpha(Math.min(1, opacity));
     cr.restore();
 }
+
+// MultiEffect's blur, which cairo does not have. draw() paints the part x, y,
+// w, h. That is halved again and again and doubled back smoothly, and each
+// halving blurs about twice as wide. `weights` says how much of each level,
+// from the first halving on, goes into the result.
+function soft(cr, x, y, w, h, weights, opacity, draw) {
+    if (opacity <= 0.001)
+        return;
+    const surfaces = [];
+    const surface = (width, height) => {
+        const made = new Cairo.ImageSurface(0 /* ARGB32 */, Math.ceil(width), Math.ceil(height));
+        surfaces.push(made);
+        return made;
+    };
+    const paintInto = (target, paint) => {
+        const c = new Cairo.Context(target);
+        paint(c);
+        c.$dispose();
+    };
+
+    const levels = [surface(w, h)];
+    paintInto(levels[0], c => {
+        c.translate(-x, -y);
+        c.setLineCap(1 /* round */);
+        c.setLineJoin(1 /* round */);
+        draw(c);
+    });
+    for (let i = 0; i < weights.length; ++i) {
+        const from = levels[i];
+        const half = surface(from.getWidth() / 2, from.getHeight() / 2);
+        paintInto(half, c => {
+            c.scale(0.5, 0.5);
+            c.setSourceSurface(from, 0, 0);
+            c.getSource().setFilter(1 /* good */);
+            c.paint();
+        });
+        levels.push(half);
+    }
+    let blurred = null;
+    for (let i = weights.length; i >= 1; --i) {
+        const level = levels[i];
+        const sum = surface(level.getWidth(), level.getHeight());
+        paintInto(sum, c => {
+            if (blurred) {
+                c.save();
+                c.scale(2, 2);
+                c.setSourceSurface(blurred, 0, 0);
+                c.getSource().setFilter(4 /* bilinear */);
+                c.paint();
+                c.restore();
+            }
+            if (weights[i - 1] > 0) {
+                c.setOperator(12 /* add */);
+                c.setSourceSurface(level, 0, 0);
+                c.paintWithAlpha(weights[i - 1]);
+            }
+        });
+        blurred = sum;
+    }
+
+    cr.save();
+    cr.translate(x, y);
+    cr.scale(2, 2);
+    cr.setSourceSurface(blurred, 0, 0);
+    cr.getSource().setFilter(4 /* bilinear */);
+    cr.paintWithAlpha(opacity);
+    cr.restore();
+    for (const made of surfaces)
+        made.finish();
+}
+
+// How much of each level soft() takes to look like the QML's MultiEffect:
+// the glow round the rings, and the island's shadow. Measured against it.
+const GLOW_BLUR = [0, 0.42, 0.35, 0.23];
+const SHADOW_BLUR = [0, 0.52, 0.16, 0.32];
 
 // LockGlyph.qml: a padlock that opens.
 class LockGlyph {
@@ -484,19 +560,15 @@ class FaceGlyph {
         // near halves on top.
         if (t > 0) {
             layer(cr, ringsIn, 1, c, c, () => {
-                if (glow > 0) {
-                    // MultiEffect's blur, drawn as wider and fainter strokes.
-                    for (let i = 0; i < 6; ++i) {
-                        cr.setLineWidth(lw * 1.6 + i * lw * 0.9);
-                        const a = 0.8 * glow * 0.16;
-                        rgba(cr, color, a);
-                        polyline(cr, [...ringA.map(onScreen), onScreen(ringA[0])]);
-                        cr.stroke();
-                        rgba(cr, color, a * ringBShown);
-                        polyline(cr, [...ringB.map(onScreen), onScreen(ringB[0])]);
-                        cr.stroke();
-                    }
-                }
+                soft(cr, -32, -32, size + 64, size + 64, GLOW_BLUR, 0.8 * glow, c => {
+                    c.setLineWidth(lw * 1.6);
+                    rgba(c, color);
+                    polyline(c, [...ringA.map(onScreen), onScreen(ringA[0])]);
+                    c.stroke();
+                    rgba(c, color, ringBShown);
+                    polyline(c, [...ringB.map(onScreen), onScreen(ringB[0])]);
+                    c.stroke();
+                });
                 cr.setLineWidth(lw);
                 const half = (points, front) => FaceGlyph.half(points, front).map(onScreen);
                 rgba(cr, color, ringABack);
@@ -862,16 +934,12 @@ class Bubble {
         const y = this._y.get(at);
         const radius = minimal ? h / 2 : Math.min(Theme.openRadius, h / 2);
 
-        // The shadow: MultiEffect's soft one, as rings that fade outwards.
-        const shadow = this._shadow.get(at);
-        if (shadow > 0.001) {
-            for (let i = 8; i >= 1; --i) {
-                const grow = i * 2;
-                rgba(cr, [0, 0, 0], shadow * 0.18 * (1 - i / 9));
-                roundedRect(cr, x - grow, y + 3 - grow, w + 2 * grow, h + 2 * grow, radius + grow);
-                cr.fill();
-            }
-        }
+        // The shadow: MultiEffect's soft one, 3 px down.
+        soft(cr, x - 32, y - 32, w + 64, h + 64, SHADOW_BLUR, this._shadow.get(at), c => {
+            rgba(c, [0, 0, 0]);
+            roundedRect(c, x, y + 3, w, h, radius);
+            c.fill();
+        });
 
         rgba(cr, Theme.panel);
         roundedRect(cr, x, y, w, h, radius);
