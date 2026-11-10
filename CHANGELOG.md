@@ -2,6 +2,12 @@
 
 What each release brings, newest first. The [GitHub releases](https://github.com/LoonixTools/face-unlock/releases) add every commit that went into it.
 
+## v2.1.1
+
+_2026-11-10_
+
+A small patch for GNOME. The bubble now has the same soft glow and shadow as on Plasma, and the lock screen no longer starts looking for your face when you plug in or unplug the charger.
+
 ## v2.1.0
 
 _2026-09-28_
