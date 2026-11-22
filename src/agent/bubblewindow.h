@@ -12,6 +12,11 @@
 // request has to be made for every new surface role, before it is mapped, so
 // it is repeated each time the window is shown again.
 //
+// The screen is the one the user picked (BubbleScreen), or else the one the
+// compositor calls active: on KWin and Hyprland the one with the mouse
+// pointer, on Niri the focused one. It is set each time it shows, since that
+// is when the surface is made.
+//
 // Other compositors have no such thing: on Hyprland and Niri the lock screen
 // covers the bubble, which shows the tick once it is gone. GNOME has no
 // layer-shell at all; there face-unlock's GNOME Shell extension draws the
@@ -39,6 +44,7 @@ public:
 private:
     void create();
     void update();
+    void place();
     void allowOverLockscreen();
 
     QQmlEngine *m_engine;

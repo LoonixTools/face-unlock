@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
 // face-unlock's own lock screen, one per screen (see SessionLock): the time,
-// the password, and on the main screen the bubble at the top, the same one
+// the password, and on one screen the bubble at the top, the same one
 // that shows over the desktop. Behind it the desktop's picture, or the one
 // the user set (see Wallpaper).
 
@@ -14,6 +14,9 @@ Item {
     required property var lock
     required property var bubble
     required property bool primary
+    // The output it is on. The bubble shows on the one SessionLock says,
+    // or on the main one.
+    property string output: ""
     required property url wallpaper
     // Off for the picture in the window that asks which lock screen to use:
     // nothing to type into, no keys taken.
@@ -77,8 +80,15 @@ Item {
         enabled: root.interactive
         hoverEnabled: true
         acceptedButtons: Qt.AllButtons
-        onPositionChanged: root.lock.activity()
+        // Where the pointer is goes first: a scan this starts shows its
+        // bubble there.
+        onEntered: root.lock.pointerOn(root.output)
+        onPositionChanged: {
+            root.lock.pointerOn(root.output)
+            root.lock.activity()
+        }
         onPressed: {
+            root.lock.pointerOn(root.output)
             root.lock.activity()
             field.forceActiveFocus()
         }
@@ -205,7 +215,7 @@ Item {
 
     // The bubble, where it shows over the desktop too.
     Bubble {
-        visible: root.primary
+        visible: root.lock.bubbleOutput.length > 0 ? root.lock.bubbleOutput === root.output : root.primary
         anchors.horizontalCenter: parent.horizontalCenter
         y: 0
         bubble: root.bubble

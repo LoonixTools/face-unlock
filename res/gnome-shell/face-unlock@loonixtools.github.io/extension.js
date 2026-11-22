@@ -1009,6 +1009,8 @@ export default class FaceUnlockExtension extends Extension {
         ui.add_child(this._bubble.actor);
         // Above everything, the lock screen and its dialogs included.
         this._raise = ui.connect('child-added', () => ui.set_child_above_sibling(this._bubble.actor, null));
+        // The screen picked for it by output name, '' to follow the mouse.
+        this._screen = '';
         this._monitors = Main.layoutManager.connect('monitors-changed', () => this._place());
         this._scale = St.ThemeContext.get_for_stage(global.stage).connect('notify::scale-factor', () => this._place());
         this._place();
@@ -1027,8 +1029,25 @@ export default class FaceUnlockExtension extends Extension {
         this._bubble = null;
     }
 
+    // The picked screen, or else the one with the mouse pointer. Not one
+    // that is not connected right now.
+    _monitor() {
+        const monitors = Main.layoutManager.monitors;
+        if (this._screen) {
+            let index = -1;
+            try {
+                index = global.backend.get_monitor_manager().get_monitor_for_connector(this._screen);
+            } catch (e) {
+                logError(e, 'face-unlock');
+            }
+            if (index >= 0 && monitors[index])
+                return monitors[index];
+        }
+        return monitors[global.display.get_current_monitor()] ?? Main.layoutManager.primaryMonitor;
+    }
+
     _place() {
-        const monitor = Main.layoutManager.primaryMonitor;
+        const monitor = this._monitor();
         if (!monitor)
             return;
         const scale = St.ThemeContext.get_for_stage(global.stage).scale_factor;
@@ -1050,15 +1069,22 @@ export default class FaceUnlockExtension extends Extension {
                 logError(error, 'face-unlock');
                 return;
             }
-            this._signal = proxy.connectSignal('StateChanged', (p, sender, [state]) => {
-                this._place();
-                this._bubble?.setState(unpack(state));
-            });
+            this._signal = proxy.connectSignal('StateChanged', (p, sender, [state]) => this._setState(unpack(state)));
             proxy.GetStateRemote(([state], getError) => {
                 if (!getError)
-                    this._bubble?.setState(unpack(state));
+                    this._setState(unpack(state));
             });
         }, null, Gio.DBusProxyFlags.DO_NOT_AUTO_START);
+    }
+
+    // It moves only when it opens, never in the middle of a scan.
+    _setState(state) {
+        if (!this._bubble)
+            return;
+        this._screen = state.screen ?? '';
+        if (this._bubble.phase === 'hidden' && (state.phase ?? 'hidden') !== 'hidden')
+            this._place();
+        this._bubble.setState(state);
     }
 
     _disconnect() {

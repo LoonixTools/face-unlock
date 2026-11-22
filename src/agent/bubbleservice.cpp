@@ -19,6 +19,7 @@ BubbleService::BubbleService(BubbleController *bubble, QObject *parent)
     connect(bubble, &BubbleController::faceSeenChanged, this, changed);
     connect(bubble, &BubbleController::styleChanged, this, changed);
     connect(bubble, &BubbleController::paceChanged, this, changed);
+    connect(bubble, &BubbleController::screenChanged, this, changed);
 
     QDBusConnection bus = QDBusConnection::sessionBus();
     if (!bus.registerService(QStringLiteral("io.github.loonixtools.FaceUnlock"))
@@ -35,5 +36,6 @@ QVariantMap BubbleService::GetState() const
         {QStringLiteral("faceSeen"), m_bubble->faceSeen()},
         {QStringLiteral("style"), m_bubble->style()},
         {QStringLiteral("pace"), m_bubble->pace()},
+        {QStringLiteral("screen"), m_bubble->screen()},
     };
 }

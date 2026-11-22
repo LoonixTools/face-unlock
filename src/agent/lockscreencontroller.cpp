@@ -179,6 +179,19 @@ void LockScreenController::activity()
     Q_EMIT input();
 }
 
+void LockScreenController::setBubbleOutput(const QString &output)
+{
+    if (m_bubbleOutput != output) {
+        m_bubbleOutput = output;
+        Q_EMIT bubbleOutputChanged();
+    }
+}
+
+void LockScreenController::pointerOn(const QString &output)
+{
+    Q_EMIT pointerMoved(output);
+}
+
 void LockScreenController::clearPassword()
 {
     // What is still in memory of it, as far as a QString lets that happen.

@@ -202,6 +202,7 @@ fu_value_label() {
 		Camera:auto)        fu_msg "automatic" ;;
 		LockScreenStyle:own) fu_msg "face-unlock's" ;;
 		LockScreenStyle:*)  fu_msg "yours" ;;
+		BubbleScreen:auto)  fu_msg "follows the mouse" ;;
 		*)                  printf '%s' "$2" ;;
 	esac
 }
@@ -290,8 +291,9 @@ fu_ui_status() {
 #          pam (the service of that name, through sudo), or group for a
 #          heading, with only the label after it
 #   type   bool, choice (steps through the choices), camera, path (typed
-#          in; empty for the desktop's picture), or lockstyle (the window
-#          with the two lock screens, see fu_lock_choose)
+#          in; empty for the desktop's picture), lockstyle (the window
+#          with the two lock screens, see fu_lock_choose), or screen (the
+#          window with the screens, see fu_screen_choose)
 #   needs  a bool setting this one does nothing without, or Key=value; it is
 #          dimmed while that is not so
 #   only   lockers: only where the lock screen is a program of its own with a
@@ -322,6 +324,7 @@ FU_SETTINGS=(
 	"user|Bubble|bool|yes|Show the bubble"
 	"user|BubbleStyle|choice|full|Style|full,minimal|Bubble"
 	"user|AnimationSpeed|choice|normal|Animation speed|slow,normal,fast|Bubble"
+	"user|BubbleScreen|screen|auto|Screen||Bubble"
 	"user|BubbleForPrompts|bool|yes|Also for sudo and admin prompts||Bubble"
 	"user|QuietWhenCameraBusy|bool|no|Quiet while the camera is in use||Bubble"
 )
@@ -365,6 +368,7 @@ fu_setting_help() {
 		BubbleStyle:minimal) fu_msg "A small pill with a lock that opens." ;;
 		BubbleStyle:*)      fu_msg "An island with a face that looks around, then rings and a tick." ;;
 		AnimationSpeed:*)   fu_msg "How fast the bubble moves." ;;
+		BubbleScreen:*)     fu_msg "Where the bubble shows up: on the screen with the mouse pointer, or always on one screen. Enter opens a window with your screens." ;;
 		BubbleForPrompts:*) fu_msg "Shows the bubble when sudo or an admin prompt scans your face, too." ;;
 		QuietWhenCameraBusy:*) fu_msg "When another app uses the camera, for example in a video call, no bubble shows and you type your password as usual. Off: the bubble shows a camera with a line through it." ;;
 	esac
@@ -476,6 +480,28 @@ _fu_camera_label() {
 	printf '%s %s' "$value" "$(fu_msg "(not connected)")"
 }
 
+# _fu_next_screen <current> <step>
+_fu_next_screen() {
+	fu_screens_load
+	_fu_step "$1" "$2" auto "${FU_SCREENS[@]}"
+}
+
+# _fu_screen_label <value>
+_fu_screen_label() {
+	local name
+	if [[ $1 == auto ]]; then
+		fu_value_label BubbleScreen auto
+		return
+	fi
+	for name in "${FU_SCREENS[@]}"; do
+		if [[ $name == "$1" ]]; then
+			printf '%s' "$1"
+			return
+		fi
+	done
+	printf '%s %s' "$1" "$(fu_msg "(not connected)")"
+}
+
 # _fu_path_label <path>
 # A path as it fits in the list: with ~ for home, and cut from the left.
 # Empty is the desktop's picture.
@@ -502,6 +528,15 @@ _fu_setting_change() {
 		bool)   if fu_is_true "$current"; then next=no; else next=yes; fi ;;
 		choice) next="$(_fu_next_choice "$current" "$options" "$step")" ;;
 		camera) next="$(_fu_next_camera "$current" "$step")" ;;
+		screen)
+			# The window with the screens drawn where it can open, else the
+			# next one.
+			if [[ -n ${WAYLAND_DISPLAY:-} ]]; then
+				fu_ui_cooked fu_screen_choose
+				return 0
+			fi
+			next="$(_fu_next_screen "$current" "$step")"
+			;;
 		lockstyle)
 			# The window with the pictures where there is a screen for it,
 			# else the other one of the two.
@@ -601,6 +636,7 @@ fu_ui_settings() {
 	clearseq="$(clear 2>/dev/null)" || clearseq=$'\033[H\033[2J'
 
 	fu_cameras_load
+	fu_screens_load
 
 	while true; do
 		if (( dirty )); then
@@ -634,6 +670,7 @@ fu_ui_settings() {
 					fi
 					;;
 				camera) shown="$(_fu_camera_label "${values[i]}")" ;;
+				screen) shown="$(_fu_screen_label "${values[i]}")" ;;
 				path)   shown="$(_fu_path_label "${values[i]}")" ;;
 				*)      shown="$(fu_value_label "${keys[i]}" "${values[i]}")" ;;
 			esac

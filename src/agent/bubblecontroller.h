@@ -30,6 +30,8 @@ class BubbleController : public QObject
     Q_PROPERTY(bool shown READ shown NOTIFY shownChanged)
     // The animation speed setting, as a multiple of each animation's length.
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
+    // The screen it shows on by output name, empty to follow the mouse.
+    Q_PROPERTY(QString screen READ screen NOTIFY screenChanged)
 public:
     explicit BubbleController(UserConfig *config, QObject *parent = nullptr);
 
@@ -51,14 +53,23 @@ public:
         return m_shown;
     }
     qreal pace() const;
+    QString screen() const;
 
-    void scanStarted();
-    void faceFound();
+    // For the pictures in the windows that ask something: shows even with
+    // the bubble turned off.
+    void setPreview(bool preview)
+    {
+        m_preview = preview;
+    }
+
+    // Invokable for those pictures, which play a scan.
+    Q_INVOKABLE void scanStarted();
+    Q_INVOKABLE void faceFound();
     void hint(const QString &hint);
-    void succeeded();
+    Q_INVOKABLE void succeeded();
     // reason is the daemon's; lockout is seconds left when there is one.
     void failed(const QString &reason, qint64 lockout = 0);
-    void dismiss();
+    Q_INVOKABLE void dismiss();
 
     // An event from the daemon about a scan somebody else asked for.
     void daemonEvent(const QJsonObject &event);
@@ -73,6 +84,7 @@ Q_SIGNALS:
     void styleChanged();
     void shownChanged();
     void paceChanged();
+    void screenChanged();
 
 private:
     void setPhase(const QString &phase);
@@ -84,5 +96,6 @@ private:
     QString m_message;
     bool m_faceSeen = false;
     bool m_shown = false;
+    bool m_preview = false;
     QTimer m_hide;
 };

@@ -38,6 +38,10 @@ void UserConfig::load()
     m_scanOnLock = kv.boolean(QStringLiteral("ScanOnLock"), false);
     m_bubble = kv.boolean(QStringLiteral("Bubble"), true);
     m_bubbleStyle = kv.value(QStringLiteral("BubbleStyle"), QStringLiteral("full")) == u"minimal" ? QStringLiteral("minimal") : QStringLiteral("full");
+    m_bubbleScreen = kv.value(QStringLiteral("BubbleScreen"));
+    if (m_bubbleScreen == u"auto") {
+        m_bubbleScreen.clear();
+    }
     m_bubbleForPrompts = kv.boolean(QStringLiteral("BubbleForPrompts"), true);
     m_quietWhenCameraBusy = kv.boolean(QStringLiteral("QuietWhenCameraBusy"), false);
     const QString speed = kv.value(QStringLiteral("AnimationSpeed"), QStringLiteral("normal"));

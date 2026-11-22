@@ -8,6 +8,7 @@
 
 #include <QGuiApplication>
 #include <QQuickView>
+#include <QScreen>
 #include <QWaylandClientExtensionTemplate>
 #include <qpa/qplatformwindow_p.h>
 
@@ -59,7 +60,6 @@ void BubbleWindow::create()
     m_view->setColor(Qt::transparent);
     m_view->setFlags(Qt::FramelessWindowHint | Qt::WindowDoesNotAcceptFocus | Qt::WindowTransparentForInput);
     m_view->resize(WindowWidth, WindowHeight);
-    m_view->setScreen(QGuiApplication::primaryScreen());
 
     if (auto *layer = LayerShellQt::Window::get(m_view)) {
         layer->setLayer(LayerShellQt::Window::LayerOverlay);
@@ -74,10 +74,8 @@ void BubbleWindow::create()
         // faint box with sharp corners around the bubble. An on-screen
         // display only fades, which a clear window does not show.
         layer->setScope(QStringLiteral("on-screen-display"));
-#ifdef FU_LAYERSHELL_HAS_SCREEN
-        layer->setScreen(QGuiApplication::primaryScreen());
-#endif
     }
+    place();
 
     m_view->setInitialProperties({{QStringLiteral("bubble"), QVariant::fromValue(m_controller)}});
     m_view->loadFromModule(QStringLiteral("FaceUnlock"), QStringLiteral("Bubble"));
@@ -111,12 +109,41 @@ void BubbleWindow::allowOverLockscreen()
     m_overlay->allow(wayland->surface());
 }
 
+void BubbleWindow::place()
+{
+    QScreen *picked = nullptr;
+    const QString name = m_controller->screen();
+    for (QScreen *screen : QGuiApplication::screens()) {
+        if (!name.isEmpty() && screen->name() == name) {
+            picked = screen;
+        }
+    }
+    // Not connected right now: as if none was picked.
+    if (picked) {
+        m_view->setScreen(picked);
+    }
+    auto *layer = LayerShellQt::Window::get(m_view);
+    if (!layer) {
+        return;
+    }
+#ifdef FU_LAYERSHELL_HAS_SCREEN
+    if (picked) {
+        layer->setScreen(picked);
+    } else {
+        layer->setWantsToBeOnActiveScreen(true);
+    }
+#else
+    layer->setScreenConfiguration(picked ? LayerShellQt::Window::ScreenFromQWindow : LayerShellQt::Window::ScreenFromCompositor);
+#endif
+}
+
 void BubbleWindow::update()
 {
     if (!m_view) {
         return;
     }
     if (m_controller->shown()) {
+        place();
         m_view->show();
     } else {
         m_view->hide();

@@ -178,7 +178,7 @@ if(FU_BUILD_AGENT)
     # see each other (and the Theme singleton) without importing anything.
     # Under /qt/qml, which the engine searches, or an installed agent finds no
     # types (the build directory only works by its FaceUnlock/qmldir).
-    set(FU_QML_FILES Theme FaceGlyph LockGlyph CameraGlyph Checkmark Bubble TickRing Enroll PillButton LockScreen LockChoice LockPreview)
+    set(FU_QML_FILES Theme FaceGlyph LockGlyph CameraGlyph Checkmark Bubble TickRing Enroll PillButton LockScreen LockChoice LockPreview ScreenChoice)
     foreach(f ${FU_QML_FILES})
         set_source_files_properties(src/agent/qml/${f}.qml PROPERTIES QT_RESOURCE_ALIAS ${f}.qml)
     endforeach()
@@ -204,6 +204,7 @@ if(FU_BUILD_AGENT)
             src/agent/qml/LockScreen.qml
             src/agent/qml/LockChoice.qml
             src/agent/qml/LockPreview.qml
+            src/agent/qml/ScreenChoice.qml
     )
 
     target_link_libraries(face-unlock-agent PRIVATE

@@ -7,7 +7,8 @@
 // Any other lock screen there covers the bubble, and only opens itself (it
 // gets the face through PAM, see src/lib/pam.sh). This one is the lock
 // screen, so the bubble shows on it and a face opens it straight away. The
-// picture behind it is the user's choice (LockWallpaper).
+// picture behind it is the user's choice (LockWallpaper). The bubble shows on
+// the screen picked for it, or else the one with the mouse pointer.
 //
 // Qt knows no ext-session-lock, so each screen's window gets the lock surface
 // role through Qt's shell integration, the way LayerShellQt gives windows the
@@ -75,6 +76,7 @@ private:
     void onFinished();
     void addScreen(QScreen *screen);
     void removeScreen(QScreen *screen);
+    void placeBubble();
     void release();
 
     QQmlEngine *m_engine;
@@ -88,4 +90,6 @@ private:
     QHash<QScreen *, QPointer<QQuickView>> m_views;
     // The pictures behind it, by output (see Wallpaper).
     QHash<QString, QUrl> m_pictures;
+    // The output the mouse pointer was last seen on.
+    QString m_pointer;
 };

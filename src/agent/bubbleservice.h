@@ -19,7 +19,8 @@ class BubbleService : public QObject
 public:
     explicit BubbleService(BubbleController *bubble, QObject *parent = nullptr);
 
-    // phase, message, faceSeen, style, pace: what BubbleController has.
+    // phase, message, faceSeen, style, pace, screen: what BubbleController
+    // has.
     Q_SCRIPTABLE QVariantMap GetState() const;
 
 Q_SIGNALS:

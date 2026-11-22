@@ -29,6 +29,7 @@ BubbleController::BubbleController(UserConfig *config, QObject *parent)
     connect(&m_hide, &QTimer::timeout, this, &BubbleController::dismiss);
     connect(m_config, &UserConfig::changed, this, &BubbleController::styleChanged);
     connect(m_config, &UserConfig::changed, this, &BubbleController::paceChanged);
+    connect(m_config, &UserConfig::changed, this, &BubbleController::screenChanged);
 }
 
 qreal BubbleController::pace() const
@@ -41,9 +42,14 @@ QString BubbleController::style() const
     return m_config->bubbleStyle();
 }
 
+QString BubbleController::screen() const
+{
+    return m_config->bubbleScreen();
+}
+
 bool BubbleController::enabled() const
 {
-    return m_config->bubble();
+    return m_preview || m_config->bubble();
 }
 
 void BubbleController::setPhase(const QString &phase)

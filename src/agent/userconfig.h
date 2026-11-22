@@ -74,6 +74,12 @@ public:
         m_styleOverride = style == u"minimal" ? QStringLiteral("minimal") : QStringLiteral("full");
         Q_EMIT changed();
     }
+    // The screen the bubble shows on, by its output name (DP-1). Empty to
+    // follow the mouse: the compositor's active screen.
+    QString bubbleScreen() const
+    {
+        return m_bubbleScreen;
+    }
     // Show the bubble for sudo and admin prompts, not only the lock screen.
     bool bubbleForPrompts() const
     {
@@ -111,6 +117,7 @@ private:
     bool m_scanOnLock = false;
     bool m_bubble = true;
     QString m_bubbleStyle = QStringLiteral("full");
+    QString m_bubbleScreen;
     bool m_bubbleForPrompts = true;
     bool m_quietWhenCameraBusy = false;
     qreal m_pace = 1.3;

@@ -436,6 +436,36 @@ fu_lock_choose() {
 	fu_lock_style_set "$choice"
 }
 
+# fu_screens_load
+# The connected screens by output name (DP-1), into FU_SCREENS. From the
+# kernel, which names them as the desktops do.
+FU_SCREENS=()
+
+fu_screens_load() {
+	local status name
+	FU_SCREENS=()
+	for status in /sys/class/drm/card*-*/status; do
+		[[ -r $status && $(< "$status") == connected ]] || continue
+		name="${status%/status}"
+		[[ ${name##*/} =~ ^card[0-9]+-(.+)$ ]] || continue
+		name="${BASH_REMATCH[1]}"
+		[[ $name == Writeback-* ]] && continue
+		FU_SCREENS+=("$name")
+	done
+	return 0
+}
+
+# fu_screen_choose
+# Asks in a window which screen the bubble shows on, and writes it down. 1
+# when the window was closed or cannot open.
+fu_screen_choose() {
+	local choice
+	[[ -n ${WAYLAND_DISPLAY:-} ]] || return 1
+	choice="$("$FU_AGENT" --choose-screen 2> /dev/null)" || return 1
+	[[ $choice =~ ^[A-Za-z0-9._-]+$ ]] || return 1
+	fu_config_set BubbleScreen "$choice" || { fu_bad "$(fu_msg "Could not save the setting.")"; return 1; }
+}
+
 fu_agent_disable() {
 	systemctl --user disable --now "$FU_UNIT_AGENT" > /dev/null 2>&1 || true
 }

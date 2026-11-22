@@ -13,6 +13,8 @@
 //   --choose-lock-screen
 //                    open the window that asks which lock screen to use
 //                    where it is a program of its own, and print the answer
+//   --choose-screen  open the window that asks which screen the bubble shows
+//                    on, and print the answer: auto or an output name
 //   --has-own-lock   for the menu: exits 0 when this build has face-unlock's
 //                    own lock screen (see SessionLock::built)
 
@@ -46,6 +48,7 @@
 #include <QTimer>
 #include <QWindow>
 
+#include <cmath>
 #include <cstdio>
 #include <cstring>
 #include <sys/socket.h>
@@ -117,6 +120,75 @@ int runChooseLockScreen(QGuiApplication &app)
         return 2;
     }
     // Shown only now, at the size its texts need (see LockChoice.qml).
+    window->show();
+    app.exec();
+    const QString answer = window->property("answer").toString();
+    if (answer.isEmpty()) {
+        return 1;
+    }
+    std::printf("%s\n", qPrintable(answer));
+    return 0;
+}
+
+// The screens as the window of --choose-screen draws them: where they are,
+// their name, and the picture on them.
+QVariantList screensForChoice()
+{
+    const QHash<QString, QUrl> pictures = Wallpaper::forLock({});
+    QVariantList list;
+    for (const QScreen *screen : QGuiApplication::screens()) {
+        const QString name = screen->name();
+        const bool laptop = name.startsWith(u"eDP") || name.startsWith(u"LVDS") || name.startsWith(u"DSI");
+        // A laptop's model is a code of its panel, which tells nobody anything.
+        QString title = laptop ? i18n("Built-in screen") : screen->model().trimmed();
+        if (title.isEmpty()) {
+            title = screen->manufacturer().trimmed();
+        }
+        if (title.isEmpty()) {
+            title = name;
+        }
+        QStringList detail;
+        if (title != name) {
+            detail << name;
+        }
+        const QSizeF mm = screen->physicalSize();
+        const int inches = qRound(std::hypot(mm.width(), mm.height()) / 25.4);
+        if (inches > 0) {
+            detail << QStringLiteral("%1″").arg(inches);
+        }
+        const QRect place = screen->geometry();
+        list << QVariantMap{{QStringLiteral("name"), name},
+                            {QStringLiteral("title"), title},
+                            {QStringLiteral("detail"), detail.join(QStringLiteral(" · "))},
+                            {QStringLiteral("x"), place.x()},
+                            {QStringLiteral("y"), place.y()},
+                            {QStringLiteral("width"), place.width()},
+                            {QStringLiteral("height"), place.height()},
+                            {QStringLiteral("laptop"), laptop},
+                            {QStringLiteral("wallpaper"), Wallpaper::pick(pictures, name)}};
+    }
+    return list;
+}
+
+// The window of --choose-screen. Prints "auto" or the output name for the
+// menu, which writes it down.
+int runChooseScreen(QGuiApplication &app)
+{
+    app.setQuitOnLastWindowClosed(true);
+    UserConfig config;
+    BubbleController bubble(&config);
+    bubble.setPreview(true);
+
+    QQmlApplicationEngine engine;
+    KLocalization::setupLocalizedContext(&engine);
+    engine.setInitialProperties({{QStringLiteral("current"), config.bubbleScreen().isEmpty() ? QStringLiteral("auto") : config.bubbleScreen()},
+                                 {QStringLiteral("screens"), screensForChoice()},
+                                 {QStringLiteral("bubble"), QVariant::fromValue(&bubble)}});
+    engine.loadFromModule(QStringLiteral("FaceUnlock"), QStringLiteral("ScreenChoice"));
+    auto *window = engine.rootObjects().isEmpty() ? nullptr : qobject_cast<QWindow *>(engine.rootObjects().constFirst());
+    if (!window) {
+        return 2;
+    }
     window->show();
     app.exec();
     const QString answer = window->property("answer").toString();
@@ -257,11 +329,15 @@ int main(int argc, char **argv)
     // Not "--style": QGuiApplication takes that one for itself.
     const QCommandLineOption styleOpt(QStringLiteral("bubble-style"), i18n("Bubble style for the demo: full or minimal."), QStringLiteral("style"));
     const QCommandLineOption chooseOpt(QStringLiteral("choose-lock-screen"), i18n("Ask which lock screen to use, and print the answer."));
-    parser.addOptions({enrollOpt, nameOpt, lockOpt, demoOpt, styleOpt, chooseOpt});
+    const QCommandLineOption screenOpt(QStringLiteral("choose-screen"), i18n("Ask which screen the bubble shows on, and print the answer."));
+    parser.addOptions({enrollOpt, nameOpt, lockOpt, demoOpt, styleOpt, chooseOpt, screenOpt});
     parser.process(app);
 
     if (parser.isSet(chooseOpt)) {
         return runChooseLockScreen(app);
+    }
+    if (parser.isSet(screenOpt)) {
+        return runChooseScreen(app);
     }
 
     if (parser.isSet(enrollOpt)) {

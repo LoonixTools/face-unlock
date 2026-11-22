@@ -26,6 +26,8 @@ class LockScreenController : public QObject
     Q_PROPERTY(QString userName READ userName CONSTANT)
     // Whether to blur the picture behind it.
     Q_PROPERTY(bool blur READ blur NOTIFY blurChanged)
+    // The screen with the bubble by output name, empty for the main one.
+    Q_PROPERTY(QString bubbleOutput READ bubbleOutput NOTIFY bubbleOutputChanged)
 public:
     explicit LockScreenController(QObject *parent = nullptr);
     ~LockScreenController() override;
@@ -55,6 +57,15 @@ public:
     }
     void setBlur(bool blur);
 
+    QString bubbleOutput() const
+    {
+        return m_bubbleOutput;
+    }
+    void setBubbleOutput(const QString &output);
+
+    // The mouse pointer is on the lock screen of this output.
+    Q_INVOKABLE void pointerOn(const QString &output);
+
     // Check the password typed so far.
     Q_INVOKABLE void submit();
     // A key or the pointer on the lock screen.
@@ -73,6 +84,8 @@ Q_SIGNALS:
     // A wrong password, for the field to shake.
     void rejected();
     void input();
+    void bubbleOutputChanged();
+    void pointerMoved(const QString &output);
 
 private:
     void finish(bool ok);
@@ -83,4 +96,5 @@ private:
     bool m_busy = false;
     bool m_faceUnlock = true;
     bool m_blur = false;
+    QString m_bubbleOutput;
 };

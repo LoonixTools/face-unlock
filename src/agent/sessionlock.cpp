@@ -145,6 +145,19 @@ SessionLock::SessionLock(QQmlEngine *engine, BubbleController *bubble, LockScree
     });
     connect(qGuiApp, &QGuiApplication::screenRemoved, this, &SessionLock::removeScreen);
     connect(m_screen, &LockScreenController::authenticated, this, &SessionLock::unlock);
+    // It moves only while closed, never in the middle of a scan.
+    connect(m_screen, &LockScreenController::pointerMoved, this, [this](const QString &output) {
+        m_pointer = output;
+        if (!m_bubble->shown()) {
+            placeBubble();
+        }
+    });
+    connect(m_bubble, &BubbleController::screenChanged, this, [this] {
+        if (!m_bubble->shown()) {
+            placeBubble();
+        }
+    });
+    connect(m_bubble, &BubbleController::shownChanged, this, &SessionLock::placeBubble);
 }
 
 SessionLock::~SessionLock()
@@ -194,6 +207,7 @@ void SessionLock::lock()
     for (QScreen *s : QGuiApplication::screens()) {
         addScreen(s);
     }
+    placeBubble();
 
     QDir().mkpath(QFileInfo(markerPath()).absolutePath());
     QFile marker(markerPath());
@@ -216,7 +230,8 @@ void SessionLock::addScreen(QScreen *screen)
     view->setInitialProperties({{QStringLiteral("lock"), QVariant::fromValue(m_screen)},
                                 {QStringLiteral("bubble"), QVariant::fromValue(m_bubble)},
                                 {QStringLiteral("wallpaper"), Wallpaper::pick(m_pictures, screen->name())},
-                                {QStringLiteral("primary"), screen == QGuiApplication::primaryScreen()}});
+                                {QStringLiteral("primary"), screen == QGuiApplication::primaryScreen()},
+                                {QStringLiteral("output"), screen->name()}});
     view->loadFromModule(QStringLiteral("FaceUnlock"), QStringLiteral("LockScreen"));
     for (const QQmlError &e : view->errors()) {
         qWarning("%s", qPrintable(e.toString()));
@@ -228,12 +243,35 @@ void SessionLock::addScreen(QScreen *screen)
     view->show();
     view->requestActivate();
     m_views.insert(screen, view);
+    // The picked screen may be the one that just came.
+    if (!m_bubble->shown()) {
+        placeBubble();
+    }
 }
 
 void SessionLock::removeScreen(QScreen *screen)
 {
     if (auto view = m_views.take(screen)) {
         delete view;
+        placeBubble();
+    }
+}
+
+void SessionLock::placeBubble()
+{
+    QStringList outputs;
+    for (auto it = m_views.cbegin(); it != m_views.cend(); ++it) {
+        outputs << it.key()->name();
+    }
+    const QString picked = m_bubble->screen();
+    if (outputs.contains(picked)) {
+        m_screen->setBubbleOutput(picked);
+    } else if (outputs.contains(m_pointer)) {
+        m_screen->setBubbleOutput(m_pointer);
+    } else if (QGuiApplication::primaryScreen() && outputs.contains(QGuiApplication::primaryScreen()->name())) {
+        m_screen->setBubbleOutput(QGuiApplication::primaryScreen()->name());
+    } else {
+        m_screen->setBubbleOutput(outputs.isEmpty() ? QString() : outputs.constFirst());
     }
 }
 
