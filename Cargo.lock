@@ -1001,7 +1001,7 @@ dependencies = [
 
 [[package]]
 name = "face-unlock"
-version = "2.1.1"
+version = "3.0.0"
 dependencies = [
  "libc",
  "serde_json",
@@ -1009,7 +1009,7 @@ dependencies = [
 
 [[package]]
 name = "face-unlock-agent"
-version = "2.1.1"
+version = "3.0.0"
 dependencies = [
  "cosmic-text",
  "face-unlock",
@@ -1026,7 +1026,7 @@ dependencies = [
 
 [[package]]
 name = "face-unlock-gui"
-version = "2.1.1"
+version = "3.0.0"
 dependencies = [
  "face-unlock",
  "libc",
@@ -1039,7 +1039,7 @@ dependencies = [
 
 [[package]]
 name = "face-unlock-vision"
-version = "2.1.1"
+version = "3.0.0"
 dependencies = [
  "image",
  "libc",
@@ -1051,7 +1051,7 @@ dependencies = [
 
 [[package]]
 name = "face-unlockd"
-version = "2.1.1"
+version = "3.0.0"
 dependencies = [
  "face-unlock",
  "face-unlock-vision",
@@ -2521,7 +2521,7 @@ dependencies = [
 
 [[package]]
 name = "pam-face-unlock"
-version = "2.1.1"
+version = "3.0.0"
 dependencies = [
  "libc",
  "serde_json",

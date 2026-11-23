@@ -2,6 +2,28 @@
 
 What each release brings, newest first. The [GitHub releases](https://github.com/LoonixTools/face-unlock/releases) add every commit that went into it.
 
+## v3.0.0
+
+_2026-11-23_
+
+Welcome to face-unlock `v3.0.0`! The terminal menu is now a real window, and the whole program is rewritten in Rust. The first start walks you through setting up your face, right in the window. Your faces and settings stay as they are.
+
+<p align="center">
+  <img width="480" alt="The Face Unlock window: face unlock on, two faces, the camera, and the lock screen, sudo and admin prompts all on" src="https://raw.githubusercontent.com/LoonixTools/face-unlock/v3.0.0/res/screenshots/overview.png">
+</p>
+
+### 🚨 Breaking changes
+
+- The terminal menu is gone. `face-unlock` now opens a window with every setting. Commands such as `face-unlock enable` and `face-unlock setup` still work in the terminal.
+
+### Highlights
+
+- A new window for every setting and for your faces
+- **Try it** shows what the camera and the checks see
+- Pick the screen for the bubble
+- face-unlock's own lock screen now works on Debian 13 too
+- No longer needs OpenCV or Qt
+
 ## v2.1.1
 
 _2026-11-10_
