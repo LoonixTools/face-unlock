@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 2.1.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-11-22 15:40+0100\n"
+"POT-Creation-Date: 2026-11-23 14:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,1256 +16,1313 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/face-unlock:50
+#: agent/src/app.rs:435
+msgid "Blink once"
+msgstr ""
+
+#: agent/src/app.rs:436
+msgid "Look at the screen"
+msgstr ""
+
+#: agent/src/app.rs:437
+msgid "Move closer"
+msgstr ""
+
+#: agent/src/app.rs:438
+msgid "Too dark"
+msgstr ""
+
+#: agent/src/app.rs:464
+msgid "Camera in use"
+msgstr ""
+
+#: agent/src/app.rs:474
+msgid "Use your password"
+msgstr ""
+
+#: agent/src/app.rs:481
+msgid "Not recognized"
+msgstr ""
+
+#: agent/src/app.rs:482
+msgid "Try again and blink"
+msgstr ""
+
+#: agent/src/app.rs:483
+msgid "Camera unavailable"
+msgstr ""
+
+#: agent/src/app.rs:538 gui/src/choice.rs:58
+msgid "Looking for your face…"
+msgstr ""
+
+#: agent/src/app.rs:539
+msgid "Face recognized"
+msgstr ""
+
+#: agent/src/lockscreen.rs:46
+msgid "Wrong password"
+msgstr ""
+
+#: agent/src/lockscreen.rs:185 agent/src/lockscreen.rs:186
+msgid "Password"
+msgstr ""
+
+#: agent/src/lockscreen.rs:201
+msgid "Look at the camera or type your password"
+msgstr ""
+
+#: agent/src/lockscreen.rs:203
+msgid "Type your password"
+msgstr ""
+
+#: gui/src/choice.rs:91 gui/src/panes.rs:334 gui/src/panes.rs:350
+#: gui/src/setup.rs:439
+msgid "Cancel"
+msgstr ""
+
+#: gui/src/choice.rs:110
+msgid "face-unlock's lock screen"
+msgstr ""
+
+#: gui/src/choice.rs:111
+msgid ""
+"Shows the bubble while it looks for your face. You lock with `face-unlock "
+"lock`."
+msgstr ""
+
+#: gui/src/choice.rs:119
+msgid "Your own lock screen"
+msgstr ""
+
+#: gui/src/choice.rs:120
+msgid ""
+"Stays as it is. hyprlock shows a line of text at the top, and Enter on the "
+"empty password field scans."
+msgstr ""
+
+#: gui/src/choice.rs:155
+msgid "Which lock screen?"
+msgstr ""
+
+#: gui/src/choice.rs:156
+msgid "Both take your face. You can change this later under Lock screen."
+msgstr ""
+
+#: gui/src/choice.rs:159 gui/src/choice.rs:268
+msgid "Use this one"
+msgstr ""
+
+#: gui/src/choice.rs:217 gui/src/panes.rs:658
+msgid "follows the mouse"
+msgstr ""
+
+#: gui/src/choice.rs:230
+msgid "The screen with the mouse pointer"
+msgstr ""
+
+#: gui/src/choice.rs:263
+msgid "Where should the bubble show?"
+msgstr ""
+
+#: gui/src/choice.rs:264
+msgid "On the screen with the mouse pointer, or always on one screen."
+msgstr ""
+
+#: gui/src/main.rs:106 gui/src/setup.rs:70
+msgid "Move your head slowly to complete the circle."
+msgstr ""
+
+#: gui/src/main.rs:125 gui/src/panes.rs:108 src/actions.rs:112
+msgid "Face unlock is on. Lock the screen and look at it to try."
+msgstr ""
+
+#: gui/src/onboarding.rs:80
+msgid "Face ID for Linux"
+msgstr ""
+
+#: gui/src/onboarding.rs:81
+msgid ""
+"Unlock the lock screen, sudo and admin prompts with your face. It takes a "
+"minute to set up."
+msgstr ""
+
+#: gui/src/onboarding.rs:83 gui/src/setup.rs:451
+msgid "Get started"
+msgstr ""
+
+#: gui/src/onboarding.rs:92
+msgid "Switch on the service"
+msgstr ""
+
+#: gui/src/onboarding.rs:93 gui/src/panes.rs:160 src/main.rs:85
 msgid ""
 "Face unlock's service has to be switched on once for this computer. That "
 "needs your password."
 msgstr ""
 
-#: src/face-unlock:57
-#, sh-printf-format
-msgid "Check it with: systemctl status %s"
+#: gui/src/onboarding.rs:102
+msgid "No password window? Run this in a terminal instead:"
 msgstr ""
 
-#: src/face-unlock:67
+#: gui/src/onboarding.rs:111 gui/src/setup.rs:460
+msgid "Continue"
+msgstr ""
+
+#: gui/src/onboarding.rs:113 gui/src/panes.rs:161
+msgid "Switch on"
+msgstr ""
+
+#: gui/src/onboarding.rs:122 gui/src/panes.rs:531
+msgid "sudo in a terminal"
+msgstr ""
+
+#: gui/src/onboarding.rs:122 gui/src/panes.rs:531
 msgid ""
-"Setting up a face needs the camera picture on screen. Run this inside your "
-"desktop session."
+"sudo takes your face instead of the password. No match: you type the "
+"password as usual."
 msgstr ""
 
-#: src/face-unlock:71
-msgid "The setup window is open. Follow it there."
+#: gui/src/onboarding.rs:128 gui/src/panes.rs:227 gui/src/panes.rs:536
+#: src/main.rs:303
+msgid "Admin prompts"
 msgstr ""
 
-#: src/face-unlock:80
-msgid "The face is set up."
-msgstr ""
-
-#: src/face-unlock:83
-#, sh-printf-format
-msgid "Face unlock is still off. Turn it on with [1] or `%s enable`."
-msgstr ""
-
-#: src/face-unlock:87
-msgid "No face was added."
-msgstr ""
-
-#: src/face-unlock:96
-msgid "First, set up your face."
-msgstr ""
-
-#: src/face-unlock:100 src/face-unlock:154 src/lib/menu.sh:566
-#: src/lib/menu.sh:570 src/lib/menu.sh:576 src/lib/menu.sh:578
-#: src/lib/system.sh:410 src/lib/system.sh:416 src/lib/system.sh:466
-msgid "Could not save the setting."
-msgstr ""
-
-#: src/face-unlock:104
-msgid "Could not start the lock screen agent."
-msgstr ""
-
-#: src/face-unlock:107
-msgid "No systemd user session, so the lock screen agent was not started."
-msgstr ""
-
-#: src/face-unlock:127
-msgid "Could not switch on the GNOME extension that shows the bubble."
-msgstr ""
-
-#: src/face-unlock:128
-msgid "Log out and back in once: then GNOME shows the bubble too."
-msgstr ""
-
-#: src/face-unlock:139
-msgid "Pick your lock screen in the window."
-msgstr ""
-
-#: src/face-unlock:140
-msgid "No lock screen picked. You can do it later under Settings."
-msgstr ""
-
-#: src/face-unlock:144
-#, sh-printf-format
+#: gui/src/onboarding.rs:129 gui/src/panes.rs:537
 msgid ""
-"The lock screen (%s) takes your face too. If it does not scan when you come "
-"back, press Enter on the empty password field."
+"The password windows of your desktop and apps, for example when you install "
+"software. No match: you type the password."
 msgstr ""
 
-#: src/face-unlock:147
-msgid "Face unlock is on. Lock the screen and look at it to try."
+#: gui/src/onboarding.rs:139 gui/src/panes.rs:231 gui/src/panes.rs:544
+#: src/main.rs:305
+msgid "Lock screens"
 msgstr ""
 
-#: src/face-unlock:149
-msgid "It can do sudo and admin prompts too. See Settings."
+#: gui/src/onboarding.rs:140
+msgid ""
+"The lock screen takes your face in its password check. Press Enter on the "
+"empty field to scan."
 msgstr ""
 
-#: src/face-unlock:165
-msgid "Face unlock is off. Your faces are kept; delete them under Faces."
+#: gui/src/onboarding.rs:152
+msgid "Where should your face count?"
 msgstr ""
 
-#: src/face-unlock:179 src/lib/daemon.sh:109
-msgid "No face is set up yet."
+#: gui/src/onboarding.rs:153
+msgid ""
+"The lock screen always takes it. The password always works too. You can "
+"change all of this later."
 msgstr ""
 
-#: src/face-unlock:183 src/lib/menu.sh:180 src/lib/menu.sh:742
+#: gui/src/onboarding.rs:156
+msgid "Turn on face unlock"
+msgstr ""
+
+#: gui/src/onboarding.rs:166
+msgid "Almost done"
+msgstr ""
+
+#: gui/src/onboarding.rs:166 gui/src/setup.rs:400
+msgid "You are all set"
+msgstr ""
+
+#: gui/src/onboarding.rs:167
+msgid ""
+"Lock the screen and look at it to try it out. Everything else is in the "
+"settings."
+msgstr ""
+
+#: gui/src/onboarding.rs:170
+msgid "Open the settings"
+msgstr ""
+
+#: gui/src/panes.rs:21 src/main.rs:163 src/main.rs:276
 msgid "on"
 msgstr ""
 
-#: src/face-unlock:183 src/lib/menu.sh:182 src/lib/menu.sh:192
-#: src/lib/menu.sh:743
+#: gui/src/panes.rs:21 gui/src/panes.rs:242 gui/src/panes.rs:598
+#: src/main.rs:163 src/main.rs:276
 msgid "off"
 msgstr ""
 
-#: src/face-unlock:185 src/lib/menu.sh:760
-#, sh-printf-format
-msgid "%s samples, %s learned"
+#: gui/src/panes.rs:60
+msgid "Dismiss"
 msgstr ""
 
-#: src/face-unlock:191
-#, sh-printf-format
-msgid "Which face? See `%s faces` for the ids."
+#: gui/src/panes.rs:72 gui/src/ui.rs:42
+msgid "Try it"
 msgstr ""
 
-#: src/face-unlock:195
-msgid "Deleted."
-msgstr ""
-
-#: src/face-unlock:206
-msgid "Usage: face-unlock [command]"
-msgstr ""
-
-#: src/face-unlock:208
-msgid "Commands:"
-msgstr ""
-
-#: src/face-unlock:209
-msgid "Turn face unlock on"
-msgstr ""
-
-#: src/face-unlock:210
-msgid "Turn it off (faces are kept)"
-msgstr ""
-
-#: src/face-unlock:211 src/lib/menu.sh:828
-msgid "Add a face"
-msgstr ""
-
-#: src/face-unlock:212
-msgid "List the faces"
-msgstr ""
-
-#: src/face-unlock:213
-msgid "Delete a face"
-msgstr ""
-
-#: src/face-unlock:214
-msgid "Look at the camera and see what it sees"
-msgstr ""
-
-#: src/face-unlock:215
-msgid "Lock the screen"
-msgstr ""
-
-#: src/face-unlock:216
-msgid "Show what is on"
-msgstr ""
-
-#: src/face-unlock:217
-msgid "Show this help"
-msgstr ""
-
-#: src/face-unlock:218
-msgid "Show the version"
-msgstr ""
-
-#: src/face-unlock:220
-msgid "Without a command an interactive menu is shown."
-msgstr ""
-
-#: src/face-unlock:239
-msgid ""
-"Run this as your own user, not as root. It asks for your password when it "
-"needs to."
-msgstr ""
-
-#: src/face-unlock:262 src/lib/system.sh:106
-#, sh-printf-format
-msgid "Unknown command: %s"
-msgstr ""
-
-#: src/lib/common.sh:173
-msgid "never"
-msgstr ""
-
-#: src/lib/common.sh:183
-msgid "just now"
-msgstr ""
-
-#: src/lib/common.sh:185
-msgid "1 minute ago"
-msgstr ""
-
-#: src/lib/common.sh:188
-#, sh-printf-format
-msgid "%d minutes ago"
-msgstr ""
-
-#: src/lib/common.sh:190
-msgid "1 hour ago"
-msgstr ""
-
-#: src/lib/common.sh:193
-#, sh-printf-format
-msgid "%d hours ago"
-msgstr ""
-
-#: src/lib/common.sh:195
-msgid "1 day ago"
-msgstr ""
-
-#: src/lib/common.sh:198
-#, sh-printf-format
-msgid "%d days ago"
-msgstr ""
-
-#: src/lib/daemon.sh:102
-msgid "The face did not match."
-msgstr ""
-
-#: src/lib/daemon.sh:103
-msgid "That looked like a photo or a screen."
-msgstr ""
-
-#: src/lib/daemon.sh:104
-msgid "The face matched, but did not blink or move."
-msgstr ""
-
-#: src/lib/daemon.sh:105
-msgid "The face was not looking at the screen."
-msgstr ""
-
-#: src/lib/daemon.sh:106
-msgid "The picture was too dark, too blurry or too far away."
-msgstr ""
-
-#: src/lib/daemon.sh:107
-msgid "No face in view."
-msgstr ""
-
-#: src/lib/daemon.sh:108
-msgid ""
-"Face unlock is paused after too many tries. Unlock once with your password."
-msgstr ""
-
-#: src/lib/daemon.sh:110
-msgid "The camera could not be used."
-msgstr ""
-
-#: src/lib/daemon.sh:111
-msgid "Another app is using the camera."
-msgstr ""
-
-#: src/lib/daemon.sh:112 src/lib/menu.sh:274
-msgid "The recognition models are missing. Reinstall the package."
-msgstr ""
-
-#: src/lib/daemon.sh:113
-msgid "The lid is closed."
-msgstr ""
-
-#: src/lib/daemon.sh:114
-msgid "The camera is busy with another scan."
-msgstr ""
-
-#: src/lib/daemon.sh:115
+#: gui/src/panes.rs:106 gui/src/panes.rs:159 src/text.rs:22
 msgid "The face unlock service is not running."
 msgstr ""
 
-#: src/lib/daemon.sh:117
-msgid "Not allowed."
+#: gui/src/panes.rs:110
+msgid "Set up your face, then lock the screen and look at it."
 msgstr ""
 
-#: src/lib/daemon.sh:121
-msgid "No password window? Start a polkit agent, for example hyprpolkitagent."
+#: gui/src/panes.rs:112 src/actions.rs:140
+msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 
-#: src/lib/daemon.sh:124
-#, sh-printf-format
-msgid "Something went wrong (%s)."
+#: gui/src/panes.rs:122 gui/src/panes.rs:147 src/main.rs:277
+msgid "Face unlock"
 msgstr ""
 
-#: src/lib/daemon.sh:135
-msgid "Look at the camera. Blink once, or turn your head a little."
+#: gui/src/panes.rs:166 src/main.rs:312 src/text.rs:19
+msgid "The recognition models are missing. Reinstall the package."
 msgstr ""
 
-#: src/lib/daemon.sh:145
-msgid "Face found."
+#: gui/src/panes.rs:169 src/main.rs:308
+msgid "for %d more minutes, or until the password is used"
 msgstr ""
 
-#: src/lib/daemon.sh:149
-msgid "Recognised. Now blink once, or turn your head a little."
+#: gui/src/panes.rs:170 src/main.rs:308
+msgid "Paused"
 msgstr ""
 
-#: src/lib/daemon.sh:150
-msgid "Look at the screen."
+#: gui/src/panes.rs:173
+msgid "No camera found."
 msgstr ""
 
-#: src/lib/daemon.sh:151
-msgid "Move closer to the camera."
+#: gui/src/panes.rs:173
+msgid "Connect a camera, or pick another one under Recognition."
 msgstr ""
 
-#: src/lib/daemon.sh:152
-msgid "It is too dark to see your face."
+#: gui/src/panes.rs:183 src/main.rs:315
+msgid "The lock screen agent is not running."
 msgstr ""
 
-#: src/lib/daemon.sh:161
-msgid "match"
+#: gui/src/panes.rs:185 gui/src/panes.rs:190 gui/src/trial.rs:133
+msgid "Start"
 msgstr ""
 
-#: src/lib/daemon.sh:161
-msgid "turn"
-msgstr ""
-
-#: src/lib/daemon.sh:162
-msgid "eyes"
-msgstr ""
-
-#: src/lib/daemon.sh:163
-msgid "depth"
-msgstr ""
-
-#: src/lib/daemon.sh:163 src/lib/daemon.sh:172
-msgid "blink"
-msgstr ""
-
-#: src/lib/daemon.sh:164
-msgid "glare"
-msgstr ""
-
-#: src/lib/daemon.sh:164
-msgid "edge"
-msgstr ""
-
-#: src/lib/daemon.sh:173
-msgid "head turn"
-msgstr ""
-
-#: src/lib/daemon.sh:175
-#, sh-printf-format
-msgid "Recognised as %s (match %s) in %s ms."
-msgstr ""
-
-#: src/lib/daemon.sh:176
-#, sh-printf-format
-msgid "Sign of life: %s"
-msgstr ""
-
-#: src/lib/daemon.sh:181
-msgid ""
-"That was too many tries. Face unlock is paused until you unlock with your "
-"password."
-msgstr ""
-
-#. TRANSLATORS: the letter after "[" is the key for yes. y works too.
-#: src/lib/menu.sh:141
-msgid "[y/N]"
-msgstr ""
-
-#: src/lib/menu.sh:172 src/lib/menu.sh:632
-msgid "ON"
-msgstr ""
-
-#: src/lib/menu.sh:174 src/lib/menu.sh:633
-msgid "OFF"
-msgstr ""
-
-#: src/lib/menu.sh:190 src/lib/menu.sh:194
-msgid "strict"
-msgstr ""
-
-#: src/lib/menu.sh:191
-msgid "basic"
-msgstr ""
-
-#: src/lib/menu.sh:193 src/lib/menu.sh:198
-msgid "normal"
-msgstr ""
-
-#: src/lib/menu.sh:195
-msgid "relaxed"
-msgstr ""
-
-#: src/lib/menu.sh:196
-msgid "island with the face"
-msgstr ""
-
-#: src/lib/menu.sh:197
-msgid "small pill with a lock"
-msgstr ""
-
-#: src/lib/menu.sh:199
-msgid "fast"
-msgstr ""
-
-#: src/lib/menu.sh:200
-msgid "slow"
-msgstr ""
-
-#: src/lib/menu.sh:201
-#, sh-printf-format
-msgid "%s seconds"
-msgstr ""
-
-#: src/lib/menu.sh:202 src/lib/menu.sh:470
-msgid "automatic"
-msgstr ""
-
-#: src/lib/menu.sh:203
-msgid "face-unlock's"
-msgstr ""
-
-#: src/lib/menu.sh:204
-msgid "yours"
-msgstr ""
-
-#: src/lib/menu.sh:205
-msgid "follows the mouse"
-msgstr ""
-
-#: src/lib/menu.sh:216
+#: gui/src/panes.rs:198 src/root.rs:125
 msgid ""
 "No polkit agent is running, so no password window can open. Adding a face "
 "and the admin prompts need one."
 msgstr ""
 
-#: src/lib/menu.sh:227
-msgid "Face unlock"
+#: gui/src/panes.rs:199
+msgid "Install one in a terminal:"
 msgstr ""
 
-#: src/lib/menu.sh:231
-msgid "Service"
-msgstr ""
-
-#: src/lib/menu.sh:231
-msgid "not running"
-msgstr ""
-
-#: src/lib/menu.sh:233
-msgid "Turning face unlock on again starts it."
-msgstr ""
-
-#: src/lib/menu.sh:245 src/lib/menu.sh:247 src/lib/menu.sh:738
-#: src/lib/menu.sh:829
-msgid "Faces"
-msgstr ""
-
-#: src/lib/menu.sh:245
+#: gui/src/panes.rs:210 src/main.rs:288
 msgid "none set up yet"
 msgstr ""
 
-#: src/lib/menu.sh:247
+#: gui/src/panes.rs:212 src/main.rs:291
 msgid "all turned off"
 msgstr ""
 
-#: src/lib/menu.sh:253
+#: gui/src/panes.rs:219 src/main.rs:297
 msgid "none found"
 msgstr ""
 
-#: src/lib/menu.sh:255 src/lib/menu.sh
+#: gui/src/panes.rs:223 gui/src/panes.rs:377 gui/src/ui.rs:37 src/main.rs:288
+#: src/main.rs:292
+msgid "Faces"
+msgstr ""
+
+#: gui/src/panes.rs:224 gui/src/panes.rs:618 gui/src/panes.rs:625
+#: src/main.rs:299
 msgid "Camera"
 msgstr ""
 
-#: src/lib/menu.sh:257 src/lib/menu.sh
+#: gui/src/panes.rs:225 gui/src/panes.rs:434 gui/src/ui.rs:38 src/main.rs:301
 msgid "Lock screen"
 msgstr ""
 
-#: src/lib/menu.sh:261
+#: gui/src/panes.rs:226 src/main.rs:302
 msgid "sudo"
 msgstr ""
 
-#: src/lib/menu.sh:262 src/lib/menu.sh
-msgid "Admin prompts"
-msgstr ""
-
-#: src/lib/menu.sh:264 src/lib/menu.sh
-msgid "Lock screens"
-msgstr ""
-
-#: src/lib/menu.sh:266 src/lib/menu.sh
+#: gui/src/panes.rs:233 gui/src/panes.rs:596 gui/src/panes.rs:598
 msgid "Photo check"
 msgstr ""
 
-#: src/lib/menu.sh:269
-msgid "Paused"
-msgstr ""
-
-#: src/lib/menu.sh:269
-#, sh-printf-format
-msgid "for %d more minutes, or until the password is used"
-msgstr ""
-
-#: src/lib/menu.sh:271
+#: gui/src/panes.rs:234 src/main.rs:310
 msgid "Last unlock"
 msgstr ""
 
-#: src/lib/menu.sh:277
-msgid "The lock screen agent is not running."
+#: gui/src/panes.rs:236
+msgid "At a glance"
 msgstr ""
 
-#: src/lib/menu.sh:337
+#: gui/src/panes.rs:241 gui/src/panes.rs:598 gui/src/panes.rs:611
+msgid "strict"
+msgstr ""
+
+#: gui/src/panes.rs:243 gui/src/panes.rs:598
+msgid "basic"
+msgstr ""
+
+#: gui/src/panes.rs:256 src/main.rs:328
+msgid "Add a face"
+msgstr ""
+
+#: gui/src/panes.rs:295 src/main.rs:160 src/text.rs:16
+msgid "No face is set up yet."
+msgstr ""
+
+#: gui/src/panes.rs:295
+msgid "Add one with the button at the top."
+msgstr ""
+
+#: gui/src/panes.rs:302 src/main.rs:164
+msgid "%s samples, %s learned"
+msgstr ""
+
+#: gui/src/panes.rs:316
+msgid "New name:"
+msgstr ""
+
+#: gui/src/panes.rs:335 gui/src/panes.rs:472
+msgid "Save"
+msgstr ""
+
+#: gui/src/panes.rs:349
+msgid "Delete \"%s\"?"
+msgstr ""
+
+#: gui/src/panes.rs:351 gui/src/panes.rs:363
+msgid "Delete"
+msgstr ""
+
+#: gui/src/panes.rs:362
+msgid "Rename"
+msgstr ""
+
+#: gui/src/panes.rs:369
+msgid "On"
+msgstr ""
+
+#: gui/src/panes.rs:377
+msgid "Changes ask for your password"
+msgstr ""
+
+#: gui/src/panes.rs:378
 msgid ""
-"On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
-"switches it on."
+"A face is kept as numbers, not as a picture, and only root can read them."
 msgstr ""
 
-#: src/lib/menu.sh:341
+#: gui/src/panes.rs:427
 msgid ""
 "Scans when you come back to hyprlock, swaylock or face-unlock's own lock "
 "screen (`face-unlock lock`, with the bubble), and opens them. Other lock "
 "screens scan on Enter."
 msgstr ""
 
-#: src/lib/menu.sh:346
+#: gui/src/panes.rs:429
 msgid ""
 "Unlocks the lock screen when it sees your face. Off: only your password "
 "works there."
 msgstr ""
 
-#: src/lib/menu.sh:347
+#: gui/src/panes.rs:436
+msgid "Unlock with your face"
+msgstr ""
+
+#: gui/src/panes.rs:440
+msgid "Scan when you come back"
+msgstr ""
+
+#: gui/src/panes.rs:441
 msgid ""
 "Scans when you press a key or move the mouse on the lock screen, and when "
 "the computer wakes up."
 msgstr ""
 
-#: src/lib/menu.sh:348
+#: gui/src/panes.rs:449
+msgid "Scan right after locking"
+msgstr ""
+
+#: gui/src/panes.rs:450
 msgid ""
 "Scans as soon as the screen locks. Off by default: if you lock it yourself, "
 "it would unlock again right away."
 msgstr ""
 
-#: src/lib/menu.sh:349
-msgid ""
-"sudo takes your face instead of the password. No match: you type the "
-"password as usual."
+#: gui/src/panes.rs:460
+msgid "face-unlock's"
 msgstr ""
 
-#: src/lib/menu.sh:350
+#: gui/src/panes.rs:461
+msgid "not picked yet"
+msgstr ""
+
+#: gui/src/panes.rs:462
+msgid "yours"
+msgstr ""
+
+#: gui/src/panes.rs:464 gui/src/panes.rs:664
+msgid "Choose…"
+msgstr ""
+
+#: gui/src/panes.rs:482
+msgid "same as desktop"
+msgstr ""
+
+#: gui/src/panes.rs:483 gui/src/panes.rs:504
+msgid "Wallpaper"
+msgstr ""
+
+#: gui/src/panes.rs:497 gui/src/panes.rs:514
+msgid "Which lock screen"
+msgstr ""
+
+#: gui/src/panes.rs:498
 msgid ""
 "face-unlock's lock screen shows the bubble, and you lock with `face-unlock "
-"lock`. Or keep yours: hyprlock then shows a line of text at the top. Enter "
-"opens the choice."
+"lock`. Or keep yours: hyprlock then shows a line of text at the top."
 msgstr ""
 
-#: src/lib/menu.sh:351
+#: gui/src/panes.rs:505
 msgid ""
-"The picture behind face-unlock's own lock screen (`face-unlock lock`). "
-"Empty: the one on your desktop. Or a file, a folder to take one from at "
-"random, or `none`. Enter to type it."
+"The picture behind face-unlock's own lock screen. Empty: the one on your "
+"desktop. Or a file, a folder to take one from at random, or `none`."
 msgstr ""
 
-#: src/lib/menu.sh:352
+#: gui/src/panes.rs:508
+msgid "Blur the wallpaper"
+msgstr ""
+
+#: gui/src/panes.rs:508
 msgid "Blurs the picture behind face-unlock's own lock screen."
 msgstr ""
 
-#: src/lib/menu.sh:353
-#, sh-printf-format
+#: gui/src/panes.rs:543
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
 "empty field to scan. Found here: %s."
 msgstr ""
 
-#: src/lib/menu.sh:354
-msgid ""
-"The password windows of your desktop and apps, for example when you install "
-"software. No match: you type the password."
+#: gui/src/panes.rs:550
+msgid "In SSH sessions"
 msgstr ""
 
-#: src/lib/menu.sh:355
+#: gui/src/panes.rs:551
 msgid ""
 "sudo in an SSH session takes your face too, if you sit at this computer. Off "
 "by default: the person at the camera may not be the one typing."
 msgstr ""
 
-#: src/lib/menu.sh:356
+#: gui/src/panes.rs:554 gui/src/ui.rs:39
+msgid "Password prompts"
+msgstr ""
+
+#: gui/src/panes.rs:554 gui/src/panes.rs:640
+msgid "for all users, asks for your password"
+msgstr ""
+
+#: gui/src/panes.rs:563
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr ""
 
-#: src/lib/menu.sh:357
+#: gui/src/panes.rs:564
 msgid "No check at all. Only for trying out a camera."
 msgstr ""
 
-#: src/lib/menu.sh:358
+#: gui/src/panes.rs:565
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
 msgstr ""
 
-#: src/lib/menu.sh:359
+#: gui/src/panes.rs:568
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 
-#: src/lib/menu.sh:360
+#: gui/src/panes.rs:569
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr ""
 
-#: src/lib/menu.sh:361
+#: gui/src/panes.rs:570
 msgid "The default. Right for most people."
 msgstr ""
 
-#: src/lib/menu.sh:362
+#: gui/src/panes.rs:576
+msgid "automatic (%s)"
+msgstr ""
+
+#: gui/src/panes.rs:577
+msgid "automatic"
+msgstr ""
+
+#: gui/src/panes.rs:584
+msgid "(infrared)"
+msgstr ""
+
+#: gui/src/panes.rs:590 gui/src/panes.rs:662
+msgid "(not connected)"
+msgstr ""
+
+#: gui/src/panes.rs:592
+msgid "%s seconds"
+msgstr ""
+
+#: gui/src/panes.rs:601 gui/src/panes.rs:608
+msgid "How closely the face has to match"
+msgstr ""
+
+#: gui/src/panes.rs:611
+msgid "relaxed"
+msgstr ""
+
+#: gui/src/panes.rs:611 gui/src/panes.rs:696
+msgid "normal"
+msgstr ""
+
+#: gui/src/panes.rs:616
+msgid "Only when you look at the screen"
+msgstr ""
+
+#: gui/src/panes.rs:616
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
 msgstr ""
 
-#: src/lib/menu.sh:363
+#: gui/src/panes.rs:626
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
 msgstr ""
 
-#: src/lib/menu.sh:364
+#: gui/src/panes.rs:634 gui/src/panes.rs:636
+msgid "How long a scan lasts"
+msgstr ""
+
+#: gui/src/panes.rs:636
 msgid "How long the camera looks for your face before it gives up."
 msgstr ""
 
-#: src/lib/menu.sh:365
+#: gui/src/panes.rs:638
+msgid "Learn from every unlock"
+msgstr ""
+
+#: gui/src/panes.rs:638
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
 msgstr ""
 
-#: src/lib/menu.sh:366
+#: gui/src/panes.rs:639
+msgid "Not when the lid is closed"
+msgstr ""
+
+#: gui/src/panes.rs:639
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
 msgstr ""
 
-#: src/lib/menu.sh:367
+#: gui/src/panes.rs:640 gui/src/ui.rs:40
+msgid "Recognition"
+msgstr ""
+
+#: gui/src/panes.rs:652
+msgid ""
+"On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
+"switches it on."
+msgstr ""
+
+#: gui/src/panes.rs:654
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr ""
 
-#: src/lib/menu.sh:368
+#: gui/src/panes.rs:673 gui/src/ui.rs:41
+msgid "Bubble"
+msgstr ""
+
+#: gui/src/panes.rs:675
+msgid "Show the bubble"
+msgstr ""
+
+#: gui/src/panes.rs:681
+msgid "Style"
+msgstr ""
+
+#: gui/src/panes.rs:682
 msgid "A small pill with a lock that opens."
 msgstr ""
 
-#: src/lib/menu.sh:369
+#: gui/src/panes.rs:682
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr ""
 
-#: src/lib/menu.sh:370
+#: gui/src/panes.rs:684
+msgid "island with the face"
+msgstr ""
+
+#: gui/src/panes.rs:684
+msgid "small pill with a lock"
+msgstr ""
+
+#: gui/src/panes.rs:693
+msgid "Animation speed"
+msgstr ""
+
+#: gui/src/panes.rs:694
 msgid "How fast the bubble moves."
 msgstr ""
 
-#: src/lib/menu.sh:371
-msgid ""
-"Where the bubble shows up: on the screen with the mouse pointer, or always "
-"on one screen. Enter opens a window with your screens."
+#: gui/src/panes.rs:696
+msgid "slow"
 msgstr ""
 
-#: src/lib/menu.sh:372
+#: gui/src/panes.rs:696
+msgid "fast"
+msgstr ""
+
+#: gui/src/panes.rs:700
+msgid "Screen"
+msgstr ""
+
+#: gui/src/panes.rs:700
+msgid ""
+"Where the bubble shows up: on the screen with the mouse pointer, or always "
+"on one screen."
+msgstr ""
+
+#: gui/src/panes.rs:704
+msgid "Also for sudo and admin prompts"
+msgstr ""
+
+#: gui/src/panes.rs:705
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr ""
 
-#: src/lib/menu.sh:373
+#: gui/src/panes.rs:713
+msgid "Quiet while the camera is in use"
+msgstr ""
+
+#: gui/src/panes.rs:714
 msgid ""
 "When another app uses the camera, for example in a video call, no bubble "
 "shows and you type your password as usual. Off: the bubble shows a camera "
 "with a line through it."
 msgstr ""
 
-#: src/lib/menu.sh:466
-#, sh-printf-format
-msgid "automatic (%s)"
-msgstr ""
-
-#: src/lib/menu.sh:476
-msgid "(infrared)"
-msgstr ""
-
-#: src/lib/menu.sh:480 src/lib/menu.sh:502
-msgid "(not connected)"
-msgstr ""
-
-#: src/lib/menu.sh:511
-msgid "same as desktop"
-msgstr ""
-
-#: src/lib/menu.sh:515
-msgid "none"
-msgstr ""
-
-#: src/lib/menu.sh:553
-msgid "Picture or folder:"
-msgstr ""
-
-#: src/lib/menu.sh:558
-#, sh-printf-format
-msgid "Not found: %s"
-msgstr ""
-
-#: src/lib/menu.sh:629 src/lib/menu.sh:830
-msgid "Settings"
-msgstr ""
-
-#: src/lib/menu.sh:630
-msgid "↑↓ select   ←→ or Space: change   q: back"
-msgstr ""
-
-#: src/lib/menu.sh:631
-msgid "for all users, asks for your password"
-msgstr ""
-
-#. TRANSLATORS: keep the letters, they are the keys.
-#: src/lib/menu.sh:740
-msgid "Up/Down: select, Space: on/off, r: rename, d: delete, a: add, q: back"
-msgstr ""
-
-#: src/lib/menu.sh:741
-msgid "No face is set up yet. Press a to add one."
-msgstr ""
-
-#: src/lib/menu.sh:789
-msgid "New name:"
-msgstr ""
-
-#: src/lib/menu.sh:796
-#, sh-printf-format
-msgid "Delete \"%s\"?"
-msgstr ""
-
-#: src/lib/menu.sh:827
-msgid "Turn face unlock on or off"
-msgstr ""
-
-#: src/lib/menu.sh:831
-msgid "Try it"
-msgstr ""
-
-#: src/lib/menu.sh:833
-msgid "Install a polkit agent"
-msgstr ""
-
-#: src/lib/menu.sh:835
-msgid "Quit"
-msgstr ""
-
-#: src/lib/migrate.sh:127
-msgid ""
-"Moving your faces and settings over from plasma-face-unlock. That needs your "
-"password."
-msgstr ""
-
-#: src/lib/pam.sh:197
-#, sh-printf-format
-msgid "The PAM module is not installed at %s."
-msgstr ""
-
-#: src/lib/pam.sh:205
-#, sh-printf-format
-msgid "There is no PAM configuration for %s on this system."
-msgstr ""
-
-#: src/lib/system.sh:50
-msgid "This needs root, and neither sudo, run0 nor doas is installed."
-msgstr ""
-
-#: src/lib/system.sh:59
-msgid "This command has to run as root."
-msgstr ""
-
-#: src/lib/system.sh:67
-#, sh-printf-format
-msgid "Not a valid setting: %s=%s"
-msgstr ""
-
-#: src/lib/system.sh:83
-#, sh-printf-format
-msgid "Not a service this can be used for: %s"
-msgstr ""
-
-#: src/lib/system.sh:155
-#, sh-printf-format
-msgid ""
-"Hyprland does not start the lock screen agent by itself. Add this to %s:"
-msgstr ""
-
-#: src/lib/system.sh:157
-#, sh-printf-format
-msgid "Hyprland does not start the polkit agent by itself. Add this to %s:"
-msgstr ""
-
-#: src/lib/system.sh:215
-msgid "No package manager found to install a polkit agent with."
-msgstr ""
-
-#: src/lib/system.sh:239
-msgid "Installing a polkit agent. That needs your password."
-msgstr ""
-
-#: src/lib/system.sh:240 src/lib/system.sh:242
-msgid "Could not install a polkit agent."
-msgstr ""
-
-#: src/lib/system.sh:258
-#, sh-printf-format
-msgid "The polkit agent did not start. See: systemctl --user status %s"
-msgstr ""
-
-#: src/lib/system.sh:262
-msgid "The polkit agent is running. Password windows open now."
-msgstr ""
-
-#: src/lib/system.sh:387 src/lib/system.sh:390
-#, sh-printf-format
-msgid "To lock with it, add this to %s, and set %s in %s:"
-msgstr ""
-
-#: src/lib/system.sh:395
-#, sh-printf-format
-msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
-msgstr ""
-
-#: src/lib/system.sh:399
-#, sh-printf-format
-msgid "To lock with it, run %s where your lock screen is started now."
-msgstr ""
-
-#: src/lib/system.sh:412
-msgid "You lock with face-unlock's lock screen now."
-msgstr ""
-
-#: src/lib/system.sh:419
-msgid ""
-"hyprlock shows what face unlock is doing at the top, from the next time it "
-"locks."
-msgstr ""
-
-#: src/lib/system.sh:420
-#, sh-printf-format
-msgid "Could not add the line to %s."
-msgstr ""
-
-#: src/lib/system.sh:421
-msgid ""
-"Your lock screen stays as it is. Press Enter on the empty password field to "
-"scan."
-msgstr ""
-
-#: src/lib/system.sh:422
-#, sh-printf-format
-msgid "hyprlock has no %s, so it cannot show the text."
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Unlock with your face"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Scan when you come back"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Scan right after locking"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Which lock screen"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Wallpaper"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Blur the wallpaper"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Password prompts"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "sudo in a terminal"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "In SSH sessions"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Recognition"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "How closely the face has to match"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Only when you look at the screen"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "How long a scan lasts"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Learn from every unlock"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Not when the lid is closed"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Bubble"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Show the bubble"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Style"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Animation speed"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Screen"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Also for sudo and admin prompts"
-msgstr ""
-
-#: src/lib/menu.sh
-msgid "Quiet while the camera is in use"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:104
-msgid "Blink once"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:106
-msgid "Look at the screen"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:108
-msgid "Move closer"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:110
-msgid "Too dark"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:133
-msgid "Camera in use"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:142
-msgid "Use your password"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:148
-msgid "Not recognized"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:150
-msgid "Try again and blink"
-msgstr ""
-
-#: src/agent/bubblecontroller.cpp:152
-msgid "Camera unavailable"
-msgstr ""
-
-#: src/agent/enrollcontroller.cpp:68
+#: gui/src/setup.rs:63
 msgid "Bring your face into the circle."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:70
+#: gui/src/setup.rs:64
 msgid "Only one face, please."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:72
+#: gui/src/setup.rs:65
 msgid "Move a little closer."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:74
+#: gui/src/setup.rs:66
 msgid "It is too dark. Turn on a light."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:76
+#: gui/src/setup.rs:67
 msgid "Too bright. Turn away from the light."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:78
+#: gui/src/setup.rs:68
 msgid "Hold still for a moment."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:80
+#: gui/src/setup.rs:69
 msgid "Look straight at the camera."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:82
-msgid "Move your head slowly to complete the circle."
-msgstr ""
-
-#: src/agent/enrollcontroller.cpp:99 src/agent/enrollcontroller.cpp:132
+#: gui/src/setup.rs:147 gui/src/setup.rs:186
 msgid "Starting the camera…"
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:129
+#: gui/src/setup.rs:182
 msgid "Confirm with your password to add a face."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:184
+#: gui/src/setup.rs:220
 msgid "Face Unlock is set up."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:193
+#: gui/src/setup.rs:234
 msgid "A face can only be added with your password."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:200
+#: gui/src/setup.rs:237 src/text.rs:31
+msgid "No password window? Start a polkit agent, for example hyprpolkitagent."
+msgstr ""
+
+#: gui/src/setup.rs:241
 msgid "The camera could not be used: %1"
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:202
+#: gui/src/setup.rs:242
 msgid "The face recognition models are missing. Reinstall the package."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:204
+#: gui/src/setup.rs:243
 msgid "That took too long. Try again, in good light."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:206
+#: gui/src/setup.rs:244
 msgid "The face unlock service is not running. Turn face unlock on first."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:208
+#: gui/src/setup.rs:245
 msgid "The camera is busy with another scan. Try again in a moment."
 msgstr ""
 
-#: src/agent/enrollcontroller.cpp:210
+#: gui/src/setup.rs:246
 msgid "The face could not be added (%1)."
 msgstr ""
 
-#: src/agent/lockpreview.cpp:349 src/agent/lockpreview.cpp:559
-#: src/agent/locktext.cpp:45
-msgid "Looking for your face…"
+#: gui/src/setup.rs:398
+msgid "Set up your face"
 msgstr ""
 
-#: src/agent/lockscreencontroller.cpp:172
-msgid "Wrong password"
-msgstr ""
-
-#: src/agent/locktext.cpp:48
-msgid "Face recognized"
-msgstr ""
-
-#: src/agent/main.cpp:143
-msgid "Built-in screen"
-msgstr ""
-
-#: src/agent/main.cpp:322
-msgid "Face unlock for the lock screen, sudo and admin prompts"
-msgstr ""
-
-#: src/agent/main.cpp:325
-msgid "Set up a face."
-msgstr ""
-
-#: src/agent/main.cpp:326
-msgid "What to call the new face."
-msgstr ""
-
-#: src/agent/main.cpp:327
-msgid "Lock the screen."
-msgstr ""
-
-#: src/agent/main.cpp:328
-msgid "Play the bubble's animations once."
-msgstr ""
-
-#: src/agent/main.cpp:330
-msgid "Bubble style for the demo: full or minimal."
-msgstr ""
-
-#: src/agent/main.cpp:331
-msgid "Ask which lock screen to use, and print the answer."
-msgstr ""
-
-#: src/agent/main.cpp:332
-msgid "Ask which screen the bubble shows on, and print the answer."
-msgstr ""
-
-#: src/pam/pam_face_unlock.c:353
-msgid "Look at the camera to unlock."
-msgstr ""
-
-#: src/pam/pam_face_unlock.c:356
-msgid "Blink, or turn your head a little."
-msgstr ""
-
-#: src/pam/pam_face_unlock.c:372
-msgid "Face unlock is paused after too many tries. Use your password."
-msgstr ""
-
-#: src/pam/pam_face_unlock.c:376
-msgid "Face not recognised."
-msgstr ""
-
-#: src/agent/qml/Enroll.qml:27
-msgid "Set up Face Unlock"
-msgstr ""
-
-#: src/agent/qml/Enroll.qml:110
-msgid "Face Unlock"
-msgstr ""
-
-#: src/agent/qml/Enroll.qml:111
+#: gui/src/setup.rs:399
 msgid "Confirm it is you"
 msgstr ""
 
-#: src/agent/qml/Enroll.qml:112
-msgid "You are all set"
-msgstr ""
-
-#: src/agent/qml/Enroll.qml:113
+#: gui/src/setup.rs:401
 msgid "Setup did not finish"
 msgstr ""
 
-#: src/agent/qml/Enroll.qml:126
+#: gui/src/setup.rs:405
 msgid ""
 "Look at the camera, then move your head slowly in a circle. Your face is "
 "turned into numbers on this computer and never stored as a picture."
 msgstr ""
 
-#: src/agent/qml/Enroll.qml:128
-msgid ""
-"Lock the screen and look at it to try it out. You can add a second look, "
-"with glasses for example, from the menu."
+#: gui/src/setup.rs:406
+msgid "Lock the screen and look at it to try it out."
 msgstr ""
 
-#: src/agent/qml/Enroll.qml:162
+#: gui/src/setup.rs:425 gui/src/setup.rs:426
 msgid "Name (optional)"
 msgstr ""
 
-#: src/agent/qml/Enroll.qml:177 src/agent/qml/LockChoice.qml:255
-#: src/agent/qml/ScreenChoice.qml:693
-msgid "Cancel"
-msgstr ""
-
-#: src/agent/qml/Enroll.qml:183
+#: gui/src/setup.rs:447
 msgid "Finish now"
 msgstr ""
 
-#: src/agent/qml/Enroll.qml:188
+#: gui/src/setup.rs:451 gui/src/trial.rs:133
 msgid "Try again"
 msgstr ""
 
-#: src/agent/qml/Enroll.qml:188
-msgid "Get started"
-msgstr ""
-
-#: src/agent/qml/Enroll.qml:193
+#: gui/src/setup.rs:460
 msgid "Done"
 msgstr ""
 
-#: src/agent/qml/LockChoice.qml:52
-msgid "Choose your lock screen"
+#: gui/src/trial.rs:93 src/main.rs:204
+msgid "Recognised. Now blink once, or turn your head a little."
 msgstr ""
 
-#: src/agent/qml/LockChoice.qml:198
-msgid "Your lock screen"
+#: gui/src/trial.rs:94 pam/src/lib.rs:308 src/main.rs:205
+msgid "Look at the screen."
 msgstr ""
 
-#: src/agent/qml/LockChoice.qml:209
+#: gui/src/trial.rs:95 pam/src/lib.rs:309 src/main.rs:206
+msgid "Move closer to the camera."
+msgstr ""
+
+#: gui/src/trial.rs:96 pam/src/lib.rs:310 src/main.rs:207
+msgid "It is too dark to see your face."
+msgstr ""
+
+#: gui/src/trial.rs:97 src/main.rs:201
+msgid "Face found."
+msgstr ""
+
+#: gui/src/trial.rs:98 src/main.rs:190
+msgid "Look at the camera. Blink once, or turn your head a little."
+msgstr ""
+
+#: gui/src/trial.rs:104 src/main.rs:243
+msgid "Recognised as %s (match %s) in %s ms."
+msgstr ""
+
+#: gui/src/trial.rs:108 src/main.rs:228 src/main.rs:247
+msgid "blink"
+msgstr ""
+
+#: gui/src/trial.rs:109 src/main.rs:248
+msgid "head turn"
+msgstr ""
+
+#: gui/src/trial.rs:114 src/main.rs:252
+msgid "Sign of life: %s"
+msgstr ""
+
+#: gui/src/trial.rs:121 src/main.rs:261
 msgid ""
-"Your desktop leaves the lock screen to a program of your choice. Pick how "
-"face unlock shows up there. You can change it later under Settings."
+"That was too many tries. Face unlock is paused until you unlock with your "
+"password."
 msgstr ""
 
-#: src/agent/qml/LockChoice.qml:232
-msgid "face-unlock's lock screen"
-msgstr ""
-
-#: src/agent/qml/LockChoice.qml:233
+#: gui/src/trial.rs:126
 msgid ""
-"The bubble at the top, the time and your wallpaper. Your shortcut and idle "
-"lock then run face-unlock lock."
+"Look at the camera and see what it sees. Every check shows how close it is."
 msgstr ""
 
-#: src/agent/qml/LockChoice.qml:240
-msgid "Keep your lock screen"
+#: gui/src/trial.rs:131
+msgid "Stop"
 msgstr ""
 
-#: src/agent/qml/LockChoice.qml:242
+#: gui/src/trial.rs:162
+msgid "What the checks see"
+msgstr ""
+
+#: gui/src/trial.rs:164
+msgid "Match"
+msgstr ""
+
+#: gui/src/trial.rs:164
+msgid "How much the face looks like yours. Over about 0.5 counts."
+msgstr ""
+
+#: gui/src/trial.rs:165
+msgid "Turn of the head"
+msgstr ""
+
+#: gui/src/trial.rs:165
+msgid "Up to 25 degrees counts as looking at the screen."
+msgstr ""
+
+#: gui/src/trial.rs:166
+msgid "Eyes open"
+msgstr ""
+
+#: gui/src/trial.rs:166
+msgid "Closed eyes do not unlock."
+msgstr ""
+
+#: gui/src/trial.rs:167
+msgid "Depth"
+msgstr ""
+
+#: gui/src/trial.rs:167
+msgid "A head that turns shows its nose sticking out. A photo cannot."
+msgstr ""
+
+#: gui/src/trial.rs:168
+msgid "Blink"
+msgstr ""
+
+#: gui/src/trial.rs:168
+msgid "A blink is a sign of life too."
+msgstr ""
+
+#: gui/src/trial.rs:169
+msgid "Glare"
+msgstr ""
+
+#: gui/src/trial.rs:169
+msgid "A screen or glossy paper throws back light. Full means a fake."
+msgstr ""
+
+#: gui/src/trial.rs:170
+msgid "Edge of a device"
+msgstr ""
+
+#: gui/src/trial.rs:170
+msgid "The frame of a phone or a tablet around the face. Full means a fake."
+msgstr ""
+
+#: gui/src/trial.rs:173
+msgid "The terminal shows the same with `face-unlock test`."
+msgstr ""
+
+#: gui/src/ui.rs:36
+msgid "Overview"
+msgstr ""
+
+#: gui/src/ui.rs:349 src/actions.rs:71 src/actions.rs:122 src/actions.rs:162
+#: src/actions.rs:171 src/root.rs:138
+msgid "Could not save the setting."
+msgstr ""
+
+#: gui/src/ui.rs:407 src/actions.rs:78
+msgid "Could not start the lock screen agent."
+msgstr ""
+
+#: gui/src/ui.rs:415
+msgid "The polkit agent is running. Password windows open now."
+msgstr ""
+
+#: gui/src/view.rs:113
+msgid "Face Unlock"
+msgstr ""
+
+#: gui/src/view.rs:184
+msgid "Version %s"
+msgstr ""
+
+#: pam/src/lib.rs:304
+msgid "Look at the camera to unlock."
+msgstr ""
+
+#: pam/src/lib.rs:307
+msgid "Blink, or turn your head a little."
+msgstr ""
+
+#: pam/src/lib.rs:319
+msgid "Face unlock is paused after too many tries. Use your password."
+msgstr ""
+
+#: pam/src/lib.rs:323
+msgid "Face not recognised."
+msgstr ""
+
+#: src/actions.rs:40
+msgid "Check it with: systemctl status %s"
+msgstr ""
+
+#: src/actions.rs:84
+msgid "No systemd user session, so the lock screen agent was not started."
+msgstr ""
+
+#: src/actions.rs:99
+msgid "Log out and back in once: then GNOME shows the bubble too."
+msgstr ""
+
+#: src/actions.rs:100
+msgid "Could not switch on the GNOME extension that shows the bubble."
+msgstr ""
+
+#: src/actions.rs:107
 msgid ""
-"It stays as it is. hyprlock shows a line of text at the top instead of the "
-"bubble. Enter on the empty password field scans."
+"The lock screen (%s) takes your face too. If it does not scan when you come "
+"back, press Enter on the empty password field."
 msgstr ""
 
-#: src/agent/qml/LockChoice.qml:243
+#: src/actions.rs:114
+msgid "It can do sudo and admin prompts too. See Settings."
+msgstr ""
+
+#: src/actions.rs:166
+msgid "You lock with face-unlock's lock screen now."
+msgstr ""
+
+#: src/actions.rs:176
 msgid ""
-"It stays as it is, without the bubble. Enter on the empty password field "
-"scans."
+"hyprlock shows what face unlock is doing at the top, from the next time it "
+"locks."
 msgstr ""
 
-#: src/agent/qml/LockChoice.qml:260 src/agent/qml/ScreenChoice.qml:698
-msgid "Continue"
+#: src/actions.rs:177
+msgid "Could not add the line to %s."
 msgstr ""
 
-#: src/agent/qml/LockScreen.qml:190
-msgid "Password"
-msgstr ""
-
-#: src/agent/qml/LockScreen.qml:204
-msgid "Look at the camera or type your password"
-msgstr ""
-
-#: src/agent/qml/LockScreen.qml:205
-msgid "Type your password"
-msgstr ""
-
-#: src/agent/qml/ScreenChoice.qml:42
-msgid "Follow the mouse"
-msgstr ""
-
-#: src/agent/qml/ScreenChoice.qml:42
-msgid "The screen with the pointer"
-msgstr ""
-
-#: src/agent/qml/ScreenChoice.qml:47
-msgid "Not connected"
-msgstr ""
-
-#: src/agent/qml/ScreenChoice.qml:83
-msgid "Choose a screen for the bubble"
-msgstr ""
-
-#: src/agent/qml/ScreenChoice.qml:371
-msgid "Where the bubble shows up"
-msgstr ""
-
-#: src/agent/qml/ScreenChoice.qml:382
+#: src/actions.rs:178
 msgid ""
-"Let the bubble follow your mouse, or keep it on one screen. Click a screen "
-"to pick it. You can change it later under Settings."
+"Your lock screen stays as it is. Press Enter on the empty password field to "
+"scan."
 msgstr ""
 
-#: src/agent/qml/ScreenChoice.qml:640
-msgid "The bubble shows up on the screen with your mouse pointer."
+#: src/actions.rs:179
+msgid "hyprlock has no %s, so it cannot show the text."
 msgstr ""
 
-#: src/agent/qml/ScreenChoice.qml:644
-msgid "%1 is not connected. Until it is, the bubble follows your mouse."
+#: src/main.rs:101
+msgid ""
+"Setting up a face needs the camera picture on screen. Run this inside your "
+"desktop session."
 msgstr ""
 
-#: src/agent/qml/ScreenChoice.qml:646
-msgid "The bubble always shows up on %1, wherever your mouse is."
+#: src/main.rs:104
+msgid "The setup window is open. Follow it there."
+msgstr ""
+
+#: src/main.rs:110
+msgid "The face is set up."
+msgstr ""
+
+#: src/main.rs:112
+msgid "Face unlock is still off. Turn it on with `%s enable`."
+msgstr ""
+
+#: src/main.rs:116
+msgid "No face was added."
+msgstr ""
+
+#: src/main.rs:125
+msgid "First, set up your face."
+msgstr ""
+
+#: src/main.rs:135
+msgid "Pick your lock screen in the window."
+msgstr ""
+
+#: src/main.rs:138
+msgid "No lock screen picked. You can do it later under Settings."
+msgstr ""
+
+#: src/main.rs:171
+msgid "Which face? See `%s faces` for the ids."
+msgstr ""
+
+#: src/main.rs:176
+msgid "Deleted."
+msgstr ""
+
+#: src/main.rs:220
+msgid "match"
+msgstr ""
+
+#: src/main.rs:222
+msgid "turn"
+msgstr ""
+
+#: src/main.rs:224
+msgid "eyes"
+msgstr ""
+
+#: src/main.rs:226
+msgid "depth"
+msgstr ""
+
+#: src/main.rs:230
+msgid "glare"
+msgstr ""
+
+#: src/main.rs:232
+msgid "edge"
+msgstr ""
+
+#: src/main.rs:280
+msgid "Service"
+msgstr ""
+
+#: src/main.rs:280
+msgid "not running"
+msgstr ""
+
+#: src/main.rs:282
+msgid "Turning face unlock on again starts it."
+msgstr ""
+
+#: src/main.rs:324
+msgid "Usage: face-unlock [command]"
+msgstr ""
+
+#: src/main.rs:325
+msgid "Commands:"
+msgstr ""
+
+#: src/main.rs:326
+msgid "Turn face unlock on"
+msgstr ""
+
+#: src/main.rs:327
+msgid "Turn it off (faces are kept)"
+msgstr ""
+
+#: src/main.rs:329
+msgid "List the faces"
+msgstr ""
+
+#: src/main.rs:330
+msgid "Delete a face"
+msgstr ""
+
+#: src/main.rs:331
+msgid "Look at the camera and see what it sees"
+msgstr ""
+
+#: src/main.rs:332
+msgid "Lock the screen"
+msgstr ""
+
+#: src/main.rs:333
+msgid "Show what is on"
+msgstr ""
+
+#: src/main.rs:334
+msgid "Show this help"
+msgstr ""
+
+#: src/main.rs:335
+msgid "Show the version"
+msgstr ""
+
+#: src/main.rs:336
+msgid "Without a command the window opens."
+msgstr ""
+
+#: src/main.rs:345
+msgid ""
+"Moving your faces and settings over from plasma-face-unlock. That needs your "
+"password."
+msgstr ""
+
+#: src/main.rs:371
+msgid ""
+"Run this as your own user, not as root. It asks for your password when it "
+"needs to."
+msgstr ""
+
+#: src/main.rs:412 src/root.rs:72
+msgid "Unknown command: %s"
+msgstr ""
+
+#: src/pam.rs:169
+msgid "The PAM module is not installed at %s."
+msgstr ""
+
+#: src/pam.rs:181
+msgid "There is no PAM configuration for %s on this system."
+msgstr ""
+
+#: src/root.rs:29
+msgid "This command has to run as root."
+msgstr ""
+
+#: src/root.rs:40
+msgid "Not a valid setting: %s=%s"
+msgstr ""
+
+#: src/root.rs:56
+msgid "Not a service this can be used for: %s"
+msgstr ""
+
+#: src/root.rs:77 src/root.rs:132
+msgid "Something went wrong."
+msgstr ""
+
+#: src/root.rs:105
+msgid "This needs root, and neither sudo, run0 nor doas is installed."
+msgstr ""
+
+#: src/root.rs:111
+msgid "This needs root, and pkexec is not installed."
+msgstr ""
+
+#: src/root.rs:127 src/text.rs:26
+msgid "Not allowed."
+msgstr ""
+
+#: src/system.rs:131
+msgid ""
+"Hyprland does not start the lock screen agent by itself. Add this to %s:"
+msgstr ""
+
+#: src/system.rs:133
+msgid "Hyprland does not start the polkit agent by itself. Add this to %s:"
+msgstr ""
+
+#: src/system.rs:216
+msgid "No package manager found to install a polkit agent with."
+msgstr ""
+
+#: src/system.rs:218
+msgid "Could not install a polkit agent."
+msgstr ""
+
+#: src/system.rs:244
+msgid "The polkit agent did not start. See: systemctl --user status %s"
+msgstr ""
+
+#: src/system.rs:407
+msgid "To lock with it, add this to %s, and set %s in %s:"
+msgstr ""
+
+#: src/system.rs:416
+msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
+msgstr ""
+
+#: src/system.rs:419
+msgid "To lock with it, run %s where your lock screen is started now."
+msgstr ""
+
+#: src/text.rs:9
+msgid "The face did not match."
+msgstr ""
+
+#: src/text.rs:10
+msgid "That looked like a photo or a screen."
+msgstr ""
+
+#: src/text.rs:11
+msgid "The face matched, but did not blink or move."
+msgstr ""
+
+#: src/text.rs:12
+msgid "The face was not looking at the screen."
+msgstr ""
+
+#: src/text.rs:13
+msgid "The picture was too dark, too blurry or too far away."
+msgstr ""
+
+#: src/text.rs:14
+msgid "No face in view."
+msgstr ""
+
+#: src/text.rs:15
+msgid ""
+"Face unlock is paused after too many tries. Unlock once with your password."
+msgstr ""
+
+#: src/text.rs:17
+msgid "The camera could not be used."
+msgstr ""
+
+#: src/text.rs:18
+msgid "Another app is using the camera."
+msgstr ""
+
+#: src/text.rs:20
+msgid "The lid is closed."
+msgstr ""
+
+#: src/text.rs:21
+msgid "The camera is busy with another scan."
+msgstr ""
+
+#: src/text.rs:23
+msgid "The setup took too long. Try again."
+msgstr ""
+
+#: src/text.rs:24
+msgid "Stopped."
+msgstr ""
+
+#: src/text.rs:35
+msgid "Something went wrong (%s)."
+msgstr ""
+
+#: src/text.rs:46
+msgid "never"
+msgstr ""
+
+#: src/text.rs:50
+msgid "just now"
+msgstr ""
+
+#: src/text.rs:51
+msgid "1 minute ago"
+msgstr ""
+
+#: src/text.rs:52
+msgid "%d minutes ago"
+msgstr ""
+
+#: src/text.rs:53
+msgid "1 hour ago"
+msgstr ""
+
+#: src/text.rs:54
+msgid "%d hours ago"
+msgstr ""
+
+#: src/text.rs:55
+msgid "1 day ago"
+msgstr ""
+
+#: src/text.rs:56
+msgid "%d days ago"
 msgstr ""

@@ -4,8 +4,8 @@ Section: admin
 Priority: optional
 Architecture: @ARCH@
 Maintainer: Felitendo <felitendoyt@gmail.com>
-Depends: @DEPENDS@, bash (>= 4.2), coreutils, grep, sed, mawk | gawk, systemd, polkitd | policykit-1, qml6-module-qtquick, qml6-module-qtquick-shapes, qml6-module-qtquick-effects, qml6-module-qtquick-window, qml6-module-qtqml-workerscript
-Recommends: gettext-base
+Depends: @DEPENDS@, systemd, polkitd | policykit-1, libwayland-client0, libxkbcommon0, libfontconfig1, libvulkan1
+Recommends: mesa-vulkan-drivers
 Replaces: plasma-face-unlock
 Conflicts: plasma-face-unlock
 Homepage: https://github.com/LoonixTools/face-unlock

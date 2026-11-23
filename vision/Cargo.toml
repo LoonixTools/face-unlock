@@ -1,0 +1,20 @@
+# Camera, finding and recognising faces, telling a face from a photo, and the
+# face store. Used by the daemon and the tests.
+[package]
+name = "face-unlock-vision"
+description = "Camera, face recognition and liveness for face-unlock"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+name = "vision"
+
+[dependencies]
+libc = "0.2"
+serde_json = "1"
+tract-onnx = "0.23"
+tract-hir = "0.23"
+zune-jpeg = "0.5"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }

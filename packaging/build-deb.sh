@@ -7,25 +7,26 @@
 # what that produced, so there is exactly one description of where a file goes
 # and it is the Makefile.
 #
-# Unlike the shell-only tools, this one is compiled, so the package is for one
-# architecture and its library dependencies are read off the binaries by
-# dpkg-shlibdeps rather than written down by hand.
+# It is compiled, so the package is for one architecture, and the libraries
+# the binaries link are read off them by dpkg-shlibdeps. The ones the window
+# opens at run time (Wayland, Vulkan, fontconfig) are in the control file.
 #
-# Needs: make, cmake, a C++ compiler, the -dev packages the README lists,
-# dpkg-dev, msgfmt (gettext), scdoc, curl.
+# Needs: make, cargo, a C compiler, libpam0g-dev, libxkbcommon-dev,
+# dpkg-dev, scdoc, curl.
 
 set -euo pipefail
 
 here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 version="${1:-$(make -s -C "$here" version)}"
-# The package depends on the exact Qt of the distribution it is built on, so
-# each one gets a build of its own, told apart by a suffix: ~deb13, ~ubuntu26.04.
+# The package depends on the C library of the distribution it is built on,
+# so each one gets a build of its own, told apart by a suffix: ~deb13,
+# ~ubuntu26.04.
 debversion="$version${DEB_SUFFIX:-}"
 name=face-unlock
 
-# A package without its man page or its translations is not a package this
-# should be quietly willing to produce.
-for tool in msgfmt scdoc dpkg-deb dpkg-shlibdeps cmake; do
+# A package without its man page is not a package this should be quietly
+# willing to produce.
+for tool in scdoc dpkg-deb dpkg-shlibdeps cargo; do
 	command -v "$tool" > /dev/null || { echo "$0: $tool is not installed" >&2; exit 1; }
 done
 
@@ -34,11 +35,10 @@ work="$(mktemp -d)"
 trap 'rm -rf -- "$root" "$work"' EXIT
 
 make -C "$here" models
+make -C "$here" build PREFIX=/usr
 make -C "$here" install \
 	DESTDIR="$root" \
 	PREFIX=/usr \
-	VERSION="$version" \
-	BUILDDIR="$work/build" \
 	SYSTEMUNITDIR=/usr/lib/systemd/system \
 	USERUNITDIR=/usr/lib/systemd/user
 

@@ -1,6 +1,5 @@
 # build artifacts
-build/
-po/*.mo
+/target
 doc/*.1
 
 # the networks, fetched by `make models`

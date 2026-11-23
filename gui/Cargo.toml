@@ -1,0 +1,22 @@
+# face-unlock-gui: the window, with the setup of a face and the questions
+# asked on the way, drawn with Rune.
+[package]
+name = "face-unlock-gui"
+description = "The face-unlock window"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "face-unlock-gui"
+path = "src/main.rs"
+
+[dependencies]
+face-unlock = { path = ".." }
+rune = { git = "https://github.com/anomalyco/rune.git", rev = "958743308f36fdf1c568c513badc96ddb0c7f040" }
+rune-kit = { git = "https://github.com/anomalyco/rune.git", rev = "958743308f36fdf1c568c513badc96ddb0c7f040" }
+rune-theme-opencode = { git = "https://github.com/anomalyco/rune.git", rev = "958743308f36fdf1c568c513badc96ddb0c7f040" }
+serde_json = "1"
+libc = "0.2"
+zune-jpeg = "0.5"

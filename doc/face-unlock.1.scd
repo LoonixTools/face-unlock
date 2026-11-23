@@ -21,9 +21,10 @@ the camera starts looking, the face in it looks around, and when it recognises
 somebody two green rings spin and land around a tick. It shows above the lock
 screen too. *Animation speed* makes all of it faster or slower.
 
-Run without a command it shows an interactive menu. Everything it can be told
-is reachable from there; the settings files behind it do not need to be edited
-by hand.
+Run without a command it opens the window (*face-unlock-gui*): the settings,
+the faces, and a test that shows what the checks see. The first time, it walks
+through setting up a face and turning face unlock on. The settings files behind
+it do not need to be edited by hand. Without a desktop it prints the status.
 
 It is a convenience, not a security upgrade. See *HOW SAFE IS THIS*.
 
@@ -84,14 +85,15 @@ It is a convenience, not a security upgrade. See *HOW SAFE IS THIS*.
 	Runs in the desktop session as a user service
 	(_face-unlock-agent.service_). It watches the lock screen, asks the
 	daemon to scan when somebody comes back, unlocks the session when the face
-	matches, draws the bubble, and is the setup window.
+	matches, draws the bubble, and is face-unlock's own lock screen.
+
+*face-unlock-gui*
+	The window: the settings, setting up a face, and the questions asked on
+	the way.
 
 *pam_face_unlock.so*
 	The PAM module for sudo and admin prompts. It asks the daemon and turns
 	the answer into a PAM result.
-
-*face-unlock-ctl*
-	How this command talks to the daemon.
 
 # RECOGNITION
 
@@ -268,16 +270,15 @@ so does the bubble, above the lock screen too.
 	picture there, one at random from a folder, or _none_; *Blur the
 	wallpaper* blurs it. If the agent dies while this screen is locked, the
 	compositor keeps it locked, and the agent takes the lock back when it
-	starts again. It needs Qt 6.10 or newer: with older Qt (Debian 13) the
-	menu does not offer it, and *lock* asks logind to lock.
+	starts again.
 
 	Hyprland only starts the agent's user service under uwsm. Without it,
 	*enable* and *status* show what to add to its config.
 
 Hyprland and Niri come without a polkit agent. One has to run for admin
-prompts and for setting up a face, for example hyprpolkitagent. The menu warns
-when none runs, and *p* installs one: hyprpolkitagent where the distribution
-has it, else KDE's agent. It starts it too, now and with the session.
+prompts and for setting up a face, for example hyprpolkitagent. The window
+warns when none runs and shows how to install one: hyprpolkitagent where the
+distribution has it, else KDE's agent.
 
 # SUDO, ADMIN PROMPTS AND LOCK SCREENS
 
@@ -328,11 +329,11 @@ too.
 
 _~/.config/face-unlock/config_
 	This user's settings: the lock screen, the bubble and its animation
-	speed. Written by the menu.
+	speed. Written by the window.
 
 _/etc/face-unlock/config_
 	The system settings: camera, photo check, strictness, attention, scan
-	length, SSH sessions. Written by the menu through sudo.
+	length, SSH sessions. Written by the window through pkexec, or by root.
 
 _/var/lib/face-unlock/users/<uid>.json_
 	The face data: numbers, no pictures. Root only.
@@ -370,9 +371,8 @@ _/usr/share/gnome-shell/extensions/face-unlock@loonixtools.github.io/_
 
 # REQUIREMENTS
 
-KDE Plasma 6, GNOME, Hyprland or Niri on Wayland, a camera, OpenCV 4.5.4 or
-newer with its DNN module, Qt 6, LayerShellQt, KI18n, systemd, polkit and
-Linux-PAM.
+KDE Plasma 6, GNOME, Hyprland or Niri on Wayland, a camera, systemd, polkit
+and Linux-PAM. The window draws with Vulkan.
 
 # SEE ALSO
 

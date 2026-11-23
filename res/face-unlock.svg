@@ -1,63 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
   <defs>
-    <!-- the lock screen: the wallpaper from the screenshots -->
-    <linearGradient id="wall" x1="0.15" y1="0" x2="0.85" y2="1">
-      <stop offset="0" stop-color="#1b2a66"/>
-      <stop offset="0.55" stop-color="#4a2a7a"/>
-      <stop offset="1" stop-color="#b8456f"/>
+    <!-- the tile, as Waypointer's: graphite with a soft shine on top -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B3B40"/>
+      <stop offset="1" stop-color="#0C0C0E"/>
     </linearGradient>
-    <radialGradient id="blue" cx="0.85" cy="0.1" r="0.6">
-      <stop offset="0" stop-color="#4f86ff" stop-opacity="0.75"/>
-      <stop offset="1" stop-color="#4f86ff" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="pink" cx="0.08" cy="0.95" r="0.62">
-      <stop offset="0" stop-color="#ff6a95" stop-opacity="0.7"/>
-      <stop offset="1" stop-color="#ff6a95" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.16"/>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.12"/>
       <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
-    <!-- the island -->
-    <linearGradient id="island" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#15161a"/>
-      <stop offset="1" stop-color="#000000"/>
+    <!-- the glyph: white with a little shade, like the glove -->
+    <linearGradient id="glyph" gradientUnits="userSpaceOnUse" x1="58" y1="58" x2="198" y2="198">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D2D2D8"/>
     </linearGradient>
-    <linearGradient id="glyph" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#dbe6f5"/>
-    </linearGradient>
-    <clipPath id="tile"><rect x="24" y="24" width="464" height="464" rx="112"/></clipPath>
-    <filter id="tileShadow" x="-10%" y="-10%" width="120%" height="125%">
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0b0f2a" flood-opacity="0.35"/>
-    </filter>
-    <filter id="islandShadow" x="-25%" y="-25%" width="150%" height="160%">
-      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000000" flood-opacity="0.45"/>
-    </filter>
   </defs>
 
-  <!-- the tile -->
-  <g filter="url(#tileShadow)">
-    <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#wall)"/>
-  </g>
-  <g clip-path="url(#tile)">
-    <rect x="24" y="24" width="464" height="464" fill="url(#blue)"/>
-    <rect x="24" y="24" width="464" height="464" fill="url(#pink)"/>
-    <rect x="24" y="24" width="464" height="464" fill="url(#sheen)"/>
-  </g>
-  <rect x="25" y="25" width="462" height="462" rx="111" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#bg)"/>
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#shine)"/>
+  <rect x="8.75" y="8.75" width="238.5" height="238.5" rx="55.25" fill="none" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1.5"/>
 
-  <!-- the bubble, and the face in it -->
-  <rect x="98" y="92" width="316" height="316" rx="92" fill="url(#island)" filter="url(#islandShadow)"/>
-  <rect x="99" y="93" width="314" height="314" rx="91" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="2"/>
-  <g transform="translate(155 149) scale(2.02)" fill="none" stroke="url(#glyph)" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M6 30 V19 Q6 6 19 6 H30"/>
-    <path d="M70 6 H81 Q94 6 94 19 V30"/>
-    <path d="M94 70 V81 Q94 94 81 94 H70"/>
-    <path d="M30 94 H19 Q6 94 6 81 V70"/>
-    <path d="M34 36 V45"/>
-    <path d="M66 36 V45"/>
-    <path d="M50 37 V56 Q50 61 45 61"/>
-    <path d="M35 70 Q50 81 65 70"/>
+  <!-- the frame's four corners -->
+  <g fill="none" stroke="url(#glyph)" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M58 92 V80 Q58 58 80 58 H92"/>
+    <path d="M164 58 H176 Q198 58 198 80 V92"/>
+    <path d="M198 164 V176 Q198 198 176 198 H164"/>
+    <path d="M92 198 H80 Q58 198 58 176 V164"/>
+  </g>
+
+  <!-- the face -->
+  <g fill="none" stroke="url(#glyph)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M101 99 V113"/>
+    <path d="M155 99 V113"/>
+    <path d="M128 101 V127 Q128 135 120 135"/>
+    <path d="M103 156 Q128 174 153 156"/>
   </g>
 </svg>

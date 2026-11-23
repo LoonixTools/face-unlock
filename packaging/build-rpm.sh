@@ -3,12 +3,12 @@
 # Builds the binary package for Fedora into dist/.
 #
 # The spec takes the version as a macro rather than carrying one of its own,
-# for the same reason the Debian control file has a placeholder: the Makefile
+# for the same reason the Debian control file has a placeholder: Cargo.toml
 # is where the version is written down. The two networks are sources of their
 # own, downloaded (and checked) by `make models` before rpmbuild sees them.
 #
-# Needs: rpmbuild, make, cmake, a C++ compiler, the -devel packages the spec
-# lists, msgfmt (gettext), scdoc, curl, systemd-rpm-macros.
+# Needs: rpmbuild, make, cargo, a C compiler, the -devel packages the spec
+# lists, scdoc, curl, systemd-rpm-macros.
 
 set -euo pipefail
 
@@ -28,7 +28,7 @@ mkdir -p "$top"/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS}
 # checkout has to contain what is in that checkout.
 tar czf "$top/SOURCES/$name-$version.tar.gz" \
 	--transform "s,^\\.,$name-$version," \
-	--exclude=./.git --exclude=./dist --exclude=./build --exclude=./models --exclude=./po/'*.mo' \
+	--exclude=./.git --exclude=./dist --exclude=./target --exclude=./models \
 	-C "$here" .
 cp "$here"/models/*.onnx "$top/SOURCES/"
 

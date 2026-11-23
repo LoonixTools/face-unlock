@@ -1,0 +1,16 @@
+# face-unlockd: the root service. It owns the camera and the face data.
+[package]
+name = "face-unlockd"
+description = "The face-unlock daemon"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+face-unlock = { path = ".." }
+face-unlock-vision = { path = "../vision" }
+libc = "0.2"
+serde_json = "1"
+image = { version = "0.25", default-features = false, features = ["jpeg"] }
+zbus = "5"

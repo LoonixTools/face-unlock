@@ -19,12 +19,11 @@ jobs:
   deb:
     name: Debian package (${{ matrix.name }})
     runs-on: ubuntu-latest
-    # The package depends on the exact Qt it was built against, so each
+    # The package depends on the C library it was built against, so each
     # distribution gets a build and an APT repository of its own.
     strategy:
       matrix:
         include:
-          # Qt 6 and KDE Frameworks 6 arrived in Debian with trixie.
           - name: Debian 13
             image: debian:trixie
             codename: trixie
@@ -40,19 +39,16 @@ jobs:
       - name: Install the build tools
         run: |
           apt-get update -qq
-          # Older Qt has the Wayland client tools in a package of their own.
-          extra=""
-          [ -n "$(apt-cache madison qt6-wayland-dev-tools)" ] && extra="qt6-wayland-dev-tools"
           apt-get install -y --no-install-recommends \
-            ca-certificates curl git make cmake g++ pkg-config gettext scdoc dpkg-dev \
-            qt6-base-dev qt6-base-dev-tools qt6-base-private-dev qt6-declarative-dev \
-            qt6-wayland-dev qt6-wayland-private-dev $extra \
-            liblayershellqtinterface-dev libkf6i18n-dev \
-            libopencv-dev libpam0g-dev libsystemd-dev
+            ca-certificates curl git make gcc pkg-config scdoc dpkg-dev \
+            libpam0g-dev libxkbcommon-dev
 
       - uses: actions/checkout@v7
 
-      - name: Check the tag against the Makefile
+      # The distribution's Rust can be older than the one the code needs.
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Check the tag against Cargo.toml
         run: packaging/check-version.sh "${{ github.ref_name }}"
 
       - name: Check CHANGELOG.md has this release
@@ -82,14 +78,12 @@ jobs:
       - name: Install the build tools
         run: |
           dnf install -y --setopt=install_weak_deps=False \
-            git make cmake gcc-c++ gettext scdoc tar curl rpm-build rpm-sign systemd-rpm-macros \
-            'pkgconfig(systemd)' 'pkgconfig(libsystemd)' pam-devel opencv-devel \
-            qt6-qtbase-devel qt6-qtbase-private-devel qt6-qtdeclarative-devel qt6-qtwayland-devel \
-            layer-shell-qt-devel kf6-ki18n-devel
+            git make gcc cargo rust scdoc tar curl rpm-build rpm-sign systemd-rpm-macros \
+            'pkgconfig(systemd)' 'pkgconfig(xkbcommon)' pam-devel
 
       - uses: actions/checkout@v7
 
-      - name: Check the tag against the Makefile
+      - name: Check the tag against Cargo.toml
         run: packaging/check-version.sh "${{ github.ref_name }}"
 
       - run: packaging/build-rpm.sh
@@ -130,29 +124,24 @@ jobs:
   tarball:
     name: Arch Linux tarball
     runs-on: ubuntu-latest
-    # Built on Arch itself, because the agent only fits the Qt it was built
-    # against. OpenCV is linked in, so no opencv here.
     container: archlinux:latest
     steps:
       - name: Install the build tools
         run: |
-          pacman -Syu --noconfirm --needed git base-devel cmake pkgconf curl zstd \
-            qt6-base qt6-declarative qt6-wayland layer-shell-qt ki18n \
-            pam systemd-libs gettext scdoc
+          pacman -Syu --noconfirm --needed git base-devel rust pkgconf curl zstd \
+            pam libxkbcommon systemd-libs scdoc
 
       - uses: actions/checkout@v7
 
-      - name: Check the tag against the Makefile
+      - name: Check the tag against Cargo.toml
         run: packaging/check-version.sh "${{ github.ref_name }}"
-
-      - run: packaging/build-opencv.sh
 
       - run: packaging/build-tarball.sh
 
       - name: Install it and run it
         run: |
           tar -xf dist/*.tar.zst --strip-components=1 -C /
-          for f in /usr/lib/face-unlock/* /usr/lib/security/pam_face_unlock.so; do
+          for f in /usr/bin/face-unlock* /usr/lib/face-unlock/* /usr/lib/security/pam_face_unlock.so; do
             if ldd "$f" | grep 'not found'; then echo "$f is missing a library"; exit 1; fi
           done
           /usr/lib/face-unlock/face-unlockd --version

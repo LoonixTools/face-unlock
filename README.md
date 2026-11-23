@@ -71,45 +71,80 @@ sudo apt update && sudo apt install face-unlock
 - **GNOME:** log out and back in once after installing.
 - **Hyprland and Niri:** the bubble only shows on face-unlock's own lock screen.
   hyprlock shows a line of text at the top instead. You also need a polkit
-  agent. If none runs, the menu offers to install one.
+  agent. If none runs, the window shows how to install one.
 
 <details>
 <summary>Hyprland and Niri: which lock screen?</summary>
 
 <p align="center">
-  <img src="res/screenshots/lock-choice.png" alt="The window that asks which lock screen to use: face-unlock's with the bubble on the left, the user's own hyprlock with a line of text at the top on the right" width="560">
+  <img src="res/screenshots/lock-choice.png" alt="The window asks which lock screen to use: face-unlock's with the bubble on the left, your own hyprlock with a line of text at the top on the right" width="560">
 </p>
 
-When you turn face unlock on, a window asks which lock screen you want. You
-can change it later under **Settings**.
+When you turn face unlock on, the window asks which lock screen you want. You
+can change it later under **Lock screen**.
 
 - **face-unlock's own:** the bubble, the time and your wallpaper. You lock with
-  `face-unlock lock`, and the menu shows where to put that.
+  `face-unlock lock`, and the window shows where to put that.
 - **Yours** (hyprlock, swaylock, gtklock or waylock): press Enter on the empty
   password field to scan. hyprlock and swaylock also scan when you come back.
 
-Hyprland without uwsm needs a line in its config. The menu shows it.
+Hyprland without uwsm needs a line in its config. The window shows it.
 
 </details>
 
 ## How to use
 
+Open **Face Unlock** from your app menu, or run:
+
 ```bash
 face-unlock
 ```
 
+The first time, it walks you through setting up your face. Then lock the screen
+and look at it.
+
 <p align="center">
-  <img src="res/screenshots/menu.png" alt="The face-unlock menu in Konsole: face unlock on, one face, lock screen, sudo and admin prompts on" width="560">
+  <img src="res/screenshots/overview.png" alt="The Face Unlock window: face unlock is on, two faces are set up, the last unlock was 5 minutes ago" width="620">
 </p>
 
-Press **1** and look at the camera. Then lock the screen and look at it.
+<details>
+<summary>Setting up a face</summary>
+
+<p align="center">
+  <img src="res/screenshots/setup.png" alt="Setting up a face: the camera picture in a circle, with the parts of the ring that are done in blue" width="460">
+</p>
+
+</details>
 
 <details>
 <summary>Settings</summary>
 
 <p align="center">
-  <img src="res/screenshots/settings.png" alt="The settings in Konsole, grouped into lock screen, password prompts, recognition and bubble, with the photo check explained at the bottom" width="680">
+  <img src="res/screenshots/faces.png" alt="The Faces page: two faces, each with a switch, Rename and Delete" width="620">
 </p>
+
+<p align="center">
+  <img src="res/screenshots/recognition.png" alt="The Recognition page: the camera, the photo check and how strict it is" width="620">
+</p>
+
+<p align="center">
+  <img src="res/screenshots/try.png" alt="The Try it page: what the checks see, each with a bar for how close it is" width="620">
+</p>
+
+</details>
+
+<details>
+<summary>In a terminal</summary>
+
+| | |
+|---|---|
+| `face-unlock enable` | Turn it on. Sets up a face first if there is none. |
+| `face-unlock disable` | Turn it off. The faces are kept. |
+| `face-unlock setup` | Add a face. |
+| `face-unlock faces` | List the faces. |
+| `face-unlock test` | One scan, with what the checks see. |
+| `face-unlock status` | What is on. |
+| `face-unlock lock` | Lock the screen. |
 
 </details>
 
@@ -150,7 +185,8 @@ password, unless you turn that on.
 | `face-unlockd` | The root service. Owns the camera and the face data. |
 | `face-unlock-agent` | Runs in your session. Watches the lock screen, draws the bubble. |
 | `pam_face_unlock.so` | Lets sudo and admin prompts ask the service. |
-| `face-unlock` | The menu. |
+| `face-unlock` | The command. Without one, it opens the window. |
+| `face-unlock-gui` | The window. |
 
 Two small networks from the OpenCV model zoo run on the CPU: YuNet finds the face, SFace turns it
 into numbers. All details: `man face-unlock`.
@@ -167,14 +203,14 @@ make test
 sudo make install
 ```
 
-Needs CMake, a C++20 compiler, Qt 6, LayerShellQt, KI18n, OpenCV 4.5.4+ (with DNN), Linux-PAM and
-libsystemd.
+Needs Rust 1.88 or newer, Linux-PAM and libxkbcommon. The window needs Vulkan.
 
 </details>
 
 ## Credits
 
 - [Glance](https://github.com/jonnyoo/glance) by Jonathan Zhou: the idea and the look of the bubble.
+- [Rune](https://github.com/anomalyco/rune): the window.
 - [YuNet](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet) and
   [SFace](https://github.com/opencv/opencv_zoo/tree/main/models/face_recognition_sface) from the
   OpenCV model zoo.

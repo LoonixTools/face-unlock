@@ -21,12 +21,16 @@
 
 ## Layout
 
-- `src/face-unlock` and `src/lib/*.sh`: the command and its menu, plain bash.
-- `src/core`: camera, detection, recognition, liveness, face store. Used by the daemon and the tests.
-- `src/daemon`: the root service. It owns the camera and the face data.
-- `src/agent`: the Qt/QML program in the session: bubble, lock screen, setup window.
-- `src/pam`: the PAM module for sudo and admin prompts.
-- `src/ctl`: the client the bash code talks to the daemon with.
+A cargo workspace, like cachy-auto-update.
+
+- `src`: the command (`face-unlock`) and the library every part shares: paths, settings files,
+  translations, the way to the daemon, the PAM files.
+- `vision`: camera, detection, recognition, liveness, face store. Used by the daemon and the tests.
+- `daemon`: the root service. It owns the camera and the face data.
+- `agent`: the program in the session: the bubble, face-unlock's own lock screen, unlocking by face.
+- `gui`: the window, drawn with Rune: the settings, the setup of a face, the first start.
+- `pam`: the PAM module for sudo, admin prompts and lock screens.
+- `res/gnome-shell`: the extension that draws the bubble on GNOME.
 
 ## Releases
 
@@ -90,6 +94,11 @@ Never test against the real setup: enrolling and the PAM files belong to the use
 
 - `make test` runs the liveness cues against synthetic heads and photos, the face store, and the
   PAM file editing against copies of real PAM files. No camera, no root.
+- `FU_SHOTS=DIR cargo test -p face-unlock-agent frames` draws the bubble's frames into DIR.
+- The window's pictures for the README: `face-unlock-gui --snap SCENE --out FILE`, the scenes are
+  in `gui/src/main.rs`.
+- The bubble and the own lock screen run in nested compositors: `kwin_wayland --virtual` (no
+  window), and niri inside it for ext-session-lock. `face-unlock-agent --demo` plays the bubble.
 - Without a camera, point the daemon at pictures or a video: `Camera=images:<dir>` or
   `Camera=file:<video>` in the config passed to `--config`.
 - A development daemon needs no root: `face-unlockd --socket $XDG_RUNTIME_DIR/fu/socket

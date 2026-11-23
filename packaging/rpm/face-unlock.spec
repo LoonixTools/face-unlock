@@ -1,5 +1,5 @@
 # Built with `packaging/build-rpm.sh`, which passes the version in rather than
-# editing this file: the Makefile is where the version is written down.
+# editing this file: Cargo.toml is where the version is written down.
 %global upstream_version %{?_version}%{!?_version:2.1.1}
 
 Name:           face-unlock
@@ -15,36 +15,24 @@ Source0:        %{name}-%{version}.tar.gz
 Source1:        https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx
 Source2:        https://github.com/opencv/opencv_zoo/raw/main/models/face_recognition_sface/face_recognition_sface_2021dec.onnx
 
-BuildRequires:  cmake
-BuildRequires:  gcc-c++
+BuildRequires:  cargo
+BuildRequires:  rust
+BuildRequires:  gcc
 BuildRequires:  make
-BuildRequires:  gettext
 BuildRequires:  scdoc
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  pkgconfig(systemd)
-BuildRequires:  pkgconfig(libsystemd)
+BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pam-devel
-BuildRequires:  opencv-devel
-BuildRequires:  cmake(Qt6Core)
-BuildRequires:  cmake(Qt6DBus)
-BuildRequires:  cmake(Qt6Network)
-BuildRequires:  cmake(Qt6Gui)
-BuildRequires:  cmake(Qt6Quick)
-BuildRequires:  cmake(Qt6WaylandClient)
-BuildRequires:  qt6-qtbase-private-devel
-BuildRequires:  qt6-qtwayland-devel
-BuildRequires:  cmake(LayerShellQt)
-BuildRequires:  cmake(KF6I18n)
 
-Requires:       bash >= 4.2
-Requires:       coreutils
-Requires:       gawk
-Requires:       grep
-Requires:       sed
 Requires:       polkit
 Requires:       systemd
-Requires:       qt6-qtdeclarative
-Recommends:     /usr/bin/gettext
+# What the window opens at run time.
+Requires:       libwayland-client
+Requires:       libxkbcommon
+Requires:       fontconfig
+Requires:       vulkan-loader
+Recommends:     mesa-vulkan-drivers
 # The old name.
 Obsoletes:      plasma-face-unlock < 2
 Provides:       plasma-face-unlock = %{version}-%{release}
@@ -74,13 +62,11 @@ cp %{SOURCE1} %{SOURCE2} models/
 
 %build
 %set_build_flags
-make VERSION=%{upstream_version} PREFIX=%{_prefix} PAMDIR=%{_libdir}/security
+make build PREFIX=%{_prefix} PAMDIR=%{_libdir}/security
 
 %install
-make install DESTDIR=%{buildroot} PREFIX=%{_prefix} VERSION=%{upstream_version} \
+make install DESTDIR=%{buildroot} PREFIX=%{_prefix} \
 	PAMDIR=%{_libdir}/security SYSTEMUNITDIR=%{_unitdir} USERUNITDIR=%{_userunitdir}
-
-%find_lang %{name}
 
 %preun
 %systemd_preun face-unlockd.socket face-unlockd.service
@@ -92,16 +78,18 @@ make install DESTDIR=%{buildroot} PREFIX=%{_prefix} VERSION=%{upstream_version} 
 %posttrans
 %{_bindir}/face-unlock --root migrate || :
 
-%files -f %{name}.lang
+%files
 %license LICENSE
 %doc %{_datadir}/doc/%{name}/README.md
 %{_bindir}/%{name}
+%{_bindir}/%{name}-gui
 %{_prefix}/lib/%{name}/
 %{_datadir}/%{name}/
 %{_libdir}/security/pam_face_unlock.so
 %{_unitdir}/face-unlockd.socket
 %{_unitdir}/face-unlockd.service
 %{_userunitdir}/face-unlock-agent.service
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/io.github.loonixtools.face-unlock-agent.desktop
 %{_datadir}/polkit-1/actions/io.github.loonixtools.face-unlock.policy
 %{_datadir}/icons/hicolor/scalable/apps/face-unlock.svg

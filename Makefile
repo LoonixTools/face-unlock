@@ -1,24 +1,21 @@
 # face-unlock: build and install
 #
-# The shell front end installs as it is, like middleclick-autoscroll. The rest
-# is compiled by CMake (the daemon, the agent, the PAM module, the client the
-# shell code uses), which this Makefile drives, handing it every path so the
-# two halves agree on where things are. Translations and the man page are
-# optional and skipped when msgfmt or scdoc are missing.
+# Built with cargo: the command (face-unlock), the window (face-unlock-gui),
+# the daemon (face-unlockd), the agent in the session (face-unlock-agent) and
+# the PAM module. The translations in po/ are compiled into them. The install
+# folders are handed to cargo, so every part agrees on where things are. The
+# man page needs scdoc and is skipped without it.
 
-# Overridable so a packager can pass the version it is actually building
-# (`make VERSION=$pkgver`). The literal below is the fallback for builds
-# straight from a checkout, and is what a release tag has to carry.
-VERSION      ?= 2.1.1
+# The version comes from Cargo.toml. VERSION is still taken, so a packager
+# that passes it keeps working.
+VERSION      ?= $(shell sed -n 's/^version = "\(.*\)"/\1/p' Cargo.toml | head -1)
 
 PREFIX       ?= /usr
 DESTDIR      ?=
 BINDIR       ?= $(PREFIX)/bin
 DATADIR      ?= $(PREFIX)/share
-LIBDIR       ?= $(DATADIR)/face-unlock/lib
 LIBEXECDIR   ?= $(PREFIX)/lib/face-unlock
 MODELDIR     ?= $(DATADIR)/face-unlock/models
-LOCALEDIR    ?= $(DATADIR)/locale
 MANDIR       ?= $(DATADIR)/man
 APPDIR       ?= $(DATADIR)/applications
 POLKITDIR    ?= $(DATADIR)/polkit-1/actions
@@ -44,20 +41,11 @@ ifeq ($(PAMDIR),)
 PAMDIR       := /usr/lib/security
 endif
 
-BUILDDIR     ?= build
-CMAKE        ?= cmake
-# One compiler per core. A bare --parallel lets make start them all at once,
-# and a few dozen Qt and OpenCV files at once can use up the memory.
-JOBS         ?= $(shell nproc 2>/dev/null || echo 2)
-CMAKE_FLAGS  ?=
+CARGO        ?= cargo
+CARGOFLAGS   ?= --release --locked
+TARGET       := target/release
 
-LINGUAS      := de es fr it ja ko nl pl pt_BR ru tr uk zh_CN
-MOFILES      := $(patsubst %,po/%.mo,$(LINGUAS))
 MANPAGE      := doc/face-unlock.1
-
-LIBS         := $(wildcard src/lib/*.sh)
-
-MSGFMT       := $(shell command -v msgfmt 2>/dev/null)
 SCDOC        := $(shell command -v scdoc 2>/dev/null)
 
 # The two networks, from the OpenCV model zoo. YuNet (MIT) finds faces,
@@ -74,29 +62,24 @@ MODEL_SUM_face_recognition_sface_2021dec.onnx := 0ba9fbfa01b5270c96627c4ef784da8
 # build without network) points this at them.
 MODELS_SRC   ?= models
 
-.PHONY: all build native models check test install uninstall clean version
+# What the programs are told about the install, at build time.
+export FU_LIBEXECDIR := $(LIBEXECDIR)
+export FU_MODELDIR   := $(MODELDIR)
+export FU_PAMDIR     := $(PAMDIR)
+export FU_BINDIR     := $(BINDIR)
+
+.PHONY: all build models check test install uninstall clean version
 
 all: build
 
-build: native $(MOFILES) $(MANPAGE)
+build: $(MANPAGE)
+	$(CARGO) build $(CARGOFLAGS) --workspace
 
 # The one place the version is written down, for everything that has to agree
 # with it: the packaging scripts, and the release workflow checking that the
 # tag it was handed says the same thing.
 version:
 	@echo $(VERSION)
-
-native:
-	$(CMAKE) -S . -B $(BUILDDIR) \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_INSTALL_PREFIX=$(PREFIX) \
-		-DFU_VERSION=$(VERSION) \
-		-DFU_LIBEXECDIR=$(LIBEXECDIR) \
-		-DFU_MODELDIR=$(MODELDIR) \
-		-DFU_LOCALEDIR=$(LOCALEDIR) \
-		-DFU_PAMDIR=$(PAMDIR) \
-		$(CMAKE_FLAGS)
-	$(CMAKE) --build $(BUILDDIR) --parallel $(JOBS)
 
 models: $(addprefix models/,$(MODELS))
 
@@ -106,13 +89,6 @@ models/%.onnx:
 	@echo "$(MODEL_SUM_$*.onnx)  $@.part" | sha256sum -c --quiet - || { rm -f $@.part; echo "checksum mismatch for $@" >&2; exit 1; }
 	mv $@.part $@
 
-po/%.mo: po/%.po
-ifdef MSGFMT
-	$(MSGFMT) --check --output-file=$@ $<
-else
-	@echo "msgfmt not found, skipping $@"
-endif
-
 $(MANPAGE): doc/face-unlock.1.scd
 ifdef SCDOC
 	$(SCDOC) < $< > $@
@@ -120,47 +96,30 @@ else
 	@echo "scdoc not found, skipping $@"
 endif
 
-# Syntax-check every shell file, and run shellcheck when it is available.
-# SC2034 is off: the files share their variables, and shellcheck looks at one
-# file at a time.
-check:
-	@set -e; for f in src/face-unlock $(LIBS) tests/*.sh; do \
-		bash -n "$$f" && echo "ok  $$f"; \
-	done
-	@if command -v shellcheck >/dev/null 2>&1; then \
-		shellcheck -x -e SC1090,SC1091,SC2034 src/face-unlock $(LIBS) tests/*.sh \
-			&& echo "ok  shellcheck"; \
-	else \
-		echo "shellcheck not found, skipped"; \
-	fi
+# The liveness cues against synthetic heads and photographs, the face store,
+# the PAM file editing against copies of real PAM files, the settings files
+# and the translations. None of it needs a camera, root or the models.
+test:
+	$(CARGO) test --workspace
+
+check: test
+	$(CARGO) clippy --workspace --all-targets -- -D warnings
 	@if command -v desktop-file-validate >/dev/null 2>&1; then \
 		desktop-file-validate res/applications/*.desktop && echo "ok  desktop-file-validate"; \
 	fi
 
-# The liveness cues against synthetic heads and photographs, the face store,
-# and the PAM file editing against copies of real PAM files. None of it needs
-# a camera, root or the models.
-test: native
-	cd $(BUILDDIR) && ctest --output-on-failure
-	bash tests/test_pam.sh
-
-install: build
+install:
 	@for m in $(MODELS); do \
 		[ -f "$(MODELS_SRC)/$$m" ] || { echo "$(MODELS_SRC)/$$m is missing: run 'make models' first" >&2; exit 1; }; \
 	done
-	DESTDIR="$(DESTDIR)" $(CMAKE) --install $(BUILDDIR)
 
-	# the command
-	install -Dm755 src/face-unlock "$(DESTDIR)$(BINDIR)/face-unlock"
-	install -d "$(DESTDIR)$(LIBDIR)"
-	install -Dm644 -t "$(DESTDIR)$(LIBDIR)" $(LIBS)
-	sed -i -e 's|@VERSION@|$(VERSION)|g' \
-	       -e 's|@LIBDIR@|$(LIBDIR)|g' \
-	       -e 's|@LIBEXECDIR@|$(LIBEXECDIR)|g' \
-	       -e 's|@LOCALEDIR@|$(LOCALEDIR)|g' \
-	       -e 's|@PAMDIR@|$(PAMDIR)|g' \
-	       "$(DESTDIR)$(BINDIR)/face-unlock" \
-	       "$(DESTDIR)$(LIBDIR)"/*.sh
+	# the command and the window
+	install -Dm755 $(TARGET)/face-unlock     "$(DESTDIR)$(BINDIR)/face-unlock"
+	install -Dm755 $(TARGET)/face-unlock-gui "$(DESTDIR)$(BINDIR)/face-unlock-gui"
+	# the daemon, the agent and the PAM module
+	install -Dm755 $(TARGET)/face-unlockd       "$(DESTDIR)$(LIBEXECDIR)/face-unlockd"
+	install -Dm755 $(TARGET)/face-unlock-agent  "$(DESTDIR)$(LIBEXECDIR)/face-unlock-agent"
+	install -Dm755 $(TARGET)/libpam_face_unlock.so "$(DESTDIR)$(PAMDIR)/pam_face_unlock.so"
 
 	# the models
 	@for m in $(MODELS); do \
@@ -175,8 +134,10 @@ install: build
 		"$(DESTDIR)$(SYSTEMUNITDIR)/face-unlockd.service" \
 		"$(DESTDIR)$(USERUNITDIR)/face-unlock-agent.service"
 
-	# the desktop file KWin looks for before it lets the bubble above the
-	# lock screen, the polkit action, the icon
+	# the window in the application menu, the desktop file KWin looks for
+	# before it lets the bubble above the lock screen, the polkit action, the
+	# icon
+	install -Dm644 res/applications/face-unlock.desktop "$(DESTDIR)$(APPDIR)/face-unlock.desktop"
 	install -Dm644 res/applications/io.github.loonixtools.face-unlock-agent.desktop \
 		"$(DESTDIR)$(APPDIR)/io.github.loonixtools.face-unlock-agent.desktop"
 	sed -i -e 's|@LIBEXECDIR@|$(LIBEXECDIR)|g' "$(DESTDIR)$(APPDIR)/io.github.loonixtools.face-unlock-agent.desktop"
@@ -187,14 +148,6 @@ install: build
 	# the GNOME Shell extension that draws the bubble on GNOME
 	install -Dm644 -t "$(DESTDIR)$(GNOMEEXTDIR)/$(GNOMEEXT)" res/gnome-shell/$(GNOMEEXT)/*
 
-	# translations
-	@for l in $(LINGUAS); do \
-		if [ -f "po/$$l.mo" ]; then \
-			install -Dm644 "po/$$l.mo" \
-				"$(DESTDIR)$(LOCALEDIR)/$$l/LC_MESSAGES/face-unlock.mo"; \
-		fi; \
-	done
-
 	# documentation
 	@if [ -f $(MANPAGE) ]; then \
 		install -Dm644 $(MANPAGE) "$(DESTDIR)$(MANDIR)/man1/face-unlock.1"; \
@@ -203,19 +156,21 @@ install: build
 
 uninstall:
 	rm -f  "$(DESTDIR)$(BINDIR)/face-unlock"
+	rm -f  "$(DESTDIR)$(BINDIR)/face-unlock-gui"
 	rm -rf "$(DESTDIR)$(DATADIR)/face-unlock"
 	rm -rf "$(DESTDIR)$(LIBEXECDIR)"
 	rm -f  "$(DESTDIR)$(PAMDIR)/pam_face_unlock.so"
 	rm -f  "$(DESTDIR)$(SYSTEMUNITDIR)/face-unlockd.socket"
 	rm -f  "$(DESTDIR)$(SYSTEMUNITDIR)/face-unlockd.service"
 	rm -f  "$(DESTDIR)$(USERUNITDIR)/face-unlock-agent.service"
+	rm -f  "$(DESTDIR)$(APPDIR)/face-unlock.desktop"
 	rm -f  "$(DESTDIR)$(APPDIR)/io.github.loonixtools.face-unlock-agent.desktop"
 	rm -f  "$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.face-unlock.policy"
 	rm -f  "$(DESTDIR)$(ICONDIR)/face-unlock.svg"
 	rm -rf "$(DESTDIR)$(GNOMEEXTDIR)/$(GNOMEEXT)"
 	rm -f  "$(DESTDIR)$(MANDIR)/man1/face-unlock.1"
 	rm -rf "$(DESTDIR)$(DATADIR)/doc/face-unlock"
-	@for l in $(LINGUAS); do rm -f "$(DESTDIR)$(LOCALEDIR)/$$l/LC_MESSAGES/face-unlock.mo"; done
 
 clean:
-	rm -rf $(BUILDDIR) po/*.mo $(MANPAGE)
+	$(CARGO) clean
+	rm -f $(MANPAGE)
