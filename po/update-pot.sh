@@ -11,7 +11,7 @@ cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 
 version="$(make -s version)"
 
-mapfile -t files < <(find src gui/src agent/src daemon/src vision/src pam/src -name '*.rs' | LC_ALL=C sort)
+mapfile -t files < <(find src gui/src agent/src paint/src daemon/src vision/src pam/src -name '*.rs' | LC_ALL=C sort)
 
 xgettext --from-code=UTF-8 --add-comments=TRANSLATORS --package-name=face-unlock --package-version="$version" \
 	--msgid-bugs-address=https://github.com/LoonixTools/face-unlock/issues \

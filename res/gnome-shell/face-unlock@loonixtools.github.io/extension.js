@@ -5,7 +5,7 @@
 // GNOME lets no program draw above its windows, and nothing at all above its
 // lock screen. An extension runs inside GNOME Shell and may. This one draws
 // the bubble the agent draws everywhere else, with the same shapes and the
-// same timing as agent/src/bubble.rs (the island, the face, the lock, the
+// same timing as paint/src/bubble.rs (the island, the face, the lock, the
 // camera). What to show comes from the agent over the session bus.
 
 import Cairo from 'cairo';

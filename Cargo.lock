@@ -1011,9 +1011,8 @@ dependencies = [
 name = "face-unlock-agent"
 version = "3.0.0"
 dependencies = [
- "cosmic-text",
  "face-unlock",
- "image",
+ "face-unlock-paint",
  "libc",
  "serde_json",
  "smithay-client-toolkit",
@@ -1035,6 +1034,17 @@ dependencies = [
  "rune-theme-opencode",
  "serde_json",
  "zune-jpeg",
+]
+
+[[package]]
+name = "face-unlock-paint"
+version = "3.0.0"
+dependencies = [
+ "cosmic-text",
+ "face-unlock",
+ "image",
+ "libc",
+ "tiny-skia",
 ]
 
 [[package]]

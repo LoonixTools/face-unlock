@@ -27,6 +27,8 @@ A cargo workspace, like cachy-auto-update.
   translations, the way to the daemon, the PAM files.
 - `vision`: camera, detection, recognition, liveness, face store. Used by the daemon and the tests.
 - `daemon`: the root service. It owns the camera and the face data.
+- `paint`: how the bubble and face-unlock's own lock screen look, drawn with tiny-skia. The agent puts
+  them on screen.
 - `agent`: the program in the session: the bubble, face-unlock's own lock screen, unlocking by face.
 - `gui`: the window, drawn with Rune: the settings, the setup of a face, the first start.
 - `pam`: the PAM module for sudo, admin prompts and lock screens.
@@ -94,7 +96,7 @@ Never test against the real setup: enrolling and the PAM files belong to the use
 
 - `make test` runs the liveness cues against synthetic heads and photos, the face store, and the
   PAM file editing against copies of real PAM files. No camera, no root.
-- `FU_SHOTS=DIR cargo test -p face-unlock-agent frames` draws the bubble's frames into DIR.
+- `FU_SHOTS=DIR cargo test -p face-unlock-paint frames` draws the bubble's frames into DIR.
 - The window's pictures for the README: `face-unlock-gui --snap SCENE --out FILE`, the scenes are
   in `gui/src/main.rs`.
 - The bubble and the own lock screen run in nested compositors: `kwin_wayland --virtual` (no

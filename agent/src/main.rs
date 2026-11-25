@@ -11,17 +11,15 @@
 //! ```
 
 mod app;
-mod bubble;
 mod bus;
 mod daemon;
-mod draw;
 mod lockers;
-mod lockscreen;
 mod pam;
 mod socket;
 mod wl;
 
 use app::{App, Mode};
+use face_unlock_paint::{bubble, draw, lockscreen};
 use face_unlock::paths::VERSION;
 use smithay_client_toolkit::reexports::calloop::EventLoop;
 use smithay_client_toolkit::reexports::calloop::channel;

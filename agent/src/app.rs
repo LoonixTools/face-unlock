@@ -188,7 +188,10 @@ impl App {
             calm_since: Instant::now(),
             mutter: None,
             mutter_tried: false,
-            screen: LockScreen::new(),
+            screen: {
+                let (login, name) = crate::pam::me().unwrap_or_default();
+                LockScreen::new(login, name)
+            },
             waiting: Vec::new(),
         };
         app.apply_look();

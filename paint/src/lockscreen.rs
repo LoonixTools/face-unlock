@@ -24,8 +24,8 @@ pub struct LockScreen {
 }
 
 impl LockScreen {
-    pub fn new() -> Self {
-        let (login, name) = crate::pam::me().unwrap_or_default();
+    /// For the user with this login and full name.
+    pub fn new(login: String, name: String) -> Self {
         LockScreen { password: String::new(), message: String::new(), busy: false, face_unlock: false, blur: false, login, name, shake_start: None }
     }
 

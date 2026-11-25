@@ -581,6 +581,12 @@ pub struct Bubble {
     lock: LockGlyph,
 }
 
+impl Default for Bubble {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Bubble {
     pub fn new() -> Self {
         Bubble {

@@ -1,5 +1,5 @@
 [workspace]
-members = ["vision", "daemon", "pam", "agent", "gui"]
+members = ["vision", "daemon", "pam", "paint", "agent", "gui"]
 resolver = "3"
 
 [workspace.package]
