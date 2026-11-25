@@ -60,6 +60,12 @@ impl LockScreen {
 /// dimmed a little so the time and the password read on any picture.
 /// Slow for a big picture: it runs on a thread.
 pub fn background(path: &Path, w: u32, h: u32, blur: bool) -> Option<Pixmap> {
+    picture(path, w, h, blur, 0.65)
+}
+
+/// The picture at `path`, cut to fill w x h pixels, blurred if asked, its
+/// colours times `light`.
+pub fn picture(path: &Path, w: u32, h: u32, blur: bool, light: f32) -> Option<Pixmap> {
     use image::imageops::{self, FilterType};
     let img = image::ImageReader::open(path).ok()?.with_guessed_format().ok()?.decode().ok()?.to_rgba8();
     let (iw, ih) = img.dimensions();
@@ -80,12 +86,13 @@ pub fn background(path: &Path, w: u32, h: u32, blur: bool) -> Option<Pixmap> {
         imageops::crop_imm(&big, (sw - w) / 2, (sh - h) / 2, w, h).to_image()
     };
     for p in out.pixels_mut() {
-        p.0 = [(p.0[0] as f32 * 0.65) as u8, (p.0[1] as f32 * 0.65) as u8, (p.0[2] as f32 * 0.65) as u8, 255];
+        p.0 = [(p.0[0] as f32 * light) as u8, (p.0[1] as f32 * light) as u8, (p.0[2] as f32 * light) as u8, 255];
     }
     Pixmap::from_vec(out.into_raw(), tiny_skia::IntSize::from_wh(w, h)?)
 }
 
-fn gradient(cv: &mut Canvas, w: f64, h: f64) {
+/// What shows without a picture: dark blue at the top, fading to black.
+pub fn gradient(cv: &mut Canvas, w: f64, h: f64) {
     let stops = vec![GradientStop::new(0.0, Color::from_rgba8(0x11, 0x16, 0x1d, 255)), GradientStop::new(0.6, Color::from_rgba8(0, 0, 0, 255))];
     let Some(shader) = LinearGradient::new(Point::from_xy(0.0, 0.0), Point::from_xy(0.0, h as f32), stops, SpreadMode::Pad, Transform::identity()) else { return };
     let paint = Paint { shader, ..Default::default() };
@@ -156,13 +163,23 @@ fn centered(cv: &mut Canvas, text: &str, w: f64, y: f64, size: f32, weight: u16,
 /// One screen of it, w x h points. `bg` is the picture at the canvas'
 /// pixel size, or None while it loads (or if there is none).
 pub fn draw(cv: &mut Canvas, w: f64, h: f64, bg: Option<&Pixmap>, lock: &LockScreen, at: f64) {
+    backdrop(cv, w, h, bg);
+    content(cv, w, h, lock, at);
+}
+
+/// The picture behind it, or the gradient.
+pub fn backdrop(cv: &mut Canvas, w: f64, h: f64, bg: Option<&Pixmap>) {
     match bg {
         Some(bg) if bg.width() == cv.pixmap.width() && bg.height() == cv.pixmap.height() => {
             cv.pixmap.data_mut().copy_from_slice(bg.data());
         }
         _ => gradient(cv, w, h),
     }
+}
 
+/// The time, the name, the password and the line under it, over whatever
+/// is already there.
+pub fn content(cv: &mut Canvas, w: f64, h: f64, lock: &LockScreen, at: f64) {
     // Below the open bubble, which hangs from the top edge.
     let (time, date) = now_text();
     let mut y = (TOP_GAP + OPEN_H + 24.0).max((h * 0.2).round());

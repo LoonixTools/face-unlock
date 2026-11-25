@@ -40,6 +40,12 @@ pub fn desktop() -> Desktop {
     }
 }
 
+/// A field of os-release, such as ID or ID_LIKE, without its quotes.
+pub fn os_release(key: &str) -> Option<String> {
+    let text = std::fs::read_to_string("/etc/os-release").or_else(|_| std::fs::read_to_string("/usr/lib/os-release")).ok()?;
+    text.lines().find_map(|l| l.strip_prefix(key)?.strip_prefix('=')).map(|v| v.trim().trim_matches(|c| c == '"' || c == '\'').to_string())
+}
+
 pub fn have(cmd: &str) -> bool {
     let Some(path) = std::env::var_os("PATH") else { return false };
     std::env::split_paths(&path).any(|d| {

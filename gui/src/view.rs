@@ -19,7 +19,10 @@ pub fn view(ui: &Ui, cx: &mut Cx<Ui>) -> El {
     let mut layer = Vec::new();
     let full = |content: El| row().key("window").role("none").w_full().h_full().fill(p.t.bg).child(content);
     let root = match ui.mode {
-        Mode::Onboarding => full(crate::onboarding::view(ui, p)),
+        Mode::Onboarding => {
+            ui.preview.show(None);
+            full(crate::onboarding::view(ui, p))
+        }
         Mode::Setup => full(scroll(crate::setup::view(ui, p))),
         Mode::ChooseLock => full(scroll(crate::choice::lock(ui, p))),
         Mode::ChooseScreen => full(scroll(crate::choice::screens(ui, p))),
@@ -33,13 +36,18 @@ pub fn view(ui: &Ui, cx: &mut Cx<Ui>) -> El {
                 Pane::Bubble => (vec![], crate::panes::bubble(ui, p, &mut layer)),
                 Pane::Try => (vec![], crate::trial::pane(ui, p)),
             };
+            // The preview stays put above the settings, so a change at the
+            // bottom of a long pane still shows what it does.
+            let settings = col().key("settings").w_full().children(crate::panes::notices(ui, p)).child(body);
             let pane = col()
                 .key(format!("pane-{}", ui.pane.key()))
                 .role("main")
-                .w_full()
+                .grow(1.0)
+                .h_full()
+                .min_w(0.0)
                 .child(header(p, ui.pane.title(), actions))
-                .children(crate::panes::notices(ui, p))
-                .child(body)
+                .children(crate::preview::card(ui, p))
+                .child(scroll(settings))
                 // The old pane goes at once and the new one comes up
                 // quickly, so the two never show over each other.
                 .transition(
@@ -54,7 +62,7 @@ pub fn view(ui: &Ui, cx: &mut Cx<Ui>) -> El {
                 .fill(p.t.bg)
                 .child(sidebar(ui, p))
                 .child(el().key("divider").w(p.hair).h_full().fill(p.t.separator).a11y_hidden())
-                .child(scroll(pane))
+                .child(pane)
         }
     };
     rune_kit::root(root, layer)

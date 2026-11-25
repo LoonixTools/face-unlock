@@ -28,7 +28,7 @@ A cargo workspace, like cachy-auto-update.
 - `vision`: camera, detection, recognition, liveness, face store. Used by the daemon and the tests.
 - `daemon`: the root service. It owns the camera and the face data.
 - `paint`: how the bubble and face-unlock's own lock screen look, drawn with tiny-skia. The agent puts
-  them on screen.
+  them on screen, the window shows them as previews of the settings.
 - `agent`: the program in the session: the bubble, face-unlock's own lock screen, unlocking by face.
 - `gui`: the window, drawn with Rune: the settings, the setup of a face, the first start.
 - `pam`: the PAM module for sudo, admin prompts and lock screens.

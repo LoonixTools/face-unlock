@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-11-23 14:14+0100\n"
+"POT-Creation-Date: 2026-11-25 14:55+0100\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Korean\n"
@@ -15,87 +15,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: agent/src/app.rs:435
+#: agent/src/app.rs:438
 msgid "Blink once"
 msgstr "한 번 깜빡이세요"
 
-#: agent/src/app.rs:436
+#: agent/src/app.rs:439
 msgid "Look at the screen"
 msgstr "화면을 보세요"
 
-#: agent/src/app.rs:437
+#: agent/src/app.rs:440
 msgid "Move closer"
 msgstr "더 가까이"
 
-#: agent/src/app.rs:438
+#: agent/src/app.rs:441
 msgid "Too dark"
 msgstr "너무 어두움"
 
-#: agent/src/app.rs:464
+#: agent/src/app.rs:467 gui/src/preview.rs:277 gui/src/preview.rs:279
 msgid "Camera in use"
 msgstr "카메라 사용 중"
 
-#: agent/src/app.rs:474
+#: agent/src/app.rs:477
 msgid "Use your password"
 msgstr "비밀번호를 사용하세요"
 
-#: agent/src/app.rs:481
+#: agent/src/app.rs:484
 msgid "Not recognized"
 msgstr "인식되지 않음"
 
-#: agent/src/app.rs:482
+#: agent/src/app.rs:485
 msgid "Try again and blink"
 msgstr "깜빡이며 다시 시도"
 
-#: agent/src/app.rs:483
+#: agent/src/app.rs:486
 msgid "Camera unavailable"
 msgstr "카메라 사용 불가"
 
-#: agent/src/app.rs:538 gui/src/choice.rs:58
+#: agent/src/app.rs:541 gui/src/choice.rs:57 gui/src/preview.rs:526
 msgid "Looking for your face…"
 msgstr "얼굴을 찾는 중…"
 
-#: agent/src/app.rs:539
+#: agent/src/app.rs:542
 msgid "Face recognized"
 msgstr "얼굴 인식됨"
 
-#: agent/src/lockscreen.rs:46
-msgid "Wrong password"
-msgstr "비밀번호가 틀렸습니다"
-
-#: agent/src/lockscreen.rs:185 agent/src/lockscreen.rs:186
-msgid "Password"
-msgstr "비밀번호"
-
-#: agent/src/lockscreen.rs:201
-msgid "Look at the camera or type your password"
-msgstr "카메라를 보거나 비밀번호를 입력하세요"
-
-#: agent/src/lockscreen.rs:203
-msgid "Type your password"
-msgstr "비밀번호를 입력하세요"
-
-#: gui/src/choice.rs:91 gui/src/panes.rs:334 gui/src/panes.rs:350
-#: gui/src/setup.rs:439
+#: gui/src/choice.rs:92 gui/src/panes.rs:334 gui/src/panes.rs:350
+#: gui/src/setup.rs:438
 msgid "Cancel"
 msgstr "취소"
 
-#: gui/src/choice.rs:110
+#: gui/src/choice.rs:111
 msgid "face-unlock's lock screen"
 msgstr "face-unlock 잠금 화면"
 
-#: gui/src/choice.rs:111
+#: gui/src/choice.rs:112 gui/src/preview.rs:740
 msgid ""
 "Shows the bubble while it looks for your face. You lock with `face-unlock "
 "lock`."
 msgstr ""
 "얼굴을 찾는 동안 버블을 표시합니다. 잠금은 `face-unlock lock`으로 합니다."
 
-#: gui/src/choice.rs:119
+#: gui/src/choice.rs:120
 msgid "Your own lock screen"
 msgstr "나만의 잠금 화면"
 
-#: gui/src/choice.rs:120
+#: gui/src/choice.rs:121 gui/src/preview.rs:742
 msgid ""
 "Stays as it is. hyprlock shows a line of text at the top, and Enter on the "
 "empty password field scans."
@@ -103,63 +87,63 @@ msgstr ""
 "그대로 유지됩니다. hyprlock이 위쪽에 한 줄의 텍스트를 표시하고, 빈 암호 칸에"
 "서 Enter를 누르면 스캔합니다."
 
-#: gui/src/choice.rs:155
+#: gui/src/choice.rs:156
 msgid "Which lock screen?"
 msgstr "어떤 잠금 화면을 쓸까요?"
 
-#: gui/src/choice.rs:156
+#: gui/src/choice.rs:157
 msgid "Both take your face. You can change this later under Lock screen."
 msgstr "둘 다 얼굴을 받아들입니다. 나중에 잠금 화면에서 바꿀 수 있습니다."
 
-#: gui/src/choice.rs:159 gui/src/choice.rs:268
+#: gui/src/choice.rs:160 gui/src/choice.rs:271
 msgid "Use this one"
 msgstr "이것 사용"
 
-#: gui/src/choice.rs:217 gui/src/panes.rs:658
+#: gui/src/choice.rs:219 gui/src/panes.rs:658 gui/src/preview.rs:685
 msgid "follows the mouse"
 msgstr "마우스를 따라감"
 
-#: gui/src/choice.rs:230
+#: gui/src/choice.rs:233
 msgid "The screen with the mouse pointer"
 msgstr "마우스 포인터가 있는 화면"
 
-#: gui/src/choice.rs:263
+#: gui/src/choice.rs:266
 msgid "Where should the bubble show?"
 msgstr "버블을 어디에 표시할까요?"
 
-#: gui/src/choice.rs:264
+#: gui/src/choice.rs:267
 msgid "On the screen with the mouse pointer, or always on one screen."
 msgstr "마우스 포인터가 있는 화면에, 또는 항상 한 화면에."
 
-#: gui/src/main.rs:106 gui/src/setup.rs:70
+#: gui/src/main.rs:107 gui/src/setup.rs:70
 msgid "Move your head slowly to complete the circle."
 msgstr "원이 채워지도록 고개를 천천히 움직이세요."
 
-#: gui/src/main.rs:125 gui/src/panes.rs:108 src/actions.rs:112
+#: gui/src/main.rs:126 gui/src/panes.rs:112 src/actions.rs:112
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr ""
 "얼굴 잠금 해제가 켜졌습니다. 화면을 잠그고 화면을 바라보며 사용해 보세요."
 
-#: gui/src/onboarding.rs:80
+#: gui/src/onboarding.rs:92
 msgid "Face ID for Linux"
 msgstr "Linux를 위한 Face ID"
 
-#: gui/src/onboarding.rs:81
+#: gui/src/onboarding.rs:93
 msgid ""
 "Unlock the lock screen, sudo and admin prompts with your face. It takes a "
 "minute to set up."
 msgstr ""
 "잠금 화면, sudo, 관리자 확인을 얼굴로 해제하세요. 설정은 1분이면 됩니다."
 
-#: gui/src/onboarding.rs:83 gui/src/setup.rs:451
+#: gui/src/onboarding.rs:95 gui/src/setup.rs:444
 msgid "Get started"
 msgstr "시작하기"
 
-#: gui/src/onboarding.rs:92
+#: gui/src/onboarding.rs:104
 msgid "Switch on the service"
 msgstr "서비스 켜기"
 
-#: gui/src/onboarding.rs:93 gui/src/panes.rs:160 src/main.rs:85
+#: gui/src/onboarding.rs:105 gui/src/panes.rs:167 src/main.rs:85
 msgid ""
 "Face unlock's service has to be switched on once for this computer. That "
 "needs your password."
@@ -167,23 +151,23 @@ msgstr ""
 "얼굴 잠금 해제 서비스를 이 컴퓨터에서 한 번 켜야 합니다. 이때 비밀번호가 필요"
 "합니다."
 
-#: gui/src/onboarding.rs:102
+#: gui/src/onboarding.rs:114
 msgid "No password window? Run this in a terminal instead:"
 msgstr "암호 창이 없나요? 대신 터미널에서 이것을 실행하세요:"
 
-#: gui/src/onboarding.rs:111 gui/src/setup.rs:460
+#: gui/src/onboarding.rs:122 gui/src/setup.rs:448
 msgid "Continue"
 msgstr "계속"
 
-#: gui/src/onboarding.rs:113 gui/src/panes.rs:161
+#: gui/src/onboarding.rs:123 gui/src/panes.rs:168
 msgid "Switch on"
 msgstr "켜기"
 
-#: gui/src/onboarding.rs:122 gui/src/panes.rs:531
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1076
 msgid "sudo in a terminal"
 msgstr "터미널의 sudo"
 
-#: gui/src/onboarding.rs:122 gui/src/panes.rs:531
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1077
 msgid ""
 "sudo takes your face instead of the password. No match: you type the "
 "password as usual."
@@ -191,12 +175,12 @@ msgstr ""
 "sudo가 비밀번호 대신 얼굴을 사용합니다. 일치하지 않으면 평소처럼 비밀번호를 "
 "입력합니다."
 
-#: gui/src/onboarding.rs:128 gui/src/panes.rs:227 gui/src/panes.rs:536
-#: src/main.rs:303
+#: gui/src/onboarding.rs:138 gui/src/panes.rs:234 gui/src/panes.rs:538
+#: gui/src/preview.rs:1025 src/main.rs:303
 msgid "Admin prompts"
 msgstr "관리자 인증 창"
 
-#: gui/src/onboarding.rs:129 gui/src/panes.rs:537
+#: gui/src/onboarding.rs:139 gui/src/panes.rs:539 gui/src/preview.rs:1026
 msgid ""
 "The password windows of your desktop and apps, for example when you install "
 "software. No match: you type the password."
@@ -204,12 +188,12 @@ msgstr ""
 "데스크톱과 앱의 비밀번호 창입니다. 예를 들어 소프트웨어를 설치할 때입니다. 일"
 "치하지 않으면 비밀번호를 입력합니다."
 
-#: gui/src/onboarding.rs:139 gui/src/panes.rs:231 gui/src/panes.rs:544
-#: src/main.rs:305
+#: gui/src/onboarding.rs:149 gui/src/panes.rs:238 gui/src/panes.rs:546
+#: gui/src/preview.rs:1056 src/main.rs:305
 msgid "Lock screens"
 msgstr "잠금 화면"
 
-#: gui/src/onboarding.rs:140
+#: gui/src/onboarding.rs:150
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
 "empty field to scan."
@@ -217,11 +201,11 @@ msgstr ""
 "잠금 화면은 암호 확인 때 얼굴을 받아들입니다. 빈 칸에서 Enter를 눌러 스캔하세"
 "요."
 
-#: gui/src/onboarding.rs:152
+#: gui/src/onboarding.rs:162
 msgid "Where should your face count?"
 msgstr "얼굴을 어디에 쓸까요?"
 
-#: gui/src/onboarding.rs:153
+#: gui/src/onboarding.rs:163
 msgid ""
 "The lock screen always takes it. The password always works too. You can "
 "change all of this later."
@@ -229,92 +213,92 @@ msgstr ""
 "잠금 화면은 항상 받아들입니다. 암호도 항상 됩니다. 이 모든 것은 나중에 바꿀 "
 "수 있습니다."
 
-#: gui/src/onboarding.rs:156
+#: gui/src/onboarding.rs:166
 msgid "Turn on face unlock"
 msgstr "얼굴 잠금 해제 켜기"
 
-#: gui/src/onboarding.rs:166
+#: gui/src/onboarding.rs:176
 msgid "Almost done"
 msgstr "거의 다 됐습니다"
 
-#: gui/src/onboarding.rs:166 gui/src/setup.rs:400
+#: gui/src/onboarding.rs:176 gui/src/setup.rs:400
 msgid "You are all set"
 msgstr "모두 준비되었습니다"
 
-#: gui/src/onboarding.rs:167
+#: gui/src/onboarding.rs:177
 msgid ""
 "Lock the screen and look at it to try it out. Everything else is in the "
 "settings."
 msgstr "화면을 잠그고 바라보며 시험해 보세요. 나머지는 모두 설정에 있습니다."
 
-#: gui/src/onboarding.rs:170
+#: gui/src/onboarding.rs:180
 msgid "Open the settings"
 msgstr "설정 열기"
 
-#: gui/src/panes.rs:21 src/main.rs:163 src/main.rs:276
+#: gui/src/panes.rs:22 gui/src/preview.rs:592 src/main.rs:163 src/main.rs:276
 msgid "on"
 msgstr "켜짐"
 
-#: gui/src/panes.rs:21 gui/src/panes.rs:242 gui/src/panes.rs:598
-#: src/main.rs:163 src/main.rs:276
+#: gui/src/panes.rs:22 gui/src/panes.rs:249 gui/src/panes.rs:600
+#: gui/src/preview.rs:592 src/main.rs:163 src/main.rs:276
 msgid "off"
 msgstr "꺼짐"
 
-#: gui/src/panes.rs:60
+#: gui/src/panes.rs:65
 msgid "Dismiss"
 msgstr "닫기"
 
-#: gui/src/panes.rs:72 gui/src/ui.rs:42
+#: gui/src/panes.rs:77 gui/src/preview.rs:879 gui/src/ui.rs:42
 msgid "Try it"
 msgstr "사용해 보기"
 
-#: gui/src/panes.rs:106 gui/src/panes.rs:159 src/text.rs:22
+#: gui/src/panes.rs:110 gui/src/panes.rs:166 src/text.rs:22
 msgid "The face unlock service is not running."
 msgstr "얼굴 잠금 해제 서비스가 실행 중이 아닙니다."
 
-#: gui/src/panes.rs:110
+#: gui/src/panes.rs:114
 msgid "Set up your face, then lock the screen and look at it."
 msgstr "얼굴을 설정한 다음, 화면을 잠그고 바라보세요."
 
-#: gui/src/panes.rs:112 src/actions.rs:140
+#: gui/src/panes.rs:116 src/actions.rs:140
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr ""
 "얼굴 잠금 해제가 꺼졌습니다. 얼굴 데이터는 남아 있으며, 얼굴 메뉴에서 삭제할 "
 "수 있습니다."
 
-#: gui/src/panes.rs:122 gui/src/panes.rs:147 src/main.rs:277
+#: gui/src/panes.rs:126 gui/src/panes.rs:154 src/main.rs:277
 msgid "Face unlock"
 msgstr "얼굴 잠금 해제"
 
-#: gui/src/panes.rs:166 src/main.rs:312 src/text.rs:19
+#: gui/src/panes.rs:173 src/main.rs:312 src/text.rs:19
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "인식 모델이 없습니다. 패키지를 다시 설치하세요."
 
-#: gui/src/panes.rs:169 src/main.rs:308
+#: gui/src/panes.rs:176 src/main.rs:308
 msgid "for %d more minutes, or until the password is used"
 msgstr "%d분 더, 또는 비밀번호를 사용할 때까지"
 
-#: gui/src/panes.rs:170 src/main.rs:308
+#: gui/src/panes.rs:177 src/main.rs:308
 msgid "Paused"
 msgstr "일시 중지됨"
 
-#: gui/src/panes.rs:173
+#: gui/src/panes.rs:180
 msgid "No camera found."
 msgstr "카메라를 찾지 못했습니다."
 
-#: gui/src/panes.rs:173
+#: gui/src/panes.rs:180
 msgid "Connect a camera, or pick another one under Recognition."
 msgstr "카메라를 연결하거나 인식에서 다른 카메라를 고르세요."
 
-#: gui/src/panes.rs:183 src/main.rs:315
+#: gui/src/panes.rs:190 src/main.rs:315
 msgid "The lock screen agent is not running."
 msgstr "잠금 화면 에이전트가 실행 중이 아닙니다."
 
-#: gui/src/panes.rs:185 gui/src/panes.rs:190 gui/src/trial.rs:133
+#: gui/src/panes.rs:192 gui/src/panes.rs:197 gui/src/trial.rs:143
 msgid "Start"
 msgstr "시작"
 
-#: gui/src/panes.rs:198 src/root.rs:125
+#: gui/src/panes.rs:205 src/root.rs:125
 msgid ""
 "No polkit agent is running, so no password window can open. Adding a face "
 "and the admin prompts need one."
@@ -322,61 +306,63 @@ msgstr ""
 "polkit 에이전트가 실행 중이 아니어서 비밀번호 창을 열 수 없습니다. 얼굴 추가"
 "와 관리자 인증 창에 필요합니다."
 
-#: gui/src/panes.rs:199
+#: gui/src/panes.rs:206
 msgid "Install one in a terminal:"
 msgstr "터미널에서 설치하세요:"
 
-#: gui/src/panes.rs:210 src/main.rs:288
+#: gui/src/panes.rs:217 src/main.rs:288
 msgid "none set up yet"
 msgstr "아직 없음"
 
-#: gui/src/panes.rs:212 src/main.rs:291
+#: gui/src/panes.rs:219 src/main.rs:291
 msgid "all turned off"
 msgstr "모두 꺼짐"
 
-#: gui/src/panes.rs:219 src/main.rs:297
+#: gui/src/panes.rs:226 gui/src/preview.rs:868 src/main.rs:297
 msgid "none found"
 msgstr "찾을 수 없음"
 
-#: gui/src/panes.rs:223 gui/src/panes.rs:377 gui/src/ui.rs:37 src/main.rs:288
+#: gui/src/panes.rs:230 gui/src/panes.rs:388 gui/src/ui.rs:37 src/main.rs:288
 #: src/main.rs:292
 msgid "Faces"
 msgstr "얼굴"
 
-#: gui/src/panes.rs:224 gui/src/panes.rs:618 gui/src/panes.rs:625
-#: src/main.rs:299
+#: gui/src/panes.rs:231 gui/src/panes.rs:618 gui/src/panes.rs:625
+#: gui/src/preview.rs:882 src/main.rs:299
 msgid "Camera"
 msgstr "카메라"
 
-#: gui/src/panes.rs:225 gui/src/panes.rs:434 gui/src/ui.rs:38 src/main.rs:301
+#: gui/src/panes.rs:232 gui/src/panes.rs:445 gui/src/ui.rs:38 src/main.rs:301
 msgid "Lock screen"
 msgstr "잠금 화면"
 
-#: gui/src/panes.rs:226 src/main.rs:302
+#: gui/src/panes.rs:233 src/main.rs:302
 msgid "sudo"
 msgstr "sudo"
 
-#: gui/src/panes.rs:233 gui/src/panes.rs:596 gui/src/panes.rs:598
+#: gui/src/panes.rs:240 gui/src/panes.rs:598 gui/src/panes.rs:600
+#: gui/src/preview.rs:930
 msgid "Photo check"
 msgstr "사진 검사"
 
-#: gui/src/panes.rs:234 src/main.rs:310
+#: gui/src/panes.rs:241 src/main.rs:310
 msgid "Last unlock"
 msgstr "마지막 잠금 해제"
 
-#: gui/src/panes.rs:236
+#: gui/src/panes.rs:243
 msgid "At a glance"
 msgstr "한눈에 보기"
 
-#: gui/src/panes.rs:241 gui/src/panes.rs:598 gui/src/panes.rs:611
+#: gui/src/panes.rs:248 gui/src/panes.rs:600 gui/src/panes.rs:611
+#: gui/src/preview.rs:828
 msgid "strict"
 msgstr "엄격"
 
-#: gui/src/panes.rs:243 gui/src/panes.rs:598
+#: gui/src/panes.rs:250 gui/src/panes.rs:600
 msgid "basic"
 msgstr "기본"
 
-#: gui/src/panes.rs:256 src/main.rs:328
+#: gui/src/panes.rs:262 src/main.rs:328
 msgid "Add a face"
 msgstr "얼굴 추가"
 
@@ -396,7 +382,7 @@ msgstr "샘플 %s개, 학습 %s개"
 msgid "New name:"
 msgstr "새 이름:"
 
-#: gui/src/panes.rs:335 gui/src/panes.rs:472
+#: gui/src/panes.rs:335 gui/src/panes.rs:479
 msgid "Save"
 msgstr "저장"
 
@@ -412,20 +398,20 @@ msgstr "삭제"
 msgid "Rename"
 msgstr "이름 바꾸기"
 
-#: gui/src/panes.rs:369
+#: gui/src/panes.rs:371
 msgid "On"
 msgstr "켜짐"
 
-#: gui/src/panes.rs:377
+#: gui/src/panes.rs:388
 msgid "Changes ask for your password"
 msgstr "변경하려면 암호가 필요합니다"
 
-#: gui/src/panes.rs:378
+#: gui/src/panes.rs:389
 msgid ""
 "A face is kept as numbers, not as a picture, and only root can read them."
 msgstr "얼굴은 사진이 아닌 숫자로 저장되며, root만 읽을 수 있습니다."
 
-#: gui/src/panes.rs:427
+#: gui/src/panes.rs:438
 msgid ""
 "Scans when you come back to hyprlock, swaylock or face-unlock's own lock "
 "screen (`face-unlock lock`, with the bubble), and opens them. Other lock "
@@ -434,22 +420,22 @@ msgstr ""
 "hyprlock, swaylock 또는 face-unlock 자체 잠금 화면(`face-unlock lock`, 버블 "
 "포함)으로 돌아오면 스캔해서 엽니다. 다른 잠금 화면은 Enter로 스캔합니다."
 
-#: gui/src/panes.rs:429
+#: gui/src/panes.rs:440
 msgid ""
 "Unlocks the lock screen when it sees your face. Off: only your password "
 "works there."
 msgstr ""
 "얼굴을 보면 잠금 화면을 해제합니다. 꺼짐: 잠금 화면에서는 비밀번호만 됩니다."
 
-#: gui/src/panes.rs:436
+#: gui/src/panes.rs:447 gui/src/preview.rs:750
 msgid "Unlock with your face"
 msgstr "얼굴로 잠금 해제"
 
-#: gui/src/panes.rs:440
+#: gui/src/panes.rs:451 gui/src/preview.rs:718
 msgid "Scan when you come back"
 msgstr "돌아오면 스캔"
 
-#: gui/src/panes.rs:441
+#: gui/src/panes.rs:452
 msgid ""
 "Scans when you press a key or move the mouse on the lock screen, and when "
 "the computer wakes up."
@@ -457,11 +443,11 @@ msgstr ""
 "잠금 화면에서 키를 누르거나 마우스를 움직일 때, 그리고 컴퓨터가 깨어날 때 스"
 "캔합니다."
 
-#: gui/src/panes.rs:449
+#: gui/src/panes.rs:460 gui/src/preview.rs:728
 msgid "Scan right after locking"
 msgstr "잠근 직후 스캔"
 
-#: gui/src/panes.rs:450
+#: gui/src/panes.rs:461
 msgid ""
 "Scans as soon as the screen locks. Off by default: if you lock it yourself, "
 "it would unlock again right away."
@@ -469,35 +455,35 @@ msgstr ""
 "화면이 잠기자마자 스캔합니다. 기본값은 꺼짐: 직접 잠그면 곧바로 다시 풀려 버"
 "리기 때문입니다."
 
-#: gui/src/panes.rs:460
+#: gui/src/panes.rs:471 gui/src/preview.rs:738
 msgid "face-unlock's"
 msgstr "face-unlock"
 
-#: gui/src/panes.rs:461
+#: gui/src/panes.rs:472
 msgid "not picked yet"
 msgstr "아직 고르지 않음"
 
-#: gui/src/panes.rs:462
+#: gui/src/panes.rs:473 gui/src/preview.rs:738
 msgid "yours"
 msgstr "지금 쓰는 것"
 
-#: gui/src/panes.rs:464 gui/src/panes.rs:664
+#: gui/src/panes.rs:475 gui/src/panes.rs:664
 msgid "Choose…"
 msgstr "고르기…"
 
-#: gui/src/panes.rs:482
+#: gui/src/panes.rs:484 gui/src/preview.rs:746
 msgid "same as desktop"
 msgstr "바탕 화면과 같음"
 
-#: gui/src/panes.rs:483 gui/src/panes.rs:504
+#: gui/src/panes.rs:485 gui/src/panes.rs:506 gui/src/preview.rs:746
 msgid "Wallpaper"
 msgstr "배경 화면"
 
-#: gui/src/panes.rs:497 gui/src/panes.rs:514
+#: gui/src/panes.rs:499 gui/src/panes.rs:516 gui/src/preview.rs:738
 msgid "Which lock screen"
 msgstr "사용할 잠금 화면"
 
-#: gui/src/panes.rs:498
+#: gui/src/panes.rs:500
 msgid ""
 "face-unlock's lock screen shows the bubble, and you lock with `face-unlock "
 "lock`. Or keep yours: hyprlock then shows a line of text at the top."
@@ -506,7 +492,7 @@ msgstr ""
 "다. 또는 쓰던 것을 유지하세요: 그러면 hyprlock이 위쪽에 한 줄의 텍스트를 표시"
 "합니다."
 
-#: gui/src/panes.rs:505
+#: gui/src/panes.rs:507 gui/src/preview.rs:747
 msgid ""
 "The picture behind face-unlock's own lock screen. Empty: the one on your "
 "desktop. Or a file, a folder to take one from at random, or `none`."
@@ -514,15 +500,15 @@ msgstr ""
 "face-unlock 자체 잠금 화면 뒤의 그림입니다. 비워 두면: 바탕 화면의 그림. 또"
 "는 파일, 무작위로 고를 폴더, 또는 `none`."
 
-#: gui/src/panes.rs:508
+#: gui/src/panes.rs:510 gui/src/preview.rs:749
 msgid "Blur the wallpaper"
 msgstr "배경 화면 흐리게"
 
-#: gui/src/panes.rs:508
+#: gui/src/panes.rs:510 gui/src/preview.rs:749
 msgid "Blurs the picture behind face-unlock's own lock screen."
 msgstr "face-unlock 잠금 화면의 배경 그림을 흐리게 합니다."
 
-#: gui/src/panes.rs:543
+#: gui/src/panes.rs:545 gui/src/preview.rs:1055
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
 "empty field to scan. Found here: %s."
@@ -530,11 +516,11 @@ msgstr ""
 "잠금 화면의 비밀번호 확인에서 얼굴을 받습니다. 빈 칸에서 Enter를 누르면 스캔"
 "합니다. 찾은 것: %s."
 
-#: gui/src/panes.rs:550
+#: gui/src/panes.rs:552 gui/src/preview.rs:1063
 msgid "In SSH sessions"
 msgstr "SSH 세션에서도"
 
-#: gui/src/panes.rs:551
+#: gui/src/panes.rs:553 gui/src/preview.rs:1065
 msgid ""
 "sudo in an SSH session takes your face too, if you sit at this computer. Off "
 "by default: the person at the camera may not be the one typing."
@@ -542,24 +528,24 @@ msgstr ""
 "이 컴퓨터 앞에 앉아 있으면 SSH 세션의 sudo도 얼굴을 사용합니다. 기본값은 꺼"
 "짐: 카메라 앞의 사람이 입력하는 사람이 아닐 수 있기 때문입니다."
 
-#: gui/src/panes.rs:554 gui/src/ui.rs:39
+#: gui/src/panes.rs:556 gui/src/ui.rs:39
 msgid "Password prompts"
 msgstr "비밀번호 입력 창"
 
-#: gui/src/panes.rs:554 gui/src/panes.rs:640
+#: gui/src/panes.rs:556 gui/src/panes.rs:640
 msgid "for all users, asks for your password"
 msgstr "모든 사용자에게 적용, 비밀번호 필요"
 
-#: gui/src/panes.rs:563
+#: gui/src/panes.rs:565 gui/src/preview.rs:925
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr "눈을 깜빡이거나 고개를 살짝 돌려야 합니다. 인쇄한 사진도 막아 줍니다."
 
-#: gui/src/panes.rs:564
+#: gui/src/panes.rs:566 gui/src/preview.rs:926
 msgid "No check at all. Only for trying out a camera."
 msgstr "검사하지 않습니다. 카메라를 시험할 때만 쓰세요."
 
-#: gui/src/panes.rs:565
+#: gui/src/panes.rs:567 gui/src/preview.rs:927
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
@@ -567,58 +553,59 @@ msgstr ""
 "휴대폰, 태블릿, 광택지에 있는 사진을 막습니다. 눈을 깜빡일 필요는 없습니다. "
 "무광 인쇄 사진은 통과할 수 있습니다."
 
-#: gui/src/panes.rs:568
+#: gui/src/panes.rs:570 gui/src/preview.rs:833
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 "잘못 일치하는 경우가 줄지만, 안경을 쓰거나 조명이 나쁘면 알아보지 못할 수 있"
 "습니다."
 
-#: gui/src/panes.rs:569
+#: gui/src/panes.rs:571 gui/src/preview.rs:834
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "더 쉽게 알아보지만, 당신과 많이 닮은 사람도 알아볼 수 있습니다."
 
-#: gui/src/panes.rs:570
+#: gui/src/panes.rs:572 gui/src/preview.rs:835
 msgid "The default. Right for most people."
 msgstr "기본값입니다. 대부분의 사람에게 알맞습니다."
 
-#: gui/src/panes.rs:576
+#: gui/src/panes.rs:578
 msgid "automatic (%s)"
 msgstr "자동 (%s)"
 
-#: gui/src/panes.rs:577
+#: gui/src/panes.rs:579
 msgid "automatic"
 msgstr "자동"
 
-#: gui/src/panes.rs:584
+#: gui/src/panes.rs:586
 msgid "(infrared)"
 msgstr "(적외선)"
 
-#: gui/src/panes.rs:590 gui/src/panes.rs:662
+#: gui/src/panes.rs:592 gui/src/panes.rs:662
 msgid "(not connected)"
 msgstr "(연결 안 됨)"
 
-#: gui/src/panes.rs:592
+#: gui/src/panes.rs:594 gui/src/preview.rs:815
 msgid "%s seconds"
 msgstr "%s초"
 
-#: gui/src/panes.rs:601 gui/src/panes.rs:608
+#: gui/src/panes.rs:603 gui/src/panes.rs:608 gui/src/preview.rs:838
 msgid "How closely the face has to match"
 msgstr "얼굴이 얼마나 일치해야 하는지"
 
-#: gui/src/panes.rs:611
+#: gui/src/panes.rs:611 gui/src/preview.rs:829
 msgid "relaxed"
 msgstr "느슨"
 
-#: gui/src/panes.rs:611 gui/src/panes.rs:696
+#: gui/src/panes.rs:611 gui/src/panes.rs:689 gui/src/preview.rs:691
+#: gui/src/preview.rs:830
 msgid "normal"
 msgstr "보통"
 
-#: gui/src/panes.rs:616
+#: gui/src/panes.rs:616 gui/src/preview.rs:854
 msgid "Only when you look at the screen"
 msgstr "화면을 볼 때만"
 
-#: gui/src/panes.rs:616
+#: gui/src/panes.rs:616 gui/src/preview.rs:855
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
@@ -626,7 +613,7 @@ msgstr ""
 "눈을 뜨고 화면을 보고 있어야 합니다. 그래서 다른 곳을 보거나 자는 동안에는 풀"
 "리지 않습니다."
 
-#: gui/src/panes.rs:626
+#: gui/src/panes.rs:626 gui/src/preview.rs:883
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
@@ -634,7 +621,7 @@ msgstr ""
 "자동은 첫 번째 일반 카메라를 사용합니다. 바꾼 뒤에는 얼굴을 다시 등록하세요. "
 "적외선 카메라는 조명을 켜야 합니다 (linux-enable-ir-emitter)."
 
-#: gui/src/panes.rs:634 gui/src/panes.rs:636
+#: gui/src/panes.rs:634 gui/src/panes.rs:636 gui/src/preview.rs:815
 msgid "How long a scan lasts"
 msgstr "스캔 시간"
 
@@ -642,11 +629,11 @@ msgstr "스캔 시간"
 msgid "How long the camera looks for your face before it gives up."
 msgstr "카메라가 포기하기 전까지 얼굴을 찾는 시간입니다."
 
-#: gui/src/panes.rs:638
+#: gui/src/panes.rs:638 gui/src/preview.rs:891
 msgid "Learn from every unlock"
 msgstr "잠금 해제할 때마다 학습"
 
-#: gui/src/panes.rs:638
+#: gui/src/panes.rs:638 gui/src/preview.rs:892
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
@@ -654,11 +641,11 @@ msgstr ""
 "확실히 일치하면 지금 모습을 기억합니다. 그래서 머리 모양이 바뀌거나 안경을 써"
 "도 다시 등록할 필요가 없습니다."
 
-#: gui/src/panes.rs:639
+#: gui/src/panes.rs:639 gui/src/preview.rs:906
 msgid "Not when the lid is closed"
 msgstr "덮개가 닫혀 있으면 사용 안 함"
 
-#: gui/src/panes.rs:639
+#: gui/src/panes.rs:639 gui/src/preview.rs:907
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
@@ -682,73 +669,73 @@ msgstr ""
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr "화면 위쪽의 버블이 카메라가 하는 일을 보여 줍니다."
 
-#: gui/src/panes.rs:673 gui/src/ui.rs:41
+#: gui/src/panes.rs:668 gui/src/ui.rs:41
 msgid "Bubble"
 msgstr "버블"
 
-#: gui/src/panes.rs:675
+#: gui/src/panes.rs:670 gui/src/preview.rs:683
 msgid "Show the bubble"
 msgstr "버블 보이기"
 
-#: gui/src/panes.rs:681
+#: gui/src/panes.rs:676 gui/src/preview.rs:684
 msgid "Style"
 msgstr "스타일"
 
-#: gui/src/panes.rs:682
+#: gui/src/panes.rs:677
 msgid "A small pill with a lock that opens."
 msgstr "자물쇠가 열리는 작은 알약입니다."
 
-#: gui/src/panes.rs:682
+#: gui/src/panes.rs:677
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr "주위를 둘러보는 얼굴이 있는 아일랜드, 그다음 링과 체크 표시입니다."
 
-#: gui/src/panes.rs:684
+#: gui/src/panes.rs:679 gui/src/preview.rs:684
 msgid "island with the face"
 msgstr "얼굴이 있는 아일랜드"
 
-#: gui/src/panes.rs:684
+#: gui/src/panes.rs:679 gui/src/preview.rs:684
 msgid "small pill with a lock"
 msgstr "자물쇠가 있는 작은 알약"
 
-#: gui/src/panes.rs:693
+#: gui/src/panes.rs:686 gui/src/preview.rs:687
 msgid "Animation speed"
 msgstr "애니메이션 속도"
 
-#: gui/src/panes.rs:694
+#: gui/src/panes.rs:687
 msgid "How fast the bubble moves."
 msgstr "버블이 움직이는 속도입니다."
 
-#: gui/src/panes.rs:696
+#: gui/src/panes.rs:689 gui/src/preview.rs:689
 msgid "slow"
 msgstr "느리게"
 
-#: gui/src/panes.rs:696
+#: gui/src/panes.rs:689 gui/src/preview.rs:690
 msgid "fast"
 msgstr "빠르게"
 
-#: gui/src/panes.rs:700
+#: gui/src/panes.rs:693 gui/src/preview.rs:685
 msgid "Screen"
 msgstr "화면"
 
-#: gui/src/panes.rs:700
+#: gui/src/panes.rs:693
 msgid ""
 "Where the bubble shows up: on the screen with the mouse pointer, or always "
 "on one screen."
 msgstr "버블이 나타나는 곳: 마우스 포인터가 있는 화면, 또는 항상 한 화면."
 
-#: gui/src/panes.rs:704
+#: gui/src/panes.rs:697 gui/src/preview.rs:679
 msgid "Also for sudo and admin prompts"
 msgstr "sudo와 관리자 인증 창에서도"
 
-#: gui/src/panes.rs:705
+#: gui/src/panes.rs:698
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr "sudo나 관리자 인증 창이 얼굴을 스캔할 때도 버블을 보여 줍니다."
 
-#: gui/src/panes.rs:713
+#: gui/src/panes.rs:706 gui/src/preview.rs:674
 msgid "Quiet while the camera is in use"
 msgstr "카메라 사용 중에는 표시 안 함"
 
-#: gui/src/panes.rs:714
+#: gui/src/panes.rs:707
 msgid ""
 "When another app uses the camera, for example in a video call, no bubble "
 "shows and you type your password as usual. Off: the bubble shows a camera "
@@ -756,6 +743,156 @@ msgid ""
 msgstr ""
 "화상 통화 등으로 다른 앱이 카메라를 사용하면 버블이 나타나지 않고 평소처럼 비"
 "밀번호를 입력합니다. 꺼짐: 버블에 줄이 그어진 카메라가 표시됩니다."
+
+#: gui/src/preview.rs:488 gui/src/preview.rs:984 gui/src/preview.rs:1002
+#: pam/src/lib.rs:304
+msgid "Look at the camera to unlock."
+msgstr "잠금을 해제하려면 카메라를 보세요."
+
+#: gui/src/preview.rs:651
+msgid "Preview"
+msgstr "미리 보기"
+
+#: gui/src/preview.rs:662
+msgid "What you see when your face unlocks the screen."
+msgstr "얼굴로 화면 잠금이 해제될 때 보이는 모습입니다."
+
+#: gui/src/preview.rs:664
+msgid "No bubble. Your face still unlocks the screen, you just do not see it."
+msgstr "버블이 없습니다. 얼굴로 화면 잠금은 그대로 해제되지만 보이지 않습니다."
+
+#: gui/src/preview.rs:671
+msgid "Another app uses the camera: no bubble, and you type your password."
+msgstr "다른 앱이 카메라를 사용 중: 버블이 없고, 비밀번호를 입력합니다."
+
+#: gui/src/preview.rs:672
+msgid ""
+"Another app uses the camera: the bubble shows it, and you type your password."
+msgstr "다른 앱이 카메라를 사용 중: 버블이 이를 알리고, 비밀번호를 입력합니다."
+
+#: gui/src/preview.rs:678
+msgid "sudo looks for your face, and the bubble shows it."
+msgstr "sudo가 얼굴을 찾고, 버블이 이를 표시합니다."
+
+#: gui/src/preview.rs:678
+msgid "sudo looks for your face without the bubble. The terminal says so."
+msgstr "sudo가 버블 없이 얼굴을 찾습니다. 터미널에 그렇게 표시됩니다."
+
+#: gui/src/preview.rs:715
+msgid "Only your password opens the lock screen."
+msgstr "비밀번호로만 잠금 화면이 열립니다."
+
+#: gui/src/preview.rs:722
+msgid "When you press a key or move the mouse, it looks for your face."
+msgstr "키를 누르거나 마우스를 움직이면 얼굴을 찾습니다."
+
+#: gui/src/preview.rs:724
+msgid "When you come back, it does not look. You type your password."
+msgstr "돌아와도 찾지 않습니다. 비밀번호를 입력합니다."
+
+#: gui/src/preview.rs:732
+msgid ""
+"Right after locking it looks for your face, so the screen opens again while "
+"you sit there."
+msgstr "잠근 직후 얼굴을 찾으므로, 앞에 앉아 있으면 화면이 다시 열립니다."
+
+#: gui/src/preview.rs:734
+msgid "Right after locking it waits until you come back."
+msgstr "잠근 직후에는 돌아올 때까지 기다립니다."
+
+#: gui/src/preview.rs:750
+msgid "Your face opens the lock screen as soon as it is found."
+msgstr "얼굴을 찾자마자 잠금 화면이 열립니다."
+
+#: gui/src/preview.rs:810
+msgid "gets in"
+msgstr "통과"
+
+#: gui/src/preview.rs:810
+msgid "stopped"
+msgstr "차단"
+
+#: gui/src/preview.rs:810
+msgid "maybe"
+msgstr "경우에 따라"
+
+#: gui/src/preview.rs:816
+msgid ""
+"It looks for %s seconds. If it does not find you, you type your password."
+msgstr "%s초 동안 찾습니다. 찾지 못하면 비밀번호를 입력합니다."
+
+#: gui/src/preview.rs:843 gui/src/preview.rs:896 gui/src/preview.rs:937
+msgid "Your face"
+msgstr "내 얼굴"
+
+#: gui/src/preview.rs:844
+msgid "With glasses or in bad light"
+msgstr "안경을 쓰거나 어두울 때"
+
+#: gui/src/preview.rs:845
+msgid "Somebody who looks like you"
+msgstr "나와 닮은 사람"
+
+#: gui/src/preview.rs:859
+msgid "Looking at the screen"
+msgstr "화면을 보는 중"
+
+#: gui/src/preview.rs:860
+msgid "Eyes closed or looking away"
+msgstr "눈을 감거나 다른 곳을 볼 때"
+
+#: gui/src/preview.rs:897
+msgid "New glasses or haircut"
+msgstr "새 안경이나 헤어스타일"
+
+#: gui/src/preview.rs:904
+msgid "no scan"
+msgstr "스캔 안 함"
+
+#: gui/src/preview.rs:904 gui/src/preview.rs:911
+msgid "scans"
+msgstr "스캔함"
+
+#: gui/src/preview.rs:911
+msgid "Lid open"
+msgstr "덮개 열림"
+
+#: gui/src/preview.rs:912
+msgid "Lid closed"
+msgstr "덮개 닫힘"
+
+#: gui/src/preview.rs:920
+msgid "after a blink"
+msgstr "눈을 깜빡인 뒤"
+
+#: gui/src/preview.rs:935
+msgid "Photo on a phone"
+msgstr "휴대폰 속 사진"
+
+#: gui/src/preview.rs:936
+msgid "Printed photo"
+msgstr "인쇄한 사진"
+
+#: gui/src/preview.rs:980
+msgid "Off: you type your password."
+msgstr "꺼짐: 비밀번호를 입력합니다."
+
+#: gui/src/preview.rs:1004 paint/src/lockscreen.rs:202
+#: paint/src/lockscreen.rs:203
+msgid "Password"
+msgstr "비밀번호"
+
+#: gui/src/preview.rs:1021
+msgid "An app wants to make changes"
+msgstr "앱이 변경하려고 합니다"
+
+#: gui/src/preview.rs:1048
+msgid "Press Enter on the empty field to scan."
+msgstr "빈 칸에서 Enter를 누르면 스캔합니다."
+
+#: gui/src/preview.rs:1048 paint/src/lockscreen.rs:220
+msgid "Type your password"
+msgstr "비밀번호를 입력하세요"
 
 #: gui/src/setup.rs:63
 msgid "Bring your face into the circle."
@@ -860,59 +997,59 @@ msgstr "화면을 잠그고 바라보며 시험해 보세요."
 msgid "Name (optional)"
 msgstr "이름 (선택)"
 
-#: gui/src/setup.rs:447
+#: gui/src/setup.rs:441
 msgid "Finish now"
 msgstr "지금 완료"
 
-#: gui/src/setup.rs:451 gui/src/trial.rs:133
+#: gui/src/setup.rs:444 gui/src/trial.rs:143
 msgid "Try again"
 msgstr "다시 시도"
 
-#: gui/src/setup.rs:460
+#: gui/src/setup.rs:448
 msgid "Done"
 msgstr "완료"
 
-#: gui/src/trial.rs:93 src/main.rs:204
+#: gui/src/trial.rs:103 src/main.rs:204
 msgid "Recognised. Now blink once, or turn your head a little."
 msgstr "인식했습니다. 이제 눈을 한 번 깜빡이거나 고개를 살짝 돌리세요."
 
-#: gui/src/trial.rs:94 pam/src/lib.rs:308 src/main.rs:205
+#: gui/src/trial.rs:104 pam/src/lib.rs:308 src/main.rs:205
 msgid "Look at the screen."
 msgstr "화면을 보세요."
 
-#: gui/src/trial.rs:95 pam/src/lib.rs:309 src/main.rs:206
+#: gui/src/trial.rs:105 pam/src/lib.rs:309 src/main.rs:206
 msgid "Move closer to the camera."
 msgstr "카메라에 더 가까이 오세요."
 
-#: gui/src/trial.rs:96 pam/src/lib.rs:310 src/main.rs:207
+#: gui/src/trial.rs:106 pam/src/lib.rs:310 src/main.rs:207
 msgid "It is too dark to see your face."
 msgstr "너무 어두워서 얼굴이 보이지 않습니다."
 
-#: gui/src/trial.rs:97 src/main.rs:201
+#: gui/src/trial.rs:107 src/main.rs:201
 msgid "Face found."
 msgstr "얼굴을 찾았습니다."
 
-#: gui/src/trial.rs:98 src/main.rs:190
+#: gui/src/trial.rs:108 src/main.rs:190
 msgid "Look at the camera. Blink once, or turn your head a little."
 msgstr "카메라를 보세요. 눈을 한 번 깜빡이거나 고개를 살짝 돌리세요."
 
-#: gui/src/trial.rs:104 src/main.rs:243
+#: gui/src/trial.rs:114 src/main.rs:243
 msgid "Recognised as %s (match %s) in %s ms."
 msgstr "인식됨: %s (일치도 %s), %s ms."
 
-#: gui/src/trial.rs:108 src/main.rs:228 src/main.rs:247
+#: gui/src/trial.rs:118 src/main.rs:228 src/main.rs:247
 msgid "blink"
 msgstr "깜빡임"
 
-#: gui/src/trial.rs:109 src/main.rs:248
+#: gui/src/trial.rs:119 src/main.rs:248
 msgid "head turn"
 msgstr "고개 돌림"
 
-#: gui/src/trial.rs:114 src/main.rs:252
+#: gui/src/trial.rs:124 src/main.rs:252
 msgid "Sign of life: %s"
 msgstr "생체 신호: %s"
 
-#: gui/src/trial.rs:121 src/main.rs:261
+#: gui/src/trial.rs:131 src/main.rs:261
 msgid ""
 "That was too many tries. Face unlock is paused until you unlock with your "
 "password."
@@ -920,78 +1057,78 @@ msgstr ""
 "시도가 너무 많습니다. 비밀번호로 잠금을 해제할 때까지 얼굴 잠금 해제가 일시 "
 "중지됩니다."
 
-#: gui/src/trial.rs:126
+#: gui/src/trial.rs:136
 msgid ""
 "Look at the camera and see what it sees. Every check shows how close it is."
 msgstr ""
 "카메라를 보고 카메라가 무엇을 보는지 확인하세요. 각 검사는 얼마나 가까운지 보"
 "여 줍니다."
 
-#: gui/src/trial.rs:131
+#: gui/src/trial.rs:141
 msgid "Stop"
 msgstr "중지"
 
-#: gui/src/trial.rs:162
+#: gui/src/trial.rs:172
 msgid "What the checks see"
 msgstr "검사가 보는 것"
 
-#: gui/src/trial.rs:164
+#: gui/src/trial.rs:174
 msgid "Match"
 msgstr "일치"
 
-#: gui/src/trial.rs:164
+#: gui/src/trial.rs:174
 msgid "How much the face looks like yours. Over about 0.5 counts."
 msgstr "얼굴이 본인과 얼마나 닮았는지. 약 0.5를 넘으면 인정됩니다."
 
-#: gui/src/trial.rs:165
+#: gui/src/trial.rs:175
 msgid "Turn of the head"
 msgstr "고개 돌림"
 
-#: gui/src/trial.rs:165
+#: gui/src/trial.rs:175
 msgid "Up to 25 degrees counts as looking at the screen."
 msgstr "25도까지는 화면을 보는 것으로 칩니다."
 
-#: gui/src/trial.rs:166
+#: gui/src/trial.rs:176
 msgid "Eyes open"
 msgstr "눈 뜸"
 
-#: gui/src/trial.rs:166
+#: gui/src/trial.rs:176
 msgid "Closed eyes do not unlock."
 msgstr "눈을 감으면 해제되지 않습니다."
 
-#: gui/src/trial.rs:167
+#: gui/src/trial.rs:177
 msgid "Depth"
 msgstr "깊이"
 
-#: gui/src/trial.rs:167
+#: gui/src/trial.rs:177
 msgid "A head that turns shows its nose sticking out. A photo cannot."
 msgstr "돌아가는 머리는 튀어나온 코를 보여 줍니다. 사진은 그럴 수 없습니다."
 
-#: gui/src/trial.rs:168
+#: gui/src/trial.rs:178
 msgid "Blink"
 msgstr "눈 깜빡임"
 
-#: gui/src/trial.rs:168
+#: gui/src/trial.rs:178
 msgid "A blink is a sign of life too."
 msgstr "눈 깜빡임도 살아 있다는 표시입니다."
 
-#: gui/src/trial.rs:169
+#: gui/src/trial.rs:179
 msgid "Glare"
 msgstr "반사"
 
-#: gui/src/trial.rs:169
+#: gui/src/trial.rs:179
 msgid "A screen or glossy paper throws back light. Full means a fake."
 msgstr "화면이나 광택지는 빛을 반사합니다. 가득 차면 가짜라는 뜻입니다."
 
-#: gui/src/trial.rs:170
+#: gui/src/trial.rs:180
 msgid "Edge of a device"
 msgstr "기기의 테두리"
 
-#: gui/src/trial.rs:170
+#: gui/src/trial.rs:180
 msgid "The frame of a phone or a tablet around the face. Full means a fake."
 msgstr "얼굴 주변의 휴대폰이나 태블릿 테두리. 가득 차면 가짜라는 뜻입니다."
 
-#: gui/src/trial.rs:173
+#: gui/src/trial.rs:183
 msgid "The terminal shows the same with `face-unlock test`."
 msgstr "터미널에서는 `face-unlock test`로 같은 것을 보여 줍니다."
 
@@ -999,30 +1136,34 @@ msgstr "터미널에서는 `face-unlock test`로 같은 것을 보여 줍니다.
 msgid "Overview"
 msgstr "개요"
 
-#: gui/src/ui.rs:349 src/actions.rs:71 src/actions.rs:122 src/actions.rs:162
+#: gui/src/ui.rs:361 src/actions.rs:71 src/actions.rs:122 src/actions.rs:162
 #: src/actions.rs:171 src/root.rs:138
 msgid "Could not save the setting."
 msgstr "설정을 저장하지 못했습니다."
 
-#: gui/src/ui.rs:407 src/actions.rs:78
+#: gui/src/ui.rs:421 src/actions.rs:78
 msgid "Could not start the lock screen agent."
 msgstr "잠금 화면 에이전트를 시작하지 못했습니다."
 
-#: gui/src/ui.rs:415
+#: gui/src/ui.rs:429
 msgid "The polkit agent is running. Password windows open now."
 msgstr "polkit 에이전트가 실행 중입니다. 이제 비밀번호 창이 열립니다."
 
-#: gui/src/view.rs:113
+#: gui/src/view.rs:134
 msgid "Face Unlock"
 msgstr "얼굴 잠금 해제"
 
-#: gui/src/view.rs:184
+#: gui/src/view.rs:138
 msgid "Version %s"
 msgstr "버전 %s"
 
-#: pam/src/lib.rs:304
-msgid "Look at the camera to unlock."
-msgstr "잠금을 해제하려면 카메라를 보세요."
+#: paint/src/lockscreen.rs:46
+msgid "Wrong password"
+msgstr "비밀번호가 틀렸습니다"
+
+#: paint/src/lockscreen.rs:218
+msgid "Look at the camera or type your password"
+msgstr "카메라를 보거나 비밀번호를 입력하세요"
 
 #: pam/src/lib.rs:307
 msgid "Blink, or turn your head a little."

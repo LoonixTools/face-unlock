@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-11-23 14:14+0100\n"
+"POT-Creation-Date: 2026-11-25 14:55+0100\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Japanese\n"
@@ -15,76 +15,60 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: agent/src/app.rs:435
+#: agent/src/app.rs:438
 msgid "Blink once"
 msgstr "一度まばたき"
 
-#: agent/src/app.rs:436
+#: agent/src/app.rs:439
 msgid "Look at the screen"
 msgstr "画面を見てください"
 
-#: agent/src/app.rs:437
+#: agent/src/app.rs:440
 msgid "Move closer"
 msgstr "近づいてください"
 
-#: agent/src/app.rs:438
+#: agent/src/app.rs:441
 msgid "Too dark"
 msgstr "暗すぎます"
 
-#: agent/src/app.rs:464
+#: agent/src/app.rs:467 gui/src/preview.rs:277 gui/src/preview.rs:279
 msgid "Camera in use"
 msgstr "カメラ使用中"
 
-#: agent/src/app.rs:474
+#: agent/src/app.rs:477
 msgid "Use your password"
 msgstr "パスワードを使用"
 
-#: agent/src/app.rs:481
+#: agent/src/app.rs:484
 msgid "Not recognized"
 msgstr "認識できません"
 
-#: agent/src/app.rs:482
+#: agent/src/app.rs:485
 msgid "Try again and blink"
 msgstr "まばたきしてもう一度"
 
-#: agent/src/app.rs:483
+#: agent/src/app.rs:486
 msgid "Camera unavailable"
 msgstr "カメラを使用できません"
 
-#: agent/src/app.rs:538 gui/src/choice.rs:58
+#: agent/src/app.rs:541 gui/src/choice.rs:57 gui/src/preview.rs:526
 msgid "Looking for your face…"
 msgstr "顔を探しています…"
 
-#: agent/src/app.rs:539
+#: agent/src/app.rs:542
 msgid "Face recognized"
 msgstr "顔を認識しました"
 
-#: agent/src/lockscreen.rs:46
-msgid "Wrong password"
-msgstr "パスワードが違います"
-
-#: agent/src/lockscreen.rs:185 agent/src/lockscreen.rs:186
-msgid "Password"
-msgstr "パスワード"
-
-#: agent/src/lockscreen.rs:201
-msgid "Look at the camera or type your password"
-msgstr "カメラを見るか、パスワードを入力してください"
-
-#: agent/src/lockscreen.rs:203
-msgid "Type your password"
-msgstr "パスワードを入力してください"
-
-#: gui/src/choice.rs:91 gui/src/panes.rs:334 gui/src/panes.rs:350
-#: gui/src/setup.rs:439
+#: gui/src/choice.rs:92 gui/src/panes.rs:334 gui/src/panes.rs:350
+#: gui/src/setup.rs:438
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: gui/src/choice.rs:110
+#: gui/src/choice.rs:111
 msgid "face-unlock's lock screen"
 msgstr "face-unlock のロック画面"
 
-#: gui/src/choice.rs:111
+#: gui/src/choice.rs:112 gui/src/preview.rs:740
 msgid ""
 "Shows the bubble while it looks for your face. You lock with `face-unlock "
 "lock`."
@@ -92,11 +76,11 @@ msgstr ""
 "顔を探している間、バブルを表示します。ロックは `face-unlock lock` で行いま"
 "す。"
 
-#: gui/src/choice.rs:119
+#: gui/src/choice.rs:120
 msgid "Your own lock screen"
 msgstr "あなたのロック画面"
 
-#: gui/src/choice.rs:120
+#: gui/src/choice.rs:121 gui/src/preview.rs:742
 msgid ""
 "Stays as it is. hyprlock shows a line of text at the top, and Enter on the "
 "empty password field scans."
@@ -104,62 +88,62 @@ msgstr ""
 "そのままです。hyprlock が上部に 1 行のテキストを表示し、空のパスワード欄で "
 "Enter を押すとスキャンします。"
 
-#: gui/src/choice.rs:155
+#: gui/src/choice.rs:156
 msgid "Which lock screen?"
 msgstr "どのロック画面にしますか？"
 
-#: gui/src/choice.rs:156
+#: gui/src/choice.rs:157
 msgid "Both take your face. You can change this later under Lock screen."
 msgstr "どちらも顔を受け付けます。あとで「ロック画面」で変更できます。"
 
-#: gui/src/choice.rs:159 gui/src/choice.rs:268
+#: gui/src/choice.rs:160 gui/src/choice.rs:271
 msgid "Use this one"
 msgstr "これを使う"
 
-#: gui/src/choice.rs:217 gui/src/panes.rs:658
+#: gui/src/choice.rs:219 gui/src/panes.rs:658 gui/src/preview.rs:685
 msgid "follows the mouse"
 msgstr "マウスに合わせる"
 
-#: gui/src/choice.rs:230
+#: gui/src/choice.rs:233
 msgid "The screen with the mouse pointer"
 msgstr "マウスポインターのある画面"
 
-#: gui/src/choice.rs:263
+#: gui/src/choice.rs:266
 msgid "Where should the bubble show?"
 msgstr "バブルをどこに表示しますか？"
 
-#: gui/src/choice.rs:264
+#: gui/src/choice.rs:267
 msgid "On the screen with the mouse pointer, or always on one screen."
 msgstr "マウスポインターのある画面、または常に同じ画面に。"
 
-#: gui/src/main.rs:106 gui/src/setup.rs:70
+#: gui/src/main.rs:107 gui/src/setup.rs:70
 msgid "Move your head slowly to complete the circle."
 msgstr "円が埋まるまで、ゆっくり頭を動かしてください。"
 
-#: gui/src/main.rs:125 gui/src/panes.rs:108 src/actions.rs:112
+#: gui/src/main.rs:126 gui/src/panes.rs:112 src/actions.rs:112
 msgid "Face unlock is on. Lock the screen and look at it to try."
 msgstr "顔認証はオンです。画面をロックして、画面を見て試してください。"
 
-#: gui/src/onboarding.rs:80
+#: gui/src/onboarding.rs:92
 msgid "Face ID for Linux"
 msgstr "Linux のための Face ID"
 
-#: gui/src/onboarding.rs:81
+#: gui/src/onboarding.rs:93
 msgid ""
 "Unlock the lock screen, sudo and admin prompts with your face. It takes a "
 "minute to set up."
 msgstr ""
 "ロック画面、sudo、管理者の確認を顔で解除します。設定は 1 分で終わります。"
 
-#: gui/src/onboarding.rs:83 gui/src/setup.rs:451
+#: gui/src/onboarding.rs:95 gui/src/setup.rs:444
 msgid "Get started"
 msgstr "はじめる"
 
-#: gui/src/onboarding.rs:92
+#: gui/src/onboarding.rs:104
 msgid "Switch on the service"
 msgstr "サービスをオンにする"
 
-#: gui/src/onboarding.rs:93 gui/src/panes.rs:160 src/main.rs:85
+#: gui/src/onboarding.rs:105 gui/src/panes.rs:167 src/main.rs:85
 msgid ""
 "Face unlock's service has to be switched on once for this computer. That "
 "needs your password."
@@ -167,25 +151,25 @@ msgstr ""
 "顔認証のサービスを、このコンピューターで一度オンにする必要があります。パス"
 "ワードが必要です。"
 
-#: gui/src/onboarding.rs:102
+#: gui/src/onboarding.rs:114
 msgid "No password window? Run this in a terminal instead:"
 msgstr ""
 "パスワードのウィンドウが出ませんか？代わりにターミナルでこれを実行してくださ"
 "い："
 
-#: gui/src/onboarding.rs:111 gui/src/setup.rs:460
+#: gui/src/onboarding.rs:122 gui/src/setup.rs:448
 msgid "Continue"
 msgstr "続ける"
 
-#: gui/src/onboarding.rs:113 gui/src/panes.rs:161
+#: gui/src/onboarding.rs:123 gui/src/panes.rs:168
 msgid "Switch on"
 msgstr "オンにする"
 
-#: gui/src/onboarding.rs:122 gui/src/panes.rs:531
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1076
 msgid "sudo in a terminal"
 msgstr "ターミナルの sudo"
 
-#: gui/src/onboarding.rs:122 gui/src/panes.rs:531
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1077
 msgid ""
 "sudo takes your face instead of the password. No match: you type the "
 "password as usual."
@@ -193,12 +177,12 @@ msgstr ""
 "sudo でパスワードの代わりに顔を使います。一致しなければ、いつも通りパスワード"
 "を入力します。"
 
-#: gui/src/onboarding.rs:128 gui/src/panes.rs:227 gui/src/panes.rs:536
-#: src/main.rs:303
+#: gui/src/onboarding.rs:138 gui/src/panes.rs:234 gui/src/panes.rs:538
+#: gui/src/preview.rs:1025 src/main.rs:303
 msgid "Admin prompts"
 msgstr "管理者の認証"
 
-#: gui/src/onboarding.rs:129 gui/src/panes.rs:537
+#: gui/src/onboarding.rs:139 gui/src/panes.rs:539 gui/src/preview.rs:1026
 msgid ""
 "The password windows of your desktop and apps, for example when you install "
 "software. No match: you type the password."
@@ -206,12 +190,12 @@ msgstr ""
 "デスクトップやアプリのパスワード画面です（ソフトウェアのインストール時な"
 "ど）。一致しなければパスワードを入力します。"
 
-#: gui/src/onboarding.rs:139 gui/src/panes.rs:231 gui/src/panes.rs:544
-#: src/main.rs:305
+#: gui/src/onboarding.rs:149 gui/src/panes.rs:238 gui/src/panes.rs:546
+#: gui/src/preview.rs:1056 src/main.rs:305
 msgid "Lock screens"
 msgstr "ロック画面"
 
-#: gui/src/onboarding.rs:140
+#: gui/src/onboarding.rs:150
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
 "empty field to scan."
@@ -219,11 +203,11 @@ msgstr ""
 "ロック画面はパスワードの確認で顔を受け付けます。空の欄で Enter を押すとスキャ"
 "ンします。"
 
-#: gui/src/onboarding.rs:152
+#: gui/src/onboarding.rs:162
 msgid "Where should your face count?"
 msgstr "顔をどこで使いますか？"
 
-#: gui/src/onboarding.rs:153
+#: gui/src/onboarding.rs:163
 msgid ""
 "The lock screen always takes it. The password always works too. You can "
 "change all of this later."
@@ -231,90 +215,90 @@ msgstr ""
 "ロック画面では常に使えます。パスワードも常に使えます。これらはすべてあとで変"
 "更できます。"
 
-#: gui/src/onboarding.rs:156
+#: gui/src/onboarding.rs:166
 msgid "Turn on face unlock"
 msgstr "顔認証をオンにする"
 
-#: gui/src/onboarding.rs:166
+#: gui/src/onboarding.rs:176
 msgid "Almost done"
 msgstr "もう少しで完了"
 
-#: gui/src/onboarding.rs:166 gui/src/setup.rs:400
+#: gui/src/onboarding.rs:176 gui/src/setup.rs:400
 msgid "You are all set"
 msgstr "準備ができました"
 
-#: gui/src/onboarding.rs:167
+#: gui/src/onboarding.rs:177
 msgid ""
 "Lock the screen and look at it to try it out. Everything else is in the "
 "settings."
 msgstr "画面をロックして見つめると試せます。そのほかはすべて設定にあります。"
 
-#: gui/src/onboarding.rs:170
+#: gui/src/onboarding.rs:180
 msgid "Open the settings"
 msgstr "設定を開く"
 
-#: gui/src/panes.rs:21 src/main.rs:163 src/main.rs:276
+#: gui/src/panes.rs:22 gui/src/preview.rs:592 src/main.rs:163 src/main.rs:276
 msgid "on"
 msgstr "オン"
 
-#: gui/src/panes.rs:21 gui/src/panes.rs:242 gui/src/panes.rs:598
-#: src/main.rs:163 src/main.rs:276
+#: gui/src/panes.rs:22 gui/src/panes.rs:249 gui/src/panes.rs:600
+#: gui/src/preview.rs:592 src/main.rs:163 src/main.rs:276
 msgid "off"
 msgstr "オフ"
 
-#: gui/src/panes.rs:60
+#: gui/src/panes.rs:65
 msgid "Dismiss"
 msgstr "閉じる"
 
-#: gui/src/panes.rs:72 gui/src/ui.rs:42
+#: gui/src/panes.rs:77 gui/src/preview.rs:879 gui/src/ui.rs:42
 msgid "Try it"
 msgstr "試す"
 
-#: gui/src/panes.rs:106 gui/src/panes.rs:159 src/text.rs:22
+#: gui/src/panes.rs:110 gui/src/panes.rs:166 src/text.rs:22
 msgid "The face unlock service is not running."
 msgstr "顔認証サービスが動作していません。"
 
-#: gui/src/panes.rs:110
+#: gui/src/panes.rs:114
 msgid "Set up your face, then lock the screen and look at it."
 msgstr "顔を設定してから、画面をロックして見つめてください。"
 
-#: gui/src/panes.rs:112 src/actions.rs:140
+#: gui/src/panes.rs:116 src/actions.rs:140
 msgid "Face unlock is off. Your faces are kept; delete them under Faces."
 msgstr "顔認証はオフです。顔データは残っています。「顔」から削除できます。"
 
-#: gui/src/panes.rs:122 gui/src/panes.rs:147 src/main.rs:277
+#: gui/src/panes.rs:126 gui/src/panes.rs:154 src/main.rs:277
 msgid "Face unlock"
 msgstr "顔認証"
 
-#: gui/src/panes.rs:166 src/main.rs:312 src/text.rs:19
+#: gui/src/panes.rs:173 src/main.rs:312 src/text.rs:19
 msgid "The recognition models are missing. Reinstall the package."
 msgstr "認識モデルがありません。パッケージを再インストールしてください。"
 
-#: gui/src/panes.rs:169 src/main.rs:308
+#: gui/src/panes.rs:176 src/main.rs:308
 msgid "for %d more minutes, or until the password is used"
 msgstr "あと %d 分、またはパスワードが使われるまで"
 
-#: gui/src/panes.rs:170 src/main.rs:308
+#: gui/src/panes.rs:177 src/main.rs:308
 msgid "Paused"
 msgstr "一時停止中"
 
-#: gui/src/panes.rs:173
+#: gui/src/panes.rs:180
 msgid "No camera found."
 msgstr "カメラが見つかりません。"
 
-#: gui/src/panes.rs:173
+#: gui/src/panes.rs:180
 msgid "Connect a camera, or pick another one under Recognition."
 msgstr "カメラをつなぐか、「認識」で別のカメラを選んでください。"
 
-#: gui/src/panes.rs:183 src/main.rs:315
+#: gui/src/panes.rs:190 src/main.rs:315
 msgid "The lock screen agent is not running."
 msgstr "ロック画面エージェントが動いていません。"
 
-#: gui/src/panes.rs:185 gui/src/panes.rs:190 gui/src/trial.rs:133
+#: gui/src/panes.rs:192 gui/src/panes.rs:197 gui/src/trial.rs:143
 msgid "Start"
 msgstr "開始"
 
-#: gui/src/panes.rs:198 src/root.rs:125
+#: gui/src/panes.rs:205 src/root.rs:125
 msgid ""
 "No polkit agent is running, so no password window can open. Adding a face "
 "and the admin prompts need one."
@@ -322,61 +306,63 @@ msgstr ""
 "polkit エージェントが動いていないため、パスワードの画面を開けません。顔の追加"
 "と管理者の認証にはエージェントが必要です。"
 
-#: gui/src/panes.rs:199
+#: gui/src/panes.rs:206
 msgid "Install one in a terminal:"
 msgstr "ターミナルでインストールしてください："
 
-#: gui/src/panes.rs:210 src/main.rs:288
+#: gui/src/panes.rs:217 src/main.rs:288
 msgid "none set up yet"
 msgstr "まだ登録なし"
 
-#: gui/src/panes.rs:212 src/main.rs:291
+#: gui/src/panes.rs:219 src/main.rs:291
 msgid "all turned off"
 msgstr "すべてオフ"
 
-#: gui/src/panes.rs:219 src/main.rs:297
+#: gui/src/panes.rs:226 gui/src/preview.rs:868 src/main.rs:297
 msgid "none found"
 msgstr "見つかりません"
 
-#: gui/src/panes.rs:223 gui/src/panes.rs:377 gui/src/ui.rs:37 src/main.rs:288
+#: gui/src/panes.rs:230 gui/src/panes.rs:388 gui/src/ui.rs:37 src/main.rs:288
 #: src/main.rs:292
 msgid "Faces"
 msgstr "顔"
 
-#: gui/src/panes.rs:224 gui/src/panes.rs:618 gui/src/panes.rs:625
-#: src/main.rs:299
+#: gui/src/panes.rs:231 gui/src/panes.rs:618 gui/src/panes.rs:625
+#: gui/src/preview.rs:882 src/main.rs:299
 msgid "Camera"
 msgstr "カメラ"
 
-#: gui/src/panes.rs:225 gui/src/panes.rs:434 gui/src/ui.rs:38 src/main.rs:301
+#: gui/src/panes.rs:232 gui/src/panes.rs:445 gui/src/ui.rs:38 src/main.rs:301
 msgid "Lock screen"
 msgstr "ロック画面"
 
-#: gui/src/panes.rs:226 src/main.rs:302
+#: gui/src/panes.rs:233 src/main.rs:302
 msgid "sudo"
 msgstr "sudo"
 
-#: gui/src/panes.rs:233 gui/src/panes.rs:596 gui/src/panes.rs:598
+#: gui/src/panes.rs:240 gui/src/panes.rs:598 gui/src/panes.rs:600
+#: gui/src/preview.rs:930
 msgid "Photo check"
 msgstr "写真チェック"
 
-#: gui/src/panes.rs:234 src/main.rs:310
+#: gui/src/panes.rs:241 src/main.rs:310
 msgid "Last unlock"
 msgstr "最後のロック解除"
 
-#: gui/src/panes.rs:236
+#: gui/src/panes.rs:243
 msgid "At a glance"
 msgstr "概要"
 
-#: gui/src/panes.rs:241 gui/src/panes.rs:598 gui/src/panes.rs:611
+#: gui/src/panes.rs:248 gui/src/panes.rs:600 gui/src/panes.rs:611
+#: gui/src/preview.rs:828
 msgid "strict"
 msgstr "厳しい"
 
-#: gui/src/panes.rs:243 gui/src/panes.rs:598
+#: gui/src/panes.rs:250 gui/src/panes.rs:600
 msgid "basic"
 msgstr "基本"
 
-#: gui/src/panes.rs:256 src/main.rs:328
+#: gui/src/panes.rs:262 src/main.rs:328
 msgid "Add a face"
 msgstr "顔を追加"
 
@@ -396,7 +382,7 @@ msgstr "サンプル %s 件、学習 %s 件"
 msgid "New name:"
 msgstr "新しい名前:"
 
-#: gui/src/panes.rs:335 gui/src/panes.rs:472
+#: gui/src/panes.rs:335 gui/src/panes.rs:479
 msgid "Save"
 msgstr "保存"
 
@@ -412,20 +398,20 @@ msgstr "削除"
 msgid "Rename"
 msgstr "名前を変更"
 
-#: gui/src/panes.rs:369
+#: gui/src/panes.rs:371
 msgid "On"
 msgstr "オン"
 
-#: gui/src/panes.rs:377
+#: gui/src/panes.rs:388
 msgid "Changes ask for your password"
 msgstr "変更にはパスワードが必要です"
 
-#: gui/src/panes.rs:378
+#: gui/src/panes.rs:389
 msgid ""
 "A face is kept as numbers, not as a picture, and only root can read them."
 msgstr "顔は画像ではなく数値として保存され、root だけが読めます。"
 
-#: gui/src/panes.rs:427
+#: gui/src/panes.rs:438
 msgid ""
 "Scans when you come back to hyprlock, swaylock or face-unlock's own lock "
 "screen (`face-unlock lock`, with the bubble), and opens them. Other lock "
@@ -435,7 +421,7 @@ msgstr ""
 "き）に戻ってきたときにスキャンして開きます。ほかのロック画面は Enter でスキャ"
 "ンします。"
 
-#: gui/src/panes.rs:429
+#: gui/src/panes.rs:440
 msgid ""
 "Unlocks the lock screen when it sees your face. Off: only your password "
 "works there."
@@ -443,15 +429,15 @@ msgstr ""
 "顔を認識するとロック画面を解除します。オフ: ロック画面ではパスワードだけが使"
 "えます。"
 
-#: gui/src/panes.rs:436
+#: gui/src/panes.rs:447 gui/src/preview.rs:750
 msgid "Unlock with your face"
 msgstr "顔でロック解除"
 
-#: gui/src/panes.rs:440
+#: gui/src/panes.rs:451 gui/src/preview.rs:718
 msgid "Scan when you come back"
 msgstr "戻ってきたらスキャン"
 
-#: gui/src/panes.rs:441
+#: gui/src/panes.rs:452
 msgid ""
 "Scans when you press a key or move the mouse on the lock screen, and when "
 "the computer wakes up."
@@ -459,11 +445,11 @@ msgstr ""
 "ロック画面でキーを押すかマウスを動かしたとき、そしてコンピューターがスリープ"
 "から復帰したときにスキャンします。"
 
-#: gui/src/panes.rs:449
+#: gui/src/panes.rs:460 gui/src/preview.rs:728
 msgid "Scan right after locking"
 msgstr "ロック直後にスキャン"
 
-#: gui/src/panes.rs:450
+#: gui/src/panes.rs:461
 msgid ""
 "Scans as soon as the screen locks. Off by default: if you lock it yourself, "
 "it would unlock again right away."
@@ -471,35 +457,35 @@ msgstr ""
 "画面がロックされるとすぐにスキャンします。既定はオフ: 自分でロックすると、す"
 "ぐに解除されてしまうためです。"
 
-#: gui/src/panes.rs:460
+#: gui/src/panes.rs:471 gui/src/preview.rs:738
 msgid "face-unlock's"
 msgstr "face-unlock"
 
-#: gui/src/panes.rs:461
+#: gui/src/panes.rs:472
 msgid "not picked yet"
 msgstr "まだ選ばれていません"
 
-#: gui/src/panes.rs:462
+#: gui/src/panes.rs:473 gui/src/preview.rs:738
 msgid "yours"
 msgstr "今のもの"
 
-#: gui/src/panes.rs:464 gui/src/panes.rs:664
+#: gui/src/panes.rs:475 gui/src/panes.rs:664
 msgid "Choose…"
 msgstr "選ぶ…"
 
-#: gui/src/panes.rs:482
+#: gui/src/panes.rs:484 gui/src/preview.rs:746
 msgid "same as desktop"
 msgstr "デスクトップと同じ"
 
-#: gui/src/panes.rs:483 gui/src/panes.rs:504
+#: gui/src/panes.rs:485 gui/src/panes.rs:506 gui/src/preview.rs:746
 msgid "Wallpaper"
 msgstr "壁紙"
 
-#: gui/src/panes.rs:497 gui/src/panes.rs:514
+#: gui/src/panes.rs:499 gui/src/panes.rs:516 gui/src/preview.rs:738
 msgid "Which lock screen"
 msgstr "使うロック画面"
 
-#: gui/src/panes.rs:498
+#: gui/src/panes.rs:500
 msgid ""
 "face-unlock's lock screen shows the bubble, and you lock with `face-unlock "
 "lock`. Or keep yours: hyprlock then shows a line of text at the top."
@@ -508,7 +494,7 @@ msgstr ""
 "ます。またはお使いのものをそのまま使えます：その場合 hyprlock が上部に 1 行の"
 "テキストを表示します。"
 
-#: gui/src/panes.rs:505
+#: gui/src/panes.rs:507 gui/src/preview.rs:747
 msgid ""
 "The picture behind face-unlock's own lock screen. Empty: the one on your "
 "desktop. Or a file, a folder to take one from at random, or `none`."
@@ -516,15 +502,15 @@ msgstr ""
 "face-unlock 独自のロック画面の背景画像です。空欄：デスクトップの画像。または"
 "ファイル、ランダムに選ぶフォルダー、または `none`。"
 
-#: gui/src/panes.rs:508
+#: gui/src/panes.rs:510 gui/src/preview.rs:749
 msgid "Blur the wallpaper"
 msgstr "壁紙をぼかす"
 
-#: gui/src/panes.rs:508
+#: gui/src/panes.rs:510 gui/src/preview.rs:749
 msgid "Blurs the picture behind face-unlock's own lock screen."
 msgstr "face-unlock のロック画面の背景画像をぼかします。"
 
-#: gui/src/panes.rs:543
+#: gui/src/panes.rs:545 gui/src/preview.rs:1055
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
 "empty field to scan. Found here: %s."
@@ -532,11 +518,11 @@ msgstr ""
 "ロック画面のパスワード確認で顔が使えます。空の欄で Enter を押すとスキャンしま"
 "す。見つかったもの: %s。"
 
-#: gui/src/panes.rs:550
+#: gui/src/panes.rs:552 gui/src/preview.rs:1063
 msgid "In SSH sessions"
 msgstr "SSH セッションでも"
 
-#: gui/src/panes.rs:551
+#: gui/src/panes.rs:553 gui/src/preview.rs:1065
 msgid ""
 "sudo in an SSH session takes your face too, if you sit at this computer. Off "
 "by default: the person at the camera may not be the one typing."
@@ -544,24 +530,24 @@ msgstr ""
 "このコンピューターの前にいれば、SSH セッションの sudo でも顔を使います。既定"
 "はオフ: カメラの前の人が入力している人とは限らないためです。"
 
-#: gui/src/panes.rs:554 gui/src/ui.rs:39
+#: gui/src/panes.rs:556 gui/src/ui.rs:39
 msgid "Password prompts"
 msgstr "パスワードの入力画面"
 
-#: gui/src/panes.rs:554 gui/src/panes.rs:640
+#: gui/src/panes.rs:556 gui/src/panes.rs:640
 msgid "for all users, asks for your password"
 msgstr "全ユーザー共通、パスワードが必要"
 
-#: gui/src/panes.rs:563
+#: gui/src/panes.rs:565 gui/src/preview.rs:925
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr "まばたきするか、少し顔を動かす必要があります。印刷した写真も防げます。"
 
-#: gui/src/panes.rs:564
+#: gui/src/panes.rs:566 gui/src/preview.rs:926
 msgid "No check at all. Only for trying out a camera."
 msgstr "チェックしません。カメラを試すときだけ使ってください。"
 
-#: gui/src/panes.rs:565
+#: gui/src/panes.rs:567 gui/src/preview.rs:927
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
@@ -569,58 +555,59 @@ msgstr ""
 "スマホ、タブレット、光沢紙に映った写真を防ぎます。まばたきは不要です。つや消"
 "しの印刷写真は通ることがあります。"
 
-#: gui/src/panes.rs:568
+#: gui/src/panes.rs:570 gui/src/preview.rs:833
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 "誤認識は減りますが、眼鏡をかけているときや暗いときに認識されないことがありま"
 "す。"
 
-#: gui/src/panes.rs:569
+#: gui/src/panes.rs:571 gui/src/preview.rs:834
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "認識されやすくなりますが、あなたによく似た人も認識されやすくなります。"
 
-#: gui/src/panes.rs:570
+#: gui/src/panes.rs:572 gui/src/preview.rs:835
 msgid "The default. Right for most people."
 msgstr "既定値です。ほとんどの人に適しています。"
 
-#: gui/src/panes.rs:576
+#: gui/src/panes.rs:578
 msgid "automatic (%s)"
 msgstr "自動（%s）"
 
-#: gui/src/panes.rs:577
+#: gui/src/panes.rs:579
 msgid "automatic"
 msgstr "自動"
 
-#: gui/src/panes.rs:584
+#: gui/src/panes.rs:586
 msgid "(infrared)"
 msgstr "（赤外線）"
 
-#: gui/src/panes.rs:590 gui/src/panes.rs:662
+#: gui/src/panes.rs:592 gui/src/panes.rs:662
 msgid "(not connected)"
 msgstr "（未接続）"
 
-#: gui/src/panes.rs:592
+#: gui/src/panes.rs:594 gui/src/preview.rs:815
 msgid "%s seconds"
 msgstr "%s 秒"
 
-#: gui/src/panes.rs:601 gui/src/panes.rs:608
+#: gui/src/panes.rs:603 gui/src/panes.rs:608 gui/src/preview.rs:838
 msgid "How closely the face has to match"
 msgstr "顔の一致の厳しさ"
 
-#: gui/src/panes.rs:611
+#: gui/src/panes.rs:611 gui/src/preview.rs:829
 msgid "relaxed"
 msgstr "ゆるい"
 
-#: gui/src/panes.rs:611 gui/src/panes.rs:696
+#: gui/src/panes.rs:611 gui/src/panes.rs:689 gui/src/preview.rs:691
+#: gui/src/preview.rs:830
 msgid "normal"
 msgstr "標準"
 
-#: gui/src/panes.rs:616
+#: gui/src/panes.rs:616 gui/src/preview.rs:854
 msgid "Only when you look at the screen"
 msgstr "画面を見ているときだけ"
 
-#: gui/src/panes.rs:616
+#: gui/src/panes.rs:616 gui/src/preview.rs:855
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
@@ -628,7 +615,7 @@ msgstr ""
 "目を開けて画面を見ている必要があります。よそ見や居眠りの間にロック解除されま"
 "せん。"
 
-#: gui/src/panes.rs:626
+#: gui/src/panes.rs:626 gui/src/preview.rs:883
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
@@ -636,7 +623,7 @@ msgstr ""
 "「自動」は最初の通常のカメラを使います。変更したら顔を登録し直してください。"
 "赤外線カメラはライトをオンにする必要があります（linux-enable-ir-emitter）。"
 
-#: gui/src/panes.rs:634 gui/src/panes.rs:636
+#: gui/src/panes.rs:634 gui/src/panes.rs:636 gui/src/preview.rs:815
 msgid "How long a scan lasts"
 msgstr "スキャンの長さ"
 
@@ -644,11 +631,11 @@ msgstr "スキャンの長さ"
 msgid "How long the camera looks for your face before it gives up."
 msgstr "カメラが顔を探してからあきらめるまでの時間です。"
 
-#: gui/src/panes.rs:638
+#: gui/src/panes.rs:638 gui/src/preview.rs:891
 msgid "Learn from every unlock"
 msgstr "ロック解除のたびに学習"
 
-#: gui/src/panes.rs:638
+#: gui/src/panes.rs:638 gui/src/preview.rs:892
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
@@ -656,11 +643,11 @@ msgstr ""
 "確実に一致したとき、今の見た目を覚えます。髪型を変えたり眼鏡をかけたりして"
 "も、登録し直す必要はありません。"
 
-#: gui/src/panes.rs:639
+#: gui/src/panes.rs:639 gui/src/preview.rs:906
 msgid "Not when the lid is closed"
 msgstr "蓋を閉じているときは使わない"
 
-#: gui/src/panes.rs:639
+#: gui/src/panes.rs:639 gui/src/preview.rs:907
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
@@ -684,74 +671,74 @@ msgstr ""
 msgid "The bubble at the top of the screen shows what the camera is doing."
 msgstr "画面上部のバブルに、カメラの状態が表示されます。"
 
-#: gui/src/panes.rs:673 gui/src/ui.rs:41
+#: gui/src/panes.rs:668 gui/src/ui.rs:41
 msgid "Bubble"
 msgstr "バブル"
 
-#: gui/src/panes.rs:675
+#: gui/src/panes.rs:670 gui/src/preview.rs:683
 msgid "Show the bubble"
 msgstr "バブルを表示"
 
-#: gui/src/panes.rs:681
+#: gui/src/panes.rs:676 gui/src/preview.rs:684
 msgid "Style"
 msgstr "スタイル"
 
-#: gui/src/panes.rs:682
+#: gui/src/panes.rs:677
 msgid "A small pill with a lock that opens."
 msgstr "鍵が開く小さなピルです。"
 
-#: gui/src/panes.rs:682
+#: gui/src/panes.rs:677
 msgid "An island with a face that looks around, then rings and a tick."
 msgstr "あたりを見回す顔のアイランド。そのあとリングとチェックマークが出ます。"
 
-#: gui/src/panes.rs:684
+#: gui/src/panes.rs:679 gui/src/preview.rs:684
 msgid "island with the face"
 msgstr "顔つきアイランド"
 
-#: gui/src/panes.rs:684
+#: gui/src/panes.rs:679 gui/src/preview.rs:684
 msgid "small pill with a lock"
 msgstr "鍵つきの小さなピル"
 
-#: gui/src/panes.rs:693
+#: gui/src/panes.rs:686 gui/src/preview.rs:687
 msgid "Animation speed"
 msgstr "アニメーションの速さ"
 
-#: gui/src/panes.rs:694
+#: gui/src/panes.rs:687
 msgid "How fast the bubble moves."
 msgstr "バブルが動く速さです。"
 
-#: gui/src/panes.rs:696
+#: gui/src/panes.rs:689 gui/src/preview.rs:689
 msgid "slow"
 msgstr "遅い"
 
-#: gui/src/panes.rs:696
+#: gui/src/panes.rs:689 gui/src/preview.rs:690
 msgid "fast"
 msgstr "速い"
 
-#: gui/src/panes.rs:700
+#: gui/src/panes.rs:693 gui/src/preview.rs:685
 msgid "Screen"
 msgstr "画面"
 
-#: gui/src/panes.rs:700
+#: gui/src/panes.rs:693
 msgid ""
 "Where the bubble shows up: on the screen with the mouse pointer, or always "
 "on one screen."
 msgstr ""
 "バブルが表示される場所：マウスポインターのある画面、または常に同じ画面。"
 
-#: gui/src/panes.rs:704
+#: gui/src/panes.rs:697 gui/src/preview.rs:679
 msgid "Also for sudo and admin prompts"
 msgstr "sudo と管理者の認証でも表示"
 
-#: gui/src/panes.rs:705
+#: gui/src/panes.rs:698
 msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr "sudo や管理者の認証で顔をスキャンするときにもバブルを表示します。"
 
-#: gui/src/panes.rs:713
+#: gui/src/panes.rs:706 gui/src/preview.rs:674
 msgid "Quiet while the camera is in use"
 msgstr "カメラ使用中は表示しない"
 
-#: gui/src/panes.rs:714
+#: gui/src/panes.rs:707
 msgid ""
 "When another app uses the camera, for example in a video call, no bubble "
 "shows and you type your password as usual. Off: the bubble shows a camera "
@@ -759,6 +746,158 @@ msgid ""
 msgstr ""
 "ビデオ通話などで別のアプリがカメラを使っているときは、バブルを表示せず、いつ"
 "も通りパスワードを入力します。オフ: バブルに斜線の入ったカメラを表示します。"
+
+#: gui/src/preview.rs:488 gui/src/preview.rs:984 gui/src/preview.rs:1002
+#: pam/src/lib.rs:304
+msgid "Look at the camera to unlock."
+msgstr "カメラを見てロックを解除してください。"
+
+#: gui/src/preview.rs:651
+msgid "Preview"
+msgstr "プレビュー"
+
+#: gui/src/preview.rs:662
+msgid "What you see when your face unlocks the screen."
+msgstr "顔で画面のロックが解除されるときの表示です。"
+
+#: gui/src/preview.rs:664
+msgid "No bubble. Your face still unlocks the screen, you just do not see it."
+msgstr "バブルなし。顔で画面のロックは解除されますが、表示はされません。"
+
+#: gui/src/preview.rs:671
+msgid "Another app uses the camera: no bubble, and you type your password."
+msgstr ""
+"別のアプリがカメラを使用中: バブルは表示されず、パスワードを入力します。"
+
+#: gui/src/preview.rs:672
+msgid ""
+"Another app uses the camera: the bubble shows it, and you type your password."
+msgstr ""
+"別のアプリがカメラを使用中: バブルがそれを知らせ、パスワードを入力します。"
+
+#: gui/src/preview.rs:678
+msgid "sudo looks for your face, and the bubble shows it."
+msgstr "sudo が顔を探し、バブルがそれを表示します。"
+
+#: gui/src/preview.rs:678
+msgid "sudo looks for your face without the bubble. The terminal says so."
+msgstr "sudo はバブルなしで顔を探します。ターミナルにそう表示されます。"
+
+#: gui/src/preview.rs:715
+msgid "Only your password opens the lock screen."
+msgstr "パスワードだけがロック画面を開きます。"
+
+#: gui/src/preview.rs:722
+msgid "When you press a key or move the mouse, it looks for your face."
+msgstr "キーを押すかマウスを動かすと、顔を探します。"
+
+#: gui/src/preview.rs:724
+msgid "When you come back, it does not look. You type your password."
+msgstr "戻ってきても探しません。パスワードを入力します。"
+
+#: gui/src/preview.rs:732
+msgid ""
+"Right after locking it looks for your face, so the screen opens again while "
+"you sit there."
+msgstr "ロックした直後に顔を探すので、前に座ったままだと画面がまた開きます。"
+
+#: gui/src/preview.rs:734
+msgid "Right after locking it waits until you come back."
+msgstr "ロックした直後は、戻ってくるまで待ちます。"
+
+#: gui/src/preview.rs:750
+msgid "Your face opens the lock screen as soon as it is found."
+msgstr "顔が見つかるとすぐにロック画面が開きます。"
+
+#: gui/src/preview.rs:810
+msgid "gets in"
+msgstr "通過"
+
+#: gui/src/preview.rs:810
+msgid "stopped"
+msgstr "ブロック"
+
+#: gui/src/preview.rs:810
+msgid "maybe"
+msgstr "場合による"
+
+#: gui/src/preview.rs:816
+msgid ""
+"It looks for %s seconds. If it does not find you, you type your password."
+msgstr "%s 秒間探します。見つからなければ、パスワードを入力します。"
+
+#: gui/src/preview.rs:843 gui/src/preview.rs:896 gui/src/preview.rs:937
+msgid "Your face"
+msgstr "あなたの顔"
+
+#: gui/src/preview.rs:844
+msgid "With glasses or in bad light"
+msgstr "眼鏡や暗い場所"
+
+#: gui/src/preview.rs:845
+msgid "Somebody who looks like you"
+msgstr "あなたに似た人"
+
+#: gui/src/preview.rs:859
+msgid "Looking at the screen"
+msgstr "画面を見ている"
+
+#: gui/src/preview.rs:860
+msgid "Eyes closed or looking away"
+msgstr "目を閉じている・よそ見"
+
+#: gui/src/preview.rs:897
+msgid "New glasses or haircut"
+msgstr "新しい眼鏡や髪型"
+
+#: gui/src/preview.rs:904
+msgid "no scan"
+msgstr "スキャンしない"
+
+#: gui/src/preview.rs:904 gui/src/preview.rs:911
+msgid "scans"
+msgstr "スキャンする"
+
+#: gui/src/preview.rs:911
+msgid "Lid open"
+msgstr "蓋が開いている"
+
+#: gui/src/preview.rs:912
+msgid "Lid closed"
+msgstr "蓋が閉じている"
+
+#: gui/src/preview.rs:920
+msgid "after a blink"
+msgstr "まばたきの後"
+
+#: gui/src/preview.rs:935
+msgid "Photo on a phone"
+msgstr "スマホの写真"
+
+#: gui/src/preview.rs:936
+msgid "Printed photo"
+msgstr "印刷した写真"
+
+#: gui/src/preview.rs:980
+msgid "Off: you type your password."
+msgstr "オフ: パスワードを入力します。"
+
+#: gui/src/preview.rs:1004 paint/src/lockscreen.rs:202
+#: paint/src/lockscreen.rs:203
+msgid "Password"
+msgstr "パスワード"
+
+#: gui/src/preview.rs:1021
+msgid "An app wants to make changes"
+msgstr "アプリが変更を行おうとしています"
+
+#: gui/src/preview.rs:1048
+msgid "Press Enter on the empty field to scan."
+msgstr "空の欄で Enter を押すとスキャンします。"
+
+#: gui/src/preview.rs:1048 paint/src/lockscreen.rs:220
+msgid "Type your password"
+msgstr "パスワードを入力してください"
 
 #: gui/src/setup.rs:63
 msgid "Bring your face into the circle."
@@ -862,59 +1001,59 @@ msgstr "画面をロックして見つめると試せます。"
 msgid "Name (optional)"
 msgstr "名前（任意）"
 
-#: gui/src/setup.rs:447
+#: gui/src/setup.rs:441
 msgid "Finish now"
 msgstr "今すぐ完了"
 
-#: gui/src/setup.rs:451 gui/src/trial.rs:133
+#: gui/src/setup.rs:444 gui/src/trial.rs:143
 msgid "Try again"
 msgstr "もう一度"
 
-#: gui/src/setup.rs:460
+#: gui/src/setup.rs:448
 msgid "Done"
 msgstr "完了"
 
-#: gui/src/trial.rs:93 src/main.rs:204
+#: gui/src/trial.rs:103 src/main.rs:204
 msgid "Recognised. Now blink once, or turn your head a little."
 msgstr "認識しました。一度まばたきするか、少し顔を動かしてください。"
 
-#: gui/src/trial.rs:94 pam/src/lib.rs:308 src/main.rs:205
+#: gui/src/trial.rs:104 pam/src/lib.rs:308 src/main.rs:205
 msgid "Look at the screen."
 msgstr "画面を見てください。"
 
-#: gui/src/trial.rs:95 pam/src/lib.rs:309 src/main.rs:206
+#: gui/src/trial.rs:105 pam/src/lib.rs:309 src/main.rs:206
 msgid "Move closer to the camera."
 msgstr "カメラに近づいてください。"
 
-#: gui/src/trial.rs:96 pam/src/lib.rs:310 src/main.rs:207
+#: gui/src/trial.rs:106 pam/src/lib.rs:310 src/main.rs:207
 msgid "It is too dark to see your face."
 msgstr "暗すぎて顔が見えません。"
 
-#: gui/src/trial.rs:97 src/main.rs:201
+#: gui/src/trial.rs:107 src/main.rs:201
 msgid "Face found."
 msgstr "顔が見つかりました。"
 
-#: gui/src/trial.rs:98 src/main.rs:190
+#: gui/src/trial.rs:108 src/main.rs:190
 msgid "Look at the camera. Blink once, or turn your head a little."
 msgstr "カメラを見てください。一度まばたきするか、少し顔を動かしてください。"
 
-#: gui/src/trial.rs:104 src/main.rs:243
+#: gui/src/trial.rs:114 src/main.rs:243
 msgid "Recognised as %s (match %s) in %s ms."
 msgstr "%s として認識しました（一致度 %s、%s ミリ秒）。"
 
-#: gui/src/trial.rs:108 src/main.rs:228 src/main.rs:247
+#: gui/src/trial.rs:118 src/main.rs:228 src/main.rs:247
 msgid "blink"
 msgstr "まばたき"
 
-#: gui/src/trial.rs:109 src/main.rs:248
+#: gui/src/trial.rs:119 src/main.rs:248
 msgid "head turn"
 msgstr "顔の向き"
 
-#: gui/src/trial.rs:114 src/main.rs:252
+#: gui/src/trial.rs:124 src/main.rs:252
 msgid "Sign of life: %s"
 msgstr "生体反応: %s"
 
-#: gui/src/trial.rs:121 src/main.rs:261
+#: gui/src/trial.rs:131 src/main.rs:261
 msgid ""
 "That was too many tries. Face unlock is paused until you unlock with your "
 "password."
@@ -922,78 +1061,78 @@ msgstr ""
 "試行回数が多すぎます。パスワードでロックを解除するまで、顔認証は一時停止しま"
 "す。"
 
-#: gui/src/trial.rs:126
+#: gui/src/trial.rs:136
 msgid ""
 "Look at the camera and see what it sees. Every check shows how close it is."
 msgstr ""
 "カメラを見て、カメラに何が見えているか確かめます。各チェックはどれだけ近いか"
 "を示します。"
 
-#: gui/src/trial.rs:131
+#: gui/src/trial.rs:141
 msgid "Stop"
 msgstr "停止"
 
-#: gui/src/trial.rs:162
+#: gui/src/trial.rs:172
 msgid "What the checks see"
 msgstr "チェックが見ているもの"
 
-#: gui/src/trial.rs:164
+#: gui/src/trial.rs:174
 msgid "Match"
 msgstr "一致"
 
-#: gui/src/trial.rs:164
+#: gui/src/trial.rs:174
 msgid "How much the face looks like yours. Over about 0.5 counts."
 msgstr "顔があなたにどれだけ似ているか。約 0.5 を超えると認められます。"
 
-#: gui/src/trial.rs:165
+#: gui/src/trial.rs:175
 msgid "Turn of the head"
 msgstr "頭の向き"
 
-#: gui/src/trial.rs:165
+#: gui/src/trial.rs:175
 msgid "Up to 25 degrees counts as looking at the screen."
 msgstr "25 度までは画面を見ているとみなされます。"
 
-#: gui/src/trial.rs:166
+#: gui/src/trial.rs:176
 msgid "Eyes open"
 msgstr "目が開いている"
 
-#: gui/src/trial.rs:166
+#: gui/src/trial.rs:176
 msgid "Closed eyes do not unlock."
 msgstr "目を閉じていると解除されません。"
 
-#: gui/src/trial.rs:167
+#: gui/src/trial.rs:177
 msgid "Depth"
 msgstr "奥行き"
 
-#: gui/src/trial.rs:167
+#: gui/src/trial.rs:177
 msgid "A head that turns shows its nose sticking out. A photo cannot."
 msgstr "頭を回すと鼻が出っ張って見えます。写真にはできません。"
 
-#: gui/src/trial.rs:168
+#: gui/src/trial.rs:178
 msgid "Blink"
 msgstr "まばたき"
 
-#: gui/src/trial.rs:168
+#: gui/src/trial.rs:178
 msgid "A blink is a sign of life too."
 msgstr "まばたきも生きている証です。"
 
-#: gui/src/trial.rs:169
+#: gui/src/trial.rs:179
 msgid "Glare"
 msgstr "反射"
 
-#: gui/src/trial.rs:169
+#: gui/src/trial.rs:179
 msgid "A screen or glossy paper throws back light. Full means a fake."
 msgstr "画面や光沢紙は光を反射します。満タンは偽物を意味します。"
 
-#: gui/src/trial.rs:170
+#: gui/src/trial.rs:180
 msgid "Edge of a device"
 msgstr "機器の縁"
 
-#: gui/src/trial.rs:170
+#: gui/src/trial.rs:180
 msgid "The frame of a phone or a tablet around the face. Full means a fake."
 msgstr "顔の周りのスマートフォンやタブレットの枠。満タンは偽物を意味します。"
 
-#: gui/src/trial.rs:173
+#: gui/src/trial.rs:183
 msgid "The terminal shows the same with `face-unlock test`."
 msgstr "ターミナルでは `face-unlock test` で同じものが表示されます。"
 
@@ -1001,30 +1140,34 @@ msgstr "ターミナルでは `face-unlock test` で同じものが表示され�
 msgid "Overview"
 msgstr "概要"
 
-#: gui/src/ui.rs:349 src/actions.rs:71 src/actions.rs:122 src/actions.rs:162
+#: gui/src/ui.rs:361 src/actions.rs:71 src/actions.rs:122 src/actions.rs:162
 #: src/actions.rs:171 src/root.rs:138
 msgid "Could not save the setting."
 msgstr "設定を保存できませんでした。"
 
-#: gui/src/ui.rs:407 src/actions.rs:78
+#: gui/src/ui.rs:421 src/actions.rs:78
 msgid "Could not start the lock screen agent."
 msgstr "ロック画面エージェントを起動できませんでした。"
 
-#: gui/src/ui.rs:415
+#: gui/src/ui.rs:429
 msgid "The polkit agent is running. Password windows open now."
 msgstr "polkit エージェントが動いています。これでパスワードの画面が開きます。"
 
-#: gui/src/view.rs:113
+#: gui/src/view.rs:134
 msgid "Face Unlock"
 msgstr "顔認証"
 
-#: gui/src/view.rs:184
+#: gui/src/view.rs:138
 msgid "Version %s"
 msgstr "バージョン %s"
 
-#: pam/src/lib.rs:304
-msgid "Look at the camera to unlock."
-msgstr "カメラを見てロックを解除してください。"
+#: paint/src/lockscreen.rs:46
+msgid "Wrong password"
+msgstr "パスワードが違います"
+
+#: paint/src/lockscreen.rs:218
+msgid "Look at the camera or type your password"
+msgstr "カメラを見るか、パスワードを入力してください"
 
 #: pam/src/lib.rs:307
 msgid "Blink, or turn your head a little."

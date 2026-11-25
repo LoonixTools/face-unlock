@@ -242,6 +242,10 @@ pub struct Ui {
     /// The app icon, large, for the welcome.
     pub logo_big: Option<rune::Image>,
     pub wallpapers: Vec<(String, rune::Image)>,
+    /// What the setting changed last does, played above the pane.
+    pub preview: crate::preview::Preview,
+    /// That setting.
+    pub focus: Option<&'static str>,
 }
 
 impl Ui {
@@ -250,6 +254,7 @@ impl Ui {
         let lock_pick = if snap.cfg.lock_screen_style.is_empty() { "own".into() } else { snap.cfg.lock_screen_style.clone() };
         let screen_pick = if snap.cfg.bubble_screen.is_empty() { "auto".into() } else { snap.cfg.bubble_screen.clone() };
         let places = [snap.cfg.sudo, snap.cfg.polkit, snap.cfg.lock_screens];
+        let preview = crate::preview::Preview::new(host.clone());
         Ui {
             mode,
             step: Step::Welcome,
@@ -274,6 +279,8 @@ impl Ui {
             logo: None,
             logo_big: None,
             wallpapers: vec![],
+            preview,
+            focus: None,
         }
     }
 
@@ -305,6 +312,7 @@ impl Ui {
 
     pub fn show_pane(&mut self, pane: Pane) {
         self.pane = pane;
+        self.focus = None;
         self.open = None;
         self.rename = None;
         self.confirm = None;
@@ -348,6 +356,7 @@ impl Ui {
     /// One of this user's settings. Written at once: the file is theirs.
     pub fn set_user(&mut self, key: &'static str, value: String) {
         self.open = None;
+        self.focus = Some(key);
         if let Err(e) = config::set_user(key, &value) {
             self.notices = vec![Notice::Bad(format!("{} {e}", tr("Could not save the setting.")))];
             return;
@@ -367,6 +376,7 @@ impl Ui {
 
     /// A system setting: through root, which asks for the password.
     pub fn set_sys(&mut self, key: &'static str, value: String) {
+        self.focus = Some(key);
         if self.snap.sys.get(key, "") == value {
             self.open = None;
             return;
@@ -380,6 +390,7 @@ impl Ui {
 
     /// sudo, polkit-1 or lockscreens, through root.
     pub fn set_pam(&mut self, service: &'static str, on: bool) {
+        self.focus = Some(service);
         self.run(service, move || actions::set_pam(Ask::Dialog, service, on).map(|_| vec![]));
     }
 
@@ -440,6 +451,7 @@ impl Ui {
     }
 
     pub fn set_lock_style(&mut self, style: String) {
+        self.focus = Some("LockScreenStyle");
         self.lock_pick = style.clone();
         let notices = actions::lock_style_set(&style);
         self.notices = notices;

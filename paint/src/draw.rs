@@ -312,7 +312,7 @@ pub enum Align {
 /// The size of `text` laid out in `width` points.
 pub fn measure(text: &str, size: f32, weight: u16, width: Option<f32>) -> (f32, f32) {
     let mut f = fonts().lock().unwrap_or_else(|e| e.into_inner());
-    let buffer = layout(&mut f.system, text, size, weight, width, Align::Left, 1.0);
+    let buffer = layout(&mut f.system, text, size, weight, width, Align::Left, 1.0, false);
     let mut w = 0f32;
     let mut h = 0f32;
     for run in buffer.layout_runs() {
@@ -322,11 +322,13 @@ pub fn measure(text: &str, size: f32, weight: u16, width: Option<f32>) -> (f32, 
     (w, h)
 }
 
-fn layout(system: &mut cosmic_text::FontSystem, text: &str, size: f32, weight: u16, width: Option<f32>, align: Align, scale: f32) -> cosmic_text::Buffer {
+#[allow(clippy::too_many_arguments)]
+fn layout(system: &mut cosmic_text::FontSystem, text: &str, size: f32, weight: u16, width: Option<f32>, align: Align, scale: f32, mono: bool) -> cosmic_text::Buffer {
     use cosmic_text::{Attrs, Buffer, Family, Metrics, Shaping, Weight};
     let mut buffer = Buffer::new(system, Metrics::new(size * scale, size * 1.3 * scale));
     buffer.set_size(width.map(|w| w * scale), None);
-    let attrs = Attrs::new().family(Family::SansSerif).weight(Weight(weight));
+    let family = if mono { Family::Monospace } else { Family::SansSerif };
+    let attrs = Attrs::new().family(family).weight(Weight(weight));
     let align = (align == Align::Center).then_some(cosmic_text::Align::Center);
     buffer.set_text(text, &attrs, Shaping::Advanced, align);
     buffer.shape_until_scroll(system, false);
@@ -337,6 +339,16 @@ fn layout(system: &mut cosmic_text::FontSystem, text: &str, size: f32, weight: u
 /// when given (wrapped, and centred with Align::Center).
 #[allow(clippy::too_many_arguments)]
 pub fn text(cv: &mut Canvas, text: &str, x: f64, y: f64, size: f32, weight: u16, width: Option<f32>, align: Align, c: Rgb, alpha: f64) {
+    draw_text(cv, text, x, y, size, weight, width, align, c, alpha, false);
+}
+
+/// A line in the monospace font, as a terminal shows it.
+pub fn mono(cv: &mut Canvas, text: &str, x: f64, y: f64, size: f32, c: Rgb, alpha: f64) {
+    draw_text(cv, text, x, y, size, 400, None, Align::Left, c, alpha, true);
+}
+
+#[allow(clippy::too_many_arguments)]
+fn draw_text(cv: &mut Canvas, text: &str, x: f64, y: f64, size: f32, weight: u16, width: Option<f32>, align: Align, c: Rgb, alpha: f64, mono: bool) {
     if text.is_empty() || alpha <= 0.001 {
         return;
     }
@@ -346,7 +358,7 @@ pub fn text(cv: &mut Canvas, text: &str, x: f64, y: f64, size: f32, weight: u16,
     let a = (alpha as f32 * cv.alpha).clamp(0.0, 1.0);
     let mut guard = fonts().lock().unwrap_or_else(|e| e.into_inner());
     let Fonts { system, cache } = &mut *guard;
-    let mut buffer = layout(system, text, size, weight, width, align, scale);
+    let mut buffer = layout(system, text, size, weight, width, align, scale, mono);
     let (pw, ph) = (cv.pixmap.width() as i32, cv.pixmap.height() as i32);
     let pixels = cv.pixmap.pixels_mut();
     buffer.draw(system, cache, cosmic_text::Color::rgb(c[0], c[1], c[2]), |gx, gy, gw, gh, col| {

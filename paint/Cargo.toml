@@ -1,5 +1,6 @@
 # face-unlock-paint: how the bubble and face-unlock's own lock screen look,
-# drawn with tiny-skia. The agent puts them on screen.
+# drawn with tiny-skia. The agent puts them on screen, the window shows them
+# as a preview of the settings.
 [package]
 name = "face-unlock-paint"
 description = "The bubble and the lock screen of face-unlock, drawn"

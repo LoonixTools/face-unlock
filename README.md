@@ -119,12 +119,20 @@ and look at it.
 <details>
 <summary>Settings</summary>
 
+A preview at the top of a page shows what a setting does before it happens, on a small copy of
+your desktop with your wallpaper: the bubble moves at the speed you pick, the lock screen opens the
+way it will, and small pictures show who gets in.
+
+<p align="center">
+  <img src="res/screenshots/bubble-page.png" alt="The Bubble page: a small desktop with the bubble at the top, moving at its real speed, above the bubble's settings" width="620">
+</p>
+
 <p align="center">
   <img src="res/screenshots/faces.png" alt="The Faces page: two faces, each with a switch, Rename and Delete" width="620">
 </p>
 
 <p align="center">
-  <img src="res/screenshots/recognition.png" alt="The Recognition page: the camera, the photo check and how strict it is" width="620">
+  <img src="res/screenshots/recognition.png" alt="The Recognition page: a preview of who gets past the photo check, above the camera, the photo check and how strict it is" width="620">
 </p>
 
 <p align="center">

@@ -1028,11 +1028,13 @@ name = "face-unlock-gui"
 version = "3.0.0"
 dependencies = [
  "face-unlock",
+ "face-unlock-paint",
  "libc",
  "rune",
  "rune-kit",
  "rune-theme-opencode",
  "serde_json",
+ "tiny-skia",
  "zune-jpeg",
 ]
 

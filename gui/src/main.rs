@@ -14,6 +14,7 @@ mod controls;
 mod icons;
 mod onboarding;
 mod panes;
+mod preview;
 mod setup;
 mod trial;
 mod ui;
@@ -166,6 +167,10 @@ fn on_close(s: &mut Ui, tx: &mut Tx) {
 }
 
 fn main() {
+    // Day and month names in the user's language, for the lock screen in
+    // the preview.
+    // SAFETY: called before any other thread runs.
+    unsafe { libc::setlocale(libc::LC_TIME, c"".as_ptr()) };
     let args: Vec<String> = std::env::args().skip(1).collect();
     let has = |a: &str| args.iter().any(|x| x == a);
     let value = |a: &str| args.windows(2).find(|w| w[0] == a).map(|w| w[1].clone());
