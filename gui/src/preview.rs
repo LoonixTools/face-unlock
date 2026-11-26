@@ -780,16 +780,16 @@ fn bubble_pane(ui: &Ui) -> Shown {
                 (Some(_), true) => tr("Another app uses the camera: no bubble, and you type your password."),
                 (Some(_), false) => tr("Another app uses the camera: the bubble shows it, and you type your password."),
             };
-            Shown { title: heading(tr("Quiet while the camera is in use"), on_off(quiet)), caption: caption.into(), stage: Content::Story(Story::CameraBusy(bubble.filter(|_| !quiet))) }
+            Shown { title: heading(tr("Hide when camera is in use"), on_off(quiet)), caption: caption.into(), stage: Content::Story(Story::CameraBusy(bubble.filter(|_| !quiet))) }
         }
         "BubbleForPrompts" => {
             let on = user_on(ui, key, true);
             let caption = if bubble.is_some() && on { tr("sudo looks for your face, and the bubble shows it.") } else { tr("sudo looks for your face without the bubble. The terminal says so.") };
-            Shown { title: heading(tr("Also for sudo and admin prompts"), on_off(on)), caption: caption.into(), stage: Content::Story(Story::Sudo(bubble.filter(|_| on))) }
+            Shown { title: heading(tr("Show for sudo and admin prompts"), on_off(on)), caption: caption.into(), stage: Content::Story(Story::Sudo(bubble.filter(|_| on))) }
         }
         _ => {
             let title = match key {
-                "Bubble" => heading(tr("Show the bubble"), on_off(bubble.is_some())),
+                "Bubble" => heading(tr("Show bubble"), on_off(bubble.is_some())),
                 "BubbleStyle" => heading(tr("Style"), if s.cfg.bubble_style == "minimal" { tr("small pill with a lock") } else { tr("island with the face") }),
                 "BubbleScreen" => heading(tr("Screen"), &if s.cfg.bubble_screen.is_empty() { tr("follows the mouse").to_string() } else { s.cfg.bubble_screen.clone() }),
                 _ => heading(
@@ -824,7 +824,7 @@ fn lock_pane(ui: &Ui) -> Shown {
     let off = tr("Only your password opens the lock screen.");
     let (title, caption) = match key {
         "ScanOnWake" => (
-            heading(tr("Scan when you come back"), on_off(wake)),
+            heading(tr("Scan on wake"), on_off(wake)),
             if !face {
                 off
             } else if wake {
@@ -855,8 +855,8 @@ fn lock_pane(ui: &Ui) -> Shown {
             heading(tr("Wallpaper"), if s.cfg.lock_wallpaper.is_empty() { tr("same as desktop") } else { &s.cfg.lock_wallpaper }),
             tr("The picture behind face-unlock's own lock screen. Empty: the one on your desktop. Or a file, a folder to take one from at random, or `none`."),
         ),
-        "LockBlur" => (heading(tr("Blur the wallpaper"), on_off(s.cfg.lock_blur)), tr("Blurs the picture behind face-unlock's own lock screen.")),
-        _ => (heading(tr("Unlock with your face"), on_off(face)), if face { tr("Your face opens the lock screen as soon as it is found.") } else { off }),
+        "LockBlur" => (heading(tr("Blur wallpaper"), on_off(s.cfg.lock_blur)), tr("Blurs the picture behind face-unlock's own lock screen.")),
+        _ => (heading(tr("Unlock with face"), on_off(face)), if face { tr("Your face opens the lock screen as soon as it is found.") } else { off }),
     };
     Shown { title, caption: caption.into(), stage: Content::Story(Story::Lock(lock)) }
 }
@@ -955,7 +955,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
         "ScanSeconds" => {
             let secs: u32 = s.sys.get("ScanSeconds", "5").parse().unwrap_or(5);
             Shown {
-                title: heading(tr("How long a scan lasts"), &trf("%s seconds", &[&secs])),
+                title: heading(tr("Scan time"), &trf("%s seconds", &[&secs])),
                 caption: trf("It looks for %s seconds. If it does not find you, you type your password.", &[&secs]),
                 stage: Content::Story(Story::Timeout(style(ui), secs)),
             }
@@ -978,7 +978,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
                 _ => tr("The default. Right for most people."),
             };
             Shown {
-                title: heading(tr("How closely the face has to match"), label),
+                title: heading(tr("Strictness"), label),
                 caption: caption.into(),
                 stage: Content::Picture(tiles(
                     p,
@@ -994,7 +994,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
             let on = sys_on(ui, key, true);
             let away = if on { (Verdict::Out, no) } else { (Verdict::In, yes) };
             Shown {
-                title: heading(tr("Only when you look at the screen"), on_off(on)),
+                title: heading(tr("Require attention"), on_off(on)),
                 caption: tr("Your eyes have to be open and on the screen. So it does not unlock while you look away or sleep.").into(),
                 stage: Content::Picture(tiles(
                     p,
@@ -1031,7 +1031,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
             let on = sys_on(ui, key, true);
             let new_look = if on { (Verdict::In, yes) } else { (Verdict::Maybe, maybe) };
             Shown {
-                title: heading(tr("Learn from every unlock"), on_off(on)),
+                title: heading(tr("Adapt to changes"), on_off(on)),
                 caption: tr("After a sure match it keeps how you look now. So a new haircut or glasses need no new setup.").into(),
                 stage: Content::Picture(tiles(
                     p,
@@ -1046,7 +1046,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
             let on = sys_on(ui, key, true);
             let closed = if on { (Verdict::Skip, tr("no scan")) } else { (Verdict::Maybe, tr("scans anyway")) };
             Shown {
-                title: heading(tr("Not when the lid is closed"), on_off(on)),
+                title: heading(tr("Pause when lid is closed"), on_off(on)),
                 caption: tr("No scan while the laptop is closed, for example at a desk with an external screen.").into(),
                 stage: Content::Picture(tiles(
                     p,
@@ -1070,7 +1070,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
                 _ => tr("Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through."),
             };
             Shown {
-                title: heading(tr("Photo check"), crate::panes::liveness_label(level)),
+                title: heading(tr("Anti-spoofing"), crate::panes::liveness_label(level)),
                 caption: caption.into(),
                 stage: Content::Picture(tiles(
                     p,
@@ -1203,7 +1203,7 @@ fn prompts_pane(ui: &Ui, p: Paint) -> Shown {
             let host = std::fs::read_to_string("/etc/hostname").map(|h| h.trim().to_string()).unwrap_or_else(|_| "pc".into());
             let lines = sudo_lines(on && s.pam.sudo, vec![(format!("$ ssh {login}@{host}"), white)]);
             Shown {
-                title: heading(tr("In SSH sessions"), on_off(on)),
+                title: heading(tr("Over SSH"), on_off(on)),
                 caption: if on {
                     tr("sudo in an SSH session takes your face too, if you sit at this computer. Off by default: the person at the camera may not be the one typing.")
                 } else {
@@ -1216,7 +1216,7 @@ fn prompts_pane(ui: &Ui, p: Paint) -> Shown {
         _ => {
             let on = s.pam.sudo;
             Shown {
-                title: heading(tr("sudo in a terminal"), on_off(on)),
+                title: heading(tr("Terminal (sudo)"), on_off(on)),
                 caption: if on { tr("sudo takes your face instead of the password. No match: you type the password as usual.") } else { off }.into(),
                 stage: Content::Picture(terminal(p, &sudo_lines(on, vec![]))),
             }

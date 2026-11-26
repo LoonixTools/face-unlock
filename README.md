@@ -132,7 +132,7 @@ way it will, and small pictures show who gets in.
 </p>
 
 <p align="center">
-  <img src="res/screenshots/recognition.png" alt="The Recognition page: a preview of who gets past the photo check, above the camera, the photo check and how strict it is" width="620">
+  <img src="res/screenshots/recognition.png" alt="The Recognition page: small pictures of what gets in, above the anti-spoofing, strictness and attention settings" width="620">
 </p>
 
 <p align="center">
@@ -175,7 +175,7 @@ It is a convenience upgrade, not extra security. Your webcam only sees a flat pi
 it cannot always differentiate your face from a good fake. But the tool does everything in its power to prevent that:
 
 - Photos and videos on a phone, tablet or glossy screen are caught.
-- A matte printed photo is caught when the photo check is set to *strict*.
+- A matte printed photo is caught when **Anti-spoofing** is set to *strict*.
 
 But a video of you on a big matte screen could get in.
 

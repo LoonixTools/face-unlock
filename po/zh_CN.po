@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-11-26 15:00+0100\n"
+"POT-Creation-Date: 2026-11-26 14:26+0100\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Chinese (simplified)\n"
@@ -97,7 +97,7 @@ msgstr "两者都接受你的脸。之后可以在“锁屏”中更改。"
 msgid "Use this one"
 msgstr "用这个"
 
-#: gui/src/choice.rs:219 gui/src/panes.rs:658 gui/src/preview.rs:794
+#: gui/src/choice.rs:219 gui/src/panes.rs:650 gui/src/preview.rs:794
 msgid "follows the mouse"
 msgstr "跟随鼠标"
 
@@ -157,37 +157,31 @@ msgstr "继续"
 msgid "Switch on"
 msgstr "开启"
 
-#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1219
-msgid "sudo in a terminal"
-msgstr "终端中的 sudo"
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:529 gui/src/preview.rs:1219
+msgid "Terminal (sudo)"
+msgstr "终端 (sudo)"
 
-#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1220
-msgid ""
-"sudo takes your face instead of the password. No match: you type the "
-"password as usual."
-msgstr "sudo 用你的脸代替密码。不匹配时，照常输入密码。"
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:529
+msgid "Your face instead of the password for sudo."
+msgstr "sudo 用你的脸代替密码。"
 
-#: gui/src/onboarding.rs:138 gui/src/panes.rs:234 gui/src/panes.rs:538
+#: gui/src/onboarding.rs:138 gui/src/panes.rs:234 gui/src/panes.rs:534
 #: gui/src/preview.rs:1168 src/main.rs:303
 msgid "Admin prompts"
 msgstr "管理员授权"
 
-#: gui/src/onboarding.rs:139 gui/src/panes.rs:539 gui/src/preview.rs:1169
-msgid ""
-"The password windows of your desktop and apps, for example when you install "
-"software. No match: you type the password."
-msgstr "桌面和应用的密码窗口，例如安装软件时。不匹配时，输入密码即可。"
+#: gui/src/onboarding.rs:139 gui/src/panes.rs:535
+msgid "Password windows, for example when installing apps."
+msgstr "密码窗口，例如安装应用时。"
 
-#: gui/src/onboarding.rs:149 gui/src/panes.rs:238 gui/src/panes.rs:546
+#: gui/src/onboarding.rs:149 gui/src/panes.rs:238 gui/src/panes.rs:542
 #: gui/src/preview.rs:1199 src/main.rs:305
 msgid "Lock screens"
 msgstr "锁屏"
 
 #: gui/src/onboarding.rs:150
-msgid ""
-"The lock screen takes your face in its password check. Press Enter on the "
-"empty field to scan."
-msgstr "锁屏在检查密码时接受你的脸。在空的输入框中按 Enter 即可扫描。"
+msgid "Enter on the empty field scans."
+msgstr "在空白框中按 Enter 即开始扫描。"
 
 #: gui/src/onboarding.rs:162
 msgid "Where should your face count?"
@@ -225,7 +219,7 @@ msgstr "打开设置"
 msgid "on"
 msgstr "开"
 
-#: gui/src/panes.rs:22 gui/src/panes.rs:249 gui/src/panes.rs:600
+#: gui/src/panes.rs:22 gui/src/panes.rs:249 gui/src/panes.rs:596
 #: gui/src/preview.rs:701 src/main.rs:163 src/main.rs:276
 msgid "off"
 msgstr "关"
@@ -310,12 +304,12 @@ msgstr "未找到"
 msgid "Faces"
 msgstr "人脸"
 
-#: gui/src/panes.rs:231 gui/src/panes.rs:618 gui/src/panes.rs:625
+#: gui/src/panes.rs:231 gui/src/panes.rs:614 gui/src/panes.rs:621
 #: gui/src/preview.rs:1025 src/main.rs:299
 msgid "Camera"
 msgstr "摄像头"
 
-#: gui/src/panes.rs:232 gui/src/panes.rs:445 gui/src/ui.rs:38 src/main.rs:301
+#: gui/src/panes.rs:232 gui/src/panes.rs:441 gui/src/ui.rs:38 src/main.rs:301
 msgid "Lock screen"
 msgstr "锁屏"
 
@@ -323,10 +317,10 @@ msgstr "锁屏"
 msgid "sudo"
 msgstr "sudo"
 
-#: gui/src/panes.rs:240 gui/src/panes.rs:598 gui/src/panes.rs:600
+#: gui/src/panes.rs:240 gui/src/panes.rs:594 gui/src/panes.rs:596
 #: gui/src/preview.rs:1073
-msgid "Photo check"
-msgstr "照片检测"
+msgid "Anti-spoofing"
+msgstr "防照片欺骗"
 
 #: gui/src/panes.rs:241 src/main.rs:310
 msgid "Last unlock"
@@ -336,12 +330,12 @@ msgstr "上次解锁"
 msgid "At a glance"
 msgstr "一览"
 
-#: gui/src/panes.rs:248 gui/src/panes.rs:600 gui/src/panes.rs:611
+#: gui/src/panes.rs:248 gui/src/panes.rs:596 gui/src/panes.rs:607
 #: gui/src/preview.rs:971
 msgid "strict"
 msgstr "严格"
 
-#: gui/src/panes.rs:250 gui/src/panes.rs:600
+#: gui/src/panes.rs:250 gui/src/panes.rs:596
 msgid "basic"
 msgstr "基础"
 
@@ -365,7 +359,7 @@ msgstr "%s 个样本，已学习 %s 个"
 msgid "New name:"
 msgstr "新名称："
 
-#: gui/src/panes.rs:335 gui/src/panes.rs:479
+#: gui/src/panes.rs:335 gui/src/panes.rs:475
 msgid "Save"
 msgstr "保存"
 
@@ -394,320 +388,262 @@ msgid ""
 "A face is kept as numbers, not as a picture, and only root can read them."
 msgstr "人脸以数字而不是图片保存，只有 root 能读取。"
 
-#: gui/src/panes.rs:438
-msgid ""
-"Scans when you come back to hyprlock, swaylock or face-unlock's own lock "
-"screen (`face-unlock lock`, with the bubble), and opens them. Other lock "
-"screens scan on Enter."
-msgstr ""
-"回到 hyprlock、swaylock 或 face-unlock 自带的锁屏（`face-unlock lock`，带气"
-"泡）时扫描并打开它们。其他锁屏按 Enter 扫描。"
+#: gui/src/panes.rs:437
+msgid "Opens the lock screen when it sees you."
+msgstr "一看到你就打开锁屏。"
 
-#: gui/src/panes.rs:440
-msgid ""
-"Unlocks the lock screen when it sees your face. Off: only your password "
-"works there."
-msgstr "看到你的脸时解锁锁屏。关闭：锁屏只能用密码。"
-
-#: gui/src/panes.rs:447 gui/src/preview.rs:859
-msgid "Unlock with your face"
+#: gui/src/panes.rs:443 gui/src/preview.rs:859
+msgid "Unlock with face"
 msgstr "用人脸解锁"
 
-#: gui/src/panes.rs:451 gui/src/preview.rs:827
-msgid "Scan when you come back"
-msgstr "你回来时扫描"
+#: gui/src/panes.rs:447 gui/src/preview.rs:827
+msgid "Scan on wake"
+msgstr "唤醒时扫描"
 
-#: gui/src/panes.rs:452
-msgid ""
-"Scans when you press a key or move the mouse on the lock screen, and when "
-"the computer wakes up."
-msgstr "在锁屏上按键或移动鼠标时，以及电脑唤醒时扫描。"
+#: gui/src/panes.rs:448
+msgid "When you press a key or move the mouse."
+msgstr "按下按键或移动鼠标时。"
 
-#: gui/src/panes.rs:460 gui/src/preview.rs:837
+#: gui/src/panes.rs:456 gui/src/preview.rs:837
 msgid "Scan right after locking"
 msgstr "锁定后立即扫描"
 
-#: gui/src/panes.rs:461
-msgid ""
-"Scans as soon as the screen locks. Off by default: if you lock it yourself, "
-"it would unlock again right away."
-msgstr "屏幕一锁定就扫描。默认关闭：如果是你自己锁的屏，它会马上又解锁。"
+#: gui/src/panes.rs:457
+msgid "Unlocks again at once if you are still there."
+msgstr "如果你还在，会立刻再次解锁。"
 
-#: gui/src/panes.rs:471 gui/src/preview.rs:847
+#: gui/src/panes.rs:467 gui/src/preview.rs:847
 msgid "face-unlock's"
 msgstr "face-unlock 的"
 
-#: gui/src/panes.rs:472
+#: gui/src/panes.rs:468
 msgid "not picked yet"
 msgstr "尚未选择"
 
-#: gui/src/panes.rs:473 gui/src/preview.rs:847
+#: gui/src/panes.rs:469 gui/src/preview.rs:847
 msgid "yours"
 msgstr "你自己的"
 
-#: gui/src/panes.rs:475 gui/src/panes.rs:664
+#: gui/src/panes.rs:471 gui/src/panes.rs:656
 msgid "Choose…"
 msgstr "选择…"
 
-#: gui/src/panes.rs:484 gui/src/preview.rs:855
+#: gui/src/panes.rs:480 gui/src/preview.rs:855
 msgid "same as desktop"
 msgstr "与桌面相同"
 
-#: gui/src/panes.rs:485 gui/src/panes.rs:506 gui/src/preview.rs:855
+#: gui/src/panes.rs:481 gui/src/panes.rs:502 gui/src/preview.rs:855
 msgid "Wallpaper"
 msgstr "壁纸"
 
-#: gui/src/panes.rs:499 gui/src/panes.rs:516 gui/src/preview.rs:847
+#: gui/src/panes.rs:495 gui/src/panes.rs:512 gui/src/preview.rs:847
 msgid "Which lock screen"
 msgstr "使用哪个锁屏"
 
-#: gui/src/panes.rs:500
-msgid ""
-"face-unlock's lock screen shows the bubble, and you lock with `face-unlock "
-"lock`. Or keep yours: hyprlock then shows a line of text at the top."
-msgstr ""
-"face-unlock 的锁屏会显示气泡，用 `face-unlock lock` 锁屏。或者保留你自己的："
-"hyprlock 会在顶部显示一行文字。"
+#: gui/src/panes.rs:496
+msgid "face-unlock's own one shows the bubble."
+msgstr "face-unlock 自己的锁屏会显示气泡。"
 
-#: gui/src/panes.rs:507 gui/src/preview.rs:856
-msgid ""
-"The picture behind face-unlock's own lock screen. Empty: the one on your "
-"desktop. Or a file, a folder to take one from at random, or `none`."
-msgstr ""
-"face-unlock 自带锁屏后面的图片。留空：使用桌面的图片。或者一个文件、一个从中"
-"随机挑选的文件夹，或 `none`。"
+#: gui/src/panes.rs:503
+msgid "Empty: same as the desktop. Or a file, a folder or `none`."
+msgstr "留空：与桌面相同。或一个文件、文件夹或 `none`。"
 
-#: gui/src/panes.rs:510 gui/src/preview.rs:858
-msgid "Blur the wallpaper"
+#: gui/src/panes.rs:506 gui/src/preview.rs:858
+msgid "Blur wallpaper"
 msgstr "模糊壁纸"
 
-#: gui/src/panes.rs:510 gui/src/preview.rs:858
-msgid "Blurs the picture behind face-unlock's own lock screen."
-msgstr "模糊 face-unlock 锁屏背后的图片。"
+#: gui/src/panes.rs:506
+msgid "Softens the picture behind the clock."
+msgstr "让时钟后面的图片变柔和。"
 
-#: gui/src/panes.rs:545 gui/src/preview.rs:1198
-msgid ""
-"The lock screen takes your face in its password check. Press Enter on the "
-"empty field to scan. Found here: %s."
-msgstr ""
-"锁屏在检查密码时也接受你的人脸。在空白框中按 Enter 即可扫描。此处找到：%s。"
+#: gui/src/panes.rs:541
+msgid "Enter on the empty field scans. Found: %s."
+msgstr "在空白框中按 Enter 即开始扫描。已找到：%s。"
 
-#: gui/src/panes.rs:552 gui/src/preview.rs:1206
-msgid "In SSH sessions"
-msgstr "SSH 会话中也可用"
+#: gui/src/panes.rs:548 gui/src/preview.rs:1206
+msgid "Over SSH"
+msgstr "通过 SSH"
 
-#: gui/src/panes.rs:553 gui/src/preview.rs:1208
-msgid ""
-"sudo in an SSH session takes your face too, if you sit at this computer. Off "
-"by default: the person at the camera may not be the one typing."
-msgstr ""
-"如果你坐在这台电脑前，SSH 会话中的 sudo 也用你的脸。默认关闭：摄像头前的人不"
-"一定是正在输入的人。"
+#: gui/src/panes.rs:549
+msgid "sudo over SSH, when you sit at this computer."
+msgstr "你坐在这台电脑前时，SSH 中的 sudo 也可用。"
 
-#: gui/src/panes.rs:556 gui/src/ui.rs:39
+#: gui/src/panes.rs:552 gui/src/ui.rs:39
 msgid "Password prompts"
 msgstr "密码提示"
 
-#: gui/src/panes.rs:556 gui/src/panes.rs:640
+#: gui/src/panes.rs:552 gui/src/panes.rs:636
 msgid "for all users, asks for your password"
 msgstr "对所有用户生效，需要你的密码"
 
-#: gui/src/panes.rs:565 gui/src/preview.rs:1068
-msgid ""
-"You have to blink or turn your head a little. This also stops printed photos."
-msgstr "你需要眨眼或稍微转头。这也能挡住打印的照片。"
+#: gui/src/panes.rs:561
+msgid "Also blocks printed photos. Needs a blink."
+msgstr "也会拦下打印的照片。需要眨一次眼。"
 
-#: gui/src/panes.rs:566 gui/src/preview.rs:1069
-msgid "No check at all. Only for trying out a camera."
-msgstr "完全不检测。仅用于试用摄像头。"
+#: gui/src/panes.rs:562
+msgid "No check. Only for testing a camera."
+msgstr "不做检查。仅用于试用摄像头。"
 
-#: gui/src/panes.rs:567 gui/src/preview.rs:1070
-msgid ""
-"Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
-"A matte printed photo can get through."
-msgstr "挡住手机、平板或光面纸上的照片。无需眨眼。哑光纸打印的照片可能会通过。"
+#: gui/src/panes.rs:563
+msgid "Blocks photos on screens. No blinking needed."
+msgstr "拦下屏幕上的照片。无需眨眼。"
 
-#: gui/src/panes.rs:570 gui/src/preview.rs:976
-msgid ""
-"Fewer wrong matches, but it may not know you with glasses or in bad light."
-msgstr "误认更少，但戴眼镜或光线不好时可能认不出你。"
+#: gui/src/panes.rs:566
+msgid "Fewer mix-ups, but harder with glasses."
+msgstr "更少认错，但戴眼镜时更难识别。"
 
-#: gui/src/panes.rs:571 gui/src/preview.rs:977
-msgid "Knows you more easily, but also somebody who looks a lot like you."
-msgstr "更容易认出你，但也更容易认出和你长得很像的人。"
+#: gui/src/panes.rs:567
+msgid "Knows you faster, but also look-alikes."
+msgstr "认得更快，但长得像的人也可能通过。"
 
-#: gui/src/panes.rs:572 gui/src/preview.rs:978
-msgid "The default. Right for most people."
-msgstr "默认值。适合大多数人。"
+#: gui/src/panes.rs:568
+msgid "Recommended for most people."
+msgstr "推荐大多数人使用。"
 
-#: gui/src/panes.rs:578
+#: gui/src/panes.rs:574
 msgid "automatic (%s)"
 msgstr "自动（%s）"
 
-#: gui/src/panes.rs:579
+#: gui/src/panes.rs:575
 msgid "automatic"
 msgstr "自动"
 
-#: gui/src/panes.rs:586
+#: gui/src/panes.rs:582
 msgid "(infrared)"
 msgstr "（红外）"
 
-#: gui/src/panes.rs:592 gui/src/panes.rs:662
+#: gui/src/panes.rs:588 gui/src/panes.rs:654
 msgid "(not connected)"
 msgstr "（未连接）"
 
-#: gui/src/panes.rs:594 gui/src/preview.rs:958
+#: gui/src/panes.rs:590 gui/src/preview.rs:958
 msgid "%s seconds"
 msgstr "%s 秒"
 
-#: gui/src/panes.rs:603 gui/src/panes.rs:608 gui/src/preview.rs:981
-msgid "How closely the face has to match"
-msgstr "匹配的严格程度"
+#: gui/src/panes.rs:599 gui/src/panes.rs:604 gui/src/preview.rs:981
+msgid "Strictness"
+msgstr "严格程度"
 
-#: gui/src/panes.rs:611 gui/src/preview.rs:972
+#: gui/src/panes.rs:607 gui/src/preview.rs:972
 msgid "relaxed"
 msgstr "宽松"
 
-#: gui/src/panes.rs:611 gui/src/panes.rs:689 gui/src/preview.rs:800
+#: gui/src/panes.rs:607 gui/src/panes.rs:681 gui/src/preview.rs:800
 #: gui/src/preview.rs:973
 msgid "normal"
 msgstr "正常"
 
-#: gui/src/panes.rs:616 gui/src/preview.rs:997
-msgid "Only when you look at the screen"
-msgstr "仅在你看着屏幕时"
+#: gui/src/panes.rs:612 gui/src/preview.rs:997
+msgid "Require attention"
+msgstr "需要注视"
 
-#: gui/src/panes.rs:616 gui/src/preview.rs:998
-msgid ""
-"Your eyes have to be open and on the screen. So it does not unlock while you "
-"look away or sleep."
-msgstr "你的眼睛必须睁开并看着屏幕。这样你看向别处或睡着时不会解锁。"
+#: gui/src/panes.rs:612
+msgid "Only unlocks when you look at the screen."
+msgstr "只有你看着屏幕时才解锁。"
 
-#: gui/src/panes.rs:626 gui/src/preview.rs:1026
-msgid ""
-"Automatic takes the first normal camera. After a change, set up your face "
-"again. An infrared camera needs its light on (linux-enable-ir-emitter)."
-msgstr ""
-"“自动”会使用第一个普通摄像头。更换后请重新设置人脸。红外摄像头需要打开它的补"
-"光灯（linux-enable-ir-emitter）。"
+#: gui/src/panes.rs:622
+msgid "After a change, set up your face again."
+msgstr "更换后请重新设置人脸。"
 
-#: gui/src/panes.rs:634 gui/src/panes.rs:636 gui/src/preview.rs:958
-msgid "How long a scan lasts"
-msgstr "每次扫描的时长"
+#: gui/src/panes.rs:630 gui/src/panes.rs:632 gui/src/preview.rs:958
+msgid "Scan time"
+msgstr "扫描时长"
 
-#: gui/src/panes.rs:636
-msgid "How long the camera looks for your face before it gives up."
-msgstr "摄像头寻找你的脸多久后放弃。"
+#: gui/src/panes.rs:632
+msgid "How long it looks for your face."
+msgstr "寻找人脸的时长。"
 
-#: gui/src/panes.rs:638 gui/src/preview.rs:1034
-msgid "Learn from every unlock"
-msgstr "每次解锁时学习"
+#: gui/src/panes.rs:634 gui/src/preview.rs:1034
+msgid "Adapt to changes"
+msgstr "适应变化"
 
-#: gui/src/panes.rs:638 gui/src/preview.rs:1035
-msgid ""
-"After a sure match it keeps how you look now. So a new haircut or glasses "
-"need no new setup."
-msgstr "确定匹配后，会记住你现在的样子。所以换了发型或戴上眼镜也无需重新设置。"
+#: gui/src/panes.rs:634
+msgid "Keeps up with new glasses, beards or haircuts."
+msgstr "适应新眼镜、胡子或发型。"
 
-#: gui/src/panes.rs:639 gui/src/preview.rs:1049
-msgid "Not when the lid is closed"
-msgstr "合上盖子时不扫描"
+#: gui/src/panes.rs:635 gui/src/preview.rs:1049
+msgid "Pause when lid is closed"
+msgstr "合上盖子时暂停"
 
-#: gui/src/panes.rs:639 gui/src/preview.rs:1050
-msgid ""
-"No scan while the laptop is closed, for example at a desk with an external "
-"screen."
-msgstr "笔记本合上时不扫描，例如在接了外接显示器的桌前。"
+#: gui/src/panes.rs:635
+msgid "No scan while the laptop is shut."
+msgstr "笔记本合上时不扫描。"
 
-#: gui/src/panes.rs:640 gui/src/ui.rs:40
+#: gui/src/panes.rs:636 gui/src/ui.rs:40
 msgid "Recognition"
 msgstr "识别"
 
-#: gui/src/panes.rs:652
-msgid ""
-"On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
-"switches it on."
-msgstr ""
-"在 GNOME 上，由一个小的 GNOME 扩展显示气泡。开启人脸解锁时会一并开启它。"
+#: gui/src/panes.rs:647
+msgid "Uses a small GNOME extension."
+msgstr "使用一个小型 GNOME 扩展。"
 
-#: gui/src/panes.rs:654
-msgid "The bubble at the top of the screen shows what the camera is doing."
-msgstr "屏幕顶部的气泡显示摄像头正在做什么。"
+#: gui/src/panes.rs:647
+msgid "Shows at the top what the camera is doing."
+msgstr "在屏幕顶部显示摄像头在做什么。"
 
-#: gui/src/panes.rs:668 gui/src/ui.rs:41
+#: gui/src/panes.rs:660 gui/src/ui.rs:41
 msgid "Bubble"
 msgstr "气泡"
 
-#: gui/src/panes.rs:670 gui/src/preview.rs:792
-msgid "Show the bubble"
+#: gui/src/panes.rs:662 gui/src/preview.rs:792
+msgid "Show bubble"
 msgstr "显示气泡"
 
-#: gui/src/panes.rs:676 gui/src/preview.rs:793
+#: gui/src/panes.rs:668 gui/src/preview.rs:793
 msgid "Style"
 msgstr "样式"
 
-#: gui/src/panes.rs:677
-msgid "A small pill with a lock that opens."
-msgstr "一个带锁的小药丸，锁会打开。"
+#: gui/src/panes.rs:669
+msgid "How the bubble looks."
+msgstr "气泡的样子。"
 
-#: gui/src/panes.rs:677
-msgid "An island with a face that looks around, then rings and a tick."
-msgstr "一个岛，里面有一张四处张望的脸，然后是圆环和一个对勾。"
-
-#: gui/src/panes.rs:679 gui/src/preview.rs:793
+#: gui/src/panes.rs:671 gui/src/preview.rs:793
 msgid "island with the face"
 msgstr "带人脸的岛"
 
-#: gui/src/panes.rs:679 gui/src/preview.rs:793
+#: gui/src/panes.rs:671 gui/src/preview.rs:793
 msgid "small pill with a lock"
 msgstr "带锁的小药丸"
 
-#: gui/src/panes.rs:686 gui/src/preview.rs:796
+#: gui/src/panes.rs:678 gui/src/preview.rs:796
 msgid "Animation speed"
 msgstr "动画速度"
 
-#: gui/src/panes.rs:687
+#: gui/src/panes.rs:679
 msgid "How fast the bubble moves."
 msgstr "气泡移动的速度。"
 
-#: gui/src/panes.rs:689 gui/src/preview.rs:798
+#: gui/src/panes.rs:681 gui/src/preview.rs:798
 msgid "slow"
 msgstr "慢"
 
-#: gui/src/panes.rs:689 gui/src/preview.rs:799
+#: gui/src/panes.rs:681 gui/src/preview.rs:799
 msgid "fast"
 msgstr "快"
 
-#: gui/src/panes.rs:693 gui/src/preview.rs:794
+#: gui/src/panes.rs:685 gui/src/preview.rs:794
 msgid "Screen"
 msgstr "屏幕"
 
-#: gui/src/panes.rs:693
-msgid ""
-"Where the bubble shows up: on the screen with the mouse pointer, or always "
-"on one screen."
-msgstr "气泡显示的位置：鼠标指针所在的屏幕，或总是在同一个屏幕上。"
+#: gui/src/panes.rs:685
+msgid "Where the bubble shows up."
+msgstr "气泡出现的位置。"
 
-#: gui/src/panes.rs:697 gui/src/preview.rs:788
-msgid "Also for sudo and admin prompts"
+#: gui/src/panes.rs:689 gui/src/preview.rs:788
+msgid "Show for sudo and admin prompts"
 msgstr "sudo 和管理员授权时也显示"
 
-#: gui/src/panes.rs:698
-msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
-msgstr "sudo 或管理员授权扫描你的脸时也显示气泡。"
+#: gui/src/panes.rs:690
+msgid "Not only on the lock screen."
+msgstr "不只在锁屏上。"
 
-#: gui/src/panes.rs:706 gui/src/preview.rs:783
-msgid "Quiet while the camera is in use"
-msgstr "摄像头被占用时不显示"
+#: gui/src/panes.rs:698 gui/src/preview.rs:783
+msgid "Hide when camera is in use"
+msgstr "摄像头被占用时隐藏"
 
-#: gui/src/panes.rs:707
-msgid ""
-"When another app uses the camera, for example in a video call, no bubble "
-"shows and you type your password as usual. Off: the bubble shows a camera "
-"with a line through it."
-msgstr ""
-"其他应用正在使用摄像头时（例如视频通话），不显示气泡，你照常输入密码。关闭："
-"气泡显示一个被划掉的摄像头。"
+#: gui/src/panes.rs:699
+msgid "For example during a video call."
+msgstr "例如视频通话时。"
 
 #: gui/src/preview.rs:487 gui/src/preview.rs:1127 gui/src/preview.rs:1145
 #: pam/src/lib.rs:304
@@ -765,6 +701,18 @@ msgstr "锁屏后立刻寻找你的脸，所以你坐在屏幕前时屏幕会再
 msgid "Right after locking it waits until you come back."
 msgstr "锁屏后先等你回来。"
 
+#: gui/src/preview.rs:856
+msgid ""
+"The picture behind face-unlock's own lock screen. Empty: the one on your "
+"desktop. Or a file, a folder to take one from at random, or `none`."
+msgstr ""
+"face-unlock 自带锁屏后面的图片。留空：使用桌面的图片。或者一个文件、一个从中"
+"随机挑选的文件夹，或 `none`。"
+
+#: gui/src/preview.rs:858
+msgid "Blurs the picture behind face-unlock's own lock screen."
+msgstr "模糊 face-unlock 锁屏背后的图片。"
+
 #: gui/src/preview.rs:859
 msgid "Your face opens the lock screen as soon as it is found."
 msgstr "一找到你的脸，锁屏就会打开。"
@@ -786,6 +734,19 @@ msgid ""
 "It looks for %s seconds. If it does not find you, you type your password."
 msgstr "寻找 %s 秒。如果找不到你，你就输入密码。"
 
+#: gui/src/preview.rs:976
+msgid ""
+"Fewer wrong matches, but it may not know you with glasses or in bad light."
+msgstr "误认更少，但戴眼镜或光线不好时可能认不出你。"
+
+#: gui/src/preview.rs:977
+msgid "Knows you more easily, but also somebody who looks a lot like you."
+msgstr "更容易认出你，但也更容易认出和你长得很像的人。"
+
+#: gui/src/preview.rs:978
+msgid "The default. Right for most people."
+msgstr "默认值。适合大多数人。"
+
 #: gui/src/preview.rs:986 gui/src/preview.rs:1039 gui/src/preview.rs:1080
 msgid "Your face"
 msgstr "你的脸"
@@ -798,6 +759,12 @@ msgstr "戴眼镜或光线不好"
 msgid "Somebody who looks like you"
 msgstr "长得像你的人"
 
+#: gui/src/preview.rs:998
+msgid ""
+"Your eyes have to be open and on the screen. So it does not unlock while you "
+"look away or sleep."
+msgstr "你的眼睛必须睁开并看着屏幕。这样你看向别处或睡着时不会解锁。"
+
 #: gui/src/preview.rs:1002
 msgid "Looking at the screen"
 msgstr "看着屏幕"
@@ -805,6 +772,20 @@ msgstr "看着屏幕"
 #: gui/src/preview.rs:1003
 msgid "Eyes closed or looking away"
 msgstr "闭眼或看向别处"
+
+#: gui/src/preview.rs:1026
+msgid ""
+"Automatic takes the first normal camera. After a change, set up your face "
+"again. An infrared camera needs its light on (linux-enable-ir-emitter)."
+msgstr ""
+"“自动”会使用第一个普通摄像头。更换后请重新设置人脸。红外摄像头需要打开它的补"
+"光灯（linux-enable-ir-emitter）。"
+
+#: gui/src/preview.rs:1035
+msgid ""
+"After a sure match it keeps how you look now. So a new haircut or glasses "
+"need no new setup."
+msgstr "确定匹配后，会记住你现在的样子。所以换了发型或戴上眼镜也无需重新设置。"
 
 #: gui/src/preview.rs:1040
 msgid "New glasses or haircut"
@@ -817,6 +798,12 @@ msgstr "不扫描"
 #: gui/src/preview.rs:1047
 msgid "scans anyway"
 msgstr "仍会扫描"
+
+#: gui/src/preview.rs:1050
+msgid ""
+"No scan while the laptop is closed, for example at a desk with an external "
+"screen."
+msgstr "笔记本合上时不扫描，例如在接了外接显示器的桌前。"
 
 #: gui/src/preview.rs:1054
 msgid "Lid open"
@@ -833,6 +820,21 @@ msgstr "盖子合上"
 #: gui/src/preview.rs:1063
 msgid "after a blink"
 msgstr "眨眼之后"
+
+#: gui/src/preview.rs:1068
+msgid ""
+"You have to blink or turn your head a little. This also stops printed photos."
+msgstr "你需要眨眼或稍微转头。这也能挡住打印的照片。"
+
+#: gui/src/preview.rs:1069
+msgid "No check at all. Only for trying out a camera."
+msgstr "完全不检测。仅用于试用摄像头。"
+
+#: gui/src/preview.rs:1070
+msgid ""
+"Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
+"A matte printed photo can get through."
+msgstr "挡住手机、平板或光面纸上的照片。无需眨眼。哑光纸打印的照片可能会通过。"
 
 #: gui/src/preview.rs:1078
 msgid "Your photo on a phone"
@@ -855,6 +857,12 @@ msgstr "密码"
 msgid "An app wants to make changes"
 msgstr "有应用想要进行更改"
 
+#: gui/src/preview.rs:1169
+msgid ""
+"The password windows of your desktop and apps, for example when you install "
+"software. No match: you type the password."
+msgstr "桌面和应用的密码窗口，例如安装软件时。不匹配时，输入密码即可。"
+
 #: gui/src/preview.rs:1191
 msgid "Press Enter on the empty field to scan."
 msgstr "在空白框中按 Enter 即可扫描。"
@@ -862,6 +870,27 @@ msgstr "在空白框中按 Enter 即可扫描。"
 #: gui/src/preview.rs:1191 paint/src/lockscreen.rs:220
 msgid "Type your password"
 msgstr "输入密码"
+
+#: gui/src/preview.rs:1198
+msgid ""
+"The lock screen takes your face in its password check. Press Enter on the "
+"empty field to scan. Found here: %s."
+msgstr ""
+"锁屏在检查密码时也接受你的人脸。在空白框中按 Enter 即可扫描。此处找到：%s。"
+
+#: gui/src/preview.rs:1208
+msgid ""
+"sudo in an SSH session takes your face too, if you sit at this computer. Off "
+"by default: the person at the camera may not be the one typing."
+msgstr ""
+"如果你坐在这台电脑前，SSH 会话中的 sudo 也用你的脸。默认关闭：摄像头前的人不"
+"一定是正在输入的人。"
+
+#: gui/src/preview.rs:1220
+msgid ""
+"sudo takes your face instead of the password. No match: you type the "
+"password as usual."
+msgstr "sudo 用你的脸代替密码。不匹配时，照常输入密码。"
 
 #: gui/src/setup.rs:63
 msgid "Bring your face into the circle."

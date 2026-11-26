@@ -13,8 +13,8 @@ face-unlock - face unlock for Plasma, GNOME, Hyprland and Niri
 Look at the screen and it unlocks, the way a phone does. The lock screen, sudo
 in a terminal and the admin password prompts can all take a face instead of a
 password, on KDE Plasma, GNOME, Hyprland and Niri (see *DESKTOPS*). A photo of
-somebody on a phone or tablet does not get in, and with the strict photo check
-a printed one does not either.
+somebody on a phone or tablet does not get in, and with strict anti-spoofing a
+printed one does not either.
 
 A bubble at the top of the screen shows what is going on: it drops down when
 the camera starts looking, the face in it looks around, and when it recognises
@@ -105,20 +105,20 @@ the same way, and the match is how closely they do (cosine similarity).
 
 Setting up a face stores a few of those numbers per head direction: straight
 ahead, and eight directions around it. No picture is ever written anywhere.
-With *Learn from every unlock* on, a confident unlock adds one more sample (at
+With *Adapt to changes* on, a confident unlock adds one more sample (at
 most twelve per face, the oldest go first), so a new haircut or glasses do
 not need a new setup. Face ID does the same. Only unlocks well above the
 threshold count, so the samples cannot drift towards somebody else one
 borderline unlock at a time.
 
 A match has to hold for two frames. The face has to look at the screen with
-its eyes open (*Only when you look at the screen*), and it has to be the same
+its eyes open (*Require attention*), and it has to be the same
 face that shows the sign of life: a face that jumps in the picture, disappears
 or stops matching starts the whole check again.
 
 # HOW IT TELLS A FACE FROM A PHOTO
 
-The *Photo check* follows the model Glance (the macOS face unlock) arrived at:
+*Anti-spoofing* follows the model Glance (the macOS face unlock) arrived at:
 a few cues, each decisive on its own, in two kinds.
 
 Deny cues are evidence of a fake and fail the scan straight away:
@@ -148,7 +148,7 @@ nothing and is only for trying out a camera.
 # HOW SAFE IS THIS
 
 A webcam sees a flat picture. A phone's face unlock builds a depth map with a
-projector and an infrared camera; this cannot. What the photo check does:
+projector and an infrared camera; this cannot. What anti-spoofing does:
 
 - a photo on a phone or tablet, or a glossy print, is refused by *basic*, the
   default. A matte printed photo can get past *basic*;
@@ -168,7 +168,7 @@ The other guards:
   face needs the password (polkit, *auth_self_keep*). A face cannot answer
   that question even with admin prompts on: the daemon refuses to scan while
   it is being asked;
-- sudo and admin prompts are refused over SSH, unless *In SSH sessions* is
+- sudo and admin prompts are refused over SSH, unless *Over SSH* is
   on, and always for anybody without an active session at the machine;
 - the lock screen is unlocked through logind, the same way
   *loginctl unlock-session* does it. That does not lower the bar: any program
@@ -315,14 +315,14 @@ wallet, and a face has no password to hand it.
 Any V4L2 camera. *automatic* picks the first colour camera. An infrared
 camera (the kind Windows Hello uses) can be picked under *Settings*; its
 emitter has to be switched on with a tool such as linux-enable-ir-emitter.
-In infrared a phone screen shows up black, which makes the photo check's job
-easier. A face set up with one camera should be set up again for another.
+In infrared a phone screen shows up black, which makes the job of
+anti-spoofing easier. A face set up with one camera should be set up again for another.
 
-A laptop with its lid shut is not scanned (*Not when the lid is closed*).
+A laptop with its lid shut is not scanned (*Pause when lid is closed*).
 
 A camera that another app uses, in a video call for example, is not scanned
 either. The password is asked for at once, and the bubble shows a camera with
-a line through it. *Quiet while the camera is in use* leaves out the bubble
+a line through it. *Hide when camera is in use* leaves out the bubble
 too.
 
 # FILES
@@ -332,9 +332,9 @@ _~/.config/face-unlock/config_
 	speed. Written by the window.
 
 _/etc/face-unlock/config_
-	The system settings: camera, photo check, strictness, attention, scan
-	length, SSH sessions. Written by the window through pkexec, which keeps
-	the admin password for a few minutes, or by root.
+	The system settings: camera, anti-spoofing, strictness, attention, scan
+	time, SSH. Written by the window through pkexec, which keeps the admin
+	password for a few minutes, or by root.
 
 _/var/lib/face-unlock/users/<uid>.json_
 	The face data: numbers, no pictures. Root only.

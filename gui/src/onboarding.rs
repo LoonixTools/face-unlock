@@ -129,14 +129,14 @@ pub fn view(ui: &Ui, p: Paint) -> El {
             let [sudo, polkit, lockers] = ui.places;
             let mut rows = vec![];
             if s.pam.sudo_available {
-                rows.push(switch_row(p, "sudo", tr("sudo in a terminal"), Some(tr("sudo takes your face instead of the password. No match: you type the password as usual.")), sudo, true, |s: &mut Ui| s.places[0] = !s.places[0]));
+                rows.push(switch_row(p, "sudo", tr("Terminal (sudo)"), Some(tr("Your face instead of the password for sudo.")), sudo, true, |s: &mut Ui| s.places[0] = !s.places[0]));
             }
             if s.pam.polkit_available {
                 rows.push(switch_row(
                     p,
                     "polkit-1",
                     tr("Admin prompts"),
-                    Some(tr("The password windows of your desktop and apps, for example when you install software. No match: you type the password.")),
+                    Some(tr("Password windows, for example when installing apps.")),
                     polkit,
                     true,
                     |s: &mut Ui| s.places[1] = !s.places[1],
@@ -147,7 +147,7 @@ pub fn view(ui: &Ui, p: Paint) -> El {
                     p,
                     "lockscreens",
                     tr("Lock screens"),
-                    Some(tr("The lock screen takes your face in its password check. Press Enter on the empty field to scan.")),
+                    Some(tr("Enter on the empty field scans.")),
                     lockers,
                     true,
                     |s: &mut Ui| s.places[2] = !s.places[2],

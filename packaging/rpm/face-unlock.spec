@@ -47,7 +47,7 @@ This package was called plasma-face-unlock before. It takes over its faces and
 settings.
 
 A photo on a phone, a tablet or a glossy print is refused by its reflection and
-its straight edges. The strict photo check also wants a sign of life (a blink,
+its straight edges. Strict anti-spoofing also wants a sign of life (a blink,
 or the nose moving the way a real nose does when the head turns), which stops a
 printed photo too. It is a convenience, not a security upgrade: a webcam sees a
 flat picture, and a video of the person can get through.

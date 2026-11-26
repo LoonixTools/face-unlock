@@ -237,7 +237,7 @@ pub fn overview(ui: &Ui, p: Paint) -> El {
         let line = format!("{} ({})", on_off(s.pam.lockers_on), s.pam.lockers.join(", "));
         rows.push(icon_row(p, "lockers", &icons::LOCK, tr("Lock screens"), None, value(&line)));
     }
-    rows.push(icon_row(p, "liveness", &icons::EYE, tr("Photo check"), None, value(liveness_label(s.sys.get("Liveness", "light")))));
+    rows.push(icon_row(p, "liveness", &icons::EYE, tr("Anti-spoofing"), None, value(liveness_label(s.sys.get("Liveness", "light")))));
     rows.push(icon_row(p, "last", &icons::CHECK_CIRCLE, tr("Last unlock"), None, value(&face_unlock::text::time_ago(s.status.as_ref().map(|st| st.last_unlock).unwrap_or(0)))));
 
     page("overview").child(hero).children(warnings).child(section(p, "glance", tr("At a glance"), rows))
@@ -434,22 +434,18 @@ pub fn lock_screen(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
     }
     let s = &ui.snap;
     let lock = user_on(ui, "LockScreen", true);
-    let help_lock = if s.desktop.own_locker() {
-        tr("Scans when you come back to hyprlock, swaylock or face-unlock's own lock screen (`face-unlock lock`, with the bubble), and opens them. Other lock screens scan on Enter.")
-    } else {
-        tr("Unlocks the lock screen when it sees your face. Off: only your password works there.")
-    };
+    let help_lock = tr("Opens the lock screen when it sees you.");
     let mut out = page("lock").child(section(
         p,
         "unlock",
         tr("Lock screen"),
         vec![
-            switch_row(p, "LockScreen", tr("Unlock with your face"), Some(help_lock), lock, true, |s: &mut Ui| s.toggle_user("LockScreen")),
+            switch_row(p, "LockScreen", tr("Unlock with face"), Some(help_lock), lock, true, |s: &mut Ui| s.toggle_user("LockScreen")),
             switch_row(
                 p,
                 "ScanOnWake",
-                tr("Scan when you come back"),
-                Some(tr("Scans when you press a key or move the mouse on the lock screen, and when the computer wakes up.")),
+                tr("Scan on wake"),
+                Some(tr("When you press a key or move the mouse.")),
                 user_on(ui, "ScanOnWake", true),
                 lock,
                 |s: &mut Ui| s.toggle_user("ScanOnWake"),
@@ -458,7 +454,7 @@ pub fn lock_screen(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
                 p,
                 "ScanOnLock",
                 tr("Scan right after locking"),
-                Some(tr("Scans as soon as the screen locks. Off by default: if you lock it yourself, it would unlock again right away.")),
+                Some(tr("Unlocks again at once if you are still there.")),
                 user_on(ui, "ScanOnLock", false),
                 lock,
                 |s: &mut Ui| s.toggle_user("ScanOnLock"),
@@ -497,17 +493,17 @@ pub fn lock_screen(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
                 p,
                 "LockScreenStyle",
                 &format!("{}: {style}", tr("Which lock screen")),
-                Some(tr("face-unlock's lock screen shows the bubble, and you lock with `face-unlock lock`. Or keep yours: hyprlock then shows a line of text at the top.")),
+                Some(tr("face-unlock's own one shows the bubble.")),
                 choose,
             ),
             setting_row(
                 p,
                 "LockWallpaper",
                 tr("Wallpaper"),
-                Some(tr("The picture behind face-unlock's own lock screen. Empty: the one on your desktop. Or a file, a folder to take one from at random, or `none`.")),
+                Some(tr("Empty: same as the desktop. Or a file, a folder or `none`.")),
                 wall,
             ),
-            switch_row(p, "LockBlur", tr("Blur the wallpaper"), Some(tr("Blurs the picture behind face-unlock's own lock screen.")), user_on(ui, "LockBlur", false), own, |s: &mut Ui| s.toggle_user("LockBlur")),
+            switch_row(p, "LockBlur", tr("Blur wallpaper"), Some(tr("Softens the picture behind the clock.")), user_on(ui, "LockBlur", false), own, |s: &mut Ui| s.toggle_user("LockBlur")),
         ];
         if !own {
             rows.remove(2);
@@ -530,27 +526,27 @@ pub fn lock_screen(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
 pub fn prompts(ui: &Ui, p: Paint) -> El {
     let s = &ui.snap;
     let mut rows = vec![
-        pam_switch(ui, p, "sudo", tr("sudo in a terminal"), tr("sudo takes your face instead of the password. No match: you type the password as usual."), s.pam.sudo, s.pam.sudo_available),
+        pam_switch(ui, p, "sudo", tr("Terminal (sudo)"), tr("Your face instead of the password for sudo."), s.pam.sudo, s.pam.sudo_available),
         pam_switch(
             ui,
             p,
             "polkit-1",
             tr("Admin prompts"),
-            tr("The password windows of your desktop and apps, for example when you install software. No match: you type the password."),
+            tr("Password windows, for example when installing apps."),
             s.pam.polkit,
             s.pam.polkit_available,
         ),
     ];
     if !s.pam.lockers.is_empty() {
-        let help = trf("The lock screen takes your face in its password check. Press Enter on the empty field to scan. Found here: %s.", &[&s.pam.lockers.join(", ")]);
+        let help = trf("Enter on the empty field scans. Found: %s.", &[&s.pam.lockers.join(", ")]);
         rows.push(pam_switch(ui, p, "lockscreens", tr("Lock screens"), &help, s.pam.lockers_on, true));
     }
     rows.push(sys_switch(
         ui,
         p,
         "SshSessions",
-        tr("In SSH sessions"),
-        tr("sudo in an SSH session takes your face too, if you sit at this computer. Off by default: the person at the camera may not be the one typing."),
+        tr("Over SSH"),
+        tr("sudo over SSH, when you sit at this computer."),
         false,
     ));
     page("prompts").child(section_note(p, "pam", tr("Password prompts"), tr("for all users, asks for your password"), rows))
@@ -562,14 +558,14 @@ pub fn recognition(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
     let liveness = s.sys.get("Liveness", "light");
     let strict = s.sys.get("Strictness", "normal");
     let liveness_help = match liveness {
-        "heavy" => tr("You have to blink or turn your head a little. This also stops printed photos."),
-        "off" => tr("No check at all. Only for trying out a camera."),
-        _ => tr("Stops photos on a phone, a tablet or glossy paper. You do not have to blink. A matte printed photo can get through."),
+        "heavy" => tr("Also blocks printed photos. Needs a blink."),
+        "off" => tr("No check. Only for testing a camera."),
+        _ => tr("Blocks photos on screens. No blinking needed."),
     };
     let strict_help = match strict {
-        "strict" => tr("Fewer wrong matches, but it may not know you with glasses or in bad light."),
-        "relaxed" => tr("Knows you more easily, but also somebody who looks a lot like you."),
-        _ => tr("The default. Right for most people."),
+        "strict" => tr("Fewer mix-ups, but harder with glasses."),
+        "relaxed" => tr("Knows you faster, but also look-alikes."),
+        _ => tr("Recommended for most people."),
     };
     let pairs = |v: &[(&str, &str)]| v.iter().map(|(a, b)| (a.to_string(), b.to_string())).collect::<Vec<_>>();
     let mut cameras = vec![(
@@ -595,17 +591,17 @@ pub fn recognition(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
     let busy_row = |key: &'static str, title: &str| setting_row(p, key, title, None, Spinner::new().size(18.0).build(p.k).key("spinner"));
     let mut rows = vec![];
     rows.push(if ui.is_busy("Liveness") {
-        busy_row("Liveness", tr("Photo check"))
+        busy_row("Liveness", tr("Anti-spoofing"))
     } else {
-        segment_row(p, "Liveness", tr("Photo check"), Some(liveness_help), liveness, pairs(&[("off", tr("off")), ("light", tr("basic")), ("heavy", tr("strict"))]), free, set_sys)
+        segment_row(p, "Liveness", tr("Anti-spoofing"), Some(liveness_help), liveness, pairs(&[("off", tr("off")), ("light", tr("basic")), ("heavy", tr("strict"))]), free, set_sys)
     });
     rows.push(if ui.is_busy("Strictness") {
-        busy_row("Strictness", tr("How closely the face has to match"))
+        busy_row("Strictness", tr("Strictness"))
     } else {
         segment_row(
             p,
             "Strictness",
-            tr("How closely the face has to match"),
+            tr("Strictness"),
             Some(strict_help),
             strict,
             pairs(&[("relaxed", tr("relaxed")), ("normal", tr("normal")), ("strict", tr("strict"))]),
@@ -613,7 +609,7 @@ pub fn recognition(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
             set_sys,
         )
     });
-    rows.push(sys_switch(ui, p, "Attention", tr("Only when you look at the screen"), tr("Your eyes have to be open and on the screen. So it does not unlock while you look away or sleep."), true));
+    rows.push(sys_switch(ui, p, "Attention", tr("Require attention"), tr("Only unlocks when you look at the screen."), true));
     rows.push(if ui.is_busy("Camera") {
         busy_row("Camera", tr("Camera"))
     } else {
@@ -623,7 +619,7 @@ pub fn recognition(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
             layer,
             "Camera",
             tr("Camera"),
-            Some(tr("Automatic takes the first normal camera. After a change, set up your face again. An infrared camera needs its light on (linux-enable-ir-emitter).")),
+            Some(tr("After a change, set up your face again.")),
             camera,
             cameras,
             free,
@@ -631,12 +627,12 @@ pub fn recognition(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
         )
     });
     rows.push(if ui.is_busy("ScanSeconds") {
-        busy_row("ScanSeconds", tr("How long a scan lasts"))
+        busy_row("ScanSeconds", tr("Scan time"))
     } else {
-        select_row(ui, p, layer, "ScanSeconds", tr("How long a scan lasts"), Some(tr("How long the camera looks for your face before it gives up.")), s.sys.get("ScanSeconds", "5"), secs, free, set_sys)
+        select_row(ui, p, layer, "ScanSeconds", tr("Scan time"), Some(tr("How long it looks for your face.")), s.sys.get("ScanSeconds", "5"), secs, free, set_sys)
     });
-    rows.push(sys_switch(ui, p, "Adapt", tr("Learn from every unlock"), tr("After a sure match it keeps how you look now. So a new haircut or glasses need no new setup."), true));
-    rows.push(sys_switch(ui, p, "SkipLidClosed", tr("Not when the lid is closed"), tr("No scan while the laptop is closed, for example at a desk with an external screen."), true));
+    rows.push(sys_switch(ui, p, "Adapt", tr("Adapt to changes"), tr("Keeps up with new glasses, beards or haircuts."), true));
+    rows.push(sys_switch(ui, p, "SkipLidClosed", tr("Pause when lid is closed"), tr("No scan while the laptop is shut."), true));
     page("recognition").child(section_note(p, "rec", tr("Recognition"), tr("for all users, asks for your password"), rows))
 }
 
@@ -648,11 +644,7 @@ pub fn bubble(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
     let on = user_on(ui, "Bubble", true);
     let pairs = |v: &[(&str, &str)]| v.iter().map(|(a, b)| (a.to_string(), b.to_string())).collect::<Vec<_>>();
     let gnome = s.desktop == Desktop::Gnome;
-    let show_help = if gnome {
-        tr("On GNOME a small GNOME extension shows the bubble. Turning face unlock on switches it on.")
-    } else {
-        tr("The bubble at the top of the screen shows what the camera is doing.")
-    };
+    let show_help = if gnome { tr("Uses a small GNOME extension.") } else { tr("Shows at the top what the camera is doing.") };
     let style = s.user.get("BubbleStyle", "full");
     let screen_label = if s.cfg.bubble_screen.is_empty() {
         tr("follows the mouse").to_string()
@@ -667,14 +659,14 @@ pub fn bubble(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
         "bubble",
         tr("Bubble"),
         vec![
-            switch_row(p, "Bubble", tr("Show the bubble"), Some(show_help), on, true, |s: &mut Ui| s.toggle_user("Bubble")),
+            switch_row(p, "Bubble", tr("Show bubble"), Some(show_help), on, true, |s: &mut Ui| s.toggle_user("Bubble")),
             select_row(
                 ui,
                 p,
                 layer,
                 "BubbleStyle",
                 tr("Style"),
-                Some(if style == "minimal" { tr("A small pill with a lock that opens.") } else { tr("An island with a face that looks around, then rings and a tick.") }),
+                Some(tr("How the bubble looks.")),
                 style,
                 pairs(&[("full", tr("island with the face")), ("minimal", tr("small pill with a lock"))]),
                 on,
@@ -690,12 +682,12 @@ pub fn bubble(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
                 on,
                 set_user,
             ),
-            setting_row(p, "BubbleScreen", &format!("{}: {screen_label}", tr("Screen")), Some(tr("Where the bubble shows up: on the screen with the mouse pointer, or always on one screen.")), choose),
+            setting_row(p, "BubbleScreen", &format!("{}: {screen_label}", tr("Screen")), Some(tr("Where the bubble shows up.")), choose),
             switch_row(
                 p,
                 "BubbleForPrompts",
-                tr("Also for sudo and admin prompts"),
-                Some(tr("Shows the bubble when sudo or an admin prompt scans your face, too.")),
+                tr("Show for sudo and admin prompts"),
+                Some(tr("Not only on the lock screen.")),
                 user_on(ui, "BubbleForPrompts", true),
                 on,
                 |s: &mut Ui| s.toggle_user("BubbleForPrompts"),
@@ -703,8 +695,8 @@ pub fn bubble(ui: &Ui, p: Paint, layer: &mut Vec<El>) -> El {
             switch_row(
                 p,
                 "QuietWhenCameraBusy",
-                tr("Quiet while the camera is in use"),
-                Some(tr("When another app uses the camera, for example in a video call, no bubble shows and you type your password as usual. Off: the bubble shows a camera with a line through it.")),
+                tr("Hide when camera is in use"),
+                Some(tr("For example during a video call.")),
                 user_on(ui, "QuietWhenCameraBusy", false),
                 on,
                 |s: &mut Ui| s.toggle_user("QuietWhenCameraBusy"),

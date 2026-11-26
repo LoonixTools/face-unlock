@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-11-26 15:00+0100\n"
+"POT-Creation-Date: 2026-11-26 14:26+0100\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Ukrainian\n"
@@ -101,7 +101,7 @@ msgstr ""
 msgid "Use this one"
 msgstr "Вибрати цей"
 
-#: gui/src/choice.rs:219 gui/src/panes.rs:658 gui/src/preview.rs:794
+#: gui/src/choice.rs:219 gui/src/panes.rs:650 gui/src/preview.rs:794
 msgid "follows the mouse"
 msgstr "стежить за мишею"
 
@@ -167,43 +167,31 @@ msgstr "Продовжити"
 msgid "Switch on"
 msgstr "Увімкнути"
 
-#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1219
-msgid "sudo in a terminal"
-msgstr "sudo у терміналі"
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:529 gui/src/preview.rs:1219
+msgid "Terminal (sudo)"
+msgstr "Термінал (sudo)"
 
-#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1220
-msgid ""
-"sudo takes your face instead of the password. No match: you type the "
-"password as usual."
-msgstr ""
-"sudo приймає ваше обличчя замість пароля. Не збіглося: ви вводите пароль як "
-"зазвичай."
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:529
+msgid "Your face instead of the password for sudo."
+msgstr "Ваше обличчя замість пароля для sudo."
 
-#: gui/src/onboarding.rs:138 gui/src/panes.rs:234 gui/src/panes.rs:538
+#: gui/src/onboarding.rs:138 gui/src/panes.rs:234 gui/src/panes.rs:534
 #: gui/src/preview.rs:1168 src/main.rs:303
 msgid "Admin prompts"
 msgstr "Запити адміністратора"
 
-#: gui/src/onboarding.rs:139 gui/src/panes.rs:539 gui/src/preview.rs:1169
-msgid ""
-"The password windows of your desktop and apps, for example when you install "
-"software. No match: you type the password."
-msgstr ""
-"Вікна введення пароля робочого столу і програм, наприклад під час "
-"встановлення програм. Не збіглося: ви вводите пароль."
+#: gui/src/onboarding.rs:139 gui/src/panes.rs:535
+msgid "Password windows, for example when installing apps."
+msgstr "Вікна пароля, наприклад при встановленні програм."
 
-#: gui/src/onboarding.rs:149 gui/src/panes.rs:238 gui/src/panes.rs:546
+#: gui/src/onboarding.rs:149 gui/src/panes.rs:238 gui/src/panes.rs:542
 #: gui/src/preview.rs:1199 src/main.rs:305
 msgid "Lock screens"
 msgstr "Екрани блокування"
 
 #: gui/src/onboarding.rs:150
-msgid ""
-"The lock screen takes your face in its password check. Press Enter on the "
-"empty field to scan."
-msgstr ""
-"Екран блокування приймає обличчя під час перевірки пароля. Натисніть Enter у "
-"порожньому полі, щоб почати сканування."
+msgid "Enter on the empty field scans."
+msgstr "Enter у порожньому полі запускає сканування."
 
 #: gui/src/onboarding.rs:162
 msgid "Where should your face count?"
@@ -245,7 +233,7 @@ msgstr "Відкрити налаштування"
 msgid "on"
 msgstr "увімк."
 
-#: gui/src/panes.rs:22 gui/src/panes.rs:249 gui/src/panes.rs:600
+#: gui/src/panes.rs:22 gui/src/panes.rs:249 gui/src/panes.rs:596
 #: gui/src/preview.rs:701 src/main.rs:163 src/main.rs:276
 msgid "off"
 msgstr "вимк."
@@ -333,12 +321,12 @@ msgstr "не знайдено"
 msgid "Faces"
 msgstr "Обличчя"
 
-#: gui/src/panes.rs:231 gui/src/panes.rs:618 gui/src/panes.rs:625
+#: gui/src/panes.rs:231 gui/src/panes.rs:614 gui/src/panes.rs:621
 #: gui/src/preview.rs:1025 src/main.rs:299
 msgid "Camera"
 msgstr "Камера"
 
-#: gui/src/panes.rs:232 gui/src/panes.rs:445 gui/src/ui.rs:38 src/main.rs:301
+#: gui/src/panes.rs:232 gui/src/panes.rs:441 gui/src/ui.rs:38 src/main.rs:301
 msgid "Lock screen"
 msgstr "Екран блокування"
 
@@ -346,10 +334,10 @@ msgstr "Екран блокування"
 msgid "sudo"
 msgstr "sudo"
 
-#: gui/src/panes.rs:240 gui/src/panes.rs:598 gui/src/panes.rs:600
+#: gui/src/panes.rs:240 gui/src/panes.rs:594 gui/src/panes.rs:596
 #: gui/src/preview.rs:1073
-msgid "Photo check"
-msgstr "Перевірка на фото"
+msgid "Anti-spoofing"
+msgstr "Захист від фото"
 
 #: gui/src/panes.rs:241 src/main.rs:310
 msgid "Last unlock"
@@ -359,12 +347,12 @@ msgstr "Останнє розблокування"
 msgid "At a glance"
 msgstr "Коротко"
 
-#: gui/src/panes.rs:248 gui/src/panes.rs:600 gui/src/panes.rs:611
+#: gui/src/panes.rs:248 gui/src/panes.rs:596 gui/src/panes.rs:607
 #: gui/src/preview.rs:971
 msgid "strict"
 msgstr "сувора"
 
-#: gui/src/panes.rs:250 gui/src/panes.rs:600
+#: gui/src/panes.rs:250 gui/src/panes.rs:596
 msgid "basic"
 msgstr "базова"
 
@@ -388,7 +376,7 @@ msgstr "зразків: %s, вивчено: %s"
 msgid "New name:"
 msgstr "Нова назва:"
 
-#: gui/src/panes.rs:335 gui/src/panes.rs:479
+#: gui/src/panes.rs:335 gui/src/panes.rs:475
 msgid "Save"
 msgstr "Зберегти"
 
@@ -419,347 +407,262 @@ msgstr ""
 "Обличчя зберігається як числа, а не як зображення, і прочитати їх може лише "
 "root."
 
-#: gui/src/panes.rs:438
-msgid ""
-"Scans when you come back to hyprlock, swaylock or face-unlock's own lock "
-"screen (`face-unlock lock`, with the bubble), and opens them. Other lock "
-"screens scan on Enter."
-msgstr ""
-"Сканує, коли ви повертаєтеся до hyprlock, swaylock або до власного екрана "
-"блокування face-unlock (`face-unlock lock`, з бульбашкою), і відкриває їх. "
-"Інші екрани блокування сканують за Enter."
+#: gui/src/panes.rs:437
+msgid "Opens the lock screen when it sees you."
+msgstr "Відкриває екран блокування, щойно бачить вас."
 
-#: gui/src/panes.rs:440
-msgid ""
-"Unlocks the lock screen when it sees your face. Off: only your password "
-"works there."
-msgstr ""
-"Розблоковує екран блокування, коли бачить ваше обличчя. Вимк.: там працює "
-"лише пароль."
+#: gui/src/panes.rs:443 gui/src/preview.rs:859
+msgid "Unlock with face"
+msgstr "Розблокування обличчям"
 
-#: gui/src/panes.rs:447 gui/src/preview.rs:859
-msgid "Unlock with your face"
-msgstr "Розблоковувати обличчям"
+#: gui/src/panes.rs:447 gui/src/preview.rs:827
+msgid "Scan on wake"
+msgstr "Скан після пробудження"
 
-#: gui/src/panes.rs:451 gui/src/preview.rs:827
-msgid "Scan when you come back"
-msgstr "Сканувати, коли ви повертаєтеся"
+#: gui/src/panes.rs:448
+msgid "When you press a key or move the mouse."
+msgstr "Коли ви натискаєте клавішу або рухаєте мишею."
 
-#: gui/src/panes.rs:452
-msgid ""
-"Scans when you press a key or move the mouse on the lock screen, and when "
-"the computer wakes up."
-msgstr ""
-"Сканує, коли ви натискаєте клавішу або рухаєте мишею на екрані блокування, і "
-"коли комп'ютер прокидається."
-
-#: gui/src/panes.rs:460 gui/src/preview.rs:837
+#: gui/src/panes.rs:456 gui/src/preview.rs:837
 msgid "Scan right after locking"
 msgstr "Сканувати одразу після блокування"
 
-#: gui/src/panes.rs:461
-msgid ""
-"Scans as soon as the screen locks. Off by default: if you lock it yourself, "
-"it would unlock again right away."
-msgstr ""
-"Сканує одразу після блокування екрана. Типово вимк.: якщо ви блокуєте самі, "
-"він одразу б розблокувався."
+#: gui/src/panes.rs:457
+msgid "Unlocks again at once if you are still there."
+msgstr "Одразу знову розблоковує, якщо ви ще поруч."
 
-#: gui/src/panes.rs:471 gui/src/preview.rs:847
+#: gui/src/panes.rs:467 gui/src/preview.rs:847
 msgid "face-unlock's"
 msgstr "face-unlock"
 
-#: gui/src/panes.rs:472
+#: gui/src/panes.rs:468
 msgid "not picked yet"
 msgstr "ще не вибрано"
 
-#: gui/src/panes.rs:473 gui/src/preview.rs:847
+#: gui/src/panes.rs:469 gui/src/preview.rs:847
 msgid "yours"
 msgstr "ваш"
 
-#: gui/src/panes.rs:475 gui/src/panes.rs:664
+#: gui/src/panes.rs:471 gui/src/panes.rs:656
 msgid "Choose…"
 msgstr "Вибрати…"
 
-#: gui/src/panes.rs:484 gui/src/preview.rs:855
+#: gui/src/panes.rs:480 gui/src/preview.rs:855
 msgid "same as desktop"
 msgstr "як на робочому столі"
 
-#: gui/src/panes.rs:485 gui/src/panes.rs:506 gui/src/preview.rs:855
+#: gui/src/panes.rs:481 gui/src/panes.rs:502 gui/src/preview.rs:855
 msgid "Wallpaper"
 msgstr "Шпалери"
 
-#: gui/src/panes.rs:499 gui/src/panes.rs:516 gui/src/preview.rs:847
+#: gui/src/panes.rs:495 gui/src/panes.rs:512 gui/src/preview.rs:847
 msgid "Which lock screen"
 msgstr "Який екран блокування"
 
-#: gui/src/panes.rs:500
-msgid ""
-"face-unlock's lock screen shows the bubble, and you lock with `face-unlock "
-"lock`. Or keep yours: hyprlock then shows a line of text at the top."
-msgstr ""
-"Екран блокування face-unlock показує бульбашку, а блокування — `face-unlock "
-"lock`. Або залиште свій: тоді hyprlock показує рядок тексту вгорі."
+#: gui/src/panes.rs:496
+msgid "face-unlock's own one shows the bubble."
+msgstr "Екран face-unlock показує бульбашку."
 
-#: gui/src/panes.rs:507 gui/src/preview.rs:856
-msgid ""
-"The picture behind face-unlock's own lock screen. Empty: the one on your "
-"desktop. Or a file, a folder to take one from at random, or `none`."
-msgstr ""
-"Зображення за власним екраном блокування face-unlock. Порожньо: зображення "
-"робочого столу. Або файл, тека, з якої береться випадкове, або `none`."
+#: gui/src/panes.rs:503
+msgid "Empty: same as the desktop. Or a file, a folder or `none`."
+msgstr "Порожньо: як на робочому столі. Або файл, тека чи `none`."
 
-#: gui/src/panes.rs:510 gui/src/preview.rs:858
-msgid "Blur the wallpaper"
+#: gui/src/panes.rs:506 gui/src/preview.rs:858
+msgid "Blur wallpaper"
 msgstr "Розмити шпалери"
 
-#: gui/src/panes.rs:510 gui/src/preview.rs:858
-msgid "Blurs the picture behind face-unlock's own lock screen."
-msgstr "Розмиває зображення за екраном блокування face-unlock."
+#: gui/src/panes.rs:506
+msgid "Softens the picture behind the clock."
+msgstr "Пом'якшує зображення за годинником."
 
-#: gui/src/panes.rs:545 gui/src/preview.rs:1198
-msgid ""
-"The lock screen takes your face in its password check. Press Enter on the "
-"empty field to scan. Found here: %s."
-msgstr ""
-"Екран блокування приймає ваше обличчя під час перевірки пароля. Натисніть "
-"Enter у порожньому полі, щоб сканувати. Знайдено тут: %s."
+#: gui/src/panes.rs:541
+msgid "Enter on the empty field scans. Found: %s."
+msgstr "Enter у порожньому полі запускає сканування. Знайдено: %s."
 
-#: gui/src/panes.rs:552 gui/src/preview.rs:1206
-msgid "In SSH sessions"
-msgstr "У сеансах SSH"
+#: gui/src/panes.rs:548 gui/src/preview.rs:1206
+msgid "Over SSH"
+msgstr "Через SSH"
 
-#: gui/src/panes.rs:553 gui/src/preview.rs:1208
-msgid ""
-"sudo in an SSH session takes your face too, if you sit at this computer. Off "
-"by default: the person at the camera may not be the one typing."
-msgstr ""
-"sudo в сеансі SSH теж приймає ваше обличчя, якщо ви сидите за цим "
-"комп'ютером. Типово вимк.: людина перед камерою може бути не тією, хто "
-"друкує."
+#: gui/src/panes.rs:549
+msgid "sudo over SSH, when you sit at this computer."
+msgstr "sudo через SSH, якщо ви за цим комп'ютером."
 
-#: gui/src/panes.rs:556 gui/src/ui.rs:39
+#: gui/src/panes.rs:552 gui/src/ui.rs:39
 msgid "Password prompts"
 msgstr "Запити пароля"
 
-#: gui/src/panes.rs:556 gui/src/panes.rs:640
+#: gui/src/panes.rs:552 gui/src/panes.rs:636
 msgid "for all users, asks for your password"
 msgstr "для всіх користувачів, запитує пароль"
 
-#: gui/src/panes.rs:565 gui/src/preview.rs:1068
-msgid ""
-"You have to blink or turn your head a little. This also stops printed photos."
-msgstr ""
-"Треба кліпнути або трохи повернути голову. Це також зупиняє надруковані фото."
+#: gui/src/panes.rs:561
+msgid "Also blocks printed photos. Needs a blink."
+msgstr "Блокує й надруковані фото. Треба кліпнути."
 
-#: gui/src/panes.rs:566 gui/src/preview.rs:1069
-msgid "No check at all. Only for trying out a camera."
-msgstr "Жодної перевірки. Лише щоб випробувати камеру."
+#: gui/src/panes.rs:562
+msgid "No check. Only for testing a camera."
+msgstr "Без перевірки. Лише для тесту камери."
 
-#: gui/src/panes.rs:567 gui/src/preview.rs:1070
-msgid ""
-"Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
-"A matte printed photo can get through."
-msgstr ""
-"Зупиняє фото на телефоні, планшеті чи глянцевому папері. Кліпати не треба. "
-"Матове надруковане фото може пройти."
+#: gui/src/panes.rs:563
+msgid "Blocks photos on screens. No blinking needed."
+msgstr "Блокує фото на екранах. Кліпати не треба."
 
-#: gui/src/panes.rs:570 gui/src/preview.rs:976
-msgid ""
-"Fewer wrong matches, but it may not know you with glasses or in bad light."
-msgstr ""
-"Менше хибних збігів, але може не впізнати вас в окулярах або при поганому "
-"світлі."
+#: gui/src/panes.rs:566
+msgid "Fewer mix-ups, but harder with glasses."
+msgstr "Менше плутанини, але складніше в окулярах."
 
-#: gui/src/panes.rs:571 gui/src/preview.rs:977
-msgid "Knows you more easily, but also somebody who looks a lot like you."
-msgstr "Впізнає вас легше, але й того, хто дуже на вас схожий."
+#: gui/src/panes.rs:567
+msgid "Knows you faster, but also look-alikes."
+msgstr "Впізнає вас швидше, але й схожих людей."
 
-#: gui/src/panes.rs:572 gui/src/preview.rs:978
-msgid "The default. Right for most people."
-msgstr "Типове значення. Підходить більшості."
+#: gui/src/panes.rs:568
+msgid "Recommended for most people."
+msgstr "Підходить більшості."
 
-#: gui/src/panes.rs:578
+#: gui/src/panes.rs:574
 msgid "automatic (%s)"
 msgstr "автоматично (%s)"
 
-#: gui/src/panes.rs:579
+#: gui/src/panes.rs:575
 msgid "automatic"
 msgstr "автоматично"
 
-#: gui/src/panes.rs:586
+#: gui/src/panes.rs:582
 msgid "(infrared)"
 msgstr "(інфрачервона)"
 
-#: gui/src/panes.rs:592 gui/src/panes.rs:662
+#: gui/src/panes.rs:588 gui/src/panes.rs:654
 msgid "(not connected)"
 msgstr "(не під'єднана)"
 
-#: gui/src/panes.rs:594 gui/src/preview.rs:958
+#: gui/src/panes.rs:590 gui/src/preview.rs:958
 msgid "%s seconds"
 msgstr "%s с"
 
-#: gui/src/panes.rs:603 gui/src/panes.rs:608 gui/src/preview.rs:981
-msgid "How closely the face has to match"
-msgstr "Наскільки точно має збігатися обличчя"
+#: gui/src/panes.rs:599 gui/src/panes.rs:604 gui/src/preview.rs:981
+msgid "Strictness"
+msgstr "Точність"
 
-#: gui/src/panes.rs:611 gui/src/preview.rs:972
+#: gui/src/panes.rs:607 gui/src/preview.rs:972
 msgid "relaxed"
 msgstr "м'яка"
 
-#: gui/src/panes.rs:611 gui/src/panes.rs:689 gui/src/preview.rs:800
+#: gui/src/panes.rs:607 gui/src/panes.rs:681 gui/src/preview.rs:800
 #: gui/src/preview.rs:973
 msgid "normal"
 msgstr "звичайна"
 
-#: gui/src/panes.rs:616 gui/src/preview.rs:997
-msgid "Only when you look at the screen"
-msgstr "Лише коли ви дивитеся на екран"
+#: gui/src/panes.rs:612 gui/src/preview.rs:997
+msgid "Require attention"
+msgstr "Вимагати уваги"
 
-#: gui/src/panes.rs:616 gui/src/preview.rs:998
-msgid ""
-"Your eyes have to be open and on the screen. So it does not unlock while you "
-"look away or sleep."
-msgstr ""
-"Ваші очі мають бути розплющені й дивитися на екран. Так він не "
-"розблокується, коли ви дивитеся вбік або спите."
+#: gui/src/panes.rs:612
+msgid "Only unlocks when you look at the screen."
+msgstr "Розблоковує, лише коли ви дивитеся на екран."
 
-#: gui/src/panes.rs:626 gui/src/preview.rs:1026
-msgid ""
-"Automatic takes the first normal camera. After a change, set up your face "
-"again. An infrared camera needs its light on (linux-enable-ir-emitter)."
-msgstr ""
-"Автоматично береться перша звичайна камера. Після зміни налаштуйте обличчя "
-"знову. Інфрачервоній камері потрібне ввімкнене підсвічування (linux-enable-"
-"ir-emitter)."
+#: gui/src/panes.rs:622
+msgid "After a change, set up your face again."
+msgstr "Після зміни налаштуйте обличчя заново."
 
-#: gui/src/panes.rs:634 gui/src/panes.rs:636 gui/src/preview.rs:958
-msgid "How long a scan lasts"
-msgstr "Скільки триває сканування"
+#: gui/src/panes.rs:630 gui/src/panes.rs:632 gui/src/preview.rs:958
+msgid "Scan time"
+msgstr "Час скану"
 
-#: gui/src/panes.rs:636
-msgid "How long the camera looks for your face before it gives up."
-msgstr "Як довго камера шукає ваше обличчя, перш ніж здатися."
+#: gui/src/panes.rs:632
+msgid "How long it looks for your face."
+msgstr "Скільки часу шукає ваше обличчя."
 
-#: gui/src/panes.rs:638 gui/src/preview.rs:1034
-msgid "Learn from every unlock"
-msgstr "Вчитися при кожному розблокуванні"
+#: gui/src/panes.rs:634 gui/src/preview.rs:1034
+msgid "Adapt to changes"
+msgstr "Враховувати зміни"
 
-#: gui/src/panes.rs:638 gui/src/preview.rs:1035
-msgid ""
-"After a sure match it keeps how you look now. So a new haircut or glasses "
-"need no new setup."
-msgstr ""
-"Після впевненого збігу запам'ятовує, як ви виглядаєте зараз. Нова зачіска чи "
-"окуляри не потребують нового налаштування."
+#: gui/src/panes.rs:634
+msgid "Keeps up with new glasses, beards or haircuts."
+msgstr "Враховує нові окуляри, бороду чи зачіску."
 
-#: gui/src/panes.rs:639 gui/src/preview.rs:1049
-msgid "Not when the lid is closed"
-msgstr "Не при закритій кришці"
+#: gui/src/panes.rs:635 gui/src/preview.rs:1049
+msgid "Pause when lid is closed"
+msgstr "Пауза із закритою кришкою"
 
-#: gui/src/panes.rs:639 gui/src/preview.rs:1050
-msgid ""
-"No scan while the laptop is closed, for example at a desk with an external "
-"screen."
-msgstr ""
-"Без сканування, коли ноутбук закрито, наприклад за столом із зовнішнім "
-"монітором."
+#: gui/src/panes.rs:635
+msgid "No scan while the laptop is shut."
+msgstr "Без скану, поки ноутбук закритий."
 
-#: gui/src/panes.rs:640 gui/src/ui.rs:40
+#: gui/src/panes.rs:636 gui/src/ui.rs:40
 msgid "Recognition"
 msgstr "Розпізнавання"
 
-#: gui/src/panes.rs:652
-msgid ""
-"On GNOME a small GNOME extension shows the bubble. Turning face unlock on "
-"switches it on."
-msgstr ""
-"У GNOME бульбашку показує невелике розширення GNOME. Воно вмикається разом "
-"із розблокуванням обличчям."
+#: gui/src/panes.rs:647
+msgid "Uses a small GNOME extension."
+msgstr "Потрібне розширення GNOME."
 
-#: gui/src/panes.rs:654
-msgid "The bubble at the top of the screen shows what the camera is doing."
-msgstr "Бульбашка вгорі екрана показує, що робить камера."
+#: gui/src/panes.rs:647
+msgid "Shows at the top what the camera is doing."
+msgstr "Показує вгорі, що робить камера."
 
-#: gui/src/panes.rs:668 gui/src/ui.rs:41
+#: gui/src/panes.rs:660 gui/src/ui.rs:41
 msgid "Bubble"
 msgstr "Бульбашка"
 
-#: gui/src/panes.rs:670 gui/src/preview.rs:792
-msgid "Show the bubble"
-msgstr "Показувати бульбашку"
+#: gui/src/panes.rs:662 gui/src/preview.rs:792
+msgid "Show bubble"
+msgstr "Показ бульбашки"
 
-#: gui/src/panes.rs:676 gui/src/preview.rs:793
+#: gui/src/panes.rs:668 gui/src/preview.rs:793
 msgid "Style"
 msgstr "Стиль"
 
-#: gui/src/panes.rs:677
-msgid "A small pill with a lock that opens."
-msgstr "Маленька пігулка із замком, що відкривається."
+#: gui/src/panes.rs:669
+msgid "How the bubble looks."
+msgstr "Як виглядає бульбашка."
 
-#: gui/src/panes.rs:677
-msgid "An island with a face that looks around, then rings and a tick."
-msgstr "Острів з обличчям, яке озирається, потім кільця і галочка."
-
-#: gui/src/panes.rs:679 gui/src/preview.rs:793
+#: gui/src/panes.rs:671 gui/src/preview.rs:793
 msgid "island with the face"
 msgstr "острів з обличчям"
 
-#: gui/src/panes.rs:679 gui/src/preview.rs:793
+#: gui/src/panes.rs:671 gui/src/preview.rs:793
 msgid "small pill with a lock"
 msgstr "маленька пігулка із замком"
 
-#: gui/src/panes.rs:686 gui/src/preview.rs:796
+#: gui/src/panes.rs:678 gui/src/preview.rs:796
 msgid "Animation speed"
 msgstr "Швидкість анімації"
 
-#: gui/src/panes.rs:687
+#: gui/src/panes.rs:679
 msgid "How fast the bubble moves."
 msgstr "Як швидко рухається бульбашка."
 
-#: gui/src/panes.rs:689 gui/src/preview.rs:798
+#: gui/src/panes.rs:681 gui/src/preview.rs:798
 msgid "slow"
 msgstr "повільна"
 
-#: gui/src/panes.rs:689 gui/src/preview.rs:799
+#: gui/src/panes.rs:681 gui/src/preview.rs:799
 msgid "fast"
 msgstr "швидка"
 
-#: gui/src/panes.rs:693 gui/src/preview.rs:794
+#: gui/src/panes.rs:685 gui/src/preview.rs:794
 msgid "Screen"
 msgstr "Екран"
 
-#: gui/src/panes.rs:693
-msgid ""
-"Where the bubble shows up: on the screen with the mouse pointer, or always "
-"on one screen."
-msgstr ""
-"Де з'являється бульбашка: на екрані з вказівником миші або завжди на одному "
-"екрані."
+#: gui/src/panes.rs:685
+msgid "Where the bubble shows up."
+msgstr "Де з'являється бульбашка."
 
-#: gui/src/panes.rs:697 gui/src/preview.rs:788
-msgid "Also for sudo and admin prompts"
-msgstr "Також для sudo і запитів адміністратора"
+#: gui/src/panes.rs:689 gui/src/preview.rs:788
+msgid "Show for sudo and admin prompts"
+msgstr "Також для sudo й адміна"
 
-#: gui/src/panes.rs:698
-msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
-msgstr ""
-"Показує бульбашку й тоді, коли sudo або запит адміністратора сканує ваше "
-"обличчя."
+#: gui/src/panes.rs:690
+msgid "Not only on the lock screen."
+msgstr "Не лише на екрані блокування."
 
-#: gui/src/panes.rs:706 gui/src/preview.rs:783
-msgid "Quiet while the camera is in use"
-msgstr "Не показувати, коли камера зайнята"
+#: gui/src/panes.rs:698 gui/src/preview.rs:783
+msgid "Hide when camera is in use"
+msgstr "Ховати, коли камера зайнята"
 
-#: gui/src/panes.rs:707
-msgid ""
-"When another app uses the camera, for example in a video call, no bubble "
-"shows and you type your password as usual. Off: the bubble shows a camera "
-"with a line through it."
-msgstr ""
-"Коли камеру використовує інша програма, наприклад під час відеодзвінка, "
-"бульбашка не з'являється, і ви вводите пароль як зазвичай. Вимк.: бульбашка "
-"показує перекреслену камеру."
+#: gui/src/panes.rs:699
+msgid "For example during a video call."
+msgstr "Наприклад, під час відеодзвінка."
 
 #: gui/src/preview.rs:487 gui/src/preview.rs:1127 gui/src/preview.rs:1145
 #: pam/src/lib.rs:304
@@ -823,6 +726,18 @@ msgstr ""
 msgid "Right after locking it waits until you come back."
 msgstr "Одразу після блокування пошук чекає, доки ви повернетеся."
 
+#: gui/src/preview.rs:856
+msgid ""
+"The picture behind face-unlock's own lock screen. Empty: the one on your "
+"desktop. Or a file, a folder to take one from at random, or `none`."
+msgstr ""
+"Зображення за власним екраном блокування face-unlock. Порожньо: зображення "
+"робочого столу. Або файл, тека, з якої береться випадкове, або `none`."
+
+#: gui/src/preview.rs:858
+msgid "Blurs the picture behind face-unlock's own lock screen."
+msgstr "Розмиває зображення за екраном блокування face-unlock."
+
 #: gui/src/preview.rs:859
 msgid "Your face opens the lock screen as soon as it is found."
 msgstr "Обличчя відкриває екран блокування, щойно його знайдено."
@@ -844,6 +759,21 @@ msgid ""
 "It looks for %s seconds. If it does not find you, you type your password."
 msgstr "Пошук триває %s с. Якщо обличчя не знайдено, ви вводите пароль."
 
+#: gui/src/preview.rs:976
+msgid ""
+"Fewer wrong matches, but it may not know you with glasses or in bad light."
+msgstr ""
+"Менше хибних збігів, але може не впізнати вас в окулярах або при поганому "
+"світлі."
+
+#: gui/src/preview.rs:977
+msgid "Knows you more easily, but also somebody who looks a lot like you."
+msgstr "Впізнає вас легше, але й того, хто дуже на вас схожий."
+
+#: gui/src/preview.rs:978
+msgid "The default. Right for most people."
+msgstr "Типове значення. Підходить більшості."
+
 #: gui/src/preview.rs:986 gui/src/preview.rs:1039 gui/src/preview.rs:1080
 msgid "Your face"
 msgstr "Ваше обличчя"
@@ -856,6 +786,14 @@ msgstr "В окулярах або при поганому світлі"
 msgid "Somebody who looks like you"
 msgstr "Людина, схожа на вас"
 
+#: gui/src/preview.rs:998
+msgid ""
+"Your eyes have to be open and on the screen. So it does not unlock while you "
+"look away or sleep."
+msgstr ""
+"Ваші очі мають бути розплющені й дивитися на екран. Так він не "
+"розблокується, коли ви дивитеся вбік або спите."
+
 #: gui/src/preview.rs:1002
 msgid "Looking at the screen"
 msgstr "Дивиться на екран"
@@ -863,6 +801,23 @@ msgstr "Дивиться на екран"
 #: gui/src/preview.rs:1003
 msgid "Eyes closed or looking away"
 msgstr "Очі заплющені або погляд убік"
+
+#: gui/src/preview.rs:1026
+msgid ""
+"Automatic takes the first normal camera. After a change, set up your face "
+"again. An infrared camera needs its light on (linux-enable-ir-emitter)."
+msgstr ""
+"Автоматично береться перша звичайна камера. Після зміни налаштуйте обличчя "
+"знову. Інфрачервоній камері потрібне ввімкнене підсвічування (linux-enable-"
+"ir-emitter)."
+
+#: gui/src/preview.rs:1035
+msgid ""
+"After a sure match it keeps how you look now. So a new haircut or glasses "
+"need no new setup."
+msgstr ""
+"Після впевненого збігу запам'ятовує, як ви виглядаєте зараз. Нова зачіска чи "
+"окуляри не потребують нового налаштування."
 
 #: gui/src/preview.rs:1040
 msgid "New glasses or haircut"
@@ -875,6 +830,14 @@ msgstr "без скану"
 #: gui/src/preview.rs:1047
 msgid "scans anyway"
 msgstr "сканує марно"
+
+#: gui/src/preview.rs:1050
+msgid ""
+"No scan while the laptop is closed, for example at a desk with an external "
+"screen."
+msgstr ""
+"Без сканування, коли ноутбук закрито, наприклад за столом із зовнішнім "
+"монітором."
 
 #: gui/src/preview.rs:1054
 msgid "Lid open"
@@ -891,6 +854,24 @@ msgstr "Кришка закрита"
 #: gui/src/preview.rs:1063
 msgid "after a blink"
 msgstr "після кліпання"
+
+#: gui/src/preview.rs:1068
+msgid ""
+"You have to blink or turn your head a little. This also stops printed photos."
+msgstr ""
+"Треба кліпнути або трохи повернути голову. Це також зупиняє надруковані фото."
+
+#: gui/src/preview.rs:1069
+msgid "No check at all. Only for trying out a camera."
+msgstr "Жодної перевірки. Лише щоб випробувати камеру."
+
+#: gui/src/preview.rs:1070
+msgid ""
+"Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
+"A matte printed photo can get through."
+msgstr ""
+"Зупиняє фото на телефоні, планшеті чи глянцевому папері. Кліпати не треба. "
+"Матове надруковане фото може пройти."
 
 #: gui/src/preview.rs:1078
 msgid "Your photo on a phone"
@@ -913,6 +894,14 @@ msgstr "Пароль"
 msgid "An app wants to make changes"
 msgstr "Програма хоче внести зміни"
 
+#: gui/src/preview.rs:1169
+msgid ""
+"The password windows of your desktop and apps, for example when you install "
+"software. No match: you type the password."
+msgstr ""
+"Вікна введення пароля робочого столу і програм, наприклад під час "
+"встановлення програм. Не збіглося: ви вводите пароль."
+
 #: gui/src/preview.rs:1191
 msgid "Press Enter on the empty field to scan."
 msgstr "Натисніть Enter у порожньому полі, щоб сканувати."
@@ -920,6 +909,31 @@ msgstr "Натисніть Enter у порожньому полі, щоб ска
 #: gui/src/preview.rs:1191 paint/src/lockscreen.rs:220
 msgid "Type your password"
 msgstr "Введіть пароль"
+
+#: gui/src/preview.rs:1198
+msgid ""
+"The lock screen takes your face in its password check. Press Enter on the "
+"empty field to scan. Found here: %s."
+msgstr ""
+"Екран блокування приймає ваше обличчя під час перевірки пароля. Натисніть "
+"Enter у порожньому полі, щоб сканувати. Знайдено тут: %s."
+
+#: gui/src/preview.rs:1208
+msgid ""
+"sudo in an SSH session takes your face too, if you sit at this computer. Off "
+"by default: the person at the camera may not be the one typing."
+msgstr ""
+"sudo в сеансі SSH теж приймає ваше обличчя, якщо ви сидите за цим "
+"комп'ютером. Типово вимк.: людина перед камерою може бути не тією, хто "
+"друкує."
+
+#: gui/src/preview.rs:1220
+msgid ""
+"sudo takes your face instead of the password. No match: you type the "
+"password as usual."
+msgstr ""
+"sudo приймає ваше обличчя замість пароля. Не збіглося: ви вводите пароль як "
+"зазвичай."
 
 #: gui/src/setup.rs:63
 msgid "Bring your face into the circle."
