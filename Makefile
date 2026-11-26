@@ -143,6 +143,7 @@ install:
 	sed -i -e 's|@LIBEXECDIR@|$(LIBEXECDIR)|g' "$(DESTDIR)$(APPDIR)/io.github.loonixtools.face-unlock-agent.desktop"
 	install -Dm644 res/polkit/io.github.loonixtools.face-unlock.policy \
 		"$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.face-unlock.policy"
+	sed -i -e 's|@BINDIR@|$(BINDIR)|g' "$(DESTDIR)$(POLKITDIR)/io.github.loonixtools.face-unlock.policy"
 	install -Dm644 res/face-unlock.svg "$(DESTDIR)$(ICONDIR)/face-unlock.svg"
 
 	# the GNOME Shell extension that draws the bubble on GNOME

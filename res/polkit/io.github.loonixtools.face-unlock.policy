@@ -45,4 +45,47 @@
       <allow_active>auth_self_keep</allow_active>
     </defaults>
   </action>
+
+  <!-- The settings for the whole computer: a line of /etc/face-unlock/config,
+       the PAM files, the daemon's socket. The window runs face-unlock as root
+       through pkexec for them, and pkexec picks this action by its path. The
+       password holds for a few minutes, so changing a few settings in a row
+       asks only once. -->
+  <action id="io.github.loonixtools.face-unlock.settings">
+    <description>Change the Face Unlock settings of this computer</description>
+    <description xml:lang="de">Die Einstellungen der Gesichtsentsperrung auf diesem Computer ändern</description>
+    <description xml:lang="fr">Modifier les réglages du déverrouillage facial de cet ordinateur</description>
+    <description xml:lang="es">Cambiar la configuración del desbloqueo facial de este equipo</description>
+    <description xml:lang="it">Modificare le impostazioni dello sblocco con il volto di questo computer</description>
+    <description xml:lang="pt_BR">Alterar as configurações do desbloqueio facial deste computador</description>
+    <description xml:lang="nl">De instellingen van gezichtsontgrendeling op deze computer wijzigen</description>
+    <description xml:lang="pl">Zmień ustawienia odblokowywania twarzą na tym komputerze</description>
+    <description xml:lang="ru">Изменить настройки разблокировки по лицу на этом компьютере</description>
+    <description xml:lang="uk">Змінити налаштування розблокування обличчям на цьому комп’ютері</description>
+    <description xml:lang="tr">Bu bilgisayardaki yüzle kilit açma ayarlarını değiştir</description>
+    <description xml:lang="zh_CN">更改此电脑的人脸解锁设置</description>
+    <description xml:lang="ja">このコンピューターの顔認証の設定を変更</description>
+    <description xml:lang="ko">이 컴퓨터의 얼굴 잠금 해제 설정 변경</description>
+    <message>Authentication is required to change the Face Unlock settings of this computer.</message>
+    <message xml:lang="de">Zum Ändern der Einstellungen der Gesichtsentsperrung auf diesem Computer ist eine Legitimierung erforderlich.</message>
+    <message xml:lang="fr">Une authentification est nécessaire pour modifier les réglages du déverrouillage facial de cet ordinateur.</message>
+    <message xml:lang="es">Se necesita autenticación para cambiar la configuración del desbloqueo facial de este equipo.</message>
+    <message xml:lang="it">È richiesta l'autenticazione per modificare le impostazioni dello sblocco con il volto di questo computer.</message>
+    <message xml:lang="pt_BR">É necessária autenticação para alterar as configurações do desbloqueio facial deste computador.</message>
+    <message xml:lang="nl">Authenticatie is vereist om de instellingen van gezichtsontgrendeling op deze computer te wijzigen.</message>
+    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zmienić ustawienia odblokowywania twarzą na tym komputerze.</message>
+    <message xml:lang="ru">Для изменения настроек разблокировки по лицу на этом компьютере требуется аутентификация.</message>
+    <message xml:lang="uk">Для зміни налаштувань розблокування обличчям на цьому комп’ютері потрібна автентифікація.</message>
+    <message xml:lang="tr">Bu bilgisayardaki yüzle kilit açma ayarlarını değiştirmek için kimlik doğrulaması gerekiyor.</message>
+    <message xml:lang="zh_CN">更改此电脑的人脸解锁设置需要身份验证。</message>
+    <message xml:lang="ja">このコンピューターの顔認証の設定を変更するには認証が必要です。</message>
+    <message xml:lang="ko">이 컴퓨터의 얼굴 잠금 해제 설정을 변경하려면 인증이 필요합니다.</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">@BINDIR@/face-unlock</annotate>
+    <annotate key="org.freedesktop.policykit.exec.argv1">--root</annotate>
+  </action>
 </policyconfig>

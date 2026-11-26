@@ -333,7 +333,8 @@ _~/.config/face-unlock/config_
 
 _/etc/face-unlock/config_
 	The system settings: camera, photo check, strictness, attention, scan
-	length, SSH sessions. Written by the window through pkexec, or by root.
+	length, SSH sessions. Written by the window through pkexec, which keeps
+	the admin password for a few minutes, or by root.
 
 _/var/lib/face-unlock/users/<uid>.json_
 	The face data: numbers, no pictures. Root only.
