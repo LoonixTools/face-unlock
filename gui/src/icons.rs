@@ -4,12 +4,15 @@ use rune::Icon;
 
 macro_rules! line_icon {
     ($static:ident, $name:literal, [$($d:literal),+ $(,)?]) => {
+        line_icon!($static, $name, "1.75", [$($d),+]);
+    };
+    ($static:ident, $name:literal, $width:literal, [$($d:literal),+ $(,)?]) => {
         pub static $static: Icon = Icon {
             name: $name,
             view: 24.0,
             body: concat!($(
                 "<path d=\"", $d,
-                "\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>"
+                "\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"", $width, "\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>"
             ),+),
         };
     };
@@ -20,6 +23,13 @@ line_icon!(SCAN_FACE, "fu-scan-face", [
     "M17 3h2a2 2 0 0 1 2 2v2",
     "M21 17v2a2 2 0 0 1-2 2h-2",
     "M7 21H5a2 2 0 0 1-2-2v-2",
+    "M8 14s1.5 2 4 2 4-2 4-2",
+    "M9 9h.01",
+    "M15 9h.01",
+]);
+
+line_icon!(FACE, "fu-face", [
+    "M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20z",
     "M8 14s1.5 2 4 2 4-2 4-2",
     "M9 9h.01",
     "M15 9h.01",
@@ -146,19 +156,20 @@ line_icon!(EYE_OFF, "fu-eye-off", [
     "m2 2 20 20",
 ]);
 
-line_icon!(X_CIRCLE, "fu-x-circle", [
-    "M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20z",
-    "m15 9-6 6",
-    "m9 9 6 6",
-]);
+// What the camera does with something held up to it: a mark in a small
+// round badge, and the corners of a viewfinder around the thing.
 
-line_icon!(HELP_CIRCLE, "fu-help-circle", [
-    "M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20z",
-    "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3",
-    "M12 17h.01",
-]);
+line_icon!(CHECK, "fu-check", "2.5", ["M20 6 9 17l-5-5"]);
 
-line_icon!(MINUS_CIRCLE, "fu-minus-circle", [
-    "M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20z",
-    "M8 12h8",
+line_icon!(CROSS, "fu-cross", "2.5", ["M18 6 6 18", "m6 6 12 12"]);
+
+line_icon!(QUESTION, "fu-question", "2.5", ["M8 8.5a4 4 0 1 1 5.5 3.7c-.9.4-1.5 1.1-1.5 2.1v.7", "M12 19.5h.01"]);
+
+line_icon!(MINUS, "fu-minus", "2.5", ["M5 12h14"]);
+
+line_icon!(VIEWFINDER, "fu-viewfinder", "1.0", [
+    "M2 7V5a3 3 0 0 1 3-3h2",
+    "M17 2h2a3 3 0 0 1 3 3v2",
+    "M22 17v2a3 3 0 0 1-3 3h-2",
+    "M7 22H5a3 3 0 0 1-3-3v-2",
 ]);

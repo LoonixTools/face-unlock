@@ -11,8 +11,8 @@ use face_unlock::i18n::{tr, trf};
 use face_unlock_paint::bubble::{self, Bubble, Look, Phase};
 use face_unlock_paint::draw::{self, Align, Canvas, Rgb, rounded_rect};
 use face_unlock_paint::lockscreen::{self, LockScreen};
-use rune::tok::radius;
-use rune::{Color, El, SurfaceFit, TextStyle, col, el, icon, row, text};
+use rune::tok::{motion, radius};
+use rune::{Color, El, SurfaceFit, TextStyle, Transition, col, el, icon, row, text};
 use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
@@ -865,7 +865,7 @@ fn lock_pane(ui: &Ui) -> Shown {
 // Pictures of who gets in
 // ---------------------------------------------------------------------------
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq)]
 enum Verdict {
     In,
     Out,
@@ -874,39 +874,73 @@ enum Verdict {
     Skip,
 }
 
-fn chip(p: Paint, verdict: Verdict, label: &str) -> El {
-    let c = &p.k.c;
-    let (glyph, fg, bg) = match verdict {
-        Verdict::In => (&icons::CHECK_CIRCLE, c.success.icon, c.success.bg),
-        Verdict::Out => (&icons::X_CIRCLE, c.danger.icon, c.danger.bg),
-        Verdict::Maybe => (&icons::HELP_CIRCLE, c.warning.icon, c.warning.bg),
-        Verdict::Skip => (&icons::MINUS_CIRCLE, p.muted(), p.t.control_off),
-    };
-    row()
-        .key("chip")
-        .h(22.0)
-        .px(8.0)
-        .gap(5.0)
-        .center_y()
-        .radius(11.0)
-        .fill(bg)
-        .child(icon(glyph, 12.0).key("icon").color(fg))
-        .child(text(label).key("label").font(TextStyle::new(11.0, 600.0)).color(fg).truncate())
+impl Verdict {
+    fn key(self) -> &'static str {
+        match self {
+            Verdict::In => "in",
+            Verdict::Out => "out",
+            Verdict::Maybe => "maybe",
+            Verdict::Skip => "skip",
+        }
+    }
+
+    /// Its colour and its mark. Softer than the kit's states, which are
+    /// made for small icons and glare at this size.
+    fn tone(self, p: Paint) -> (Color, &'static rune::Icon) {
+        let ok = |l: f32, c: f32, h: f32| rune::color::oklch(l, c, h);
+        match (self, p.dark) {
+            (Verdict::In, true) => (ok(0.80, 0.15, 152.0), &icons::CHECK),
+            (Verdict::In, false) => (ok(0.55, 0.15, 150.0), &icons::CHECK),
+            (Verdict::Out, true) => (ok(0.72, 0.15, 25.0), &icons::CROSS),
+            (Verdict::Out, false) => (ok(0.55, 0.19, 27.0), &icons::CROSS),
+            (Verdict::Maybe, true) => (ok(0.84, 0.13, 80.0), &icons::QUESTION),
+            (Verdict::Maybe, false) => (ok(0.62, 0.13, 65.0), &icons::QUESTION),
+            (Verdict::Skip, _) => (p.muted(), &icons::MINUS),
+        }
+    }
 }
 
+/// Something held up to the camera, in a viewfinder, with what face-unlock
+/// does with it. A change pops the badge, so the eye goes to what changed.
 fn tile(p: Paint, key: &str, glyph: &'static rune::Icon, label: &str, verdict: Verdict, said: &str) -> El {
+    const SHOT: f32 = 68.0;
+    const BADGE: f32 = 26.0;
+    let (tone, mark) = verdict.tone(p);
+    let shot = el()
+        .key("shot")
+        .size(SHOT, SHOT)
+        .radius(20.0)
+        .center()
+        .fill(p.t.card)
+        .child(icon(&icons::VIEWFINDER, SHOT).key("corners").color(tone).absolute(0.0, 0.0).motion(motion::SNAPPY))
+        .child(icon(glyph, 28.0).key("glyph").color(p.text()))
+        // Over the viewfinder's bottom right corner, which it stands in for.
+        .child(
+            el().key(format!("badge-{}", verdict.key()))
+                .size(BADGE, BADGE)
+                .radius(BADGE / 2.0)
+                .center()
+                .fill(tone)
+                .border(2.5, p.t.control_track)
+                .absolute(SHOT * 21.0 / 24.0 - BADGE / 2.0, SHOT * 21.0 / 24.0 - BADGE / 2.0)
+                .transition(Transition::scale(0.6).allow_small_scale())
+                .child(icon(mark, 14.0).key("mark").color(p.t.card)),
+        );
+    // The tiles are as tall as the tallest, and each says what happens at
+    // its bottom, so the answers stand in one line however long the words.
     col()
         .key(key)
         .w(100.0)
-        .gap(8.0)
+        .gap(10.0)
         .items_center()
-        .child(el().key("badge").size(44.0, 44.0).radius(22.0).center().fill(p.t.card).child(icon(glyph, 22.0).key("glyph").color(p.text())))
-        .child(text(label).key("label").font(TextStyle::new(11.5, 500.0).lh(15.0)).color(p.text()).wrap().align(rune::Align::Center).min_h(30.0))
-        .child(chip(p, verdict, said))
+        .child(shot)
+        .child(text(label).key("label").font(TextStyle::new(11.5, 500.0).lh(15.0)).color(p.text()).w_full().wrap().align(rune::Align::Center))
+        .child(el().key("push").grow(1.0))
+        .child(text(said).key(format!("said-{}", verdict.key())).font(TextStyle::new(11.5, 650.0).lh(15.0)).color(tone).w_full().wrap().align(rune::Align::Center))
 }
 
 fn tiles(p: Paint, list: Vec<El>) -> El {
-    let mut r = row().key("tiles").gap(8.0).items_start();
+    let mut r = row().key("tiles").gap(6.0).items_stretch();
     for t in list {
         r = r.child(t);
     }
@@ -916,7 +950,7 @@ fn tiles(p: Paint, list: Vec<El>) -> El {
 fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
     let s = &ui.snap;
     let key = focus(ui, &["Liveness", "Strictness", "Attention", "Camera", "ScanSeconds", "Adapt", "SkipLidClosed"]);
-    let (yes, no, maybe) = (tr("gets in"), tr("stopped"), tr("maybe"));
+    let (yes, no, maybe) = (tr("unlocks"), tr("blocked"), tr("sometimes"));
     match key {
         "ScanSeconds" => {
             let secs: u32 = s.sys.get("ScanSeconds", "5").parse().unwrap_or(5);
@@ -949,7 +983,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
                 stage: Content::Picture(tiles(
                     p,
                     vec![
-                        tile(p, "you", &icons::SCAN_FACE, tr("Your face"), Verdict::In, yes),
+                        tile(p, "you", &icons::FACE, tr("Your face"), Verdict::In, yes),
                         tile(p, "glasses", &icons::GLASSES, tr("With glasses or in bad light"), glasses.0, glasses.1),
                         tile(p, "alike", &icons::USERS, tr("Somebody who looks like you"), alike.0, alike.1),
                     ],
@@ -1002,7 +1036,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
                 stage: Content::Picture(tiles(
                     p,
                     vec![
-                        tile(p, "you", &icons::SCAN_FACE, tr("Your face"), Verdict::In, yes),
+                        tile(p, "you", &icons::FACE, tr("Your face"), Verdict::In, yes),
                         tile(p, "new", &icons::GLASSES, tr("New glasses or haircut"), new_look.0, new_look.1),
                     ],
                 )),
@@ -1010,7 +1044,7 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
         }
         "SkipLidClosed" => {
             let on = sys_on(ui, key, true);
-            let closed = if on { (Verdict::Skip, tr("no scan")) } else { (Verdict::Maybe, tr("scans")) };
+            let closed = if on { (Verdict::Skip, tr("no scan")) } else { (Verdict::Maybe, tr("scans anyway")) };
             Shown {
                 title: heading(tr("Not when the lid is closed"), on_off(on)),
                 caption: tr("No scan while the laptop is closed, for example at a desk with an external screen.").into(),
@@ -1041,9 +1075,9 @@ fn recognition_pane(ui: &Ui, p: Paint) -> Shown {
                 stage: Content::Picture(tiles(
                     p,
                     vec![
-                        tile(p, "phone", &icons::PHONE, tr("Photo on a phone"), phone.0, phone.1),
-                        tile(p, "print", &icons::PHOTO, tr("Printed photo"), print.0, print.1),
-                        tile(p, "you", &icons::SCAN_FACE, tr("Your face"), you.0, you.1),
+                        tile(p, "phone", &icons::PHONE, tr("Your photo on a phone"), phone.0, phone.1),
+                        tile(p, "print", &icons::PHOTO, tr("Your photo on paper"), print.0, print.1),
+                        tile(p, "you", &icons::FACE, tr("Your face"), you.0, you.1),
                     ],
                 )),
             }

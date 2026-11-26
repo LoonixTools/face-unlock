@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: face-unlock 1.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/LoonixTools/face-unlock/issues\n"
-"POT-Creation-Date: 2026-11-25 14:55+0100\n"
+"POT-Creation-Date: 2026-11-26 15:00+0100\n"
 "PO-Revision-Date: 2026-09-24 12:00+0200\n"
 "Last-Translator: Felitendo\n"
 "Language-Team: Turkish\n"
@@ -31,7 +31,7 @@ msgstr "Yaklaşın"
 msgid "Too dark"
 msgstr "Çok karanlık"
 
-#: agent/src/app.rs:467 gui/src/preview.rs:277 gui/src/preview.rs:279
+#: agent/src/app.rs:467 gui/src/preview.rs:283 gui/src/preview.rs:285
 msgid "Camera in use"
 msgstr "Kamera kullanımda"
 
@@ -51,7 +51,7 @@ msgstr "Tekrar deneyin ve göz kırpın"
 msgid "Camera unavailable"
 msgstr "Kamera kullanılamıyor"
 
-#: agent/src/app.rs:541 gui/src/choice.rs:57 gui/src/preview.rs:526
+#: agent/src/app.rs:541 gui/src/choice.rs:57 gui/src/preview.rs:525
 msgid "Looking for your face…"
 msgstr "Yüzünüz aranıyor…"
 
@@ -68,7 +68,7 @@ msgstr "İptal"
 msgid "face-unlock's lock screen"
 msgstr "face-unlock'un kilit ekranı"
 
-#: gui/src/choice.rs:112 gui/src/preview.rs:740
+#: gui/src/choice.rs:112 gui/src/preview.rs:849
 msgid ""
 "Shows the bubble while it looks for your face. You lock with `face-unlock "
 "lock`."
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Your own lock screen"
 msgstr "Kendi kilit ekranınız"
 
-#: gui/src/choice.rs:121 gui/src/preview.rs:742
+#: gui/src/choice.rs:121 gui/src/preview.rs:851
 msgid ""
 "Stays as it is. hyprlock shows a line of text at the top, and Enter on the "
 "empty password field scans."
@@ -101,7 +101,7 @@ msgstr ""
 msgid "Use this one"
 msgstr "Bunu kullan"
 
-#: gui/src/choice.rs:219 gui/src/panes.rs:658 gui/src/preview.rs:685
+#: gui/src/choice.rs:219 gui/src/panes.rs:658 gui/src/preview.rs:794
 msgid "follows the mouse"
 msgstr "fareyi izler"
 
@@ -165,11 +165,11 @@ msgstr "Devam"
 msgid "Switch on"
 msgstr "Aç"
 
-#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1076
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1219
 msgid "sudo in a terminal"
 msgstr "Terminalde sudo"
 
-#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1077
+#: gui/src/onboarding.rs:132 gui/src/panes.rs:533 gui/src/preview.rs:1220
 msgid ""
 "sudo takes your face instead of the password. No match: you type the "
 "password as usual."
@@ -178,11 +178,11 @@ msgstr ""
 "yazarsınız."
 
 #: gui/src/onboarding.rs:138 gui/src/panes.rs:234 gui/src/panes.rs:538
-#: gui/src/preview.rs:1025 src/main.rs:303
+#: gui/src/preview.rs:1168 src/main.rs:303
 msgid "Admin prompts"
 msgstr "Yönetici istemleri"
 
-#: gui/src/onboarding.rs:139 gui/src/panes.rs:539 gui/src/preview.rs:1026
+#: gui/src/onboarding.rs:139 gui/src/panes.rs:539 gui/src/preview.rs:1169
 msgid ""
 "The password windows of your desktop and apps, for example when you install "
 "software. No match: you type the password."
@@ -191,7 +191,7 @@ msgstr ""
 "Eşleşmezse parolayı yazarsınız."
 
 #: gui/src/onboarding.rs:149 gui/src/panes.rs:238 gui/src/panes.rs:546
-#: gui/src/preview.rs:1056 src/main.rs:305
+#: gui/src/preview.rs:1199 src/main.rs:305
 msgid "Lock screens"
 msgstr "Kilit ekranları"
 
@@ -238,12 +238,12 @@ msgstr ""
 msgid "Open the settings"
 msgstr "Ayarları aç"
 
-#: gui/src/panes.rs:22 gui/src/preview.rs:592 src/main.rs:163 src/main.rs:276
+#: gui/src/panes.rs:22 gui/src/preview.rs:701 src/main.rs:163 src/main.rs:276
 msgid "on"
 msgstr "açık"
 
 #: gui/src/panes.rs:22 gui/src/panes.rs:249 gui/src/panes.rs:600
-#: gui/src/preview.rs:592 src/main.rs:163 src/main.rs:276
+#: gui/src/preview.rs:701 src/main.rs:163 src/main.rs:276
 msgid "off"
 msgstr "kapalı"
 
@@ -251,7 +251,7 @@ msgstr "kapalı"
 msgid "Dismiss"
 msgstr "Kapat"
 
-#: gui/src/panes.rs:77 gui/src/preview.rs:879 gui/src/ui.rs:42
+#: gui/src/panes.rs:77 gui/src/preview.rs:1022 gui/src/ui.rs:42
 msgid "Try it"
 msgstr "Dene"
 
@@ -321,7 +321,7 @@ msgstr "henüz kurulmadı"
 msgid "all turned off"
 msgstr "hepsi kapalı"
 
-#: gui/src/panes.rs:226 gui/src/preview.rs:868 src/main.rs:297
+#: gui/src/panes.rs:226 gui/src/preview.rs:1011 src/main.rs:297
 msgid "none found"
 msgstr "bulunamadı"
 
@@ -331,7 +331,7 @@ msgid "Faces"
 msgstr "Yüzler"
 
 #: gui/src/panes.rs:231 gui/src/panes.rs:618 gui/src/panes.rs:625
-#: gui/src/preview.rs:882 src/main.rs:299
+#: gui/src/preview.rs:1025 src/main.rs:299
 msgid "Camera"
 msgstr "Kamera"
 
@@ -344,7 +344,7 @@ msgid "sudo"
 msgstr "sudo"
 
 #: gui/src/panes.rs:240 gui/src/panes.rs:598 gui/src/panes.rs:600
-#: gui/src/preview.rs:930
+#: gui/src/preview.rs:1073
 msgid "Photo check"
 msgstr "Fotoğraf denetimi"
 
@@ -357,7 +357,7 @@ msgid "At a glance"
 msgstr "Bir bakışta"
 
 #: gui/src/panes.rs:248 gui/src/panes.rs:600 gui/src/panes.rs:611
-#: gui/src/preview.rs:828
+#: gui/src/preview.rs:971
 msgid "strict"
 msgstr "sıkı"
 
@@ -434,11 +434,11 @@ msgstr ""
 "Yüzünüzü görünce kilit ekranını açar. Kapalı: orada yalnızca parolanız "
 "çalışır."
 
-#: gui/src/panes.rs:447 gui/src/preview.rs:750
+#: gui/src/panes.rs:447 gui/src/preview.rs:859
 msgid "Unlock with your face"
 msgstr "Yüzünüzle kilidi açın"
 
-#: gui/src/panes.rs:451 gui/src/preview.rs:718
+#: gui/src/panes.rs:451 gui/src/preview.rs:827
 msgid "Scan when you come back"
 msgstr "Geri döndüğünüzde tara"
 
@@ -450,7 +450,7 @@ msgstr ""
 "Kilit ekranında bir tuşa bastığınızda ya da fareyi oynattığınızda ve "
 "bilgisayar uyandığında tarar."
 
-#: gui/src/panes.rs:460 gui/src/preview.rs:728
+#: gui/src/panes.rs:460 gui/src/preview.rs:837
 msgid "Scan right after locking"
 msgstr "Kilitledikten hemen sonra tara"
 
@@ -462,7 +462,7 @@ msgstr ""
 "Ekran kilitlenir kilitlenmez tarar. Varsayılan olarak kapalı: kendiniz "
 "kilitlerseniz hemen yeniden açılırdı."
 
-#: gui/src/panes.rs:471 gui/src/preview.rs:738
+#: gui/src/panes.rs:471 gui/src/preview.rs:847
 msgid "face-unlock's"
 msgstr "face-unlock"
 
@@ -470,7 +470,7 @@ msgstr "face-unlock"
 msgid "not picked yet"
 msgstr "henüz seçilmedi"
 
-#: gui/src/panes.rs:473 gui/src/preview.rs:738
+#: gui/src/panes.rs:473 gui/src/preview.rs:847
 msgid "yours"
 msgstr "sizinki"
 
@@ -478,15 +478,15 @@ msgstr "sizinki"
 msgid "Choose…"
 msgstr "Seç…"
 
-#: gui/src/panes.rs:484 gui/src/preview.rs:746
+#: gui/src/panes.rs:484 gui/src/preview.rs:855
 msgid "same as desktop"
 msgstr "masaüstüyle aynı"
 
-#: gui/src/panes.rs:485 gui/src/panes.rs:506 gui/src/preview.rs:746
+#: gui/src/panes.rs:485 gui/src/panes.rs:506 gui/src/preview.rs:855
 msgid "Wallpaper"
 msgstr "Duvar kâğıdı"
 
-#: gui/src/panes.rs:499 gui/src/panes.rs:516 gui/src/preview.rs:738
+#: gui/src/panes.rs:499 gui/src/panes.rs:516 gui/src/preview.rs:847
 msgid "Which lock screen"
 msgstr "Hangi kilit ekranı"
 
@@ -499,7 +499,7 @@ msgstr ""
 "kilitlersiniz. Ya da kendinizinkini koruyun: hyprlock o zaman üstte bir "
 "satır metin gösterir."
 
-#: gui/src/panes.rs:507 gui/src/preview.rs:747
+#: gui/src/panes.rs:507 gui/src/preview.rs:856
 msgid ""
 "The picture behind face-unlock's own lock screen. Empty: the one on your "
 "desktop. Or a file, a folder to take one from at random, or `none`."
@@ -508,15 +508,15 @@ msgstr ""
 "masaüstünüzdeki. Ya da bir dosya, rastgele birinin alınacağı bir klasör veya "
 "`none`."
 
-#: gui/src/panes.rs:510 gui/src/preview.rs:749
+#: gui/src/panes.rs:510 gui/src/preview.rs:858
 msgid "Blur the wallpaper"
 msgstr "Duvar kâğıdını bulanıklaştır"
 
-#: gui/src/panes.rs:510 gui/src/preview.rs:749
+#: gui/src/panes.rs:510 gui/src/preview.rs:858
 msgid "Blurs the picture behind face-unlock's own lock screen."
 msgstr "face-unlock kilit ekranının arkasındaki resmi bulanıklaştırır."
 
-#: gui/src/panes.rs:545 gui/src/preview.rs:1055
+#: gui/src/panes.rs:545 gui/src/preview.rs:1198
 msgid ""
 "The lock screen takes your face in its password check. Press Enter on the "
 "empty field to scan. Found here: %s."
@@ -524,11 +524,11 @@ msgstr ""
 "Kilit ekranı parola denetiminde yüzünüzü kabul eder. Taramak için boş alanda "
 "Enter'a basın. Burada bulunanlar: %s."
 
-#: gui/src/panes.rs:552 gui/src/preview.rs:1063
+#: gui/src/panes.rs:552 gui/src/preview.rs:1206
 msgid "In SSH sessions"
 msgstr "SSH oturumlarında"
 
-#: gui/src/panes.rs:553 gui/src/preview.rs:1065
+#: gui/src/panes.rs:553 gui/src/preview.rs:1208
 msgid ""
 "sudo in an SSH session takes your face too, if you sit at this computer. Off "
 "by default: the person at the camera may not be the one typing."
@@ -544,18 +544,18 @@ msgstr "Parola istemleri"
 msgid "for all users, asks for your password"
 msgstr "tüm kullanıcılar için, parolanızı sorar"
 
-#: gui/src/panes.rs:565 gui/src/preview.rs:925
+#: gui/src/panes.rs:565 gui/src/preview.rs:1068
 msgid ""
 "You have to blink or turn your head a little. This also stops printed photos."
 msgstr ""
 "Göz kırpmanız ya da başınızı biraz çevirmeniz gerekir. Bu, basılı "
 "fotoğrafları da durdurur."
 
-#: gui/src/panes.rs:566 gui/src/preview.rs:926
+#: gui/src/panes.rs:566 gui/src/preview.rs:1069
 msgid "No check at all. Only for trying out a camera."
 msgstr "Hiç denetim yok. Yalnızca bir kamerayı denemek için."
 
-#: gui/src/panes.rs:567 gui/src/preview.rs:927
+#: gui/src/panes.rs:567 gui/src/preview.rs:1070
 msgid ""
 "Stops photos on a phone, a tablet or glossy paper. You do not have to blink. "
 "A matte printed photo can get through."
@@ -563,17 +563,17 @@ msgstr ""
 "Telefon, tablet ya da parlak kâğıttaki fotoğrafları durdurur. Göz kırpmanız "
 "gerekmez. Mat basılı bir fotoğraf geçebilir."
 
-#: gui/src/panes.rs:570 gui/src/preview.rs:833
+#: gui/src/panes.rs:570 gui/src/preview.rs:976
 msgid ""
 "Fewer wrong matches, but it may not know you with glasses or in bad light."
 msgstr ""
 "Daha az yanlış eşleşme, ama gözlükle ya da kötü ışıkta sizi tanımayabilir."
 
-#: gui/src/panes.rs:571 gui/src/preview.rs:834
+#: gui/src/panes.rs:571 gui/src/preview.rs:977
 msgid "Knows you more easily, but also somebody who looks a lot like you."
 msgstr "Sizi daha kolay tanır, ama size çok benzeyen birini de."
 
-#: gui/src/panes.rs:572 gui/src/preview.rs:835
+#: gui/src/panes.rs:572 gui/src/preview.rs:978
 msgid "The default. Right for most people."
 msgstr "Varsayılan. Çoğu kişi için uygun."
 
@@ -593,28 +593,28 @@ msgstr "(kızılötesi)"
 msgid "(not connected)"
 msgstr "(bağlı değil)"
 
-#: gui/src/panes.rs:594 gui/src/preview.rs:815
+#: gui/src/panes.rs:594 gui/src/preview.rs:958
 msgid "%s seconds"
 msgstr "%s saniye"
 
-#: gui/src/panes.rs:603 gui/src/panes.rs:608 gui/src/preview.rs:838
+#: gui/src/panes.rs:603 gui/src/panes.rs:608 gui/src/preview.rs:981
 msgid "How closely the face has to match"
 msgstr "Yüzün ne kadar eşleşmesi gerektiği"
 
-#: gui/src/panes.rs:611 gui/src/preview.rs:829
+#: gui/src/panes.rs:611 gui/src/preview.rs:972
 msgid "relaxed"
 msgstr "esnek"
 
-#: gui/src/panes.rs:611 gui/src/panes.rs:689 gui/src/preview.rs:691
-#: gui/src/preview.rs:830
+#: gui/src/panes.rs:611 gui/src/panes.rs:689 gui/src/preview.rs:800
+#: gui/src/preview.rs:973
 msgid "normal"
 msgstr "normal"
 
-#: gui/src/panes.rs:616 gui/src/preview.rs:854
+#: gui/src/panes.rs:616 gui/src/preview.rs:997
 msgid "Only when you look at the screen"
 msgstr "Yalnızca ekrana baktığınızda"
 
-#: gui/src/panes.rs:616 gui/src/preview.rs:855
+#: gui/src/panes.rs:616 gui/src/preview.rs:998
 msgid ""
 "Your eyes have to be open and on the screen. So it does not unlock while you "
 "look away or sleep."
@@ -622,7 +622,7 @@ msgstr ""
 "Gözleriniz açık ve ekrana dönük olmalı. Böylece başka yere bakarken ya da "
 "uyurken kilit açılmaz."
 
-#: gui/src/panes.rs:626 gui/src/preview.rs:883
+#: gui/src/panes.rs:626 gui/src/preview.rs:1026
 msgid ""
 "Automatic takes the first normal camera. After a change, set up your face "
 "again. An infrared camera needs its light on (linux-enable-ir-emitter)."
@@ -631,7 +631,7 @@ msgstr ""
 "kurun. Kızılötesi kameranın ışığının açık olması gerekir (linux-enable-ir-"
 "emitter)."
 
-#: gui/src/panes.rs:634 gui/src/panes.rs:636 gui/src/preview.rs:815
+#: gui/src/panes.rs:634 gui/src/panes.rs:636 gui/src/preview.rs:958
 msgid "How long a scan lasts"
 msgstr "Bir taramanın süresi"
 
@@ -639,11 +639,11 @@ msgstr "Bir taramanın süresi"
 msgid "How long the camera looks for your face before it gives up."
 msgstr "Kameranın vazgeçmeden önce yüzünüzü ne kadar aradığı."
 
-#: gui/src/panes.rs:638 gui/src/preview.rs:891
+#: gui/src/panes.rs:638 gui/src/preview.rs:1034
 msgid "Learn from every unlock"
 msgstr "Her kilit açmada öğren"
 
-#: gui/src/panes.rs:638 gui/src/preview.rs:892
+#: gui/src/panes.rs:638 gui/src/preview.rs:1035
 msgid ""
 "After a sure match it keeps how you look now. So a new haircut or glasses "
 "need no new setup."
@@ -651,11 +651,11 @@ msgstr ""
 "Kesin bir eşleşmeden sonra şu anki görünüşünüzü hatırlar. Böylece yeni saç "
 "kesimi ya da gözlük yeniden kurulum gerektirmez."
 
-#: gui/src/panes.rs:639 gui/src/preview.rs:906
+#: gui/src/panes.rs:639 gui/src/preview.rs:1049
 msgid "Not when the lid is closed"
 msgstr "Kapak kapalıyken değil"
 
-#: gui/src/panes.rs:639 gui/src/preview.rs:907
+#: gui/src/panes.rs:639 gui/src/preview.rs:1050
 msgid ""
 "No scan while the laptop is closed, for example at a desk with an external "
 "screen."
@@ -681,11 +681,11 @@ msgstr "Ekranın üstündeki baloncuk kameranın ne yaptığını gösterir."
 msgid "Bubble"
 msgstr "Baloncuk"
 
-#: gui/src/panes.rs:670 gui/src/preview.rs:683
+#: gui/src/panes.rs:670 gui/src/preview.rs:792
 msgid "Show the bubble"
 msgstr "Baloncuğu göster"
 
-#: gui/src/panes.rs:676 gui/src/preview.rs:684
+#: gui/src/panes.rs:676 gui/src/preview.rs:793
 msgid "Style"
 msgstr "Stil"
 
@@ -698,15 +698,15 @@ msgid "An island with a face that looks around, then rings and a tick."
 msgstr ""
 "Etrafına bakan bir yüzü olan bir ada, ardından halkalar ve bir onay işareti."
 
-#: gui/src/panes.rs:679 gui/src/preview.rs:684
+#: gui/src/panes.rs:679 gui/src/preview.rs:793
 msgid "island with the face"
 msgstr "yüzlü ada"
 
-#: gui/src/panes.rs:679 gui/src/preview.rs:684
+#: gui/src/panes.rs:679 gui/src/preview.rs:793
 msgid "small pill with a lock"
 msgstr "kilitli küçük hap"
 
-#: gui/src/panes.rs:686 gui/src/preview.rs:687
+#: gui/src/panes.rs:686 gui/src/preview.rs:796
 msgid "Animation speed"
 msgstr "Animasyon hızı"
 
@@ -714,15 +714,15 @@ msgstr "Animasyon hızı"
 msgid "How fast the bubble moves."
 msgstr "Baloncuğun ne kadar hızlı hareket ettiği."
 
-#: gui/src/panes.rs:689 gui/src/preview.rs:689
+#: gui/src/panes.rs:689 gui/src/preview.rs:798
 msgid "slow"
 msgstr "yavaş"
 
-#: gui/src/panes.rs:689 gui/src/preview.rs:690
+#: gui/src/panes.rs:689 gui/src/preview.rs:799
 msgid "fast"
 msgstr "hızlı"
 
-#: gui/src/panes.rs:693 gui/src/preview.rs:685
+#: gui/src/panes.rs:693 gui/src/preview.rs:794
 msgid "Screen"
 msgstr "Ekran"
 
@@ -734,7 +734,7 @@ msgstr ""
 "Baloncuğun göründüğü yer: fare imlecinin olduğu ekranda ya da her zaman tek "
 "bir ekranda."
 
-#: gui/src/panes.rs:697 gui/src/preview.rs:679
+#: gui/src/panes.rs:697 gui/src/preview.rs:788
 msgid "Also for sudo and admin prompts"
 msgstr "sudo ve yönetici istemlerinde de"
 
@@ -743,7 +743,7 @@ msgid "Shows the bubble when sudo or an admin prompt scans your face, too."
 msgstr ""
 "sudo ya da bir yönetici istemi yüzünüzü taradığında da baloncuğu gösterir."
 
-#: gui/src/panes.rs:706 gui/src/preview.rs:674
+#: gui/src/panes.rs:706 gui/src/preview.rs:783
 msgid "Quiet while the camera is in use"
 msgstr "Kamera kullanımdayken gösterme"
 
@@ -757,58 +757,58 @@ msgstr ""
 "baloncuk görünmez ve parolanızı her zamanki gibi yazarsınız. Kapalı: "
 "baloncuk üstü çizili bir kamera gösterir."
 
-#: gui/src/preview.rs:488 gui/src/preview.rs:984 gui/src/preview.rs:1002
+#: gui/src/preview.rs:487 gui/src/preview.rs:1127 gui/src/preview.rs:1145
 #: pam/src/lib.rs:304
 msgid "Look at the camera to unlock."
 msgstr "Kilidi açmak için kameraya bakın."
 
-#: gui/src/preview.rs:651
+#: gui/src/preview.rs:760
 msgid "Preview"
 msgstr "Önizleme"
 
-#: gui/src/preview.rs:662
+#: gui/src/preview.rs:771
 msgid "What you see when your face unlocks the screen."
 msgstr "Yüzünüz ekranın kilidini açtığında gördüğünüz."
 
-#: gui/src/preview.rs:664
+#: gui/src/preview.rs:773
 msgid "No bubble. Your face still unlocks the screen, you just do not see it."
 msgstr ""
 "Baloncuk yok. Yüzünüz ekranın kilidini yine açar, yalnızca görmezsiniz."
 
-#: gui/src/preview.rs:671
+#: gui/src/preview.rs:780
 msgid "Another app uses the camera: no bubble, and you type your password."
 msgstr ""
 "Kamerayı başka bir uygulama kullanıyor: baloncuk yok ve parolanızı "
 "yazarsınız."
 
-#: gui/src/preview.rs:672
+#: gui/src/preview.rs:781
 msgid ""
 "Another app uses the camera: the bubble shows it, and you type your password."
 msgstr ""
 "Kamerayı başka bir uygulama kullanıyor: baloncuk bunu gösterir ve parolanızı "
 "yazarsınız."
 
-#: gui/src/preview.rs:678
+#: gui/src/preview.rs:787
 msgid "sudo looks for your face, and the bubble shows it."
 msgstr "sudo yüzünüzü arar ve baloncuk bunu gösterir."
 
-#: gui/src/preview.rs:678
+#: gui/src/preview.rs:787
 msgid "sudo looks for your face without the bubble. The terminal says so."
 msgstr "sudo yüzünüzü baloncuk olmadan arar. Terminal bunu söyler."
 
-#: gui/src/preview.rs:715
+#: gui/src/preview.rs:824
 msgid "Only your password opens the lock screen."
 msgstr "Kilit ekranını yalnızca parolanız açar."
 
-#: gui/src/preview.rs:722
+#: gui/src/preview.rs:831
 msgid "When you press a key or move the mouse, it looks for your face."
 msgstr "Bir tuşa bastığınızda veya fareyi oynattığınızda yüzünüzü arar."
 
-#: gui/src/preview.rs:724
+#: gui/src/preview.rs:833
 msgid "When you come back, it does not look. You type your password."
 msgstr "Geri döndüğünüzde aramaz. Parolanızı yazarsınız."
 
-#: gui/src/preview.rs:732
+#: gui/src/preview.rs:841
 msgid ""
 "Right after locking it looks for your face, so the screen opens again while "
 "you sit there."
@@ -816,101 +816,105 @@ msgstr ""
 "Kilitledikten hemen sonra yüzünüzü arar, bu yüzden siz önünde otururken "
 "ekran yeniden açılır."
 
-#: gui/src/preview.rs:734
+#: gui/src/preview.rs:843
 msgid "Right after locking it waits until you come back."
 msgstr "Kilitledikten hemen sonra geri dönmenizi bekler."
 
-#: gui/src/preview.rs:750
+#: gui/src/preview.rs:859
 msgid "Your face opens the lock screen as soon as it is found."
 msgstr "Yüzünüz bulunur bulunmaz kilit ekranı açılır."
 
-#: gui/src/preview.rs:810
-msgid "gets in"
-msgstr "geçer"
+#: gui/src/preview.rs:953
+msgid "unlocks"
+msgstr "açar"
 
-#: gui/src/preview.rs:810
-msgid "stopped"
-msgstr "durdurulur"
+#: gui/src/preview.rs:953
+msgid "blocked"
+msgstr "engellenir"
 
-#: gui/src/preview.rs:810
-msgid "maybe"
-msgstr "belki"
+#: gui/src/preview.rs:953
+msgid "sometimes"
+msgstr "bazen"
 
-#: gui/src/preview.rs:816
+#: gui/src/preview.rs:959
 msgid ""
 "It looks for %s seconds. If it does not find you, you type your password."
 msgstr "%s saniye arar. Sizi bulamazsa parolanızı yazarsınız."
 
-#: gui/src/preview.rs:843 gui/src/preview.rs:896 gui/src/preview.rs:937
+#: gui/src/preview.rs:986 gui/src/preview.rs:1039 gui/src/preview.rs:1080
 msgid "Your face"
 msgstr "Yüzünüz"
 
-#: gui/src/preview.rs:844
+#: gui/src/preview.rs:987
 msgid "With glasses or in bad light"
 msgstr "Gözlükle veya az ışıkta"
 
-#: gui/src/preview.rs:845
+#: gui/src/preview.rs:988
 msgid "Somebody who looks like you"
 msgstr "Size benzeyen biri"
 
-#: gui/src/preview.rs:859
+#: gui/src/preview.rs:1002
 msgid "Looking at the screen"
 msgstr "Ekrana bakıyor"
 
-#: gui/src/preview.rs:860
+#: gui/src/preview.rs:1003
 msgid "Eyes closed or looking away"
 msgstr "Gözler kapalı veya başka yere bakıyor"
 
-#: gui/src/preview.rs:897
+#: gui/src/preview.rs:1040
 msgid "New glasses or haircut"
 msgstr "Yeni gözlük veya saç kesimi"
 
-#: gui/src/preview.rs:904
+#: gui/src/preview.rs:1047
 msgid "no scan"
 msgstr "tarama yok"
 
-#: gui/src/preview.rs:904 gui/src/preview.rs:911
-msgid "scans"
-msgstr "tarar"
+#: gui/src/preview.rs:1047
+msgid "scans anyway"
+msgstr "yine de tarar"
 
-#: gui/src/preview.rs:911
+#: gui/src/preview.rs:1054
 msgid "Lid open"
 msgstr "Kapak açık"
 
-#: gui/src/preview.rs:912
+#: gui/src/preview.rs:1054
+msgid "scans"
+msgstr "tarar"
+
+#: gui/src/preview.rs:1055
 msgid "Lid closed"
 msgstr "Kapak kapalı"
 
-#: gui/src/preview.rs:920
+#: gui/src/preview.rs:1063
 msgid "after a blink"
-msgstr "göz kırptıktan sonra"
+msgstr "göz kırpınca"
 
-#: gui/src/preview.rs:935
-msgid "Photo on a phone"
-msgstr "Telefondaki fotoğraf"
+#: gui/src/preview.rs:1078
+msgid "Your photo on a phone"
+msgstr "Telefondaki fotoğrafınız"
 
-#: gui/src/preview.rs:936
-msgid "Printed photo"
-msgstr "Basılı fotoğraf"
+#: gui/src/preview.rs:1079
+msgid "Your photo on paper"
+msgstr "Kâğıttaki fotoğrafınız"
 
-#: gui/src/preview.rs:980
+#: gui/src/preview.rs:1123
 msgid "Off: you type your password."
 msgstr "Kapalı: parolanızı yazarsınız."
 
-#: gui/src/preview.rs:1004 paint/src/lockscreen.rs:202
+#: gui/src/preview.rs:1147 paint/src/lockscreen.rs:202
 #: paint/src/lockscreen.rs:203
 msgid "Password"
 msgstr "Parola"
 
-#: gui/src/preview.rs:1021
+#: gui/src/preview.rs:1164
 msgid "An app wants to make changes"
 msgstr "Bir uygulama değişiklik yapmak istiyor"
 
-#: gui/src/preview.rs:1048
+#: gui/src/preview.rs:1191
 msgid "Press Enter on the empty field to scan."
 msgstr "Taramak için boş alanda Enter'a basın."
 
-#: gui/src/preview.rs:1048 paint/src/lockscreen.rs:220
+#: gui/src/preview.rs:1191 paint/src/lockscreen.rs:220
 msgid "Type your password"
 msgstr "Parolanızı yazın"
 
@@ -1443,43 +1447,43 @@ msgstr "Bunun için root gerekir ve pkexec kurulu değil."
 msgid "Not allowed."
 msgstr "İzin verilmiyor."
 
-#: src/system.rs:131
+#: src/system.rs:137
 msgid ""
 "Hyprland does not start the lock screen agent by itself. Add this to %s:"
 msgstr ""
 "Hyprland kilit ekranı aracısını kendiliğinden başlatmaz. Bunu %s dosyasına "
 "ekleyin:"
 
-#: src/system.rs:133
+#: src/system.rs:139
 msgid "Hyprland does not start the polkit agent by itself. Add this to %s:"
 msgstr ""
 "Hyprland polkit aracısını kendiliğinden başlatmaz. Bunu %s dosyasına ekleyin:"
 
-#: src/system.rs:216
+#: src/system.rs:222
 msgid "No package manager found to install a polkit agent with."
 msgstr "Bir polkit aracısı kurmak için paket yöneticisi bulunamadı."
 
-#: src/system.rs:218
+#: src/system.rs:224
 msgid "Could not install a polkit agent."
 msgstr "Bir polkit aracısı kurulamadı."
 
-#: src/system.rs:244
+#: src/system.rs:250
 msgid "The polkit agent did not start. See: systemctl --user status %s"
 msgstr "polkit aracısı başlamadı. Bakın: systemctl --user status %s"
 
-#: src/system.rs:407
+#: src/system.rs:413
 msgid "To lock with it, add this to %s, and set %s in %s:"
 msgstr ""
 "Onunla kilitlemek için bunu %s dosyasına ekleyin ve %s ayarını %s içine "
 "yazın:"
 
-#: src/system.rs:416
+#: src/system.rs:422
 msgid "To lock with it, add this to the binds in %s, and use %s in swayidle:"
 msgstr ""
 "Onunla kilitlemek için bunu %s içindeki binds'a ekleyin ve swayidle'da %s "
 "kullanın:"
 
-#: src/system.rs:419
+#: src/system.rs:425
 msgid "To lock with it, run %s where your lock screen is started now."
 msgstr ""
 "Onunla kilitlemek için kilit ekranınızın şu an başlatıldığı yerde %s "
