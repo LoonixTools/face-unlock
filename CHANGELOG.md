@@ -4,7 +4,7 @@ What each release brings, newest first. The [GitHub releases](https://github.com
 
 ## v3.0.0
 
-_2026-11-23_
+_2026-11-26_
 
 Welcome to face-unlock `v3.0.0`! The terminal menu is now a real window, and the whole program is rewritten in Rust. The first start walks you through setting up your face, right in the window. Your faces and settings stay as they are.
 
@@ -19,6 +19,8 @@ Welcome to face-unlock `v3.0.0`! The terminal menu is now a real window, and the
 ### Highlights
 
 - A new window for every setting and for your faces
+- A preview shows what a setting does, on a small copy of your desktop
+- Changing a few settings asks for your password only once
 - **Try it** shows what the camera and the checks see
 - Pick the screen for the bubble
 - face-unlock's own lock screen now works on Debian 13 too
