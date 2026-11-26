@@ -25,7 +25,14 @@ keyid="$(gpg --list-secret-keys --with-colons | awk -F: '/^sec:/ { print $5; exi
 [[ -n $keyid ]] || { echo "$0: no secret key in the keyring" >&2; exit 1; }
 
 mkdir -p "$pages/rpm"
-cp -- "$incoming"/*.rpm "$pages/rpm/"
+# The debug packages stay on the release only. Fedora builds Rust with full
+# debug info, and GitHub refuses a file over 100 MB in a branch.
+for rpm in "$incoming"/*.rpm; do
+	case "${rpm##*/}" in
+		*-debuginfo-* | *-debugsource-*) ;;
+		*) cp -- "$rpm" "$pages/rpm/" ;;
+	esac
+done
 
 # One APT repository per distribution: each .deb depends on the exact Qt it was
 # built against, and its version carries the suffix saying which one that was.
