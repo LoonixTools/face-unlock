@@ -4,39 +4,39 @@ Hash: SHA512
 Architectures: amd64
 Codename: trixie
 Components: main
-Date: Tue, 10 Nov 2026 12:06:20 +0000
+Date: Thu, 26 Nov 2026 15:02:19 +0000
 Label: face-unlock
 Origin: face-unlock
 Suite: trixie
 MD5Sum:
- b5f47943fdf60c8f6ec28010b3996042            14513 Packages
- 15e3efab17bf69a0767bfc34be4ca2aa             2100 Packages.gz
- a247d79eba69cfa7154b2731dfec7aa2              146 Release
+ 7f54a0e8bc9b2dddf5019307ecf3a23b            16265 Packages
+ 2193ba32fc454fdb93d98cf4560ba9ff             2300 Packages.gz
+ f222702ad25fc207e79c96902174fcf1              146 Release
 SHA1:
- 5d95b4957d5626a708d40767655918145790b065            14513 Packages
- 3b65350ba86c5b4314d47d8621be8be3d12f1f23             2100 Packages.gz
- f79946a82f670acbdf92ba9bb3a05ec39a8e8910              146 Release
+ 5c8f72d279926d88b632116941568f92b56ab2d1            16265 Packages
+ 02311f60bbf1538349aed7d342fecf6c6c4355a6             2300 Packages.gz
+ 3c0af91d277149cfc3fa73b7a32289042b8d61af              146 Release
 SHA256:
- 8e887c27db7fe00df90958f4fa567100aa19f29d2677f0277654514b798cefa1            14513 Packages
- 14f38e2c6a62a86f9f4d79f8f1a7a7fc07d40b825e34aa39210a0ce7de0b8c69             2100 Packages.gz
- 11b4a2505e7c96da2d9711390e5cf86fcda3d5d9425d1c082aba139749f6bfa2              146 Release
+ d303530656c134db7b967de1e4600f6a216104c07a8d1ed2e394849d4479d140            16265 Packages
+ 2658076a594c18a506eed14f20d5bf13bd2134b14b8956927ed046d9f5b338ae             2300 Packages.gz
+ 6a7a8cf9d826e77676f16ee0f6850ad3269afb2f573421adfc9b27c8ddab379f              146 Release
 SHA512:
- ea4078eade52558bb8b4eb7356a20899197164e2369175fd79dec3bb0ffb3f8c1636b57548a09e4deb0fc823875059e39d1e2a4322420334579f294657fb0118            14513 Packages
- 6e0535ea7a33fbe350e9ce507483428b22bb74e1e9981b79074cb7ec2fd00c5d499baac0d734cbfccdd45415d7e5794bf742799f6a2b6e87c2f34ab80ceb2100             2100 Packages.gz
- 8f1aead81b1bd5bf59dc3eea92edddbd936ae6f08ecb7e8e7df99de1d41865d17d1083348af656787358ddcf9c721916d2c3009da1ef6b01e47683908ed00b58              146 Release
+ 856bdbabf2f19b659bdf9e9426ac08642f93b3760ed94834ecd4aaaf2c34ee69e45075e1f9e74629caf860a0f1b3436f310798d915b251fc748d7995212156b5            16265 Packages
+ bf0a8ea238331225e1ed469d05744e8e262cb1d7f21aedb01ad437e77a7aa24042e6c910a7fe234da0c4cc2ef4ad5aa91b9b7921a9aefbb2bd5b8fa2aef635dc             2300 Packages.gz
+ 2232baa3c2bb06b9ea87bbdf4fe6f4c10c86deb7dfb161fb802297c95b3f707e01149e9e67d3c54c0cbef4363d01f5f896cfcd0907df05ff713c0c80c44e473b              146 Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmrzCLwACgkQ+H9udOBW
-tAhDuBAAgQefHJIPzUO8ekjebqnEXs5YSyr7B6weLwQ1WfAyBXuHGneAXvBt9Eai
-1sw5nwlAjVBJBYuYPZqQ59A5VTdmUhVcJ7pOKq1hwnYiyioyB02vHWYpvRvL6MM0
-rAnD7LbA84u8+8FNQ9UkY0uC9lktYSLjI0RfUpQkt0XN+yNc5YvcNG80VrgoCBpf
-o8x9IPGS+XYPUtrtB9veC3OyaQVUYyvA+JBH0t2X+dwg4H3Qyy7xb/ADoYRolVnN
-VjfrsFu7ptwdLwBQHBC70ikVllSkYKSSau/LdocaOTaoR97ARh4d+cUvQ6+4dnyM
-cQMH7OU/rQv+U55sSUE/UoJbpRYXCBgLQ7ASt+juw39LrPBTj/qnT8xtCSlMAxPn
-KfYePqepRucNasPkPsRd5yLCBEFXTTCfNZNW+wG55PXlMK/I3na+hCR/tITU4cWx
-sor5CQLneob+OLrdjSz198e+4g9aZaKIQ98qYPrFs+WOUJCfVb54bm95nPSKsjut
-6adAn9DXp/oRHs8dZlHfbVVdb2FSEJ08cuvNYwqeRXlvvTJb6ddUFXx5nWZLdHJw
-SH7VV6NDcRXP/zm/DsyasAJyXhkeZGde6bUDYMZ5TLsXdBRNqBr4xO8+AcrkiYgh
-ov0SlTFdWVVKIQT6Xke4Zq/X9an+VXsdVMQgPhZwSGoMqbalK2U=
-=dqDl
+iQIzBAEBCgAdFiEEMmNAX0fOqaZFPyIT+H9udOBWtAgFAmsISfsACgkQ+H9udOBW
+tAjB9xAA05ruzwV3kNXGQd4/VoGqOcI4+4z57KN3SdkUguifp2XY5seiFUVgrgsV
+NbjRPe1GA67F7pODGQdgzSDDAK/nKV4zaWuX91wU/BSE2HTpQqDSHIcYVMCLHqnq
+GQ8SmLYQXFU2AOyo1ZR41TQZcL3Oxf2ekh9JBdtsWhlTi3tuo1hLaNm/rLkWgcO5
+Lgho88A9QYMF/WKPIpC7f2XNjNlgeU+9UKzDdmVk5xvqZalDyGTSSk1rIK9V4JpY
+g0z5BaHwycx3im7a6LJ0ZT0clBvh9E7+AFiFlufhd01N956QfdyNw2GimRn1ZHaC
+JWDMlTDOvdeUMZUWUK+bYHGjHCsVz6OV10lsrOWg1naAcL4ORkBisPJ5Qxaw97a5
+m6umRKGoN5yfVsuSxKuulhrYJo62k+BNfmHQ5drG5IiaTRpsYGJSsz7jUYvaWOiw
+YkxGGk7WIr/RUJt9lWupuPxk/Of/DgjWUzf6NKgnU1f8Nt+dPLsZ4YPeOYd52aFM
+iLLGwbm9/iaUtvkuZmAox9ZmgZmhhq0lOq1UJu/OYIJ7fideQP2pqgUtuQI1IX6f
+sPLCx+JLmMAilSqUFXPMIttZxn/M2czWkQFNlYv0G8v3bKTL3KGhfugdQEzBoszV
+0HNGQSK5HxDpSYMTSoF7Sqb6wHCyFtzxI+H5whxRXJ4NavfDj9A=
+=H0vP
 -----END PGP SIGNATURE-----

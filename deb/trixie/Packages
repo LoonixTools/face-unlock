@@ -142,6 +142,42 @@ Description: face unlock for Plasma, GNOME, Hyprland and Niri
  root, never as pictures. Run "face-unlock disable" before removing
  this package, so that sudo and polkit go back to the password alone.
 
+Package: face-unlock
+Version: 3.0.0~deb13
+Architecture: amd64
+Maintainer: Felitendo <felitendoyt@gmail.com>
+Depends: libc6 (>= 2.39), libgcc-s1 (>= 4.2), libpam0g (>= 1.4.0), libxkbcommon0 (>= 0.5.0), systemd, polkitd | policykit-1, libwayland-client0, libxkbcommon0, libfontconfig1, libvulkan1
+Recommends: mesa-vulkan-drivers
+Conflicts: plasma-face-unlock
+Replaces: plasma-face-unlock
+Filename: ./face-unlock_3.0.0~deb13_amd64.deb
+Size: 55944592
+MD5sum: b05ec7e845512bbdd490d7a619bce570
+SHA1: 08799eee91258ba3c4c4f25730f82f45d034fbe3
+SHA256: 320a4b608a56958b8a57d3f9ef9aac7ebc3281e9117a125c42a258f2a420c039
+Section: admin
+Priority: optional
+Homepage: https://github.com/LoonixTools/face-unlock
+Description: face unlock for Plasma, GNOME, Hyprland and Niri
+ Look at the screen and it unlocks, the way a phone does. The lock screen,
+ sudo in a terminal and the admin password prompts can take a face instead
+ of a password, on KDE Plasma, GNOME, Hyprland and Niri. A bubble at the top
+ of the screen shows the face being looked for, recognised or refused.
+ .
+ This package was called plasma-face-unlock before. It takes over its faces
+ and settings.
+ .
+ A photo on a phone, a tablet or a glossy print is refused by its
+ reflection and its straight edges. Strict anti-spoofing also wants a sign
+ of life (a blink, or the nose moving the way a real nose does when the head
+ turns), which stops a printed photo too. It is a convenience, not a security
+ upgrade: a webcam sees a flat picture, and a video of the person can get
+ through.
+ .
+ Everything runs on the machine. Faces are stored as numbers readable only by
+ root, never as pictures. Run "face-unlock disable" before removing
+ this package, so that sudo and polkit go back to the password alone.
+
 Package: plasma-face-unlock
 Version: 1.0.0~deb13
 Architecture: amd64
